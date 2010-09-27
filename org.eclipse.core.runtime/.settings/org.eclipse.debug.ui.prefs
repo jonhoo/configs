@@ -1,0 +1,11 @@
+#Thu Jul 15 00:25:56 EST 2010
+org.eclipse.debug.ui.BreakpointView+org.eclipse.debug.ui.actions.SkipAllBreakpoints=true
+org.eclipse.debug.ui.PREF_LAUNCH_PERSPECTIVES=<?xml version\="1.0" encoding\="UTF-8" standalone\="no"?>\r\n<launchPerspectives/>\r\n
+pref_state_memento.org.eclipse.debug.ui.VariableView=<?xml version\="1.0" encoding\="UTF-8"?>\r\n<VariablesViewMemento org.eclipse.debug.ui.SASH_DETAILS_PART\="173" org.eclipse.debug.ui.SASH_VIEW_PART\="821">\r\n<PRESENTATION_CONTEXT_PROPERTIES IMemento.internal.id\="org.eclipse.debug.ui.VariableView"/>\r\n</VariablesViewMemento>
+pref_state_memento.org.eclipse.debug.ui.BreakpointView=<?xml version\="1.0" encoding\="UTF-8"?>\r\n<VariablesViewMemento org.eclipse.debug.ui.SASH_DETAILS_PART\="315" org.eclipse.debug.ui.SASH_VIEW_PART\="684">\r\n<PRESENTATION_CONTEXT_PROPERTIES IMemento.internal.id\="org.eclipse.debug.ui.BreakpointView">\r\n<BOOLEAN BOOLEAN\="true" IMemento.internal.id\="org.eclipse.debug.ui.check"/>\r\n</PRESENTATION_CONTEXT_PROPERTIES>\r\n</VariablesViewMemento>
+pref_state_memento.org.eclipse.debug.ui.DebugVieworg.eclipse.debug.ui.DebugView=<?xml version\="1.0" encoding\="UTF-8"?>\r\n<DebugViewMemento org.eclipse.debug.ui.BREADCRUMB_DROPDOWN_AUTO_EXPAND\="false"/>
+preferredDetailPanes=DefaultDetailPane\:DefaultDetailPane|org.eclipse.jdt.debug.ui.DETAIL_PANE_WATCHPOINT\:org.eclipse.jdt.debug.ui.DETAIL_PANE_WATCHPOINT|
+org.eclipse.debug.ui.switch_perspective_on_suspend=always
+preferredTargets=default\:default|
+eclipse.preferences.version=1
+org.eclipse.debug.ui.user_view_bindings=<?xml version\="1.0" encoding\="UTF-8" standalone\="no"?>\r\n<viewBindings>\r\n<view id\="org.eclipse.ui.console.ConsoleView">\r\n<perspective id\="org.eclipse.jdt.ui.JavaPerspective" userAction\="opened"/>\r\n<perspective id\="org.eclipse.debug.ui.DebugPerspective" userAction\="closed"/>\r\n</view>\r\n</viewBindings>\r\n

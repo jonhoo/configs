@@ -1,0 +1,3 @@
+#Thu Jul 15 01:25:50 EST 2010
+eclipse.preferences.version=1
+org.eclipse.jdt.launching.PREF_VM_XML=<?xml version\="1.0" encoding\="UTF-8" standalone\="no"?>\r\n<vmSettings defaultVM\="57,org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType13,1279093945127" defaultVMConnector\="">\r\n<vmType id\="org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType">\r\n<vm id\="1279093945127" javadocURL\="http\://java.sun.com/javase/6/docs/api/" name\="jre6" path\="C\:\\Program Files\\Java\\jre6"/>\r\n</vmType>\r\n</vmSettings>\r\n
