@@ -1,0 +1,6 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhist_cnt =4
+let g:netrw_dirhist_1='/home/jon/dev/swms/static'
+let g:netrw_dirhist_2='/home/jon/dev/swms/static/templates'
+let g:netrw_dirhist_3='/etc/default'
+let g:netrw_dirhist_4='/media/public'
