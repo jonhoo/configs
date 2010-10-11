@@ -20,11 +20,14 @@ PS1='[\u@\h \W]\$ '
 export EDITOR='vim'
 export PATH="$PATH:/usr/local/bin"
 export PATH="$PATH:/home/jon/bin/sal/bin"
+export CLASSPATH="$CLASSPATH:."
+export CLASSPATH="$CLASSPATH:/usr/lib/junit.jar"
+export CLASSPATH="$CLASSPATH:/usr/share/java/emma.jar"
+
 alias ,='make'
 alias ,,='/home/jon/dev/makefiles/makeMakefile.pl'
 alias .='git pull'
 alias ..='git push'
-alias s='stamp'
 alias o='xdg-open'
 alias yu='yaourt -Syu --aur'
 alias pu='sudo powerpill -Syu'
