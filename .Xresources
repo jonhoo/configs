@@ -30,8 +30,8 @@
 
 ! xterm ----------------------------------------------------------------------
 
-xterm*geometry:           80x25
-xterm*faceName:           inconsolata:pixelsize=16
+xterm*geometry:           100x25
+xterm*faceName:           inconsolata:pixelsize=15
 !xterm*font:             -*-dina-medium-r-*-*-16-*-*-*-*-*-*-*
 xterm*dynamicColors:      true
 xterm*utf8:               1

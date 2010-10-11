@@ -1,3 +1,9 @@
 [user]
 	name = Jon Gjengset
 	email = jon@thesquareplanet.com
+[ui "color"]
+	ui = always
+[color]
+	ui = true
+[core]
+	excludesfile = ~/.gitignore
