@@ -40,7 +40,7 @@ alias ..='git push'
 # file handlers
 alias o='xdg-open'
 # update commands
-alias p="powerpill"
+alias p="sudo powerpill"
 alias y="yaourt"
 # online tools
 alias t='tweet'
