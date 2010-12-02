@@ -40,9 +40,8 @@ alias ..='git push'
 # file handlers
 alias o='xdg-open'
 # update commands
-alias yu='yaourt -Syu --aur'
-alias pu='sudo powerpill -Syu'
-alias yi='yaourt -S'
+alias p="powerpill"
+alias y="yaourt"
 # online tools
 alias t='tweet'
 # misc
