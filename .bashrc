@@ -44,6 +44,8 @@ alias p="sudo powerpill"
 alias y="yaourt"
 # online tools
 alias t='tweet'
+# editing
+alias v='vim'
 # misc
 alias s='/home/jon/dev/snippets/Perl/stamp/stamp.pl'
 alias f='fortune -asn 500'
