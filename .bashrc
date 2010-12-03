@@ -26,6 +26,9 @@ export EDITOR='vim'
 # Add local bins to path
 export PATH="$PATH:/usr/local/bin"
 export PATH="$PATH:/home/jon/bin/sal/bin"
+export CLASSPATH="$CLASSPATH:."
+export CLASSPATH="$CLASSPATH:/usr/lib/junit.jar"
+export CLASSPATH="$CLASSPATH:/usr/share/java/emma.jar"
 
 # Other aliases
 # make
@@ -37,11 +40,12 @@ alias ..='git push'
 # file handlers
 alias o='xdg-open'
 # update commands
-alias yu='yaourt -Syu --aur'
-alias pu='sudo powerpill -Syu'
-alias yi='yaourt -S'
+alias p="sudo powerpill"
+alias y="yaourt"
 # online tools
 alias t='tweet'
+# editing
+alias v='vim'
 # misc
 alias s='/home/jon/dev/snippets/Perl/stamp/stamp.pl'
 alias f='fortune -asn 500'
