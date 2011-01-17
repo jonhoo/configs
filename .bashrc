@@ -8,9 +8,9 @@ alias grep='grep --color=auto'
 
 # Common aliases
 alias more='less'
+alias pp='sudo powerpill'
 
 # Convenience aliases
-alias svim='sudo vim'
 alias srm='sudo rm'
 
 # Prompt
@@ -21,14 +21,11 @@ PS1='[\u@\h \W]\$ '
 #complete -cf sudo
 
 # Sets the editor to use
-export EDITOR='vim'
+export EDITOR='emacs'
 
 # Add local bins to path
 export PATH="$PATH:/usr/local/bin"
-export PATH="$PATH:/home/jon/bin/sal/bin"
 export CLASSPATH="$CLASSPATH:."
-export CLASSPATH="$CLASSPATH:/usr/lib/junit.jar"
-export CLASSPATH="$CLASSPATH:/usr/share/java/emma.jar"
 
 # Other aliases
 # make
@@ -38,7 +35,7 @@ alias ,,='/home/jon/dev/makefiles/makeMakefile.pl'
 alias .='git pull'
 alias ..='git push'
 # file handlers
-alias o='xdg-open'
+alias o='mimeopen'
 # update commands
 alias p="sudo powerpill"
 alias y="yaourt"
@@ -49,4 +46,10 @@ alias v='vim'
 # misc
 alias s='/home/jon/dev/snippets/Perl/stamp/stamp.pl'
 alias f='fortune -asn 500'
-alias f='fortune -casn 500 /usr/share/fortune/{chucknorris,computers,debian,himym,linux,linuxcookie,magic,matrix,men-women,miscellaneous,off/atheism,off/black-humor,off/cookie,off/debian,off/limerick,off/linux,off/misandry,off/miscellaneous,off/misogyny,off/privates,off/religion,off/riddles,off/sex,off/vulgarity,perl,riddles,science,startrek,wisdom}'
+
+export FORTUNES="computers debian linux magic"
+export FORTUNES="futurama hitchhiker himym $FORTUNES"
+export FORTUNES="montypython perl $FORTUNES"
+export FORTUNES="science wisdom miscellaneous $FORTUNES"
+export FORTUNES="off/atheism off/debian off/linux off/privates off/religion off/sex off/vulgarity $FORTUNES"
+alias f='fortune -casn 500 $FORTUNES'
