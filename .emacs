@@ -39,9 +39,14 @@
 ;; sudoing should always be available
 (require 'sudo-save)
 
+;; SAL mode
+(require 'sal-mode)
+
 ;; Indent
-(setq standard-indent 4)
 (setq-default indent-tabs-mode nil)
+(setq-default tab-width 4)
+(setq indent-line-function 'insert-tab)
+(setq standard-indent 4)
 
 ;; Mouse scroll
 (mouse-wheel-mode t)
