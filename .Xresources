@@ -1,6 +1,33 @@
 ! terminal colors ------------------------------------------------------------
 
 ! tangoesque scheme
+xterm*background: #111111
+xterm*foreground: #babdb6
+! Black (not tango) + DarkGrey
+xterm*color0:  #000000
+xterm*color8:  #555753
+! DarkRed + Red
+xterm*color1:  #ff6565
+xterm*color9:  #ff8d8d
+! DarkGreen + Green
+xterm*color2:  #93d44f
+xterm*color10: #c8e7a8
+! DarkYellow + Yellow
+xterm*color3:  #eab93d
+xterm*color11: #ffc123
+! DarkBlue + Blue
+xterm*color4:  #204a87
+xterm*color12: #3465a4
+! DarkMangenta + Mangenta
+xterm*color5:  #ce5c00
+xterm*color13: #f57900
+!DarkCyan + Cyan (both not tango)
+xterm*color6:  #89b6e2
+xterm*color14: #46a4ff
+! LightGrey + White
+xterm*color7:  #cccccc
+xterm*color15: #ffffff
+! tangoesque scheme
 emacs*background: #111111
 emacs*foreground: #babdb6
 ! Black (not tango) + DarkGrey
