@@ -63,9 +63,12 @@
 
 ;; Syntax highlighting
 (global-font-lock-mode 1)
+(setq font-lock-maximum-decoration t) 
 
-;; Changes all yes/no questions to y/n type
+;; Treat 'y' or <CR> as yes, 'n' as no.
 (fset 'yes-or-no-p 'y-or-n-p)
+(define-key query-replace-map [return] 'act)
+(define-key query-replace-map [?\C-m] 'act)
 
 ;; UTF-8
 (prefer-coding-system       'utf-8)
@@ -80,6 +83,11 @@
 ;; save the desktop file automatically if it already exists
 (setq desktop-save 'if-exists)
 (desktop-save-mode 1)
+
+;; Highlight line
+(global-hl-line-mode 1)
+(setq hl-line-sticky-flag nil)
+(set-face-background hl-line-face "gray13")
 
 ;; save a bunch of variables to the desktop file
 ;; for lists specify the len of the maximal saved data also
