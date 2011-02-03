@@ -43,6 +43,7 @@ alias o='mimeopen'
 # update commands
 alias p="sudo powerpill"
 alias y="yaourt"
+alias up="yaourt -Syu --aur"
 # online tools
 alias t='tweet'
 # editing
