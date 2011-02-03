@@ -22,6 +22,10 @@
 
 ;; Remap RET to do indenting
 (define-key global-map (kbd "RET") 'newline-and-indent)
+;; But not for text mode
+(add-hook 'text-mode-hook '(lambda ()
+                             (local-set-key (kbd "RET") 'newline)))
+(add-hook 'text-mode-hook '(lambda () (flyspell-mode 1)))
 
 ;; Autocomplete
 (require 'auto-complete-config)
@@ -31,16 +35,22 @@
 ;; Autoload modes
 ; PHP
 (autoload 'php-mode "php-mode.el" "Php mode." t)
-(setq auto-mode-alist (append '(("/*.\.php[345]?$" . php-mode)) auto-mode-alist))
+(setq auto-mode-alist (append '(("\\.php[345]?$" . php-mode)) auto-mode-alist))
 ; Python
 (autoload 'python-mode "python-mode.el" "Python mode." t)
-(setq auto-mode-alist (append '(("/*.\.py$" . python-mode)) auto-mode-alist))
+(setq auto-mode-alist (append '(("\\.py$" . python-mode)) auto-mode-alist))
+; Markdown
+(autoload 'markdown-mode "markdown-mode.el" "Markdown mode" t)
+(setq auto-mode-alist (append '(("\\.md$" . markdown-mode)) auto-mode-alist))
+
+;; Use aspell
+(setq-default ispell-program-name "aspell")
 
 ;; sudoing should always be available
 (require 'sudo-save)
 
 ;; SAL mode
-;(require 'sal-mode)
+; (require 'sal-mode)
 
 ;; Indent
 (setq-default indent-tabs-mode nil)

@@ -25,6 +25,7 @@ PS1="\[\e[2;37m\][\A] \[\e[0;33m\]\u\[\e[0m\]@\[\e[34m\]\h \[\e[32m\]\w\[\e[35m\
 
 # Sets the editor to use
 export EDITOR='emacs'
+export BROWSER='chromium'
 
 # Add local bins to path
 export PATH="$PATH:/usr/local/bin"
@@ -49,6 +50,8 @@ alias v='vim'
 # misc
 alias s='/home/jon/dev/snippets/Perl/stamp/stamp.pl'
 alias f='fortune -asn 500'
+# Safe
+alias mv='mv -i'
 
 export FORTUNES="computers debian linux magic"
 export FORTUNES="futurama hitchhiker himym $FORTUNES"
