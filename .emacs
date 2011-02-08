@@ -67,7 +67,7 @@
 (require 'sudo-save)
 
 ;; SAL mode
-(require 'sal-mode)
+; (require 'sal-mode)
 
 ;; Indent
 (setq-default indent-tabs-mode nil)

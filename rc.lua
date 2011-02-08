@@ -42,7 +42,7 @@ layouts =
 }
 
 tags = {
-  names  = { 'cmd', 'web', 'mail', 'daemon', 'music', 'chat', 'progress', 8, 9 },
+  names  = { 'cmd', 'web', 'mail', 'edit', 'music', 'daemon', 'progress', 8, 9 },
   layout = { layouts[5],  layouts[12], layouts[12], layouts[5], layouts[5],
              layouts[12], layouts[5],  layouts[5],  layouts[5]
 }}
@@ -192,6 +192,7 @@ openoffice = {
 mymainmenu = awful.menu({ 
     items = { 
         { "Chrome", "chromium" },
+        { "Emacs", "emacs" },
         { "Firefox", "firefox" },
         { "Mail", "thunderbird" },
         { "Spotify", 'wine "C:\\Program Files\\Spotify\\spotify.exe"' },
