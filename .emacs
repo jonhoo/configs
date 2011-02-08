@@ -20,18 +20,34 @@
       (normal-top-level-add-to-load-path '("."))
       (normal-top-level-add-subdirs-to-load-path))
 
+;; Shift+Tab = Four spaces
+(defun fourspace (&optional n)
+  (interactive "p")
+  (beginning-of-line)
+  (let ((last-command-char ?\s))
+    (self-insert-command (* (or n 1) default-tab-width))))
+(define-key global-map (kbd "<backtab>") 'fourspace)
 ;; Remap RET to do indenting
 (define-key global-map (kbd "RET") 'newline-and-indent)
 ;; But not for text mode
 (add-hook 'text-mode-hook '(lambda ()
                              (local-set-key (kbd "RET") 'newline)))
-(add-hook 'text-mode-hook '(lambda () (flyspell-mode 1)))
+(dolist (hook '(text-mode-hook))
+      (add-hook hook (lambda () (flyspell-mode 1))))
 
+;; Syntax highlight LESS like CSS
+(setq auto-mode-alist (cons '("\\.less$" . css-mode) auto-mode-alist))
 
 ;; Autocomplete
 (require 'auto-complete-config)
 (add-to-list 'ac-dictionary-directories "/home/jon/.emacs.d/site-lisp/auto-complete/ac-dict")
 (ac-config-default)
+(setq ac-auto-start 2)
+(setq ac-delay 0.1)
+(setq ac-auto-show-menu nil)
+(setq ac-show-menu-immediately-on-auto-complete t)
+(setq ac-trigger-key nil)
+(define-key ac-complete-mode-map "\r" nil)
 
 ;; Autoload modes
 ; PHP
