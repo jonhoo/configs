@@ -59,6 +59,15 @@
 ; Markdown
 (autoload 'markdown-mode "markdown-mode.el" "Markdown mode" t)
 (setq auto-mode-alist (append '(("\\.md$" . markdown-mode)) auto-mode-alist))
+; YAML
+(autoload 'yaml-mode "yaml-mode.el" "YAML mode" t)
+(setq auto-mode-alist (append '(("\.yml\'" . yaml-mode)) auto-mode-alist))
+(setq auto-mode-alist (append '(("\.yaml\'" . yaml-mode)) auto-mode-alist))
+; Apache config mode
+(autoload 'apache-mode "apache-mode.el" "Apache conf mode." t)
+(setq auto-mode-alist (cons '("/httpd.conf$" . apache-mode) auto-mode-alist))
+(setq auto-mode-alist (cons '(".htaccess$" . apache-mode) auto-mode-alist))
+(setq auto-mode-alist (cons '("^/etc/httpd/conf/.*\.conf" . apache-mode) auto-mode-alist))
 
 ;; Use aspell
 (setq-default ispell-program-name "aspell")
