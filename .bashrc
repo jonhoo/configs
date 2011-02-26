@@ -11,7 +11,8 @@ alias more='less'
 
 # Convenience aliases
 alias srm='sudo rm'
-alias l='ls -la'
+alias ll='ls -la'
+alias l='ls'
 
 # Prompt
 source /usr/share/git/completion/git-completion.bash
