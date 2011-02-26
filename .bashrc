@@ -25,6 +25,11 @@ PS1="\[\e[2;37m\][\A] \[\e[0;33m\]\u\[\e[0m\]@\[\e[34m\]\h \[\e[32m\]\w\[\e[35m\
 # Disabled because it also autocompletes filenames...
 #complete -cf sudo
 
+# Bookmarks
+if [ -f ~/.local/bin/bashmarks.sh ]; then
+    source ~/.local/bin/bashmarks.sh;
+fi
+
 # Sets the editor to use
 export EDITOR='emacs'
 export BROWSER='chromium'
@@ -51,7 +56,7 @@ alias t='tweet'
 # editing
 alias v='vim'
 # misc
-alias s='/home/jon/dev/snippets/Perl/stamp/stamp.pl'
+alias stamp='/home/jon/dev/snippets/Perl/stamp/stamp.pl'
 alias f='fortune -asn 500'
 # Safe
 alias mv='mv -i'
