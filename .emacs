@@ -59,6 +59,9 @@
 ; Markdown
 (autoload 'markdown-mode "markdown-mode.el" "Markdown mode" t)
 (setq auto-mode-alist (append '(("\\.md$" . markdown-mode)) auto-mode-alist))
+; AsTMa
+(autoload 'astma-mode "astma-mode.el" "AsTMa mode" t)
+(setq auto-mode-alist (append '(("\\.atm$" . astma-mode)) auto-mode-alist))
 ; YAML
 (autoload 'yaml-mode "yaml-mode.el" "YAML mode" t)
 (setq auto-mode-alist (append '(("\.yml\'" . yaml-mode)) auto-mode-alist))
