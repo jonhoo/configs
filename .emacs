@@ -29,9 +29,12 @@
 (define-key global-map (kbd "<backtab>") 'fourspace)
 ;; Remap RET to do indenting
 (define-key global-map (kbd "RET") 'newline-and-indent)
-;; But not for text mode
+;; But not for text mode or AsTMa mode
 (add-hook 'text-mode-hook '(lambda ()
                              (local-set-key (kbd "RET") 'newline)))
+(add-hook 'astma-mode-hook '(lambda ()
+                             (local-set-key (kbd "RET") 'newline)))
+;; We want flyspell in text modes
 (dolist (hook '(text-mode-hook))
       (add-hook hook (lambda () (flyspell-mode 1))))
 
