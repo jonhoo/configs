@@ -53,6 +53,7 @@ alias y="yaourt"
 alias up="yaourt -Syu --aur"
 # online tools
 alias t='tweet'
+alias tsp='ssh jon@thesquareplanet.com'
 # editing
 alias v='vim'
 # misc
