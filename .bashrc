@@ -11,7 +11,8 @@ alias more='less'
 
 # Convenience aliases
 alias srm='sudo rm'
-alias ll='ls -la'
+alias lll='ls -la'
+alias ll='ls -l'
 alias l='ls'
 
 # Prompt
