@@ -75,6 +75,8 @@
 (setq auto-mode-alist (cons '(".htaccess$" . apache-mode) auto-mode-alist))
 (setq auto-mode-alist (cons '("^/etc/httpd/conf/.*\.conf" . apache-mode) auto-mode-alist))
 
+(require 'color-theme)
+
 ;; Use aspell
 (setq-default ispell-program-name "aspell")
 
@@ -174,3 +176,6 @@
 
 (global-set-key (kbd "M-<up>") 'move-line-up)
 (global-set-key (kbd "M-<down>") 'move-line-down)
+
+;; Apply theme
+(color-theme-solarized-dark)

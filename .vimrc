@@ -30,7 +30,9 @@ set expandtab
 syntax on
 
 " Style vim
-colors clouds
+" colors clouds
+set background=dark
+colorscheme solarized
 
 " Keymaps
 let mapleader = ","
