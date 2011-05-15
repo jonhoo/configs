@@ -1,4 +1,4 @@
-#include "dev/others/solarized/xresources-colors-solarized/Xresources"
+#include "/home/jon/dev/others/solarized/xresources-colors-solarized/Xresources"
 emacs*geometry:           120x50
 *faceName:           inconsolata:pixelsize=15
 
