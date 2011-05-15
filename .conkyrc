@@ -1,0 +1,102 @@
+# ~/.conkyrc
+#
+# conky configuration file.
+
+alignment top_right
+background yes
+#border_margin 0
+#border_width 0
+cpu_avg_samples 2
+#color0 7d7d7d
+#color1 green
+#color2 ffffff
+double_buffer yes
+draw_shades no
+draw_outline no
+draw_borders no
+default_color white
+#draw_graph_borders no
+#default_shade_color cyan
+#default_outline_color cyan
+gap_x 10
+gap_y 10
+#mail_spool $MAIL
+#minimum_size 330 10
+#maximum_width 330
+no_buffers yes
+net_avg_samples 2
+out_to_console no
+own_window yes
+own_window_transparent yes
+own_window_argb_visual yes
+own_window_type normal
+own_window_class conky-semi
+own_window_hints undecorated,below,sticky,skip_taskbar,skip_pager
+own_window_colour cyan
+override_utf8_locale no
+stippled_borders 0
+total_run_times 0
+use_xft yes
+use_spacer right
+update_interval 1.0
+uppercase no
+#wm_class_name Conky
+xftfont inconsolata:size=11
+xftalpha 0.8
+
+TEXT
+SYSTEM ${hr}
+
+${alignc 15}${font droid sans mono:size=14}${nodename}${font}
+
+${font StyleBats:size=16}u${font} kernel: ${alignr}${kernel}
+
+${font StyleBats:size=16}o${font} cpu: ${cpu cpu0}% ${alignr}${cpugraph cpu0 8,60}
+${alignr}${cpubar cpu1 4,30}${cpubar cpu2 4,30}
+${font StyleBats:size=16}a$font} mem: ${memperc}% ${alignr}${memgraph 8,60}
+
+${font StyleBats:size=16}p${font} bat: ${battery_time BAT0} ${alignr}${battery_bar 8,60}
+
+${font StyleBats:size=16}q${font} uptime: ${alignr}${uptime}
+
+TIME ${hr}
+
+${alignc 10}${font inconsolata:size=14}${time %H:%M}${font}
+${alignc 10}${time %a %d %b}
+
+HDD ${hr}
+
+${font StyleBats:size=12}Y${font} root${alignr}${fs_bar 8,60 /} ${fs_free /} 
+${font StyleBats:size=12}Y${font} home${alignr}${fs_bar 8,60 /home} ${fs_free /home} 
+
+${font StyleBats:size=12}G${font} sda\
+${alignr}${diskiograph_read /dev/sda 12,120} 
+${alignr}${diskiograph_write /dev/sda 12,120} 
+
+NETWORK ${hr}
+
+${if_existing /proc/net/route wlan0}\
+  ${font inconsolata:size=14}${alignc}${wireless_essid wlan0}${font}
+  ${alignc}${wireless_link_bar 8,60 wlan0}
+  ${font inconsolata:size=11}\
+  ${alignc}${addr wlan0}
+  ${alignc}[${gw_ip}]
+    
+  ${font PizzaDude Bullets:size=14}N${font} up: ${upspeedf wlan0} ${alignr}${upspeedgraph wlan0 8,60}
+    
+  ${font PizzaDude Bullets:size=14}T${font} down: ${downspeedf wlan0} ${alignr}${downspeedgraph wlan0 8,60}
+${else}\
+  ${if_existing /proc/net/route eth0}\
+    ${font inconsolata:size=11}\
+    ${alignc}${addr eth0}
+    ${alignc}[${gw_ip}]
+    
+    ${font PizzaDude Bullets:size=14}O${font} up: ${upspeedf eth0} ${alignr}${upspeedgraph eth0 8,60}
+    
+    ${font PizzaDude Bullets:size=14}U${font} down: ${downspeedf eth0} ${alignr}${downspeedgraph eth0 8,60}
+  ${else}\
+    ${alignc}${font PizzaDude Bullets:size=14}G${font} Network Unavailable
+  ${endif}
+${endif}
+
+# End of file.
