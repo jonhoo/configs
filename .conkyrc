@@ -73,6 +73,15 @@ ${font StyleBats:size=12}G${font} sda\
 ${alignr}${diskiograph_read /dev/sda 12,120} 
 ${alignr}${diskiograph_write /dev/sda 12,120} 
 
+${if_existing /dev/sdb}${font StyleBats:size=12}G${font} sdb\
+${alignr}\
+${diskiograph_read /dev/sdb 8,60}\
+${diskiograph_write /dev/sdb 8,60} 
+${endif}${if_existing /dev/sdc}${font StyleBats:size=12}G${font} sdc\
+${alignr}\
+${diskiograph_read /dev/sdc 8,60}\
+${diskiograph_write /dev/sdc 8,60} 
+${endif}
 NETWORK ${hr}
 
 ${if_existing /proc/net/route wlan0}\
