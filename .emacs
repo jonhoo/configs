@@ -34,6 +34,9 @@
                              (local-set-key (kbd "RET") 'newline)))
 (add-hook 'astma-mode-hook '(lambda ()
                              (local-set-key (kbd "RET") 'newline)))
+;; But especially for HTML mode
+(add-hook 'html-mode-hook '(lambda ()
+                             (local-set-key (kbd "RET") 'newline-and-indent)))
 ;; We want flyspell in text modes
 (dolist (hook '(text-mode-hook))
       (add-hook hook (lambda () (flyspell-mode 1))))
@@ -74,6 +77,9 @@
 (setq auto-mode-alist (cons '("/httpd.conf$" . apache-mode) auto-mode-alist))
 (setq auto-mode-alist (cons '(".htaccess$" . apache-mode) auto-mode-alist))
 (setq auto-mode-alist (cons '("^/etc/httpd/conf/.*\.conf" . apache-mode) auto-mode-alist))
+; PKGBUILD mode
+(autoload 'pkgbuild-mode "pkgbuild-mode.el" "PKGBUILD mode." t)
+(setq auto-mode-alist (append '(("/PKGBUILD$" . pkgbuild-mode)) auto-mode-alist))
 
 (require 'color-theme)
 
@@ -178,4 +184,4 @@
 (global-set-key (kbd "M-<down>") 'move-line-down)
 
 ;; Apply theme
-(color-theme-solarized-dark)
+(color-theme-solarized 'dark)
