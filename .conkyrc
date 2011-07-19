@@ -52,10 +52,10 @@ ${alignc 15}${font droid sans mono:size=14}${nodename}${font}
 ${font StyleBats:size=16}u${font} kernel: ${alignr}${kernel}
 
 ${font StyleBats:size=16}o${font} cpu: ${cpu cpu0}% ${alignr}${cpugraph cpu0 8,60}
-${alignr}${cpubar cpu1 4,30}${cpubar cpu2 4,30}
-${font StyleBats:size=16}a$font} mem: ${memperc}% ${alignr}${memgraph 8,60}
+${font inconsolata:size=10}    @ ${freq}${font}${alignr}${cpubar cpu1 4,30}${cpubar cpu2 4,30}
+${font StyleBats:size=16}a${font} mem: ${memperc}% ${alignr}${memgraph 8,60}
 
-${font StyleBats:size=16}p${font} bat: ${battery_time BAT0} ${alignr}${battery_bar 8,60}
+${font StyleBats:size=16}${if_match "${battery_short}" > "C"}i${else}p${endif}${font} bat: ${battery_time BAT0} ${alignr}${battery_bar 8,60}
 
 ${font StyleBats:size=16}q${font} uptime: ${alignr}${uptime}
 
