@@ -27,6 +27,11 @@ if [ -e /usr/share/git/completion/git-completion.bash ]; then
     PS1="$PS1\[\e[35m\]\`__git_ps1\`"
 fi
 
+# Ant
+if [ -e /etc/profile.d/apache-ant.sh ]; then
+    source /etc/profile.d/apache-ant.sh
+fi
+
 PS1="$PS1 \[\e[31m\]\$\[\e[0m\] "
 
 # Solarized ls
