@@ -17,7 +17,6 @@ tint2 &
 blueman-applet &
 dropboxd &
 volti &
-nvdock &
 
 # Conky
 conky &
