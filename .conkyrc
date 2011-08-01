@@ -95,14 +95,14 @@ ${if_existing /proc/net/route wlan0}\
     
   ${font PizzaDude Bullets:size=14}T${font} down: ${downspeedf wlan0} ${alignr}${downspeedgraph wlan0 8,60}
 ${else}\
-  ${if_existing /proc/net/route eth0}\
+  ${if_existing /proc/net/route main}\
     ${font inconsolata:size=11}\
-    ${alignc}${addr eth0}
+    ${alignc}${addr main}
     ${alignc}[${gw_ip}]
     
-    ${font PizzaDude Bullets:size=14}O${font} up: ${upspeedf eth0} ${alignr}${upspeedgraph eth0 8,60}
+    ${font PizzaDude Bullets:size=14}O${font} up: ${upspeedf main} ${alignr}${upspeedgraph main 8,60}
     
-    ${font PizzaDude Bullets:size=14}U${font} down: ${downspeedf eth0} ${alignr}${downspeedgraph eth0 8,60}
+    ${font PizzaDude Bullets:size=14}U${font} down: ${downspeedf main} ${alignr}${downspeedgraph main 8,60}
   ${else}\
     ${alignc}${font PizzaDude Bullets:size=14}G${font} Network Unavailable
   ${endif}
