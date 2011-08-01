@@ -9,3 +9,8 @@
 *.o
 *.dat
 *.swp
+.settings
+.project
+.externalToolBuilders
+intermediate
+publish
