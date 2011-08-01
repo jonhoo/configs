@@ -49,12 +49,16 @@ if [ -f ~/.local/bin/bashmarks.sh ]; then
 fi
 
 # Sets the editor to use
-export EDITOR='emacs'
+export EDITOR='vim'
 export BROWSER='chromium'
 
 # Add local bins to path
 export PATH="$PATH:/usr/local/bin"
 export CLASSPATH="$CLASSPATH:."
+
+if [ -e /usr/share/java ]; then
+    export CLASSPATH="$CLASSPATH:/usr/share/java"
+fi
 
 # Other aliases
 # make
