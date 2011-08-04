@@ -61,7 +61,7 @@ if [ -e /usr/share/java ]; then
 fi
 
 # History management
-export HISTCONTROL=ignorespace
+export HISTCONTROL=ignoreboth
 export HISTSIZE=2000
 
 # Other aliases
