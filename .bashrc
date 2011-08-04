@@ -60,6 +60,10 @@ if [ -e /usr/share/java ]; then
     export CLASSPATH="$CLASSPATH:/usr/share/java"
 fi
 
+# History management
+export HISTCONTROL=ignorespace
+export HISTSIZE=2000
+
 # Other aliases
 # make
 alias ,='make'
