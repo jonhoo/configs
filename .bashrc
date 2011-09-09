@@ -1,6 +1,5 @@
-
-# Check for an interactive session
-[ -z "$PS1" ] && return
+# If not running interactively, don't do anything
+[[ $- != *i* ]] && return
 
 # Color aliases
 alias ls='ls --color=auto'
@@ -27,12 +26,12 @@ if [ -e /usr/share/git/completion/git-completion.bash ]; then
     PS1="$PS1\[\e[35m\]\`__git_ps1\`"
 fi
 
+PS1="$PS1 \[\e[31m\]\$\[\e[0m\] "
+
 # Ant
 if [ -e /etc/profile.d/apache-ant.sh ]; then
     source /etc/profile.d/apache-ant.sh
 fi
-
-PS1="$PS1 \[\e[31m\]\$\[\e[0m\] "
 
 # Solarized ls
 if [ -e .dir_colors ]; then
