@@ -71,7 +71,7 @@ alias ,,='/home/jon/dev/makefiles/makeMakefile.pl'
 alias .='git pull'
 alias ..='git push'
 # file handlers
-alias o='mimeopen'
+alias o='xdg-open'
 # update command
 UP="sudo"
 if [ -e /usr/bin/powerpill ]; then
