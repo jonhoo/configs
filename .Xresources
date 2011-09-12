@@ -4,7 +4,7 @@ emacs*geometry:           120x50
 
 ! urxvt
 URxvt.depth:           32
-URxvt.background:      rgba:0000/2b00/3600/cccc
+URxvt.background:      rgba:0000/2b00/3600/dddd
 URxvt.font:            xft:inconsolata:size=12
 URxvt.scrollBar:       false
 URxvt.geometry:        130x30
