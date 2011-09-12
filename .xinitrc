@@ -21,5 +21,8 @@ volti &
 # Conky
 conky &
 
+# Wallpaper
+nitrogen --restore &
+
 # Start WM
-exec ssh-agent ck-launch-session fusion-icon 2>$HOME/.xsession-errors
+exec ssh-agent ck-launch-session compiz --indirect-rendering --replace ccp 2>$HOME/.xsession-errors

@@ -14,7 +14,7 @@ double_buffer yes
 draw_shades no
 draw_outline no
 draw_borders no
-default_color white
+default_color black
 #draw_graph_borders no
 #default_shade_color cyan
 #default_outline_color cyan
@@ -73,7 +73,11 @@ ${font StyleBats:size=12}G${font} sda\
 ${alignr}${diskiograph_read /dev/sda 12,120} 
 ${alignr}${diskiograph_write /dev/sda 12,120} 
 
-${if_existing /dev/sdb}${font StyleBats:size=12}G${font} sdb\
+${if_existing /dev/mmcblk0}${font StyleBats:size=12}G${font} mmcblk0\
+${alignr}\
+${diskiograph_read /dev/mmcblk0 8,60}\
+${diskiograph_write /dev/mmcblk0 8,60} 
+${endif}${if_existing /dev/sdb}${font StyleBats:size=12}G${font} sdb\
 ${alignr}\
 ${diskiograph_read /dev/sdb 8,60}\
 ${diskiograph_write /dev/sdb 8,60} 
