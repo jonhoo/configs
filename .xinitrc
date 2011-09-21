@@ -1,6 +1,11 @@
-# D-bus
-if which dbus-launch >/dev/null && test -z "$DBUS_SESSION_BUS_ADDRESS"; then
-       eval `dbus-launch --sh-syntax --exit-with-session`
+# user-space dbus
+if test -z "$DBUS_SESSION_BUS_ADDRESS" ; then
+  eval `dbus-launch --sh-syntax --exit-with-session`
+fi
+
+# ssh agent
+if test -z "$SSH_AUTH_SOCK" ; then
+  eval `ssh-agent -s`
 fi
 
 # Keymap
@@ -21,8 +26,12 @@ volti &
 # Conky
 conky &
 
-# Wallpaper
+# nVidia settings
+nvidia-settings --load-config-only &
+
+# wallpaper
 nitrogen --restore &
 
 # Start WM
-exec ssh-agent ck-launch-session compiz --indirect-rendering --replace ccp 2>$HOME/.xsession-errors
+#ck-launch-session compiz --replace ccp 2>$HOME/.xsession-errors
+ck-launch-session pekwm 2>$HOME/.xsession-errors
