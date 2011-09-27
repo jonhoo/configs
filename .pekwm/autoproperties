@@ -1,0 +1,254 @@
+/*
+ Autoproperties. The default template and simple course of autopropping
+ to help you add your own autoproperties. See the documentation for
+ more keywords and the rest of what is possible through this file.
+
+ First, it's good to note that you can't just make up the property
+ string, you need to use a program called 'xprop' to show it. Please
+ conduct the documentation.
+
+ Another good tip is to make sure you have an ApplyOn entry. The
+ autoproperties you define won't do any good if you don't tell pekwm
+ when to apply them!
+
+ Third tip. You can't match a window with more than one property. The
+ first one that matches will be used, the rest ignored (see the gimp
+ example).
+
+ Note that the default entries are commented out, don't comment out your
+ own autoproperties. :)
+*/
+
+Require {
+	Templates = "True"
+}
+
+/*
+ Group terminal applications
+ */
+# Property = "(term|rxvt),(erm|xvt)" {
+# 	ApplyOn = "New"
+# 	Group = "term" {
+# 		Size = "5"
+# 		FocusedFirst = "True"
+# 		Raise = "True"
+# 	}
+# }
+
+/*
+ Remove decor of customize toolbar window of mozilla firefox.
+ */
+Property = "^(gecko|Gecko|firefox-bin),^Firefox-bin,,^Customize Toolbar\$" {
+	ApplyOn = "Start New TransientOnly"
+	Border = "False"
+	Titlebar = "False"
+}
+
+Property = "^(chromium)"  {
+    ApplyOn = "Start New TransientOnly"
+    Border = "False"
+    Titlebar = "False"
+}
+
+/*
+ Auto-group up to 10 mozilla download windows to group you call "moz-dl",
+ using a WM_CLASS and specifying the the download window using the
+ begining of its title. Make the windows go to the top-left corner of
+ your workspace and place them under other windows. Do this when new
+ windows show up, also to so called transient windows.
+*/
+# Property = "^mozilla-bin,^Mozilla-bin,,^Saving" {
+# 	ApplyOn = "New Transient"
+# 	Group = "moz-dl" { Size = "10" }
+# 	FrameGeometry = "+0+0"
+# 	Layer = "Below"
+# }
+
+
+/*
+ Group together up to two windows that have a WM_CLASS that matches the
+ property. Start these windows on workspace two.
+*/
+# Property = "^Mozilla,^navigator:browser" {
+# 	ApplyOn = "Start New Workspace"
+# 	Workspace = "2"
+# }
+
+
+/*
+ Group together an infinite number of windows that match the property.
+ When new windows are opened to this group, never make them the active
+ window of the group, but open them in the background. Make these
+ autoproperties apply on every pekwm start or when a new window is opened.
+*/
+# Property = "^dillo,^Dillo" {
+# 	ApplyOn = "Start New"
+# 	Group = "dillo" { Size = "0"; Behind = "True" }
+# }
+
+
+/*
+ Put property matching windows under other windows and make the window
+ appear on every workspace. Do not show matching windows on the pekwm
+ goto menus, do not include them in frame switching (mod1+tab) and do
+ not let other windows snap to them. Do this on pekwm start or when new
+ window is opened, also include transient windows (in the example,
+ xmms playlist and equalizer are transients).
+*/
+# Property = ".*,^xmms" {
+# 	ApplyOn = "Start New Transient"
+# 	Layer = "Desktop"
+# 	Sticky = "True"
+# 	Skip = "Menus FocusToggle Snap"
+# }
+
+
+/*
+ Remove Gimp windows from the menus, only show the main toolbox window.
+ Use the WM_WINDOW_ROLE to tell the difference between gimp windows.
+ 
+ First make sure the toolbox window doesn't get confused with the rest
+ of the windows. This just tells pekwm to ignore any matches for the
+ toolbox later on. Without this, the toolbox would match with "the rest
+ of the windows" and get ignored from the pekwm menus! We don't want that.
+*/
+# Property = "^gimp,^Gimp,gimp-toolbox" {
+#  ApplyOn = "Start New"
+# }
+/*
+ The Crop dialog always gets in the way, put it in the corner but place
+ it above other windows anyways. Don't show the window in pekwm menus.
+*/
+# Property = "^gimp,^Gimp,gimp-crop-tool" {
+# 	ApplyOn = "Start New"
+# 	Layer = "OnTop"
+# 	FrameGeometry = "+0+0"
+# 	Skip = "Menus"
+# }
+/*
+ The rest of the gimp windows should not show in pekwm menus eather.
+*/
+# Property = ".gimp,^Gimp" {
+# 	ApplyOn = "Start New"
+# 	Skip = "Menus";
+# }
+
+
+/*
+ This should start making sense to you by now.
+*/
+# Property = "^gkrellm,^Gkrellm" {
+# 	ApplyOn = "Start New"
+# 	Sticky = "True"
+# 	Skip = "Menus FocusToggle"
+# 	Layer = "Desktop"
+# }
+
+
+/*
+ Some useful standard application xclock xload and xbiff. This should
+ be fairly clear to you. In addition to what you've allready learned,
+ we make the windows appear without titlebars and borders. We are also
+ using the geometry in all its glory, defining the windows size in
+ addition to its position.
+*/
+# Property = "^xclock,^XClock" {
+# 	ApplyOn = "Start New"
+# 	ClientGeometry = "120x137+0-137"
+# 	Border = "False"; Titlebar = "False"
+# 	Sticky = "True"
+# 	Layer = "Desktop"
+# 	Skip = "Menus FocusToggle Snap"
+# }
+# 
+# Property = "^xload,^XLoad" {
+# 	ApplyOn = "Start New"
+# 	ClientGeometry = "560x137+120-137"
+# 	Border = "False"; Titlebar = "False"
+# 	Sticky = "True"
+# 	Layer = "Desktop"
+# 	Skip = "Menus FocusToggle Snap"
+# }
+# 
+# Property = "^xbiff,^XBiff" {
+# 	ApplyOn = "Start New"
+# 	ClientGeometry = "120x137-120-137"
+# 	Border = "False"; Titlebar = "False"
+# 	Sticky = "True"
+# 	Layer = "Desktop"
+# 	Skip = "Menus FocusToggle Snap"
+# }
+
+
+// End of autoproperties. -------------------------
+
+TypeRules {
+	INCLUDE = "$_PEKWM_ETC_PATH/autoproperties_typerules"
+}
+
+/*
+ Next, we do some siple window title rewriting.
+ To make it simple, you can automatically make some windows get their
+ title edited. Cut out an annoying piece, add text, replace text.
+ This all happens in it's own section "TitleRules {}".
+
+ I don't like the way dillo uses its titlebar, it says "Dillo: webpage".
+ I want that "Dillo:" part to not show in the beginning, instead I want
+ to make it show as "webpage - dillo".
+
+ Then again, the "webpage - Mozilla Firefox" is too long for my taste.
+ I shorten it in the second titlerule. And I'll place the shortened text
+ in the beginning of the title just as a show how.
+*/
+# TitleRules {
+# 	Property = "^dillo,^Dillo" {
+# 		Rule = "/Dillo: (.*)/\\1 - dillo/"
+# 	}
+# 	Property = "^firefox-bin,^Firefox-bin" {
+# 		Rule = "/(.*) - Mozilla Firefox/MF: \\1/"
+# 	}
+# }
+
+
+// End of titlerules. -----------------------------
+
+
+/*
+ Then for some harbour ordering done in it's own "Harbour {}" section.
+ This is simple really, but you might want to check the documentation on
+ how the positions work.
+
+ Obpager is allways the last dockapp, the cpuload application is the
+ first, and wmnd will get placed in the centre.
+*/
+# Harbour {
+# 	Property = "^obpager,^obpager" {
+# 		Position = "-1"
+# 	}
+# 	Property = ".*,.*cpuload" {
+# 		Position = "1"
+# 	}
+# 	Property = ".*,^wmnd" {
+# 		Position = "0"
+# 	}
+# }
+
+
+// End of harbour order rules. --------------------
+
+
+/*
+ Last, if you have a theme that supports it, or you have hacked one up
+ yourself, you can use the "DecorRules {}" section to make windows show
+ up with independent decorations.
+
+ Here we tell our terminal windows to use the special TERM decoration
+ section found from your theme. Note that this _needs_ a theme that
+ supports it.
+*/
+# DecorRules {
+# 	Property = "^term,^xterm" {
+# 		Decor = "TERM"
+# 	}
+# }
+

@@ -1,0 +1,170 @@
+FrameTitle {
+	ButtonRelease = "1" { Actions = "Raise; Focus; ActivateClient" }
+	ButtonRelease = "Mod1 1" { Actions = "Focus; Raise" }
+	ButtonRelease = "Mod4 1" { Actions = "Focus; Raise" }
+	ButtonRelease = "2" { Actions = "ActivateClient" }
+	ButtonRelease = "Mod4 3" { Actions = "Close" }
+	ButtonRelease = "3" { Actions = "ShowMenu Window" }
+	ButtonRelease = "4" { Actions = "ActivateClientRel 1" }
+	ButtonRelease = "5" { Actions = "ActivateClientRel -1" }
+	ButtonRelease = "Mod1 4" { Actions = "SendToWorkspace Next; GotoWorkspace Next" }
+	ButtonRelease = "Mod1 5" { Actions = "SendToWorkspace Prev; GotoWorkspace Prev" }
+	ButtonRelease = "Mod1 Shift 4" { Actions = "SendToWorkspace PrevV; GotoWorkspace PrevV" }
+	ButtonRelease = "Mod1 Shift 5" { Actions = "SendToWorkspace NextV; GotoWorkspace NextV" }
+	ButtonRelease = "Ctrl 4" { Actions = "MoveClientRel 1" }
+	ButtonRelease = "Ctrl 5" { Actions = "MoveClientRel -1" }
+	ButtonRelease = "Ctrl Mod1 1" { Actions = "Focus; Raise True" }
+	DoubleClick = "2" { Actions = "Toggle Shaded" }
+	DoubleClick = "Mod1 2" { Actions = "Toggle Shaded" }
+	DoubleClick = "1" { Actions = "MaxFill True True" }
+	DoubleClick = "Mod1 1" { Actions = "Toggle Maximized True True" }
+	Motion = "1" { Threshold = "4"; Actions = "Raise; Move" }
+	Motion = "Mod1 1" { Threshold = "4"; Actions = "Raise; Move" }
+	Motion = "Mod4 1" { Threshold = "4"; Actions = "Raise; Move" }
+	Motion = "2" { Threshold = "4"; Actions = "GroupingDrag True" }
+	Motion = "Mod1 3" { Actions = "Resize" }
+	# Remove the following line if you want to use click to focus.
+}
+
+OtherTitle {
+	ButtonRelease = "1" { Actions = "Raise; Focus" }
+	ButtonRelease = "2" { Actions = "Focus" }
+	ButtonRelease = "3" { Actions = "Close" }
+	ButtonRelease = "Mod4 3" { Actions = "ShowMenu Window" }
+	ButtonRelease = "Mod1 4" { Actions = "SendToWorkspace Next; GotoWorkspace Next" }
+	ButtonRelease = "Mod1 5" { Actions = "SendToWorkspace Prev; GotoWorkspace Prev" }
+	ButtonRelease = "Mod1 Shift 4" { Actions = "SendToWorkspace PrevV; GotoWorkspace PrevV" }
+	ButtonRelease = "Mod1 Shift 5" { Actions = "SendToWorkspace NextV; GotoWorkspace NextV" }
+	Motion = "1" { Threshold = "4"; Actions = "Raise; Move" }
+	Motion = "Mod1 1" { Threshold = "4"; Actions = "Raise; Move" }
+	Motion = "Mod4 1" { Threshold = "4"; Actions = "Raise; Move" }
+	# Remove the following line if you want to use click to focus.
+}
+
+Border {
+	TopLeft {
+		# Remove the following line if you want to use click to focus.
+		ButtonPress = "1" { Actions = "Focus; Resize TopLeft" } }
+	Top {
+		# Remove the following line if you want to use click to focus.
+		ButtonPress = "1" { Actions = "Focus; Resize Top" } }
+	TopRight {
+		# Remove the following line if you want to use click to focus.
+		ButtonPress = "1" { Actions = "Focus; Resize TopRight" } }
+	Left {
+		# Remove the following line if you want to use click to focus.
+		ButtonPress = "1" { Actions = "Focus; Resize Left" } }
+	Right {
+		# Remove the following line if you want to use click to focus.
+		ButtonPress = "1" { Actions = "Focus; Resize Right" } }
+	BottomLeft {
+		# Remove the following line if you want to use click to focus.
+		ButtonPress = "1" { Actions = "Focus; Resize BottomLeft" } }
+	Bottom {
+		# Remove the following line if you want to use click to focus.
+		ButtonPress = "1" { Actions = "Focus; Resize Bottom" } }
+	BottomRight {
+		# Remove the following line if you want to use click to focus.
+		ButtonPress = "1" { Actions = "Focus; Resize BottomRight" } }
+}
+
+ScreenEdge {
+	Down {
+		Enter = "Mod1 Any" { Actions = "GoToWorkspace Down" }
+		ButtonRelease = "3" { Actions = "ShowMenu Root" }
+		ButtonRelease = "2" { Actions = "ShowMenu Goto" }
+		ButtonRelease = "1" { Actions = "GoToWorkspace Down" }
+		ButtonRelease = "Mod4 2" { Actions = "ShowMenu GotoClient" }
+		ButtonRelease = "4" { Actions = "GoToWorkspace Up" }
+		ButtonRelease = "5" { Actions = "GoToWorkspace Down" }
+		ButtonRelease = "Mod1 4" { Actions = "GoToWorkspace PrevV" }
+		ButtonRelease = "Mod1 5" { Actions = "GoToWorkspace NextV" }
+		EnterMoving = "Any Any" { Actions = "WarpToWorkspace Down" }
+	}
+	Up {
+		Enter = "Mod1 Any" { Actions = "GoToWorkspace Up" }
+		ButtonRelease = "3" { Actions = "ShowMenu Root" }
+		ButtonRelease = "2" { Actions = "ShowMenu Goto" }
+		ButtonRelease = "1" { Actions = "GoToWorkspace Up" }
+		ButtonRelease = "Mod4 2" { Actions = "ShowMenu GotoClient" }
+		ButtonRelease = "4" { Actions = "GoToWorkspace Up" }
+		ButtonRelease = "5" { Actions = "GoToWorkspace Down" }
+		ButtonRelease = "Mod1 4" { Actions = "GoToWorkspace PrevV" }
+		ButtonRelease = "Mod1 5" { Actions = "GoToWorkspace NextV" }
+		EnterMoving = "Any Any" { Actions = "WarpToWorkspace Up" }
+	}
+	Left {
+		Enter = "Mod1 Any" { Actions = "GoToWorkspace Left" }
+		ButtonRelease = "3" { Actions = "ShowMenu Root" }
+		ButtonRelease = "1" { Actions = "GoToWorkspace Left" }
+		DoubleClick = "1" { Actions = "GoToWorkspace Left" }
+		ButtonRelease = "2" { Actions = "ShowMenu Goto" }
+		ButtonRelease = "Mod4 2" { Actions = "ShowMenu GotoClient" }
+		ButtonRelease = "4" { Actions = "GoToWorkspace Right" }
+		ButtonRelease = "5" { Actions = "GoToWorkspace Left" }
+		ButtonRelease = "Mod1 4" { Actions = "GoToWorkspace Next" }
+		ButtonRelease = "Mod1 5" { Actions = "GoToWorkspace Prev" }
+		EnterMoving = "Any Any" { Actions = "WarpToWorkspace Left" }
+	}
+	Right {
+		Enter = "Mod1 Any" { Actions = "GoToWorkspace Right" }
+		ButtonRelease = "3" { Actions = "ShowMenu Root" }
+		ButtonRelease = "1" { Actions = "GoToWorkspace Right" }
+		DoubleClick = "1" { Actions = "GoToWorkspace Right" }
+		ButtonRelease = "2" { Actions = "ShowMenu Goto" }
+		ButtonRelease = "Mod4 2" { Actions = "ShowMenu GotoClient" }
+		ButtonRelease = "4" { Actions = "GoToWorkspace Right" }
+		ButtonRelease = "5" { Actions = "GoToWorkspace Left" }
+		ButtonRelease = "Mod1 4" { Actions = "GoToWorkspace Next" }
+		ButtonRelease = "Mod1 5" { Actions = "GoToWorkspace Prev" }
+		EnterMoving = "Any Any" { Actions = "WarpToWorkspace Right" }
+	}
+}
+
+Client {
+	# Remove the following line and uncomment the alternative if windows should raise when clicked.
+	# Uncomment the following line if windows should raise when clicked.
+	ButtonPress = "1" { Actions = "Focus; Raise" }
+
+	ButtonRelease = "Mod1 1" { Actions = "Focus; Raise" }
+	ButtonRelease = "Mod4 1" { Actions = "Lower" }
+	ButtonRelease = "Mod1 4" { Actions = "SendToWorkspace Next; GotoWorkspace Next" }
+	ButtonRelease = "Mod1 5" { Actions = "SendToWorkspace Prev; GotoWorkspace Prev" }
+	ButtonRelease = "Mod1 Shift 4" { Actions = "SendToWorkspace PrevV; GotoWorkspace PrevV" }
+	ButtonRelease = "Mod1 Shift 5" { Actions = "SendToWorkspace NextV; GotoWorkspace NextV" }
+	ButtonRelease = "Ctrl Mod1 1" { Actions = "Focus; Raise True" }
+	Motion = "Mod1 1" { Threshold = "4"; Actions = "Focus; Raise; Move" }
+	Motion = "Mod4 1" { Threshold = "4"; Actions = "Focus; Raise; Move" }
+	Motion = "Mod1 2" { Threshold = "4"; Actions = "GroupingDrag True" }
+	Motion = "Mod1 3" { Actions = "Resize" }
+	# Remove the following line if you want to use click to focus.
+}
+
+Root {
+	ButtonRelease = "3" { Actions = "ShowMenu Root" }
+	ButtonRelease = "2" { Actions = "ShowMenu Goto" }
+	ButtonRelease = "Mod4 2" { Actions = "ShowMenu GotoClient" }
+	# Horizontal movement
+	ButtonRelease = "4" { Actions = "GoToWorkspace Right" }
+	ButtonRelease = "5" { Actions = "GoToWorkspace Left" }
+	ButtonRelease = "Mod1 4" { Actions = "GoToWorkspace Next" }
+	ButtonRelease = "Mod1 5" { Actions = "GoToWorkspace Prev" }
+	# Vertical movement
+	ButtonRelease = "Shift 4" { Actions = "GoToWorkspace Up" }
+	ButtonRelease = "Shift 5" { Actions = "GoToWorkspace Down" }
+	ButtonRelease = "Mod1 Shift 4" { Actions = "GoToWorkspace NextV" }
+	ButtonRelease = "Mod1 Shift 5" { Actions = "GoToWorkspace PrevV" }
+	ButtonRelease = "1" { Actions = "HideAllMenus" }
+}
+
+Menu {
+	Enter = "Any Any" { Actions = "Focus" }
+	Motion = "Mod1 1" { Threshold = "4"; Actions = "Focus; Raise; Move" }
+}
+
+Other {
+	Enter = "Any Any" { Actions = "Focus" }
+	ButtonRelease = "3" { Actions = "Close" }
+	Motion = "1" { Actions = "Focus; Raise; Move" }
+	Motion = "Mod1 1" { Threshold = "4"; Actions = "Focus; Raise; Move" }
+}
