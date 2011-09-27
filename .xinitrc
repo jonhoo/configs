@@ -14,11 +14,6 @@ setxkbmap no;
 # X styling
 xrdb .Xresources;
 
-# Transparency
-if test -e "/usr/bin/xcompmgr" ; then
-    xcompmgr -c -t-5 -l-5 -r4.2 -o.55 &
-fi
-
 # Apps
 if test -e "/usr/bin/kupfer" ; then
     kupfer --no-splash &
