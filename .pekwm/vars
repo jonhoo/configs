@@ -1,2 +1,2 @@
 #$TERM="xterm -fn fixed +sb -bg white -fg black"
-$TERM="rxterm-unicode"
+$TERM="urxvt"
