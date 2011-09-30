@@ -25,7 +25,7 @@ Screen {
     ShowStatusWindow = "True"
     ShowStatusWindowCenteredOnRoot = "False"
     ShowClientID = "False"
-    ShowWorkspaceIndicator = "500"
+    ShowWorkspaceIndicator = "0"
     PlaceNew = "True"
     FocusNew = "True"
 
@@ -34,7 +34,7 @@ Screen {
     TrimTitle = "..."
     FullscreenAbove = "True"
     FullscreenDetect = "True"
-    HonourRandr = "True"
+    HonourRandr = "False"
     HonourAspectRatio = "True"
     EdgeSize = "1 1 1 1"
     EdgeIndent = "False"
