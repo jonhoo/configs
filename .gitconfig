@@ -9,3 +9,5 @@
 	excludesfile = ~/.gitignore
 [push]
 	default = tracking
+[merge]
+	tool = vimdiff
