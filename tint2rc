@@ -15,12 +15,12 @@ border_color = #1B1B1B 100
 rounded = 0
 border_width = 1
 background_color = #000000 0
-border_color = #FF4A00 64
+border_color = #FF4A00 63
 
 # ID 3
 rounded = 0
 border_width = 0
-background_color = #FFFFFF 5
+background_color = #FFFFFF 4
 border_color = #FFFFFF 100
 
 # Panel
