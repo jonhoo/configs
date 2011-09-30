@@ -18,9 +18,6 @@ xrdb .Xresources;
 if test -e "/usr/bin/kupfer" ; then
     kupfer --no-splash &
 fi
-if test -e "/usr/bin/tint2" ; then
-    tint2 &
-fi
 
 # Tray icons
 if test -e "/usr/bin/blueman-applet" ; then
@@ -46,6 +43,10 @@ fi
 # wallpaper
 if test -e "/usr/bin/nitrogen" ; then
     nitrogen --restore &
+fi
+
+if test -e "/usr/bin/tint2" ; then
+    tint2 &
 fi
 
 # Start WM
