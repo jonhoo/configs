@@ -35,6 +35,11 @@ if test -e "/usr/bin/conky" ; then
     sleep 2 && conky &
 fi
 
+# Neap (pager)
+if test -e "/usr/bin/neap" ; then
+    neap &
+fi
+
 # nVidia settings
 if test -e "/usr/bin/nvidia-settings" ; then
     nvidia-settings --load-config-only &
