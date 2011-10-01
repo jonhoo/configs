@@ -32,12 +32,7 @@ fi
 
 # Conky
 if test -e "/usr/bin/conky" ; then
-    sleep 2 && conky &
-fi
-
-# Neap (pager)
-if test -e "/usr/bin/neap" ; then
-    neap &
+    (sleep 2s && conky) &
 fi
 
 # nVidia settings
@@ -51,7 +46,7 @@ if test -e "/usr/bin/nitrogen" ; then
 fi
 
 if test -e "/usr/bin/tint2" ; then
-    sleep 2 && tint2 &
+    (sleep 2s && tint2) &
 fi
 
 # Start WM
