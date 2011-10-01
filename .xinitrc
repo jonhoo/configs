@@ -32,7 +32,7 @@ fi
 
 # Conky
 if test -e "/usr/bin/conky" ; then
-    conky &
+    sleep 2 && conky &
 fi
 
 # nVidia settings
@@ -46,7 +46,7 @@ if test -e "/usr/bin/nitrogen" ; then
 fi
 
 if test -e "/usr/bin/tint2" ; then
-    tint2 &
+    sleep 2 && tint2 &
 fi
 
 # Start WM
