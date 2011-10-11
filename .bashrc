@@ -59,6 +59,14 @@ fi
 export EDITOR='vim'
 export BROWSER='chromium'
 
+if [ "$TERM" == "rxvt-unicode-256color" -a ! -e "/usr/share/terminfo/r/$TERM" ]; then
+  if [ -e "/usr/share/terminfo/r/rxvt-256color" ]; then
+    export TERM='rxvt-256color';
+  else
+    export TERM='vt100';
+  fi
+fi
+
 # Add local bins to path
 export PATH="$PATH:/usr/local/bin"
 export CLASSPATH="$CLASSPATH:."
