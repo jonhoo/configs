@@ -6,7 +6,8 @@ Global {
 #
 # Adding your own frequently used actions is easy -
 # just copy it over from CHAINS and edit the keypress!
-    KeyPress = "Mod4 a" { Actions = "Exec urxvt" }
+  KeyPress = "Mod4 a" { Actions = "Exec urxvt" }
+  KeyPress = "Print" { Actions = "Exec scrot" }
 	# Moving in frames
 	KeyPress = "Mod1 Tab" { Actions = "NextFrameMRU EndRaise" }
 	KeyPress = "Mod1 Shift Tab" { Actions = "PrevFrameMRU EndRaise" }
