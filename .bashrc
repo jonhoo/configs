@@ -24,17 +24,17 @@ if [ -e /home/jon/dev/seriex/seriex.pl ]; then
   alias sx='/home/jon/dev/seriex/seriex.pl'
 fi
 
-PS1="\[\e[2;37m\][\A] \[\e[0;33m\]\u\[\e[0m\]@\[\e[34m\]\h \[\e[32m\]\w"
+PS1='\[\e[2;37m\][\A] \[\e[0;33m\]\u\[\e[0m\]@\[\e[34m\]\h \[\e[32m\]\w'
 
 # Prompt
 if [ -e /usr/share/git/completion/git-completion.bash ]; then
     source /usr/share/git/completion/git-completion.bash
     # For unstaged(*) and staged(+) values next to branch name in __git_ps1
     GIT_PS1_SHOWDIRTYSTATE="enabled"
-    PS1="$PS1\[\e[35m\]\`__git_ps1\`"
+    PS1=$PS1'\[\e[35m\]`__git_ps1`'
 fi
 
-PS1="$PS1 \[\e[31m\]\$\[\e[0m\] "
+PS1=$PS1' \[\e[31m\]\$\[\e[0m\] '
 
 # Ant
 if [ -e /etc/profile.d/apache-ant.sh ]; then
