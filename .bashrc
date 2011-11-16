@@ -123,3 +123,8 @@ export FORTUNES="montypython perl $FORTUNES"
 export FORTUNES="science wisdom miscellaneous $FORTUNES"
 export FORTUNES="off/atheism off/debian off/linux off/privates off/religion off/sex off/vulgarity $FORTUNES"
 alias f='fortune -casn 500 $FORTUNES'
+
+# Be nice to sysadmins
+if [ -f /etc/bashrc ]; then
+  . /etc/bashrc
+fi
