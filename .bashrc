@@ -50,6 +50,9 @@ fi
 # Disabled because it also autocompletes filenames...
 #complete -cf sudo
 
+# Don't autocomplete to hidden directories
+bind 'set match-hidden-files off'
+
 # Bookmarks
 if [ -f ~/.local/bin/bashmarks.sh ]; then
     source ~/.local/bin/bashmarks.sh;
