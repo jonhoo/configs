@@ -19,6 +19,10 @@ if test -e "/usr/bin/kupfer" ; then
     kupfer --no-splash &
 fi
 
+if test -e "/usr/bin/xscreensaver" ; then
+    xscreensaver -no-splash &
+fi
+
 # Tray icons
 if test -e "/usr/bin/blueman-applet" ; then
     blueman-applet &
