@@ -1,3 +1,6 @@
+ " Pathogen
+call pathogen#infect()
+
  " Get indentation
 set autoindent
 
@@ -9,6 +12,10 @@ set backspace=2 " Backspace over newlines
 set ruler " Where am I?
 set ttyfast
 set laststatus=2
+
+" Indent script and style by one
+let g:html_indent_script1 = "inc" 
+let g:html_indent_style1 = "inc" 
 
 " Relative line numbers
 set relativenumber
@@ -64,7 +71,6 @@ set gdefault
 
 " Script plugins
 au Filetype html,xml,xsl,php source ~/.vim/scripts/closetag.vim
-au Filetype html,xml,css,php source ~/.vim/scripts/zencoding.vim
 
 " Filetype indenting
 filetype indent on
