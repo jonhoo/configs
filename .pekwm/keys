@@ -8,6 +8,7 @@ Global {
 # just copy it over from CHAINS and edit the keypress!
   KeyPress = "Mod4 a" { Actions = "Exec urxvt" }
   KeyPress = "Print" { Actions = "Exec scrot" }
+	KeyPress = "Mod4 L" { Actions = "Exec xscreensaver-command -lock" }
 	# Moving in frames
 	KeyPress = "Mod1 Tab" { Actions = "NextFrameMRU EndRaise" }
 	KeyPress = "Mod1 Shift Tab" { Actions = "PrevFrameMRU EndRaise" }
@@ -65,7 +66,6 @@ Global {
 	# Menus
 	KeyPress = "Mod4 R" { Actions = "ShowMenu Root" }
 	KeyPress = "Mod4 W" { Actions = "ShowMenu Window" }
-	KeyPress = "Mod4 L" { Actions = "ShowMenu Goto" }
 	KeyPress = "Mod4 C" { Actions = "ShowMenu GotoClient" }
 	KeyPress = "Mod4 Shift I" { Actions = "ShowMenu Icon" }
 	KeyPress = "Mod4 X" { Actions = "HideAllMenus" }
