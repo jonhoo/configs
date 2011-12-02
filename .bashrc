@@ -129,5 +129,5 @@ alias f='fortune -casn 500 $FORTUNES'
 
 # Be nice to sysadmins
 if [ -f /etc/bashrc ]; then
-  . /etc/bashrc
+  source /etc/bashrc
 fi

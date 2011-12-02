@@ -83,7 +83,6 @@ endif
 
 " Settings
 set nocompatible
-set modelines=0
 set encoding=utf-8
 set scrolloff=3
 set showmode
