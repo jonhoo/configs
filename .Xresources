@@ -31,3 +31,5 @@ xterm*scrollTtyOutput:    false
 xterm*jumpScroll:         true
 xterm*multiScroll:        true
 xterm*toolBar:            false
+
+xscreensaver*font:           inconsolata:pixelsize=15
