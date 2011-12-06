@@ -91,3 +91,8 @@ set hidden
 
 set showcmd       " Show (partial) command in status line.
 set mouse=a       " Enable mouse usage (all modes) in terminals
+
+" Per-project configs
+set exrc
+set secure
+let g:localvimrc_ask = 0
