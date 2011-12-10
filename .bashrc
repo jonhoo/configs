@@ -86,9 +86,6 @@ export HISTSIZE=2000
 # make
 alias ,='make'
 alias ,,='/home/jon/dev/makefiles/makeMakefile.pl'
-# git
-alias .='git pull'
-alias ..='git push'
 # file handlers
 alias o='xdg-open'
 # update command
