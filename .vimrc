@@ -63,8 +63,8 @@ nnoremap j gj
 nnoremap k gk
 
 " Proper search
-nnoremap / /\v
-vnoremap / /\v
+set hlsearch      " Highlight search results
+set incsearch     " Incremental search
 set ignorecase
 set smartcase
 set gdefault
@@ -86,8 +86,8 @@ set nocompatible
 set encoding=utf-8
 set scrolloff=3
 set showmode
-set showcmd
 set hidden
+set nowrap        " Stop wrapping my lines
 
 set showcmd       " Show (partial) command in status line.
 set mouse=a       " Enable mouse usage (all modes) in terminals
