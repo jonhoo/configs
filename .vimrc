@@ -44,12 +44,8 @@ colorscheme solarized
 
 " Keymaps
 let mapleader = ","
-nnoremap <tab> %
-vnoremap <tab> %
-inoremap <F1> <ESC>
-vnoremap <F1> <ESC>
-vnoremap <F1> <ESC>
-inoremap jj <ESC>
+" ,, toggles between buffers
+nnoremap <leader><leader> <c-^> 
 
 " Good-bye arrow keys... =(
 nnoremap <up> <nop>
