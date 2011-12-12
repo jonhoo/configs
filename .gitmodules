@@ -1,3 +1,6 @@
 [submodule ".vim/bundle/mustache"]
 	path = .vim/bundle/mustache
 	url = git://github.com/juvenn/mustache.vim.git
+[submodule ".vim/bundle/ctrlp"]
+	path = .vim/bundle/ctrlp
+	url = git://github.com/kien/ctrlp.vim.git
