@@ -60,7 +60,6 @@ nnoremap j gj
 nnoremap k gk
 
 " Proper search
-set hlsearch      " Highlight search results
 set incsearch     " Incremental search
 set ignorecase
 set smartcase
