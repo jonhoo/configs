@@ -70,6 +70,11 @@ if [ "$TERM" == "rxvt-unicode-256color" -a ! -e "/usr/share/terminfo/r/$TERM" ];
   fi
 fi
 
+# stderred installed?
+if [ -f "/home/jon/dev/others/stderred/lib64/stderred.so" ]; then
+  export LD_PRELOAD="$LD_PRELOAD:/home/jon/dev/others/stderred/lib64/stderred.so";
+fi
+
 # Add local bins to path
 export PATH="$PATH:/usr/local/bin"
 export CLASSPATH="$CLASSPATH:."
