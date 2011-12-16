@@ -47,6 +47,9 @@ colorscheme solarized
 let mapleader = ","
 " ,, toggles between buffers
 nnoremap <leader><leader> <c-^> 
+" ,= indents current 'section' (e.g. HTML tag)
+nnoremap <leader>> Vat>
+nnoremap <leader>< Vat<
 
 " Good-bye arrow keys... =(
 nnoremap <up> <nop>
