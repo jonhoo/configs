@@ -91,6 +91,9 @@ set mouse=a       " Enable mouse usage (all modes) in terminals
 " Give me a colored column
 set colorcolumn=100
 
+" Show those damn hidden characters
+set listchars=nbsp:¬,eol:¶,extends:»,precedes:«,trail:•
+
 " Per-project configs
 set exrc
 set secure
