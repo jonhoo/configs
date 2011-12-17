@@ -9,6 +9,8 @@ Global {
   KeyPress = "Mod4 a" { Actions = "Exec urxvt" }
   KeyPress = "Print" { Actions = "Exec scrot" }
 	KeyPress = "Mod4 L" { Actions = "Exec xscreensaver-command -lock" }
+	KeyPress = "Mod4 N" { Actions = "Exec setxkbmap no" }
+	KeyPress = "Mod4 E" { Actions = "Exec setxkbmap us" }
 	# Moving in frames
 	KeyPress = "Mod1 Tab" { Actions = "NextFrameMRU EndRaise" }
 	KeyPress = "Mod1 Shift Tab" { Actions = "PrevFrameMRU EndRaise" }
@@ -70,7 +72,7 @@ Global {
 	KeyPress = "Mod4 Shift I" { Actions = "ShowMenu Icon" }
 	KeyPress = "Mod4 X" { Actions = "HideAllMenus" }
 	# External Commands
-	KeyPress = "Mod4 E" { Actions = "Exec $TERM" }
+	#KeyPress = "Mod4 E" { Actions = "Exec $TERM" }
 	# Pekwm control
 	KeyPress = "Ctrl Mod1 Delete" { Actions = "Reload" }
 	KeyPress = "Mod4 D" { Actions = "ShowCmdDialog" }
