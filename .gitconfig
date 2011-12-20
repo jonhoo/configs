@@ -7,7 +7,5 @@
 	ui = true
 [core]
 	excludesfile = ~/.gitignore
-[push]
-	default = tracking
 [merge]
 	tool = vimdiff
