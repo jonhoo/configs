@@ -51,6 +51,8 @@ nnoremap <leader><leader> <c-^>
 " ,= indents current 'section' (e.g. HTML tag)
 nnoremap <leader>> Vat>
 nnoremap <leader>< Vat<
+" ; adds semicolon at the end of the current line if there isn't one
+noremap <buffer> ; :s/\([^;]\)$/\1;/<cr>
 
 " Good-bye arrow keys... =(
 nnoremap <up> <nop>
