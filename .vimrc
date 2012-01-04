@@ -7,8 +7,7 @@ set autoindent
 set guioptions-=T " Remove toolbar
 set vb t_vb= " No more beeps
 set backspace=2 " Backspace over newlines
-set foldmethod=indent
-set nofoldenable
+let javaScript_fold=1
 
 " GUI fixes
 set ruler " Where am I?
