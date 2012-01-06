@@ -21,6 +21,7 @@ alias ca='git commit -a -m'
 
 # Seriex!
 if [ -e /home/jon/dev/seriex/seriex.pl ]; then
+  echo -e '\e[2;37mbtw: seriex available...\e[0m';
   alias sx='/home/jon/dev/seriex/seriex.pl'
 fi
 
@@ -32,6 +33,8 @@ if [ -e /usr/share/git/completion/git-completion.bash ]; then
     # For unstaged(*) and staged(+) values next to branch name in __git_ps1
     GIT_PS1_SHOWDIRTYSTATE="enabled"
     PS1=$PS1'\[\e[35m\]`__git_ps1`'
+else
+    echo -e '\e[2;37mbtw: enabling git completion in prompt...\e[0m';
 fi
 
 PS1=$PS1' \[\e[31m\]\$\[\e[0m\] '
@@ -44,6 +47,8 @@ fi
 # Solarized ls
 if [ -e .dir_colors ]; then
     eval `dircolors .dir_colors`
+else
+    echo -e '\e[2;37mbtw: no dircolors available...\e[0m';
 fi
 
 # Tab completion for sudo
@@ -66,6 +71,7 @@ if [ "$TERM" == "rxvt-unicode-256color" -a ! -e "/usr/share/terminfo/r/$TERM" ];
   if [ -e "/usr/share/terminfo/r/rxvt-256color" ]; then
     export TERM='rxvt-256color';
   else
+    echo -e '\e[2;37mbtw: rxvt not supported, faking vt100...\e[0m';
     export TERM='vt100';
   fi
 fi
@@ -126,5 +132,6 @@ alias f='fortune -casn 500 $FORTUNES'
 
 # Be nice to sysadmins
 if [ -f /etc/bashrc ]; then
+  echo -e '\e[2;37mbtw: merging master bashrc...\e[0m';
   source /etc/bashrc
 fi
