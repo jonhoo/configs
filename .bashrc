@@ -19,6 +19,9 @@ alias gc='git checkout'
 alias c='git commit -m'
 alias ca='git commit -a -m'
 
+#h5bp
+alias b='cd build;ant build;cd ..'
+
 # Seriex!
 if [ -e /home/jon/dev/seriex/seriex.pl ]; then
   echo -e '\e[2;37mbtw: seriex available...\e[0m';
