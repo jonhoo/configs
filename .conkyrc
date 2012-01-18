@@ -68,6 +68,7 @@ HDD ${hr}
 
 ${font StyleBats:size=12}Y${font} root${alignr}${fs_bar 8,60 /} ${fs_free /} 
 ${font StyleBats:size=12}Y${font} home${alignr}${fs_bar 8,60 /home} ${fs_free /home} 
+${font StyleBats:size=12}Y${font} var${alignr}${fs_bar 8,60 /var} ${fs_free /var} 
 
 ${font StyleBats:size=12}G${font} sda\
 ${alignr}${diskiograph_read /dev/sda 12,120} 

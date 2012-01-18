@@ -1,11 +1,11 @@
 #include "/home/jon/dev/others/solarized/xresources-colors-solarized/Xresources"
 emacs*geometry:           120x50
-*faceName:           inconsolata:pixelsize=15
+*faceName:           inconsolata:size=15
 
 ! urxvt
 URxvt.depth:           32
 URxvt.background:      rgba:0000/2b00/3600/dddd
-URxvt.font:            xft:inconsolata:size=12
+URxvt.font:            xft:inconsolata:size=15
 URxvt.scrollBar:       false
 URxvt.geometry:        130x30
 URxvt.perl-ext-common: default,matcher
