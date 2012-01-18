@@ -18,6 +18,8 @@ set laststatus=2
 let g:html_indent_script1 = "inc" 
 let g:html_indent_style1 = "inc" 
 
+let g:Powerline_symbols = 'unicode'
+
 " Relative line numbers
 set relativenumber
 
