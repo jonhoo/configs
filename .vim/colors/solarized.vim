@@ -1,1 +1,0 @@
-/home/jon/dev/others/solarized/vim-colors-solarized/colors/solarized.vim
