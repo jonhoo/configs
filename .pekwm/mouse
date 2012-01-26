@@ -73,7 +73,7 @@ ScreenEdge {
 		Enter = "Mod1 Any" { Actions = "GoToWorkspace Down" }
 		ButtonRelease = "3" { Actions = "ShowMenu Root" }
 		ButtonRelease = "2" { Actions = "ShowMenu Goto" }
-		ButtonRelease = "1" { Actions = "GoToWorkspace Down" }
+		#ButtonRelease = "1" { Actions = "GoToWorkspace Down" }
 		ButtonRelease = "Mod4 2" { Actions = "ShowMenu GotoClient" }
 		ButtonRelease = "4" { Actions = "GoToWorkspace Up" }
 		ButtonRelease = "5" { Actions = "GoToWorkspace Down" }
@@ -85,7 +85,7 @@ ScreenEdge {
 		Enter = "Mod1 Any" { Actions = "GoToWorkspace Up" }
 		ButtonRelease = "3" { Actions = "ShowMenu Root" }
 		ButtonRelease = "2" { Actions = "ShowMenu Goto" }
-		ButtonRelease = "1" { Actions = "GoToWorkspace Up" }
+		#ButtonRelease = "1" { Actions = "GoToWorkspace Up" }
 		ButtonRelease = "Mod4 2" { Actions = "ShowMenu GotoClient" }
 		ButtonRelease = "4" { Actions = "GoToWorkspace Up" }
 		ButtonRelease = "5" { Actions = "GoToWorkspace Down" }
@@ -96,8 +96,8 @@ ScreenEdge {
 	Left {
 		Enter = "Mod1 Any" { Actions = "GoToWorkspace Left" }
 		ButtonRelease = "3" { Actions = "ShowMenu Root" }
-		ButtonRelease = "1" { Actions = "GoToWorkspace Left" }
-		DoubleClick = "1" { Actions = "GoToWorkspace Left" }
+		#ButtonRelease = "1" { Actions = "GoToWorkspace Left" }
+		#DoubleClick = "1" { Actions = "GoToWorkspace Left" }
 		ButtonRelease = "2" { Actions = "ShowMenu Goto" }
 		ButtonRelease = "Mod4 2" { Actions = "ShowMenu GotoClient" }
 		ButtonRelease = "4" { Actions = "GoToWorkspace Right" }
@@ -109,8 +109,8 @@ ScreenEdge {
 	Right {
 		Enter = "Mod1 Any" { Actions = "GoToWorkspace Right" }
 		ButtonRelease = "3" { Actions = "ShowMenu Root" }
-		ButtonRelease = "1" { Actions = "GoToWorkspace Right" }
-		DoubleClick = "1" { Actions = "GoToWorkspace Right" }
+		#ButtonRelease = "1" { Actions = "GoToWorkspace Right" }
+		#DoubleClick = "1" { Actions = "GoToWorkspace Right" }
 		ButtonRelease = "2" { Actions = "ShowMenu Goto" }
 		ButtonRelease = "Mod4 2" { Actions = "ShowMenu GotoClient" }
 		ButtonRelease = "4" { Actions = "GoToWorkspace Right" }
