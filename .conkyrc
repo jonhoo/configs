@@ -118,7 +118,7 @@ ${else}\
 ${endif}
 SOFTWARE ${hr}
 
-httpd: ${alignr}${if_running httpd}on${else}off${endif}
-memcached: ${alignr}${if_running memcached}on${else}off${endif}
-mysqld: ${alignr}${if_running mysqld}on${else}off${endif}
+httpd: ${font PizzaDude Bullets:size=11}${alignr}${if_running httpd}2${else}5${endif} ${font}
+memcached: ${font PizzaDude Bullets:size=11}${alignr}${if_running memcached}2${else}5${endif} ${font}
+mysqld: ${font PizzaDude Bullets:size=11}${alignr}${if_running mysqld}2${else}5${endif} ${font}
 # End of file.
