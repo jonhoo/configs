@@ -116,5 +116,9 @@ ${else}\
     ${alignc}${font PizzaDude Bullets:size=14}G${font} Network Unavailable
   ${endif}
 ${endif}
+SOFTWARE ${hr}
 
+httpd: ${alignr}${if_running httpd}on${else}off${endif}
+memcached: ${alignr}${if_running memcached}on${else}off${endif}
+mysqld: ${alignr}${if_running mysqld}on${else}off${endif}
 # End of file.
