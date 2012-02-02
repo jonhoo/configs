@@ -22,9 +22,6 @@
 [submodule ".vim/bundle/web-indent"]
 	path = .vim/bundle/web-indent
 	url = git://github.com/vim-scripts/JavaScript-Indent.git
-[submodule ".vim/bundle/vim-easymotion"]
-	path = .vim/bundle/vim-easymotion
-	url = git://github.com/Lokaltog/vim-easymotion.git
 [submodule ".vim/bundle/php-syntax"]
 	path = .vim/bundle/php-syntax
 	url = git://github.com/vim-scripts/php.vim--Garvin.git
