@@ -14,6 +14,10 @@ set ruler " Where am I?
 set ttyfast
 set laststatus=2
 
+" Prevent accidental writes to buffers that shouldn't be edited
+autocmd BufRead *.orig set readonly
+autocmd BufRead *.pacnew set readonly
+
 " Indent script and style by one
 let g:html_indent_script1 = "inc" 
 let g:html_indent_style1 = "inc" 

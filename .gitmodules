@@ -19,3 +19,9 @@
 [submodule ".vim/bundle/local_vimrc"]
 	path = .vim/bundle/local_vimrc
 	url = git://github.com/vim-scripts/localvimrc.git
+[submodule ".vim/bundle/web-indent"]
+	path = .vim/bundle/web-indent
+	url = git://github.com/vim-scripts/JavaScript-Indent.git
+[submodule ".vim/bundle/php-syntax"]
+	path = .vim/bundle/php-syntax
+	url = git://github.com/vim-scripts/php.vim--Garvin.git
