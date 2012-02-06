@@ -78,9 +78,9 @@ set list
 set listchars=nbsp:¬,extends:»,precedes:«,trail:•
 nnoremap <buffer> <leader><SPACE> :set invlist<cr>
 
-" In html and php files, map p to wrap line in <p> tag
-autocmd BufRead *.html nnoremap p :s/^\(\s*\)\(.\+\)/\1<p>\2<\/p>/<cr>
-autocmd BufRead *.php nnoremap p :s/^\(\s*\)\(.\+\)/\1<p>\2<\/p>/<cr>
+" In html and php files, map <leader>p to wrap line in <p> tag
+autocmd BufRead *.html nnoremap <leader>p :s/^\(\s*\)\(.\+\)/\1<p>\2<\/p>/<cr>
+autocmd BufRead *.php nnoremap <leader>p :s/^\(\s*\)\(.\+\)/\1<p>\2<\/p>/<cr>
 
 " Proper search
 set incsearch     " Incremental search
