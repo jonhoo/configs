@@ -72,6 +72,12 @@ inoremap <right> <nop>
 nnoremap j gj
 nnoremap k gk
 
+" Show those damn hidden characters, but make it easy to turn off
+" Verbose: set listchars=nbsp:¬,eol:¶,extends:»,precedes:«,trail:•
+set list
+set listchars=nbsp:¬,extends:»,precedes:«,trail:•
+nnoremap <buffer> <leader><SPACE> :set invlist<cr>
+
 " Proper search
 set incsearch     " Incremental search
 set ignorecase
@@ -103,9 +109,6 @@ set mouse=a       " Enable mouse usage (all modes) in terminals
 
 " Give me a colored column
 set colorcolumn=100
-
-" Show those damn hidden characters
-set listchars=nbsp:¬,eol:¶,extends:»,precedes:«,trail:•
 
 " Per-project configs
 set exrc
