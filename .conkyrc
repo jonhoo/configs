@@ -90,6 +90,10 @@ ${endif}${if_existing /dev/sdd}${font StyleBats:size=12}G${font} sdd\
 ${alignr}\
 ${diskiograph_read /dev/sdd 8,60}\
 ${diskiograph_write /dev/sdd 8,60} 
+${endif}${if_existing /dev/sde}${font StyleBats:size=12}G${font} sde\
+${alignr}\
+${diskiograph_read /dev/sde 8,60}\
+${diskiograph_write /dev/sde 8,60} 
 ${endif}
 NETWORK ${hr}
 
