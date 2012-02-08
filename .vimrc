@@ -82,6 +82,9 @@ nnoremap <buffer> <leader><SPACE> :set invlist<cr>
 autocmd BufRead *.html nnoremap <leader>p :s/^\(\s*\)\(.\+\)/\1<p>\2<\/p>/<cr>
 autocmd BufRead *.php nnoremap <leader>p :s/^\(\s*\)\(.\+\)/\1<p>\2<\/p>/<cr>
 
+" In css files, map D to split one-liners
+autocmd BufRead *.css nnoremap D :.s/\({\\|;\)\s*/\1\r/<cr>=%<cr>b>%
+
 " Proper search
 set incsearch     " Incremental search
 set ignorecase
