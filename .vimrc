@@ -49,6 +49,7 @@ syntax on
 " colors clouds
 set background=dark
 colorscheme solarized
+"colorscheme badwolf
 
 " Keymaps
 let mapleader = ","
