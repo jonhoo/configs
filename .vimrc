@@ -8,6 +8,7 @@ set guioptions-=T " Remove toolbar
 set vb t_vb= " No more beeps
 set backspace=2 " Backspace over newlines
 let javaScript_fold=1
+set foldmethod=marker
 
 " GUI fixes
 set ruler " Where am I?
