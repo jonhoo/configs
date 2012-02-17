@@ -28,6 +28,12 @@ if [ -e /home/jon/dev/seriex/seriex.pl ]; then
   alias sx='/home/jon/dev/seriex/seriex.pl'
 fi
 
+# Smore!
+if [ -e /home/jon/dev/smore/smore.pl ]; then
+  echo -e '\e[2;37mbtw: smore available...\e[0m';
+  alias sc='/home/jon/dev/smore/smore.pl'
+fi
+
 PS1='\[\e[2;37m\][\A] \[\e[0;33m\]\u\[\e[0m\]@\[\e[34m\]\h \[\e[32m\]\w'
 
 # Prompt
