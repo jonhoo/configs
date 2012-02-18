@@ -28,3 +28,6 @@
 [submodule ".vim/bundle/badwolf"]
 	path = .vim/bundle/badwolf
 	url = git://github.com/sjl/badwolf.git
+[submodule ".vim/bundle/haskell-syntax"]
+	path = .vim/bundle/haskell-syntax
+	url = git://github.com/vim-scripts/haskell.vim.git
