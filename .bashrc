@@ -96,6 +96,7 @@ fi
 # History management
 export HISTCONTROL=ignoreboth
 export HISTSIZE=2000
+export HISTIGNORE="clear:bg:fg:cd:cd -:cd ..:exit:date:w:* --help"
 
 # Other aliases
 # make
