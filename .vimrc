@@ -62,6 +62,10 @@ nnoremap <leader>< Vat<
 " ; adds semicolon at the end of the current line if there isn't one
 noremap <buffer> ; :s/\([^;]\)$/\1;/<cr>
 
+" Split line (sister to [J]oin lines)
+" The normal use of S is covered by cc, so don't worry about shadowing
+nnoremap S i<cr><esc><right>
+
 " Good-bye arrow keys... =(
 nnoremap <up> <nop>
 nnoremap <down> <nop>
