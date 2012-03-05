@@ -77,6 +77,8 @@ inoremap <left> <nop>
 inoremap <right> <nop>
 nnoremap j gj
 nnoremap k gk
+" jk as Esc
+inoremap jk <Esc>
 
 " Show those damn hidden characters, but make it easy to turn off
 " Verbose: set listchars=nbsp:¬,eol:¶,extends:»,precedes:«,trail:•
