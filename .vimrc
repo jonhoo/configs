@@ -69,8 +69,9 @@ nnoremap S i<cr><esc><right>
 " Good-bye arrow keys... =(
 nnoremap <up> <nop>
 nnoremap <down> <nop>
-nnoremap <left> <nop>
-nnoremap <right> <nop>
+" Left and right can switch buffers
+nnoremap <left> :bp<CR>
+nnoremap <right> :bn<CR>
 inoremap <up> <nop>
 inoremap <down> <nop>
 inoremap <left> <nop>
@@ -127,6 +128,29 @@ set mouse=a       " Enable mouse usage (all modes) in terminals
 
 " Give me a colored column
 set colorcolumn=100
+
+" I can type :help on my own, thanks.
+noremap <F1> <Esc>
+
+" Search results centered please
+nnoremap <silent> n nzz
+nnoremap <silent> N Nzz
+nnoremap <silent> * *zz
+nnoremap <silent> # #zz
+nnoremap <silent> g* g*zz
+
+" Leave paste mode when leaving insert mode
+au InsertLeave * set nopaste
+
+" Jump to start and end of line using the home row keys
+map H ^
+map L $
+
+" Jump to last edit position on opening file
+autocmd BufReadPost * \
+  if line("'\"") > 0 && line ("'\"") <= line("$") | \
+    exe "normal g'\"" | \
+  endif
 
 " Per-project configs
 set exrc
