@@ -147,10 +147,7 @@ map H ^
 map L $
 
 " Jump to last edit position on opening file
-autocmd BufReadPost * \
-  if line("'\"") > 0 && line ("'\"") <= line("$") | \
-    exe "normal g'\"" | \
-  endif
+autocmd BufReadPost * if line("'\"") > 0 && line ("'\"") <= line("$") | exe "normal g'\"" | endif
 
 " Per-project configs
 set exrc
