@@ -33,6 +33,9 @@ fi
 if test -e "/usr/bin/volti" ; then
     volti &
 fi
+if test -e "/usr/bin/tidybattery" ; then
+    tidybattery &
+fi
 
 # Conky
 if test -e "/usr/bin/conky" ; then
