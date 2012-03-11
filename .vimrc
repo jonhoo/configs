@@ -35,7 +35,7 @@ set undofile
 " Autocomplete
 set wildmenu
 set wildmode=list:longest
-set wildignore+=*/.git/*,*/.hg/*,*/.svn/*,*/*~,*/*.png,*/*.jpg,*/*.gif,*/*.settings,*/Thumbs.db,*/*.min.js,*/*.swp,*/publish/*,*/intermediate/*
+set wildignore+=*/.git/*,*/.hg/*,*/.svn/*,*/*~,*/*.png,*/*.jpg,*/*.gif,*/*.settings,*/Thumbs.db,*/*.min.js,*/*.swp,*/publish/*,*/intermediate/*,*.o,*.hi
 
 " Fix tabs
 set shiftwidth=2
