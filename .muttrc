@@ -1,0 +1,37 @@
+# Display the fields in this order
+hdr_order date subkect from to cc
+
+set hostname=thesquareplanet.com
+set attribution="%n wrote:"
+set beep=no
+set collapse_unread=no
+set compose_format="-- Compose [~%lb, attachments: %a]%>~"
+set crypt_autosign=no
+set crypt_replysign=yes
+set crypt_replysignencrypted=yes
+set date_format="!%b %d, %Y at %I:%M%p %Z"
+set imap_idle=yes
+set index_format="%3C %Z %{%b %d} %s %* (%L)"
+set locale="en_US.UTF-8"
+set header_cache="~/.mutt/cache/headers"
+set message_cachedir="~/.mutt/cache/messages"
+set pgp_auto_decode=yes
+set realname="Jon Gjengset";
+# set send_charset="us-ascii:iso-8859-1:utf-8"
+set send_charset="us-ascii:utf-8"
+set ssl_force_tls=yes
+set wrap=100
+# set envelope_from_address=""
+# set from=""
+# set header=no
+# set mail_check=5
+#
+mailboxes /var/spool/mail imap://mail.messagingengine.com
+account-hook imap://mail.messagingengine.com '
+  set imap_user="jon@eml.cc";
+  set spoolfile="imap://mail.messagingengine.com";
+  set folder="imap://mail.messagingengine.com/INBOX";
+  set from="jon@thesquareplanet.com";
+  set record="=Sent Items"'
+
+source /etc/Muttrc.gpg.dist
