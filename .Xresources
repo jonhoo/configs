@@ -4,10 +4,11 @@ emacs*geometry:           120x50
 
 ! urxvt
 URxvt.depth:           32
-URxvt.background:      rgba:0000/2b00/3600/dddd
+URxvt.background:      rgb:0000/2b00/3600
+!URxvt.background       rgb:6200/6200/6200
 URxvt.font:            xft:inconsolata:size=15
 URxvt.scrollBar:       false
-URxvt.geometry:        130x30
+URxvt.geometry:        135x30
 URxvt.perl-ext-common: default,matcher
 URxvt.urlLauncher:     /usr/bin/chromium
 URxvt.matcher.button:  1 
