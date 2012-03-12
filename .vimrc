@@ -30,12 +30,15 @@ let g:ctrlp_root_markers = ['.lvimrc']
 set relativenumber
 
 " Permanent undo
+set undodir=~/.vimdid
 set undofile
 
 " Autocomplete
 set wildmenu
 set wildmode=list:longest
-set wildignore+=*/.git/*,*/.hg/*,*/.svn/*,*/*~,*/*.png,*/*.jpg,*/*.gif,*/*.settings,*/Thumbs.db,*/*.min.js,*/*.swp,*/publish/*,*/intermediate/*,*.o,*.hi
+set wildignore=.hg,.svn,*~,*.png,*.jpg,*.gif,*.settings,Thumbs.db,*.min.js,*.swp,publish/*,intermediate/*,*.o,*.hi
+" Needed since we cannot block .git in wildignore for fugitive: https://github.com/tpope/vim-fugitive/issues/121
+let g:ctrlp_custom_ignore = '.git,.hg,.svn,*~,*.png,*.jpg,*.gif,*.settings,Thumbs.db,*.min.js,*.swp,publish/*,intermediate/*,*.o,*.hi'
 
 " Fix tabs
 set shiftwidth=2
