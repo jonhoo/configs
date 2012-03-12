@@ -106,6 +106,10 @@ set ignorecase
 set smartcase
 set gdefault
 
+" Very magic by default
+nnoremap / /\v
+cnoremap s/ s/\v
+
 " Script plugins
 au Filetype html,xml,xsl,php source ~/.vim/scripts/closetag.vim
 
