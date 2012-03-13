@@ -4,6 +4,7 @@ hdr_order date subkect from to cc
 set hostname=thesquareplanet.com
 set attribution="%n wrote:"
 set beep=no
+set beep_new=yes
 set collapse_unread=no
 set compose_format="-- Compose [~%lb, attachments: %a]%>~"
 set crypt_autosign=no
@@ -14,6 +15,8 @@ set imap_idle=yes
 set index_format="%3C %Z %{%b %d} %s %* (%L)"
 set locale="en_US.UTF-8"
 set header_cache="~/.mutt/cache/headers"
+set mail_check=60
+set timeout=10 # Update folder status often when inactive
 set message_cachedir="~/.mutt/cache/messages"
 set pgp_auto_decode=yes
 set realname="Jon Gjengset";
@@ -35,3 +38,4 @@ account-hook imap://mail.messagingengine.com '
   set record="=Sent Items"'
 
 source /etc/Muttrc.gpg.dist
+source ~/dev/others/solarized/mutt-colors-solarized/mutt-colors-solarized-light-16.muttrc
