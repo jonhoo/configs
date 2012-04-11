@@ -87,6 +87,9 @@ fi
 
 # Add local bins to path
 export PATH="$PATH:/usr/local/bin"
+if [ -e "/home/jon/.cabal/bin/" ]; then
+  export PATH="$PATH:/home/jon/.cabal/bin/"
+fi
 export CLASSPATH="$CLASSPATH:."
 
 if [ -e /usr/share/java ]; then
