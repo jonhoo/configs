@@ -16,6 +16,7 @@ alias l='ls'
 alias rc='sudo rc.d'
 alias x='sudo netcfg'
 alias gc='git checkout'
+alias gs='git status'
 alias c='git commit -m'
 alias ca='git commit -a -m'
 
