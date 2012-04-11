@@ -91,7 +91,7 @@ inoremap jk <Esc>
 " Verbose: set listchars=nbsp:¬,eol:¶,extends:»,precedes:«,trail:•
 set list
 set listchars=nbsp:¬,extends:»,precedes:«,trail:•
-nnoremap <buffer> <leader><SPACE> :set invlist<cr>
+nnoremap <leader><SPACE> :set invlist<cr>
 
 " In html and php files, map <leader>p to wrap line in <p> tag
 autocmd BufRead *.html nnoremap <leader>p :s/^\(\s*\)\(.\+\)/\1<p>\2<\/p>/<cr>
