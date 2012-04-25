@@ -19,6 +19,9 @@ alias gc='git checkout'
 alias gs='git status'
 alias c='git commit -m'
 alias ca='git commit -a -m'
+if [ -e "$HOME/.local/bashrc" ]; then
+  source "$HOME/.local/bashrc"
+fi
 
 #h5bp
 alias b='cd build;ant build;cd ..'
