@@ -24,6 +24,7 @@ let g:html_indent_script1 = "inc"
 let g:html_indent_style1 = "inc" 
 
 let g:Powerline_symbols = 'unicode'
+let g:Powerline_colorscheme = 'skwp'
 let g:ctrlp_root_markers = ['.lvimrc']
 
 " Relative line numbers
