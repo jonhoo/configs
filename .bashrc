@@ -79,7 +79,11 @@ fi
 
 # Sets the editor to use
 export EDITOR='vim'
-export BROWSER='chromium'
+if [ -e "/usr/bin/opera-next" ]; then
+  export BROWSER='opera-next'
+else
+  export BROWSER='chromium'
+fi
 
 if [ "$TERM" == "rxvt-unicode-256color" -a ! -e "/usr/share/terminfo/r/$TERM" ]; then
   if [ -e "/usr/share/terminfo/r/rxvt-256color" ]; then
