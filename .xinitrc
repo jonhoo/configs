@@ -57,6 +57,10 @@ if test -e "/usr/bin/numlockx" ; then
     numlockx &
 fi
 
+if test -e "/usr/bin/parcellite" ; then
+    parcellite -d &
+fi
+
 if test -e "/usr/bin/tint2" ; then
     (sleep 2 && tint2) &
 fi
