@@ -1,6 +1,7 @@
 #include "/home/jon/dev/others/solarized/xresources-colors-solarized/Xresources"
 emacs*geometry:           120x50
 *faceName:           inconsolata:size=15
+*multiClickTime: 300
 
 ! urxvt
 URxvt.depth:           32
