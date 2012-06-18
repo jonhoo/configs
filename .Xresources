@@ -21,7 +21,7 @@ Xft.antialias:  true
 Xft.autohint:   true
 Xft.hinting:    true
 Xft.hintstyle:  hintslight
-Xft.rgba:       rgb
+!Xft.rgba:       rgb
 
 ! xterm ----------------------------------------------------------------------
 xterm*geometry:           100x25
