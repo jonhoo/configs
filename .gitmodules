@@ -25,3 +25,6 @@
 [submodule ".vim/bundle/haskell-syntax"]
 	path = .vim/bundle/haskell-syntax
 	url = git://github.com/vim-scripts/haskell.vim.git
+[submodule ".vim/bundle/js-syntax"]
+	path = .vim/bundle/js-syntax
+	url = git://github.com/jelera/vim-javascript-syntax.git
