@@ -28,3 +28,6 @@
 [submodule ".vim/bundle/haskell-syntax"]
 	path = .vim/bundle/haskell-syntax
 	url = git://github.com/vim-scripts/haskell.vim.git
+[submodule "urxvt-perls"]
+	path = urxvt-perls
+	url = git://github.com/muennich/urxvt-perls.git
