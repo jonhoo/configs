@@ -4,9 +4,6 @@
 [submodule ".vim/bundle/ctrlp"]
 	path = .vim/bundle/ctrlp
 	url = git://github.com/kien/ctrlp.vim.git
-[submodule ".vim/bundle/js-syntax"]
-	path = .vim/bundle/js-syntax
-	url = git://github.com/serverhorror/javascript.vim.git
 [submodule ".vim/bundle/vim-powerline"]
 	path = .vim/bundle/vim-powerline
 	url = git://github.com/Lokaltog/vim-powerline.git
@@ -28,6 +25,9 @@
 [submodule ".vim/bundle/haskell-syntax"]
 	path = .vim/bundle/haskell-syntax
 	url = git://github.com/vim-scripts/haskell.vim.git
+[submodule ".vim/bundle/js-syntax"]
+	path = .vim/bundle/js-syntax
+	url = git://github.com/jelera/vim-javascript-syntax.git
 [submodule "urxvt-perls"]
 	path = urxvt-perls
 	url = git://github.com/muennich/urxvt-perls.git

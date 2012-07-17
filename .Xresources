@@ -32,8 +32,10 @@ URxvt.tabbed.tab-bg:    0
 
 Xft.dpi:        96
 Xft.antialias:  true
+Xft.autohint:   true
 Xft.hinting:    true
 Xft.hintstyle:  hintslight
+!Xft.rgba:       rgb
 
 ! xterm ----------------------------------------------------------------------
 xterm*geometry:           100x25
