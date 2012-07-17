@@ -1,0 +1,38 @@
+FrameTitle {
+	Enter = "Any Any" { Actions = "Focus" }
+}
+
+OtherTitle {
+	Enter = "Any Any" { Actions = "Focus" }
+}
+
+Border {
+	TopLeft {
+		Enter = "Any Any" { Actions = "Focus" }
+	}
+	Top {
+		Enter = "Any Any" { Actions = "Focus" }
+	}
+	TopRight {
+		Enter = "Any Any" { Actions = "Focus" }
+	}
+	Left {
+		Enter = "Any Any" { Actions = "Focus" }
+	}
+	Right {
+		Enter = "Any Any" { Actions = "Focus" }
+	}
+	BottomLeft {
+		Enter = "Any Any" { Actions = "Focus" }
+	}
+	Bottom {
+		Enter = "Any Any" { Actions = "Focus" }
+	}
+	BottomRight {
+		Enter = "Any Any" { Actions = "Focus" }
+	}
+}
+
+Client {
+	Enter = "Any Any" { Actions = "Focus" }
+}
