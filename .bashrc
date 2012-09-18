@@ -38,6 +38,12 @@ if [ -e /home/jon/dev/smore/smore.pl ]; then
   alias sc='/home/jon/dev/smore/smore.pl'
 fi
 
+# IMDb lookup!
+if [ -e /home/jon/dev/imdb-lookup/imdb.pl ]; then
+  echo -e '\e[2;37mbtw: imdb available...\e[0m';
+  alias il='/home/jon/dev/imdb-lookup/imdb.pl'
+fi
+
 PS1='\[\e[2;37m\][\A] \[\e[0;33m\]\u\[\e[0m\]@\[\e[34m\]\h \[\e[32m\]\w'
 
 # Prompt
