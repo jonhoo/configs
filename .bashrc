@@ -47,8 +47,8 @@ fi
 PS1='\[\e[2;37m\][\A] \[\e[0;33m\]\u\[\e[0m\]@\[\e[34m\]\h \[\e[32m\]\w'
 
 # Prompt
-if [ -e /usr/share/git/completion/git-completion.bash ]; then
-    source /usr/share/git/completion/git-completion.bash
+if [ -e /usr/share/git/completion/git-prompt.bash ]; then
+    source /usr/share/git/completion/git-prompt.bash
     # For unstaged(*) and staged(+) values next to branch name in __git_ps1
     GIT_PS1_SHOWDIRTYSTATE="enabled"
     PS1=$PS1'\[\e[35m\]`__git_ps1`'
