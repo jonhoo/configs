@@ -21,7 +21,7 @@ Screen {
     Workspaces = "4"
     WorkspacesPerRow = "4"
     WorkspaceNames = "Main;Web;E-mail;Music"
-    ShowFrameList = "True"
+    ShowFrameList = "False"
     ShowStatusWindow = "True"
     ShowStatusWindowCenteredOnRoot = "False"
     ShowClientID = "False"
