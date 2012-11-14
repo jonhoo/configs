@@ -57,7 +57,7 @@ Global {
 	KeyPress = "Mod4 G" { Actions = "Maxfill True True" }
 	KeyPress = "Mod4 F" { Actions = "Toggle FullScreen" }
 	KeyPress = "Mod4 Return" { Actions = "MoveResize" }
-	KeyPress = "Mod4 Q" { Actions = "Close" }
+	# KeyPress = "Mod4 Q" { Actions = "Close" }
     KeyPress = "Mod1 F4" { Actions = "Close" }
 	KeyPress = "Mod4 S" { Actions = "Toggle Shaded" }
 	KeyPress = "Mod4 I" { Actions = "Toggle Iconified" }
