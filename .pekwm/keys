@@ -12,8 +12,6 @@ Global {
   KeyPress = "XF86AudioRaiseVolume" { Actions = "exec amixer set Master 5%+ unmute &" }
   KeyPress = "XF86AudioMute" { Actions = "exec amixer set Master toggle &" }
 	KeyPress = "Mod4 L" { Actions = "Exec xscreensaver-command -lock" }
-	KeyPress = "Mod4 N" { Actions = "Exec setxkbmap no" }
-	KeyPress = "Mod4 E" { Actions = "Exec setxkbmap us" }
 	# Moving in frames
 	KeyPress = "Mod1 Tab" { Actions = "NextFrameMRU EndRaise" }
 	KeyPress = "Mod1 Shift Tab" { Actions = "PrevFrameMRU EndRaise" }
