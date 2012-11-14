@@ -76,7 +76,7 @@ fi
 
 # Start WM
 if test -e "/usr/bin/pekwm" ; then
-    ck-launch-session pekwm 2>$HOME/.xsession-errors
+    pekwm 2>$HOME/.xsession-errors
 else
-    ck-launch-session compiz --replace ccp 2>$HOME/.xsession-errors
+    compiz --replace ccp 2>$HOME/.xsession-errors
 fi
