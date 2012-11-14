@@ -3,6 +3,9 @@ if test -z "$DBUS_SESSION_BUS_ADDRESS" ; then
   eval `dbus-launch --sh-syntax --exit-with-session`
 fi
 
+# we want to start netcfg only after we have decrypted /home
+sudo systemctl start net-auto-wireless.service &
+
 # ssh agent
 if test -z "$SSH_AUTH_SOCK" ; then
   eval `ssh-agent -s`
