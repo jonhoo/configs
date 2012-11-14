@@ -12,7 +12,13 @@ if test -z "$SSH_AUTH_SOCK" ; then
 fi
 
 # Keymap
-setxkbmap no;
+# setxkbmap no;
+setxkbmap -option compose:rctrl
+if test -e /usr/bin/xmodmap; then
+  if test -e .Xmodmap; then
+    xmodmap .Xmodmap &
+  fi
+fi
 
 # X styling
 xrdb .Xresources;
