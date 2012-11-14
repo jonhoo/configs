@@ -7,9 +7,10 @@ emacs*geometry:           120x50
 URxvt.depth:           32
 URxvt.background:      rgb:0000/2b00/3600
 !URxvt.background       rgb:6200/6200/6200
-URxvt.font:            xft:inconsolata:size=15
+!URxvt.font:            xft:inconsolata:size=15
+URxvt.font:            xft:SourceCodePro:size=13
 URxvt.scrollBar:       false
-URxvt.geometry:        135x30
+URxvt.geometry:        130x30
 URxvt.urlLauncher:     /usr/bin/chromium
 URxvt.matcher.button:  1
 ! Ctrl+arrows
@@ -18,7 +19,7 @@ URxvt.keysym.Control-Down: \033[1;5B
 URxvt.keysym.Control-Left: \033[1;5D
 URxvt.keysym.Control-Right: \033[1;5C
 ! Paste!
-URxvt.perl-ext-common: default,matcher,tabbedex,clipboard
+URxvt.perl-ext-common: default,clipboard,url-select,tabbedex
 URxvt.keysym.M-c:   perl:clipboard:copy
 URxvt.keysym.M-v:   perl:clipboard:paste
 URxvt.keysym.M-C-v: perl:clipboard:paste_escaped
