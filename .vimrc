@@ -138,7 +138,8 @@ set showcmd       " Show (partial) command in status line.
 set mouse=a       " Enable mouse usage (all modes) in terminals
 
 " Give me a colored column
-set colorcolumn=100
+set textwidth=80
+set colorcolumn=80
 
 " I can type :help on my own, thanks.
 noremap <F1> <Esc>
