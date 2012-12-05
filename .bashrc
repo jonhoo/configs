@@ -1,6 +1,23 @@
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
+# Sets the editor and browser to use
+export EDITOR='vim'
+if [ -e "/usr/bin/opera-next" ]; then
+  export BROWSER='opera-next'
+else
+  export BROWSER='chromium'
+fi
+
+if [ "$TERM" == "rxvt-unicode-256color" -a ! -e "/usr/share/terminfo/r/$TERM" ]; then
+  if [ -e "/usr/share/terminfo/r/rxvt-256color" ]; then
+    export TERM='rxvt-256color';
+  else
+    echo -e '\e[2;37mbtw: rxvt not supported, faking vt100...\e[0m';
+    export TERM='vt100';
+  fi
+fi
+
 # Color aliases
 alias ls='ls --color=auto'
 alias grep='grep --color=auto'
@@ -25,6 +42,9 @@ fi
 
 #h5bp
 alias b='cd build;ant build;cd ..'
+
+# Open in GitHub from https://gist.github.com/4132919
+alias github="((git config --local --get remote.origin.url | sed -e 's/^.*git@github.com:\?/https:\/\/github.com/g' -e 's/\.git$/\/tree\//g'); (git branch 2>/dev/null| sed -n '/^\*/s/^\* //p'); echo '/'; (git rev-parse --show-prefix)) | tr -d '\n' | xargs $BROWSER"
 
 # Seriex!
 if [ -e /home/jon/dev/seriex/seriex.pl ]; then
@@ -93,23 +113,6 @@ bind 'set match-hidden-files off'
 # Bookmarks
 if [ -f ~/.local/bin/bashmarks.sh ]; then
     source ~/.local/bin/bashmarks.sh;
-fi
-
-# Sets the editor to use
-export EDITOR='vim'
-if [ -e "/usr/bin/opera-next" ]; then
-  export BROWSER='opera-next'
-else
-  export BROWSER='chromium'
-fi
-
-if [ "$TERM" == "rxvt-unicode-256color" -a ! -e "/usr/share/terminfo/r/$TERM" ]; then
-  if [ -e "/usr/share/terminfo/r/rxvt-256color" ]; then
-    export TERM='rxvt-256color';
-  else
-    echo -e '\e[2;37mbtw: rxvt not supported, faking vt100...\e[0m';
-    export TERM='vt100';
-  fi
 fi
 
 # Add local bins to path
