@@ -29,9 +29,6 @@ RootMenu = "Pekwm" {
 		Entry = "Reload" { Actions = "Reload" }
 		Entry = "Restart" { Actions = "Restart" }
 		Entry = "Exit" { Actions = "Exit" }
-		Submenu = "Exit to" {
-			Entry = "Xterm" { Actions = "RestartOther xterm" }
-		}
 	}
 }
 

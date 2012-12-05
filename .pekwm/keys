@@ -6,11 +6,15 @@ Global {
 #
 # Adding your own frequently used actions is easy -
 # just copy it over from CHAINS and edit the keypress!
-  KeyPress = "Mod4 a" { Actions = "Exec urxvt" }
-  KeyPress = "Print" { Actions = "Exec scrot" }
-  KeyPress = "XF86AudioLowerVolume" { Actions = "exec amixer set Master 5%- unmute &" }
-  KeyPress = "XF86AudioRaiseVolume" { Actions = "exec amixer set Master 5%+ unmute &" }
-  KeyPress = "XF86AudioMute" { Actions = "exec amixer set Master toggle &" }
+	KeyPress = "Mod4 a" { Actions = "Exec urxvt" }
+	KeyPress = "Mod4 s" { Actions = "Exec 'date | notify-send -'" }
+	KeyPress = "Print" { Actions = "Exec scrot" }
+	KeyPress = "XF86AudioLowerVolume" { Actions = "exec amixer set Master 5%- unmute &" }
+	KeyPress = "XF86AudioRaiseVolume" { Actions = "exec amixer set Master 5%+ unmute &" }
+	KeyPress = "XF86AudioMute" { Actions = "exec amixer set Master toggle &" }
+	KeyPress = "XF86AudioPlay" { Actions = "exec ~/bin/spotify-control.sh start &" }
+	KeyPress = "XF86AudioNext" { Actions = "exec ~/bin/spotify-control.sh next &" }
+	KeyPress = "XF86AudioPrev" { Actions = "exec ~/bin/spotify-control.sh prev &" }
 	KeyPress = "Mod4 L" { Actions = "Exec xscreensaver-command -lock" }
 	# Moving in frames
 	KeyPress = "Mod1 Tab" { Actions = "NextFrameMRU EndRaise" }
@@ -58,7 +62,7 @@ Global {
 	KeyPress = "Mod4 F" { Actions = "Toggle FullScreen" }
 	KeyPress = "Mod4 Return" { Actions = "MoveResize" }
 	# KeyPress = "Mod4 Q" { Actions = "Close" }
-    KeyPress = "Mod1 F4" { Actions = "Close" }
+	KeyPress = "Mod1 F4" { Actions = "Close" }
 	KeyPress = "Mod4 S" { Actions = "Toggle Shaded" }
 	KeyPress = "Mod4 I" { Actions = "Toggle Iconified" }
 	# Marking
@@ -69,6 +73,7 @@ Global {
 	# Menus
 	KeyPress = "Mod4 R" { Actions = "ShowMenu Root" }
 	KeyPress = "Mod4 W" { Actions = "ShowMenu Window" }
+	KeyPress = "Mod4 L" { Actions = "ShowMenu Goto" }
 	KeyPress = "Mod4 C" { Actions = "ShowMenu GotoClient" }
 	KeyPress = "Mod4 Shift I" { Actions = "ShowMenu Icon" }
 	KeyPress = "Mod4 X" { Actions = "HideAllMenus" }
