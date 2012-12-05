@@ -5,7 +5,8 @@ emacs*geometry:           120x50
 
 ! urxvt
 URxvt.depth:           32
-URxvt.background:      rgb:0000/2b00/3600
+!URxvt.background:      rgb:0000/2b00/3600
+URxvt.background:      rgba:0000/2b00/3600/f400
 !URxvt.background       rgb:6200/6200/6200
 !URxvt.font:            xft:inconsolata:size=15
 URxvt.font:            xft:SourceCodePro:size=13

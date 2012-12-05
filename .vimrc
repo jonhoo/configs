@@ -57,6 +57,7 @@ syntax on
 " colors clouds
 set background=dark
 colorscheme solarized
+hi Normal ctermbg=NONE
 "colorscheme badwolf
 
 " Keymaps

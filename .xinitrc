@@ -66,6 +66,11 @@ if test -e "/usr/bin/numlockx" ; then
     numlockx &
 fi
 
+# composition manager
+if test -e "/usr/bin/compton" ; then
+    compton -CGb &
+fi
+
 if test -e "/usr/bin/parcellite" ; then
     parcellite -d &
 fi
