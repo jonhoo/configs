@@ -13,6 +13,7 @@ URxvt.font:            xft:SourceCodePro:size=13
 URxvt.scrollBar:       false
 URxvt.geometry:        130x30
 URxvt.urlLauncher:     /usr/bin/chromium
+URxvt.url-launcher:     /usr/bin/chromium
 URxvt.matcher.button:  1
 ! Ctrl+arrows
 URxvt.keysym.Control-Up: \033[1;5A
