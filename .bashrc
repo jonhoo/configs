@@ -82,6 +82,8 @@ PS1=$PS1' \[\e[31m\]\$\[\e[0m\] '
 # Prompt command (for SSH window titles)
 PROMPT_COMMAND='echo -ne "\033]0;${USER}@${HOSTNAME}: ${PWD}\007"'
 
+export GOPATH=~/dev/go
+
 # Ant
 if [ -e /etc/profile.d/apache-ant.sh ]; then
     source /etc/profile.d/apache-ant.sh
@@ -119,6 +121,9 @@ fi
 
 # Add local bins to path
 export PATH="$PATH:/usr/local/bin"
+if [ -e "/home/jon/dev/go/bin/" ]; then
+  export PATH="$PATH:/home/jon/dev/go/bin/"
+fi
 if [ -e "/home/jon/.cabal/bin/" ]; then
   export PATH="$PATH:/home/jon/.cabal/bin/"
 fi
