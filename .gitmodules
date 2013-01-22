@@ -31,3 +31,9 @@
 [submodule "urxvt-perls"]
 	path = urxvt-perls
 	url = git://github.com/muennich/urxvt-perls.git
+[submodule ".vim/bundle/vim-less"]
+	path = .vim/bundle/vim-less
+	url = git://github.com/groenewege/vim-less.git
+[submodule ".vim/bundle/css3-syntax"]
+	path = .vim/bundle/css3-syntax
+	url = git://github.com/hail2u/vim-css3-syntax.git
