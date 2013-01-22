@@ -37,7 +37,7 @@ if test -e "/usr/bin/blueman-applet" ; then
     blueman-applet &
 fi
 if test -e "/usr/bin/dropboxd" ; then
-    dropboxd &
+    (sleep 60; dropboxd) &
 fi
 if test -e "/usr/bin/volti" ; then
     volti &
