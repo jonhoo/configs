@@ -159,8 +159,9 @@ au InsertLeave * set nopaste
 map H ^
 map L $
 
-" Paste from clipboard!
-noremap V :read !xsel --clipboard --output<cr>
+" clipboard!
+noremap <leader>p :read !xsel --clipboard --output<cr>
+noremap <leader>c :w !xsel -ib<cr><cr>
 
 " Jump to last edit position on opening file
 autocmd BufReadPost * if line("'\"") > 0 && line ("'\"") <= line("$") | exe "normal g'\"" | endif
