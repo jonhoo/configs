@@ -95,9 +95,6 @@ set list
 set listchars=nbsp:¬,extends:»,precedes:«,trail:•
 nnoremap <leader><SPACE> :set invlist<cr>
 
-" In html and php files, map <leader>p to wrap line in <p> tag
-autocmd BufRead *.html nnoremap <leader>p :s/^\(\s*\)\(.\+\)/\1<p>\2<\/p>/<cr>
-autocmd BufRead *.php nnoremap <leader>p :s/^\(\s*\)\(.\+\)/\1<p>\2<\/p>/<cr>
 autocmd BufRead *.md set filetype=markdown
 
 " In php files, ,s should map to a PHP syntax check
