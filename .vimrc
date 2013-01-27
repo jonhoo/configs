@@ -162,6 +162,7 @@ noremap <leader>c :w !xsel -ib<cr><cr>
 
 " Jump to last edit position on opening file
 autocmd BufReadPost * if line("'\"") > 0 && line ("'\"") <= line("$") | exe "normal g'\"" | endif
+autocmd BufWritePost *.less if filereadable("Makefile") | make | endif
 
 " Per-project configs
 set exrc
