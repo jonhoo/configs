@@ -37,3 +37,6 @@
 [submodule ".vim/bundle/css3-syntax"]
 	path = .vim/bundle/css3-syntax
 	url = git://github.com/hail2u/vim-css3-syntax.git
+[submodule ".vim/bundle/vim-seek"]
+	path = .vim/bundle/vim-seek
+	url = git://github.com/goldfeld/vim-seek.git
