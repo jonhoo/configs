@@ -9,6 +9,16 @@ else
   export BROWSER='chromium'
 fi
 
+# Show a daily quote from personal collection if present
+if [ -f /usr/share/fortune/jon.dat ]; then
+  echo \
+  "********************************************************************************"
+  fortune jon
+  echo \
+  "********************************************************************************"
+fi
+
+
 if [ "$TERM" == "rxvt-unicode-256color" -a ! -e "/usr/share/terminfo/r/$TERM" ]; then
   if [ -e "/usr/share/terminfo/r/rxvt-256color" ]; then
     export TERM='rxvt-256color';
