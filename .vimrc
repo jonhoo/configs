@@ -50,6 +50,9 @@ set softtabstop=2
 set tabstop=2
 set expandtab
 
+" No whitespace in vimdiff
+set diffopt+=iwhite
+
 " Get syntax
 syntax on
 
@@ -162,7 +165,12 @@ noremap <leader>c :w !xsel -ib<cr><cr>
 
 " Jump to last edit position on opening file
 autocmd BufReadPost * if line("'\"") > 0 && line ("'\"") <= line("$") | exe "normal g'\"" | endif
+
+" Auto-make less files on save
 autocmd BufWritePost *.less if filereadable("Makefile") | make | endif
+
+" Spelling in mail mode
+autocmd FileType mail set spell
 
 " Per-project configs
 set exrc
