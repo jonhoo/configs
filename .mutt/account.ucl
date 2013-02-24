@@ -1,0 +1,10 @@
+set imap_user="ucabgje@live.ucl.ac.uk"
+set spoolfile="imaps://pod51002.outlook.com/INBOX"
+set folder="imaps://pod51002.outlook.com"
+set from="jon.gjengset.12@ucl.ac.uk"
+set postponed=+Drafts
+set record=+"Sent Items"
+set smtp_url="smtp://$imap_user@pod51002.outlook.com:587/"
+
+set my_pw_ucl=`gnome-keyring-query get mutt_ucl`
+set imap_pass=$my_pw_ucl; set smtp_pass=$my_pw_ucl

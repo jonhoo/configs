@@ -15,27 +15,42 @@ set imap_idle=yes
 set index_format="%3C %Z %{%b %d} %s %* (%L)"
 set locale="en_US.UTF-8"
 set header_cache="~/.mutt/cache/headers"
+set message_cachedir="~/.mutt/cache/messages"
+set certificate_file="~/.mutt/certificates"
 set mail_check=60
 set timeout=10 # Update folder status often when inactive
-set message_cachedir="~/.mutt/cache/messages"
 set pgp_auto_decode=yes
 set realname="Jon Gjengset";
 # set send_charset="us-ascii:iso-8859-1:utf-8"
 set send_charset="us-ascii:utf-8"
 set ssl_force_tls=yes
-set wrap=100
+set wrap=72
+set sort = reverse-date-received
+set wait_key=no
 # set envelope_from_address=""
 # set from=""
 # set header=no
 # set mail_check=5
 #
-mailboxes /var/spool/mail imap://mail.messagingengine.com
-account-hook imap://mail.messagingengine.com '
-  set imap_user="jon@eml.cc";
-  set spoolfile="imap://mail.messagingengine.com";
-  set folder="imap://mail.messagingengine.com/INBOX";
-  set from="jon@thesquareplanet.com";
-  set record="=Sent Items"'
+
+# Pager
+bind pager j next-line
+bind pager k previous-line
+bind pager H display-toggle-weed
+
+folder-hook 'thesquareplanet.com' 'source ~/.mutt/account.fm'
+folder-hook 'ucl.ac.uk' 'source ~/.mutt/account.ucl'
+folder-hook 'ucle.co' 'source ~/.mutt/account.ucle'
+
+mailboxes thesquareplanet.com ucl.ac.uk ucle.co
+
+# switch to default account on startup
+source ~/.mutt/account.fm
+
+macro index <f2> '<sync-mailbox><enter-command>source ~/.mutt/account.fm<enter><change-folder>!<enter>'
+macro index <f3> '<sync-mailbox><enter-command>source ~/.mutt/account.ucl<enter><change-folder>!<enter>'
+macro index <f4> '<sync-mailbox><enter-command>source ~/.mutt/account.ucle<enter><change-folder>!<enter>'
+macro index <f5> '<sync-mailbox><enter-command>source ~/.mutt/account.aptoma<enter><change-folder>!<enter>'
 
 source /etc/Muttrc.gpg.dist
 source ~/dev/others/solarized/mutt-colors-solarized/mutt-colors-solarized-light-16.muttrc
