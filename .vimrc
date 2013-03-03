@@ -70,8 +70,6 @@ nnoremap <leader><leader> <c-^>
 " ,= indents current 'section' (e.g. HTML tag)
 nnoremap <leader>> Vat>
 nnoremap <leader>< Vat<
-" ; adds semicolon at the end of the current line if there isn't one
-noremap <buffer> ; :s/\([^;]\)$/\1;/<cr>
 
 " Split line (sister to [J]oin lines)
 " The normal use of S is covered by cc, so don't worry about shadowing
@@ -168,9 +166,6 @@ autocmd BufReadPost * if line("'\"") > 0 && line ("'\"") <= line("$") | exe "nor
 
 " Auto-make less files on save
 autocmd BufWritePost *.less if filereadable("Makefile") | make | endif
-
-" Spelling in mail mode
-autocmd FileType mail set spell
 
 " Per-project configs
 set exrc
