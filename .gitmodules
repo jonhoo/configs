@@ -40,3 +40,6 @@
 [submodule ".vim/bundle/vim-seek"]
 	path = .vim/bundle/vim-seek
 	url = git://github.com/goldfeld/vim-seek.git
+[submodule ".vim/bundle/syntastic"]
+	path = .vim/bundle/syntastic
+	url = https://github.com/scrooloose/syntastic.git
