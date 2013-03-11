@@ -38,6 +38,14 @@ bind pager j next-line
 bind pager k previous-line
 bind pager H display-toggle-weed
 
+# Convenience
+# Jump to archive
+macro index A '<change-folder>=Archive<enter>'
+# Jump to inbox
+macro index I '<change-folder>=<enter>'
+# Save (tagged or current) to archive
+macro index S ';<save-message>=Archive<enter>'
+
 folder-hook 'thesquareplanet.com' 'source ~/.mutt/account.fm'
 folder-hook 'ucl.ac.uk' 'source ~/.mutt/account.ucl'
 folder-hook 'ucle.co' 'source ~/.mutt/account.ucle'
