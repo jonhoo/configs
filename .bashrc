@@ -48,6 +48,7 @@ alias gc='git checkout'
 alias gs='git status'
 alias ca='git commit -a -m'
 alias xt='date +%s'
+alias ..='cd ..'
 if [ -e "$HOME/.local/bashrc" ]; then
   source "$HOME/.local/bashrc"
 fi
