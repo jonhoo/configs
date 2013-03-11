@@ -77,18 +77,18 @@ if [ -e /home/jon/dev/imdb-lookup/imdb.pl ]; then
   alias il='/home/jon/dev/imdb-lookup/imdb.pl'
 fi
 
-PS1="\[\e[2;37m\][\A] \[\e[0;33m\]\u\[\e[0m\]@\[\e[35m\]\h \[\e[32m\]\w"
+PS1='\[\e[2;37m\][\A] \[\e[0;33m\]\u\[\e[0m\]@\[\e[35m\]\h \[\e[32m\]\w'
 
 # Prompt
 if [ -e /usr/share/git/completion/git-prompt.sh ]; then
     source /usr/share/git/completion/git-prompt.sh
     # For unstaged(*) and staged(+) values next to branch name in __git_ps1
     GIT_PS1_SHOWDIRTYSTATE="enabled"
-    PS1=$PS1"\[\e[35m\]`__git_ps1`"
+    PS1=$PS1'\[\e[35m\]`__git_ps1`'
     echo -e "\e[2;37mbtw: enabling git completion in prompt...\e[0m";
 fi
 
-PS1=$PS1" \[\e[31m\]\$\[\e[0m\] "
+PS1=$PS1' \[\e[31m\]\$\[\e[0m\] '
 
 # Prompt command (for SSH window titles)
 export PROMPT_COMMAND='echo -ne "\033]0;${USER}@${HOSTNAME}: ${PWD}\007"'
