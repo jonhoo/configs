@@ -7,7 +7,7 @@ set autoindent
 set guioptions-=T " Remove toolbar
 set vb t_vb= " No more beeps
 set backspace=2 " Backspace over newlines
-let javaScript_fold=1
+let javaScript_fold=0
 set foldmethod=marker
 
 " GUI fixes
@@ -20,8 +20,8 @@ autocmd BufRead *.orig set readonly
 autocmd BufRead *.pacnew set readonly
 
 " Indent script and style by one
-let g:html_indent_script1 = "inc" 
-let g:html_indent_style1 = "inc" 
+let g:html_indent_script1 = "inc"
+let g:html_indent_style1 = "inc"
 
 let g:Powerline_symbols = 'unicode'
 let g:Powerline_colorscheme = 'skwp'
@@ -66,14 +66,10 @@ hi Normal ctermbg=NONE
 " Keymaps
 let mapleader = ","
 " ,, toggles between buffers
-nnoremap <leader><leader> <c-^> 
+nnoremap <leader><leader> <c-^>
 " ,= indents current 'section' (e.g. HTML tag)
 nnoremap <leader>> Vat>
 nnoremap <leader>< Vat<
-
-" Split line (sister to [J]oin lines)
-" The normal use of S is covered by cc, so don't worry about shadowing
-nnoremap S i<cr><esc><right>
 
 " Good-bye arrow keys... =(
 nnoremap <up> <nop>
@@ -87,8 +83,9 @@ inoremap <left> <nop>
 inoremap <right> <nop>
 nnoremap j gj
 nnoremap k gk
-" jk as Esc
-inoremap jk <Esc>
+" Ctrl+C as Esc
+inoremap <C-c> <Esc>
+vnoremap <C-c> <Esc>
 
 " Show those damn hidden characters, but make it easy to turn off
 " Verbose: set listchars=nbsp:¬,eol:¶,extends:»,precedes:«,trail:•
@@ -97,9 +94,6 @@ set listchars=nbsp:¬,extends:»,precedes:«,trail:•
 nnoremap <leader><SPACE> :set invlist<cr>
 
 autocmd BufRead *.md set filetype=markdown
-
-" In php files, ,s should map to a PHP syntax check
-autocmd BufRead *.php nnoremap <leader>s :!php -l %<cr>
 
 " In css files, map D to split one-liners
 autocmd BufRead *.css nnoremap D :.s/\({\\|;\)\s*/\1\r/<cr>=%<cr>b>%
@@ -140,8 +134,12 @@ set mouse=a       " Enable mouse usage (all modes) in terminals
 set textwidth=80
 set colorcolumn=80
 
+" CtrlP per buffer
+nmap ; :CtrlPBuffer<CR>
+
 " I can type :help on my own, thanks.
-noremap <F1> <Esc>
+map <F1> <Esc>
+imap <F1> <Esc>
 
 " Search results centered please
 nnoremap <silent> n nzz
@@ -149,6 +147,10 @@ nnoremap <silent> N Nzz
 nnoremap <silent> * *zz
 nnoremap <silent> # #zz
 nnoremap <silent> g* g*zz
+
+" Keymap for replacing up to next _ or -
+noremap <leader>m ct_
+noremap <leader>n ct-
 
 " Leave paste mode when leaving insert mode
 au InsertLeave * set nopaste
