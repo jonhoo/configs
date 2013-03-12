@@ -28,6 +28,9 @@ let g:Powerline_colorscheme = 'skwp'
 let g:ctrlp_root_markers = ['.lvimrc']
 let g:syntastic_enable_highlighting = 0
 
+" Shortcut for Switch
+nnoremap - :Switch<cr>
+
 " Relative line numbers
 set relativenumber
 
