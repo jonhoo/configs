@@ -33,9 +33,6 @@ if test -e "/usr/bin/xscreensaver" ; then
 fi
 
 # Tray icons
-if test -e "/usr/bin/blueman-applet" ; then
-    blueman-applet &
-fi
 if test -e "/usr/bin/dropboxd" ; then
     (sleep 60; dropboxd) &
 fi
@@ -66,11 +63,6 @@ if test -e "/usr/bin/numlockx" ; then
     numlockx &
 fi
 
-# composition manager
-if test -e "/usr/bin/compton" ; then
-    compton -CGb &
-fi
-
 if test -e "/usr/bin/parcellite" ; then
     parcellite -d &
 fi
@@ -81,6 +73,11 @@ fi
 
 # Start WM
 if test -e "/usr/bin/pekwm" ; then
+    # composition manager
+    if test -e "/usr/bin/compton" ; then
+        (sleep 2 && compton -CGb) &
+    fi
+
     pekwm 2>$HOME/.xsession-errors
 else
     compiz --replace ccp 2>$HOME/.xsession-errors
