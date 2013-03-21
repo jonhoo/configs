@@ -27,7 +27,7 @@
 	url = git://github.com/vim-scripts/haskell.vim.git
 [submodule ".vim/bundle/js-syntax"]
 	path = .vim/bundle/js-syntax
-	url = git://github.com/jelera/vim-javascript-syntax.git
+	url = git://github.com/othree/vim-javascript-syntax.git
 [submodule "urxvt-perls"]
 	path = urxvt-perls
 	url = git://github.com/muennich/urxvt-perls.git
