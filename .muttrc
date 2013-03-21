@@ -44,7 +44,7 @@ macro index A '<change-folder>=Archive<enter>'
 # Jump to inbox
 macro index I '<change-folder>=<enter>'
 # Save (tagged or current) to archive
-macro index S ';<save-message>=Archive<enter>'
+macro index S ';<save-message>=Archive<enter><enter>'
 
 folder-hook 'thesquareplanet.com' 'source ~/.mutt/account.fm'
 folder-hook 'ucl.ac.uk' 'source ~/.mutt/account.ucl'
