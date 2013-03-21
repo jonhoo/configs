@@ -8,7 +8,7 @@ set guioptions-=T " Remove toolbar
 set vb t_vb= " No more beeps
 set backspace=2 " Backspace over newlines
 let javaScript_fold=0
-set foldmethod=marker
+set foldmethod=marker " Only fold on marks
 
 " GUI fixes
 set ruler " Where am I?
@@ -144,7 +144,7 @@ set textwidth=80
 set colorcolumn=80
 
 " CtrlP per buffer
-nmap ; :CtrlPBuffer<CR>
+nmap <leader>; :CtrlPBuffer<CR>
 
 " I can type :help on my own, thanks.
 map <F1> <Esc>
