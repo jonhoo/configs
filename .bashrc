@@ -49,6 +49,7 @@ alias gs='git status'
 alias ca='git commit -a -m'
 alias xt='date +%s'
 alias ..='cd ..'
+alias px='ssh -fND localhost:8080 -C tsp'
 if [ -e "$HOME/.local/bashrc" ]; then
   source "$HOME/.local/bashrc"
 fi
