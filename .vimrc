@@ -44,7 +44,7 @@ set wildmode=list:longest
 set wildignore=.hg,.svn,*~,*.png,*.jpg,*.gif,*.settings,Thumbs.db,*.min.js,*.swp,publish/*,intermediate/*,*.o,*.hi,Zend,vendor
 " Needed since we cannot block .git in wildignore for fugitive: https://github.com/tpope/vim-fugitive/issues/121
 let g:ctrlp_custom_ignore = {
-  \ 'dir': '\.git$\|\.hg$\|\.svn$\|publish$\|intermediate$',
+  \ 'dir': '\.git$\|\.hg$\|\.svn$\|publish$\|intermediate$\|node_modules$',
   \ 'file': '\~$\|\.png$\|\.jpg$\|\.gif$\|\.settings$\|Thumbs\.db\|\.min\.js$\|\.swp\|\.o$\|\.hi$',
   \ }
 
@@ -92,9 +92,13 @@ inoremap <left> <nop>
 inoremap <right> <nop>
 nnoremap j gj
 nnoremap k gk
-" Ctrl+C as Esc
+" Ctrl+C and Ctrl+J as Esc
+inoremap <C-j> <Esc>
+vnoremap <C-j> <Esc>
 inoremap <C-c> <Esc>
 vnoremap <C-c> <Esc>
+" C-k as Esc + save
+inoremap <C-k> <Esc>:w<CR>
 
 " Show those damn hidden characters, but make it easy to turn off
 " Verbose: set listchars=nbsp:¬,eol:¶,extends:»,precedes:«,trail:•
