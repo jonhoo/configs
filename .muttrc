@@ -46,6 +46,9 @@ macro index I '<change-folder>=<enter>'
 # Save (tagged or current) to archive
 macro index S ';<save-message>=Archive<enter><enter>'
 
+auto_view text/html
+alternative_order text/plain text/enriched text/html
+
 folder-hook 'thesquareplanet.com' 'source ~/.mutt/account.fm'
 folder-hook 'ucl.ac.uk' 'source ~/.mutt/account.ucl'
 folder-hook 'ucle.co' 'source ~/.mutt/account.ucle'
