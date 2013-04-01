@@ -46,6 +46,3 @@
 [submodule ".vim/bundle/switch"]
 	path = .vim/bundle/switch
 	url = git://github.com/AndrewRadev/switch.vim.git
-[submodule ".vim/focus-theme"]
-	path = .vim/focus-theme
-	url = git://github.com/sindresorhus/focus.git

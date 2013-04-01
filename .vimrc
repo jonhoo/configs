@@ -48,11 +48,6 @@ let g:ctrlp_custom_ignore = {
   \ 'file': '\~$\|\.png$\|\.jpg$\|\.gif$\|\.settings$\|Thumbs\.db\|\.min\.js$\|\.swp\|\.o$\|\.hi$',
   \ }
 
-" Focus theme switcher
-" http://stackoverflow.com/a/6254600/472927
-nnoremap <silent> F :exec "colors " .
-    \ ((g:colors_name == "solarized") ? "focus-dark" : "solarized \| set background=dark")<CR>
-
 " Fix tabs
 set shiftwidth=2
 set softtabstop=2
