@@ -205,6 +205,18 @@ if [ -f /etc/bashrc ]; then
   source /etc/bashrc
 fi
 
+# Type back to move up to top parent dir which is a repository
+function back {
+  local p=""
+  for f in `pwd | tr '/' ' '`; do
+    p="$p/$f"
+    if [ -e "$p/.git" ]; then
+      cd "$p"
+      break
+    fi
+  done
+}
+
 # Clever way of watching for file read/pipe progress
 # Kudos to https://coderwall.com/p/g-drlg
 function watch_progress {
