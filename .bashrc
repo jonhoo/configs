@@ -221,6 +221,11 @@ function back {
   done
 }
 
+# Replace part of current path and cd to it
+function cdd {
+  cd `pwd | sed "s/$1/$2/"`
+}
+
 # Clever way of watching for file read/pipe progress
 # Kudos to https://coderwall.com/p/g-drlg
 function watch_progress {
