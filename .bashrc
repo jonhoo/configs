@@ -6,7 +6,11 @@ export EDITOR='vim'
 if [ -e "/usr/bin/opera-next" ]; then
   export BROWSER='opera-next'
 else
-  export BROWSER='chromium'
+  if [ -e "/usr/bin/opera" ]; then
+    export BROWSER='opera'
+  else
+    export BROWSER='chromium'
+  fi
 fi
 
 # Show a daily quote from personal collection if present
