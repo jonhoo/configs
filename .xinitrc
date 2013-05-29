@@ -33,6 +33,9 @@ fi
 if test -e "/usr/bin/dropboxd" ; then
     (sleep 60; dropboxd) &
 fi
+if test -e "/home/jon/dev/go/bin/hasmail" ; then
+    /home/jon/dev/go/bin/hasmail &
+fi
 if test -e "/usr/bin/volti" ; then
     volti &
 fi
