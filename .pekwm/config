@@ -12,8 +12,8 @@ MoveResize {
 }
 
 Screen {
-    Workspaces = "4"
-    WorkspacesPerRow = "4"
+    Workspaces = "5"
+    WorkspacesPerRow = "5"
     WorkspaceNames = "Main;Web;E-mail;Music"
     ShowFrameList = "False"
     FullscreenDetect = "False"
