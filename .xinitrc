@@ -1,28 +1,45 @@
-# user-space dbus
-if test -z "$DBUS_SESSION_BUS_ADDRESS" ; then
-  eval `dbus-launch --sh-syntax --exit-with-session`
-fi
-
-# ssh agent
-if test -z "$SSH_AUTH_SOCK" ; then
-  eval `ssh-agent -s`
-fi
-
+#!/bin/sh
 # Keymap
 # setxkbmap no;
 setxkbmap -option compose:rctrl
 if test -e /usr/bin/xmodmap; then
   if test -e .Xmodmap; then
-    xmodmap .Xmodmap &
+    xmodmap .Xmodmap
   fi
 fi
 
 # X styling
 xrdb .Xresources;
 
+# composition manager
+if test -e "/usr/bin/compton" ; then
+    compton -CGb
+fi
+
+# Start user-space DBUS
+source /etc/X11/xinit/xinitrc.d/30-dbus
+
+# gnome keyring agent
+if test -z "$GNOME_KEYRING_PID" && test -e "/usr/bin/gnome-keyring-daemon"; then
+  eval `gnome-keyring-daemon -s -c secrets,ssh,gpg`
+fi
+
+# ssh agent fallback
+if test -z "$SSH_AUTH_SOCK" ; then
+  eval `ssh-agent -s`
+fi
+
+# Start WM
+if test -e "/usr/bin/pekwm" ; then
+    pekwm 2> .logs/pekwm.err > .logs/pekwm.log &
+else
+    xterm &
+fi
+wmpid=$!
+
 # Apps
 if test -e "/usr/bin/kupfer" ; then
-    kupfer --no-splash &
+    kupfer --no-splash 2> .logs/kupfer.err > .logs/kupfer.log &
 fi
 
 if test -e "/usr/bin/xscreensaver" ; then
@@ -31,10 +48,10 @@ fi
 
 # Tray icons
 if test -e "/usr/bin/dropboxd" ; then
-    (sleep 60; dropboxd) &
+    dropboxd &
 fi
-if test -e "/home/jon/dev/go/bin/hasmail" ; then
-    /home/jon/dev/go/bin/hasmail &
+if test -e "/usr/bin/hasmail" ; then
+    /usr/bin/hasmail 2> .logs/hasmail.err > .logs/hasmail.log &
 fi
 if test -e "/usr/bin/volti" ; then
     volti &
@@ -45,7 +62,7 @@ fi
 
 # Conky
 if test -e "/usr/bin/conky" ; then
-    (sleep 2 && conky) &
+    conky &
 fi
 
 # nVidia settings
@@ -68,17 +85,13 @@ if test -e "/usr/bin/parcellite" ; then
 fi
 
 if test -e "/usr/bin/tint2" ; then
-    (sleep 2 && tint2) &
+    tint2 &
 fi
 
-# Start WM
-if test -e "/usr/bin/pekwm" ; then
-    # composition manager
-    if test -e "/usr/bin/compton" ; then
-        (sleep 2 && compton -CGb) &
-    fi
+# And wait for WM
+echo $wmpid > .wmpid
+wait $wmpid
 
-    pekwm 2>$HOME/.xsession-errors
-else
-    compiz --replace ccp 2>$HOME/.xsession-errors
-fi
+# Cleanup
+killall --user $USER
+eval `ssh-agent -k`
