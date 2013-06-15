@@ -50,7 +50,8 @@ Property = "^urxvt,^URxvt" {
   Decor = "TERM"
 }
 
-Property = "^(chromium|opera)" {
+/* and for various other applications
+Property = "^(chromium|opera|Wine|Firefox)" {
     ApplyOn = "Start New TransientOnly"
     Border = "False"
     Titlebar = "False"
