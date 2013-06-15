@@ -19,9 +19,6 @@
 [submodule ".vim/bundle/web-indent"]
 	path = .vim/bundle/web-indent
 	url = git://github.com/vim-scripts/JavaScript-Indent.git
-[submodule ".vim/bundle/php-syntax"]
-	path = .vim/bundle/php-syntax
-	url = git://github.com/vim-scripts/php.vim--Garvin.git
 [submodule ".vim/bundle/haskell-syntax"]
 	path = .vim/bundle/haskell-syntax
 	url = git://github.com/vim-scripts/haskell.vim.git
@@ -49,3 +46,6 @@
 [submodule ".vim/bundle/haskell-template-syntax"]
 	path = .vim/bundle/haskell-template-syntax
 	url = git://github.com/pbrisbin/html-template-syntax.git
+[submodule ".vim/bundle/php-syntax"]
+	path = .vim/bundle/php-syntax
+	url = git://github.com/StanAngeloff/php.vim.git
