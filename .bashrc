@@ -101,7 +101,9 @@ fi
 PS1=$PS1' \[\e[31m\]\$\[\e[0m\] '
 
 # Prompt command (for SSH window titles)
-export PROMPT_COMMAND='echo -ne "\033]0;${USER}@${HOSTNAME}: ${PWD}\007"'
+if [ ! "$TERM" = "linux" ]; then
+: export PROMPT_COMMAND='echo -ne "\033]0;${USER}@${HOSTNAME}: ${PWD}\007"'
+fi
 
 export GOPATH=~/dev/go
 
