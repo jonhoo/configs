@@ -1,6 +1,16 @@
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
+# Make sure terminal is recognized
+if [ "$TERM" == "rxvt-unicode-256color" -a ! -e "/usr/share/terminfo/r/$TERM" ]; then
+  if [ -e "/usr/share/terminfo/r/rxvt-256color" ]; then
+    export TERM='rxvt-256color';
+  else
+    echo -e '\e[2;37mbtw: rxvt not supported, faking vt100...\e[0m';
+    export TERM='vt100';
+  fi
+fi
+
 # Style with solarized
 echo -en "\e]P0002b36\e]P1dc322f\e]P2859900\e]P3b58900\e]P4268bd2\e]P5d33682\e]P62aa198\e]P7eee8d5\e]P9cb4b16\e]P8002b36\e]PA586e75\e]PB657b83\e]PC839496\e]PD6c71c4\e]PE93a1a1\e]PFfdf6e3"
 
@@ -25,16 +35,6 @@ if [ -f /usr/share/fortune/jon.dat ]; then
   fortune jon
   echo \
   "********************************************************************************"
-fi
-
-
-if [ "$TERM" == "rxvt-unicode-256color" -a ! -e "/usr/share/terminfo/r/$TERM" ]; then
-  if [ -e "/usr/share/terminfo/r/rxvt-256color" ]; then
-    export TERM='rxvt-256color';
-  else
-    echo -e '\e[2;37mbtw: rxvt not supported, faking vt100...\e[0m';
-    export TERM='vt100';
-  fi
 fi
 
 # Color aliases
