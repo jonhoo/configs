@@ -79,23 +79,23 @@ alias github="((git config --local --get remote.origin.url | sed -e 's/^.*git@gi
 
 # Seriex!
 if [ -e /home/jon/dev/seriex/seriex.pl ]; then
-  echo -e "\e[2;37mbtw: seriex available...\e[0m";
+  echo -e "\e[37mbtw: seriex available...\e[0m";
   alias sx='/home/jon/dev/seriex/seriex.pl'
 fi
 
 # Smore!
 if [ -e /home/jon/dev/smore/smore.pl ]; then
-  echo -e "\e[2;37mbtw: smore available...\e[0m";
+  echo -e "\e[37mbtw: smore available...\e[0m";
   alias sc='/home/jon/dev/smore/smore.pl'
 fi
 
 # IMDb lookup!
 if [ -e /home/jon/dev/imdb-lookup/imdb.pl ]; then
-  echo -e '\e[2;37mbtw: imdb available...\e[0m';
+  echo -e '\e[37mbtw: imdb available...\e[0m';
   alias il='/home/jon/dev/imdb-lookup/imdb.pl'
 fi
 
-PS1='\[\e[2;37m\][\A] \[\e[0;33m\]\u\[\e[0m\]@\[\e[35m\]\h \[\e[32m\]\w'
+PS1='\[\e[37m\][\A] \[\e[0;33m\]\u\[\e[0m\]@\[\e[35m\]\h \[\e[32m\]\w'
 
 # Prompt
 if [ -e /usr/share/git/completion/git-prompt.sh ]; then
@@ -103,7 +103,7 @@ if [ -e /usr/share/git/completion/git-prompt.sh ]; then
     # For unstaged(*) and staged(+) values next to branch name in __git_ps1
     GIT_PS1_SHOWDIRTYSTATE="enabled"
     PS1=$PS1'\[\e[35m\]`__git_ps1`'
-    echo -e "\e[2;37mbtw: enabling git completion in prompt...\e[0m";
+    echo -e "\e[37mbtw: enabling git completion in prompt...\e[0m";
 fi
 
 PS1=$PS1' \[\e[31m\]\$\[\e[0m\] '
@@ -124,7 +124,7 @@ fi
 if [ -e .dir_colors ]; then
     eval `dircolors .dir_colors`
 else
-    echo -e '\e[2;37mbtw: no dircolors available...\e[0m';
+    echo -e '\e[37mbtw: no dircolors available...\e[0m';
 fi
 
 # colored man output
