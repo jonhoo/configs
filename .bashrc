@@ -2,11 +2,13 @@
 [[ $- != *i* ]] && return
 
 # Make sure terminal is recognized
+faking="no"
 if [ "$TERM" == "rxvt-unicode-256color" -a ! -e "/usr/share/terminfo/r/$TERM" ]; then
   if [ -e "/usr/share/terminfo/r/rxvt-256color" ]; then
+    faking="nounicode"
     export TERM='rxvt-256color';
   else
-    echo -e '\e[2;37mbtw: rxvt not supported, faking vt100...\e[0m';
+    faking="vt100"
     export TERM='vt100';
   fi
 fi
@@ -35,6 +37,12 @@ if [ -f /usr/share/fortune/jon.dat ]; then
   fortune jon
   echo \
   "********************************************************************************"
+fi
+
+if [[ $faking == "nounicode" ]]; then
+  echo -e '\e[37mbtw: rxvt-unicode not supported, faking rxvt...\e[0m';
+elif [[ $faking == "vt100" ]]; then
+  echo -e '\e[37mbtw: rxvt not supported, faking vt100...\e[0m';
 fi
 
 # Color aliases
