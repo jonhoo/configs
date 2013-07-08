@@ -93,6 +93,7 @@ export LESS="-F -X -R"
 # Color aliases
 alias ls='ls --color=auto'
 alias grep='grep --color=auto'
+alias mplayer='mplayer -msgcolor'
 # Common aliases
 alias more='less'
 # Convenience aliases
