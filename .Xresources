@@ -38,11 +38,9 @@ Xft.antialias:  true
 Xft.autohint:   true
 Xft.hinting:    true
 Xft.hintstyle:  hintslight
-!Xft.rgba:       rgb
 
 ! xterm ----------------------------------------------------------------------
 xterm*geometry:           100x25
-!xterm*font:             -*-dina-medium-r-*-*-16-*-*-*-*-*-*-*
 xterm*dynamicColors:      true
 xterm*utf8:               1
 xterm*eightBitInput:      true
