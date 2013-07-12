@@ -9,6 +9,7 @@ set vb t_vb= " No more beeps
 set backspace=2 " Backspace over newlines
 let javaScript_fold=0
 set foldmethod=marker " Only fold on marks
+set tags=.git/tags
 
 " GUI fixes
 set ruler " Where am I?

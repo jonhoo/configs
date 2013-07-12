@@ -15,9 +15,12 @@
   ci = commit
   st = status
   hist = log --pretty=format:\"%h %ad | %s%d [%an]\" --graph --date=short
+	ctags = !.git/hooks/ctags
 [push]
 	default = simple
 [help]
 	autocorrect = 1
 [github]
 	user = jonhoo
+[init]
+	templatedir = ~/.git_template
