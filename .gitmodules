@@ -49,3 +49,6 @@
 [submodule ".vim/bundle/php-syntax"]
 	path = .vim/bundle/php-syntax
 	url = git://github.com/StanAngeloff/php.vim.git
+[submodule ".vim/bundle/ycm"]
+	path = .vim/bundle/ycm
+	url = git@github.com:Valloric/YouCompleteMe.git
