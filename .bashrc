@@ -145,14 +145,6 @@ alias e='$EDITOR'
 # Safety first
 alias mv='mv -i'
 
-# We like fortunes
-export FORTUNES="computers debian linux magic"
-export FORTUNES="futurama hitchhiker himym $FORTUNES"
-export FORTUNES="montypython perl $FORTUNES"
-export FORTUNES="science wisdom miscellaneous $FORTUNES"
-export FORTUNES="off/atheism off/debian off/linux off/privates off/religion off/sex off/vulgarity $FORTUNES"
-alias f='fortune -casn 500 $FORTUNES'
-
 # Type - to move up to top parent dir which is a repository
 function - {
   local p=""
@@ -196,4 +188,3 @@ EOF
   chmod +x /tmp/watcher-$$
   watch /tmp/watcher-$$
 }
-
