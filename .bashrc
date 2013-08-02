@@ -1,5 +1,8 @@
 # If not running interactively, don't do anything
-[[ $- != *i* ]] && return
+if [[ $- != *i* ]]; then
+  # non-interactive
+  alias echo=/bin/false
+fi
 
 # Make sure terminal is recognized
 faking="no"
@@ -29,6 +32,14 @@ if [ -f /etc/bashrc ]; then
   echo -e '\e[37mbtw: merging master bashrc...\e[0m';
   source /etc/bashrc
 fi
+
+# And to users who like to tweak
+if [ -e "$HOME/.local/bashrc" ]; then
+  echo -e '\e[37mbtw: merging local bashrc...\e[0m';
+  source "$HOME/.local/bashrc"
+fi
+
+[[ $- != *i* ]] && return;
 
 # Open in GitHub from https://gist.github.com/4132919
 alias github="((git config --local --get remote.origin.url | sed -e 's/^.*git@github.com:\?/https:\/\/github.com/g' -e 's/\.git$/\/tree\//g'); (git branch 2>/dev/null| sed -n '/^\*/s/^\* //p'); echo '/'; (git rev-parse --show-prefix)) | tr -d '\n' | xargs $BROWSER"
@@ -125,11 +136,6 @@ fi
 alias e='$EDITOR'
 # Safety first
 alias mv='mv -i'
-
-if [ -e "$HOME/.local/bashrc" ]; then
-  echo -e '\e[37mbtw: merging local bashrc...\e[0m';
-  source "$HOME/.local/bashrc"
-fi
 
 # We like fortunes
 export FORTUNES="computers debian linux magic"
