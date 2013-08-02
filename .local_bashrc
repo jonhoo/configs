@@ -1,0 +1,117 @@
+# Sets the editor and browser to use
+export EDITOR='vim'
+if [ -e "/usr/bin/opera-next" ]; then
+  export BROWSER='opera-next'
+else
+  if [ -e "/usr/bin/opera" ]; then
+    export BROWSER='opera'
+  else
+    export BROWSER='chromium'
+  fi
+fi
+export BROWSER='firefox'
+
+# Paths are needed
+export PATH="$PATH:/home/jon/bin"
+export PATH="$PATH:/home/jon/.cabal/bin"
+export PATH="$PATH:/home/jon/tools/arm-eabi/bin"
+export PATH="$PATH:/home/jon/.gem/ruby/1.9.1/bin"
+export PATH="$PATH:/home/jon/.gem/ruby/2.0.0/bin"
+export PATH="$PATH:/usr/local/bin"
+export PATH="$PATH:/home/jon/dev/go/bin/"
+export PATH="$PATH:/home/jon/.cabal/bin/"
+export PATH="$PATH:/home/jon/dev/mptcp/scripts/"
+export WINEARCH=win32
+export GOPATH=~/dev/go
+
+export GHI_TOKEN="2eee85255c16bd3ed003a29d173caca8b9d8b31c"
+
+# Enable VA-API+OpenGL for VDPAU
+export VDPAU_DRIVER=va_gl
+
+[[ $- != *i* ]] && return;
+
+# Seriex!
+if [ -e /home/jon/dev/seriex/seriex.pl ]; then
+  echo -e "\e[37mbtw: seriex available...\e[0m";
+  alias sx='/home/jon/dev/seriex/seriex.pl'
+fi
+
+# Smore!
+if [ -e /home/jon/dev/smore/smore.pl ]; then
+  echo -e "\e[37mbtw: smore available...\e[0m";
+  alias sc='/home/jon/dev/smore/smore.pl'
+fi
+
+# IMDb lookup!
+if [ -e /home/jon/dev/imdb-lookup/imdb.pl ]; then
+  echo -e '\e[37mbtw: imdb available...\e[0m';
+  alias il='/home/jon/dev/imdb-lookup/imdb.pl'
+fi
+
+# Personal aliases
+alias youtube-viewer="perl -X /usr/bin/youtube-viewer"
+alias px='ssh -fND localhost:8080 -C tsp'
+alias tsp='ssh -C jon@thesquareplanet.com'
+
+# Show a daily quote from personal collection if present
+if [ -f /usr/share/fortune/jon.dat ]; then
+  echo \
+  "********************************************************************************"
+  fortune jon
+  echo \
+  "********************************************************************************"
+fi
+
+# We like fortunes
+export FORTUNES="computers debian linux magic"
+export FORTUNES="futurama hitchhiker himym $FORTUNES"
+export FORTUNES="montypython perl $FORTUNES"
+export FORTUNES="science wisdom miscellaneous $FORTUNES"
+export FORTUNES="off/atheism off/debian off/linux off/privates off/religion off/sex off/vulgarity $FORTUNES"
+alias f='fortune -casn 500 $FORTUNES'
+
+lid() {
+  if [[ $1 == "on" ]]; then
+    sudo sed -i 's/HandleLidSwitch\=ignore/HandleLidSwitch\=suspend/' /etc/systemd/logind.conf
+    xset +dpms
+  elif [[ $1 == "off" ]]; then
+    sudo sed -i 's/HandleLidSwitch\=suspend/HandleLidSwitch\=ignore/' /etc/systemd/logind.conf
+    xset -dpms
+  else
+    echo "Usage: lid <on|off>"
+  fi
+
+  if [[ ! -z $1 ]]; then
+    sudo systemctl restart systemd-logind
+  fi
+}
+
+sounds() {
+  if [[ $1 == "in" ]]; then
+    sed -i 's/^/#/' ~/.asoundrc
+    sed -i 's/^##/#/' ~/.asoundrc
+  elif [[ $1 == "out" ]]; then
+    sed -i 's/^#*//' ~/.asoundrc
+  else
+    echo "Usage: sounds <in|out>"
+  fi
+}
+
+showoff() {
+  if [[ -z $2 ]]; then
+    lport=80
+    rport=8080
+  else
+    lport=$1
+    rport=$2
+  fi
+
+  showoff_ctrl=/tmp/showoff.$lport
+  if [[ $rport == "stop" ]]; then
+    ssh -S $showoff_ctrl -O exit localhost
+    return
+  fi
+
+  ssh -fMNS $showoff_ctrl -R $rport:127.0.0.1:$lport tsp
+}
