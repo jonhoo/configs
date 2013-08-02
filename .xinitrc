@@ -49,6 +49,9 @@ if test -e "/usr/bin/xscreensaver" ; then
 fi
 
 # Tray icons
+if test -e "/usr/bin/rescuetime" ; then
+    rescuetime &
+fi
 if test -e "/usr/bin/dropboxd" ; then
     dropboxd &
 fi
