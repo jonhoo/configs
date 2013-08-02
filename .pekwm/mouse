@@ -1,7 +1,7 @@
 # Swap comments on the two following lines to switch betwen
 # click does not raise and click to raise.
-$CLIENT_CLICK = "Focus"
-# $CLIENT_CLICK = "Focus; Raise"
+# $CLIENT_CLICK = "Focus"
+$CLIENT_CLICK = "Focus; Raise"
 
 # Base mouse configuration
 INCLUDE = "$_PEKWM_ETC_PATH/mouse_system"
