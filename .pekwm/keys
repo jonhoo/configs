@@ -25,10 +25,14 @@ Global {
 	KeyPress = "Mod4 Shift Tab" { Actions = "ActivateClientRel -1" }
 	KeyPress = "Mod4 Ctrl Right" { Actions = "MoveClientRel 1" }
 	KeyPress = "Mod4 Ctrl Left" { Actions = "MoveClientRel -1" }
-	KeyPress = "Mod4 Left" { Actions = "FocusDirectional Left" }
-	KeyPress = "Mod4 Right" { Actions = "FocusDirectional Right" }
-	KeyPress = "Mod4 Up" { Actions = "FocusDirectional Up" }
-	KeyPress = "Mod4 Down" { Actions = "FocusDirectional Down" }
+	KeyPress = "Mod4 Left" { Actions = "Exec ~/bin/slicewin left maximized" }
+	KeyPress = "Mod4 Right" { Actions = "Exec ~/bin/slicewin right maximized" }
+	KeyPress = "Mod4 Up" { Actions = "Exec ~/bin/slicewin top maximized" }
+	KeyPress = "Mod4 Down" { Actions = "Exec ~/bin/slicewin bottom maximized" }
+	KeyPress = "Mod4 Shift Left" { Actions = "Exec ~/bin/slicewin left" }
+	KeyPress = "Mod4 Shift Right" { Actions = "Exec ~/bin/slicewin right" }
+	KeyPress = "Mod4 Shift Up" { Actions = "Exec ~/bin/slicewin top" }
+	KeyPress = "Mod4 Shift Down" { Actions = "Exec ~/bin/slicewin bottom" }
 	# Moving in workspaces
 	KeyPress = "Ctrl Mod1 Left" { Actions = "GotoWorkspace Left" }
 	KeyPress = "Ctrl Mod1 Right" { Actions = "GotoWorkspace Right" }
@@ -57,7 +61,7 @@ Global {
 	KeyPress = "Mod4 F8" { Actions = "SendToWorkspace 8" }
 	KeyPress = "Mod4 F9" { Actions = "SendToWorkspace 9" }
 	# Simple window management
-	KeyPress = "Mod4 M" { Actions = "Toggle Maximized True True" }
+	KeyPress = "Mod4 M" { Actions = "Set Maximized True True" }
 	KeyPress = "Mod4 G" { Actions = "Maxfill True True" }
 	KeyPress = "Mod4 F" { Actions = "Toggle FullScreen" }
 	KeyPress = "Mod4 Return" { Actions = "MoveResize" }
