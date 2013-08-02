@@ -30,10 +30,12 @@ if test -z "$SSH_AUTH_SOCK" ; then
 fi
 
 # Start WM
-if test -e "/usr/bin/pekwm" ; then
-    pekwm 2> .logs/pekwm.err > .logs/pekwm.log &
+if [[ $1 == "weston" && -e "/usr/bin/weston-launch" ]]; then
+  weston-launch 2> .logs/weston.err > .logs/weston.log &
+elif [[ -e "/usr/bin/pekwm" ]]; then
+  pekwm 2> .logs/pekwm.err > .logs/pekwm.log &
 else
-    xterm &
+  xterm &
 fi
 wmpid=$!
 
