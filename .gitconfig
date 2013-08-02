@@ -24,3 +24,5 @@
 	user = jonhoo
 [init]
 	templatedir = ~/.git_template
+[diff]
+	algorithm = patience
