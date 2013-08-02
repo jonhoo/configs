@@ -39,6 +39,14 @@ if [ -e "$HOME/.local/bashrc" ]; then
   source "$HOME/.local/bashrc"
 fi
 
+# Weston needs some custom vars
+if [[ ! -z `pidof weston` ]]; then
+  export GDK_BACKEND="wayland"
+  export CLUTTER_BACKEND="wayland"
+  export SDL_VIDEODRIVER="wayland"
+  export QT_QPA_PLATFORM="wayland-egl"
+fi
+
 [[ $- != *i* ]] && return;
 
 # Open in GitHub from https://gist.github.com/4132919
