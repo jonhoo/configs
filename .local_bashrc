@@ -24,8 +24,6 @@ export PATH="$PATH:/home/jon/dev/mptcp/scripts/"
 export WINEARCH=win32
 export GOPATH=~/dev/go
 
-export GHI_TOKEN="2eee85255c16bd3ed003a29d173caca8b9d8b31c"
-
 # Enable VA-API+OpenGL for VDPAU
 export VDPAU_DRIVER=va_gl
 
