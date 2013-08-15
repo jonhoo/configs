@@ -54,19 +54,16 @@ macro index S ';<save-message>=Archive<tab><enter><enter>'
 auto_view text/html
 alternative_order text/plain text/enriched text/html
 
-folder-hook 'thesquareplanet.com' 'source ~/.mutt/account.fm'
-folder-hook 'ucl.ac.uk' 'source ~/.mutt/account.ucl'
-folder-hook 'ucle.co' 'source ~/.mutt/account.ucle'
-
-mailboxes thesquareplanet.com ucl.ac.uk ucle.co
-
 # switch to default account on startup
-source ~/.mutt/account.fm
+source ~/.mutt/account.local
 
-macro index <f2> '<sync-mailbox><enter-command>source ~/.mutt/account.fm<enter><change-folder>!<enter>'
-macro index <f3> '<sync-mailbox><enter-command>source ~/.mutt/account.ucl<enter><change-folder>!<enter>'
-macro index <f4> '<sync-mailbox><enter-command>source ~/.mutt/account.ucle<enter><change-folder>!<enter>'
-macro index <f5> '<sync-mailbox><enter-command>source ~/.mutt/account.aptoma<enter><change-folder>!<enter>'
+macro index <f1> '<sync-mailbox><enter-command>source ~/.mutt/account.fm<enter><change-folder>!<enter>'
+macro index <f2> '<sync-mailbox><enter-command>source ~/.mutt/account.ucl<enter><change-folder>!<enter>'
+macro index <f3> '<sync-mailbox><enter-command>source ~/.mutt/account.aptoma<enter><change-folder>!<enter>'
+macro index <f12> '<sync-mailbox><enter-command>source ~/.mutt/account.local<enter><change-folder>!<enter>'
+
+# lists
+subscribe getmail@lists.pyropus.ca
 
 source /etc/Muttrc.gpg.dist
 source ~/dev/others/solarized/mutt-colors-solarized/mutt-colors-solarized-light-16.muttrc
