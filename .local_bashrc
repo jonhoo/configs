@@ -117,3 +117,7 @@ showoff() {
 
   ssh -fMNS $showoff_ctrl -R $rport:127.0.0.1:$lport tsp
 }
+
+mnet() {
+  sudo systemctl stop netctl-auto@wlan0
+}
