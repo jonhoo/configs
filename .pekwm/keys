@@ -7,7 +7,6 @@ Global {
 # Adding your own frequently used actions is easy -
 # just copy it over from CHAINS and edit the keypress!
 	KeyPress = "Mod4 a" { Actions = "Exec urxvt" }
-	KeyPress = "Mod4 s" { Actions = "Exec 'date | notify-send -'" }
 	KeyPress = "Print" { Actions = "Exec scrot" }
 	KeyPress = "XF86AudioLowerVolume" { Actions = "exec amixer set Master 5%- unmute &" }
 	KeyPress = "XF86AudioRaiseVolume" { Actions = "exec amixer set Master 5%+ unmute &" }
