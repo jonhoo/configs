@@ -2,7 +2,8 @@ set imap_user="jon@eml.cc"
 set spoolfile="imaps://mail.messagingengine.com"
 set folder="imaps://mail.messagingengine.com/INBOX"
 set from="jon@thesquareplanet.com"
-set record="=Sent Items"
+set record="+.Sent Items"
+set postponed="+.Drafts
 set smtp_url="smtp://$imap_user@mail.messagingengine.com:587/"
 
 set my_pw_fm=`gnome-keyring-query get mutt_fastmail`
