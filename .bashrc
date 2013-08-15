@@ -59,6 +59,7 @@ if [ -e /usr/share/git/completion/git-prompt.sh ]; then
     source /usr/share/git/completion/git-prompt.sh
     # For unstaged(*) and staged(+) values next to branch name in __git_ps1
     GIT_PS1_SHOWDIRTYSTATE="enabled"
+    GIT_PS1_SHOWUNTRACKEDFILES="enabled"
     PS1=$PS1'\[\e[35m\]`__git_ps1`'
     echo -e "\e[37mbtw: enabling git completion in prompt...\e[0m";
 fi
