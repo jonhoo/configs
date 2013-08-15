@@ -66,4 +66,60 @@ macro index <f12> '<sync-mailbox><enter-command>source ~/.mutt/account.local<ent
 subscribe getmail@lists.pyropus.ca
 
 source /etc/Muttrc.gpg.dist
-source ~/dev/others/solarized/mutt-colors-solarized/mutt-colors-solarized-light-16.muttrc
+
+color normal        brightblue      default
+color error         red             default
+color tilde         white           default
+color message       cyan            default
+color markers       red             black
+color attachment    black           default
+color search        brightmagenta   default
+color status        brightblue      white
+color indicator     brightwhite     yellow
+color tree          yellow          default
+
+color hdrdefault    brightcyan      default
+color header        blue      default         "^(From)"
+color header        blue            default         "^(Subject)"
+color   signature   color243        default
+
+color bold          white           default
+color underline     white           default
+color normal        default         default
+
+#color   body        color137        default [\-\.+_a-zA-Z0-9]+@[\-\.a-zA-Z0-9]+
+color   body        color137        default ((https?|ftp)://|www)+[\-\.\;@,/%~_:?&=\#a-zA-Z0-9+*]+
+
+color quoted        blue            default
+color quoted1       cyan            default
+color quoted2       yellow          default
+color quoted3       red             default
+color quoted4       brightred       default
+
+color   tilde       color39         default
+color   tree        color211        default
+color   attachment  brightcolor243  default
+
+color   index       brightcolor15   default ~N
+color   index       brightcolor15   default ~O
+color   index       yellow          default ~l
+color   index       color243        default ~P
+color   index       brightcolor221  default ~F
+color   index       brightcolor39   default ~T
+color   index       color196        default ~D
+
+# Colorize inline diffs, really helpful for LKML or other mailing lists where
+# mails frequently include patches.
+color   body        color15   default '^diff .*'
+#color   body        color15   default '^[Ii]{1}ndex .*'
+#color   body        color15   default '^=+$'
+#color   body        color15   default '^(---|\+\+\+) .*'
+color   body        color15   default '^@@ .*'
+color   body        green           default '^\+([^\+].*)?$'
+color   body        red             default '^-([^-].*)?$'
+
+# Colorize PGP signatures
+color body          red             default         "(BAD signature)"
+color body          green           default         "(Good signature)"
+
+#source ~/dev/others/solarized/mutt-colors-solarized/mutt-colors-solarized-light-16.muttrc
