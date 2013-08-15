@@ -23,6 +23,7 @@ export PATH="$PATH:/home/jon/.cabal/bin/"
 export PATH="$PATH:/home/jon/dev/mptcp/scripts/"
 export WINEARCH=win32
 export GOPATH=~/dev/go
+export CCACHE_DIR="/var/cache/ccache"
 
 # Enable VA-API+OpenGL for VDPAU
 export VDPAU_DRIVER=va_gl
