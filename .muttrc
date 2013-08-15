@@ -43,11 +43,13 @@ bind pager H display-toggle-weed
 
 # Convenience
 # Jump to archive
-macro index A '<change-folder>=Archive<enter>'
+macro index A '<change-folder>=Archive<tab><enter>'
+# Jump to sent
+macro index O '<change-folder>=Sent<tab><enter>'
 # Jump to inbox
 macro index I '<change-folder>=<enter>'
 # Save (tagged or current) to archive
-macro index S ';<save-message>=Archive<enter><enter>'
+macro index S ';<save-message>=Archive<tab><enter><enter>'
 
 auto_view text/html
 alternative_order text/plain text/enriched text/html
