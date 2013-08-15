@@ -24,14 +24,17 @@ set realname="Jon Gjengset";
 # set send_charset="us-ascii:iso-8859-1:utf-8"
 set send_charset="us-ascii:utf-8"
 set ssl_force_tls=yes
-set wrap=72
+set wrap=80
 set sort = reverse-date-received
 set wait_key=no
 # set envelope_from_address=""
 # set from=""
 # set header=no
 # set mail_check=5
-#
+ignore *
+unignore from date subject cc
+
+bind index G imap-fetch-mail
 
 # Pager
 bind pager j next-line
