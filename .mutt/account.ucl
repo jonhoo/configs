@@ -8,3 +8,4 @@ set smtp_url="smtp://$imap_user@pod51002.outlook.com:587/"
 
 set my_pw_ucl=`gnome-keyring-query get mutt_ucl`
 set imap_pass=$my_pw_ucl; set smtp_pass=$my_pw_ucl
+unmailboxes *

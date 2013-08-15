@@ -8,6 +8,7 @@ set record = "+[Gmail].Sent\ Mail"
 
 set my_pw_aptoma=`gnome-keyring-query get mutt_aptoma`
 set imap_pass=$my_pw_aptoma; set smtp_pass=$my_pw_aptoma
+unmailboxes *
 
 set move = no
 set timeout=15

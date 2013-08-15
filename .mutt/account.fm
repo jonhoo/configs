@@ -7,3 +7,4 @@ set smtp_url="smtp://$imap_user@mail.messagingengine.com:587/"
 
 set my_pw_fm=`gnome-keyring-query get mutt_fastmail`
 set imap_pass=$my_pw_fm; set smtp_pass=$my_pw_fm
+unmailboxes *
