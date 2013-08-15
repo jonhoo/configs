@@ -103,6 +103,7 @@ set listchars=nbsp:¬,extends:»,precedes:«,trail:•
 nnoremap <leader><SPACE> :set invlist<cr>
 
 autocmd BufRead *.md set filetype=markdown
+autocmd BufRead *.trm set filetype=c
 
 " In css files, map D to split one-liners
 autocmd BufRead *.css nnoremap D :.s/\({\\|;\)\s*/\1\r/<cr>=%<cr>b>%
