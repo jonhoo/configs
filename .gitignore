@@ -17,3 +17,4 @@ publish
 .netrwhist
 .lvimrc
 .mutt/cache
+.mutt/aliases
