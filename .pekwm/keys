@@ -16,6 +16,7 @@ Global {
 	KeyPress = "XF86AudioPlay" { Actions = "exec ~/bin/spotify-control.sh start &" }
 	KeyPress = "XF86AudioNext" { Actions = "exec ~/bin/spotify-control.sh next &" }
 	KeyPress = "XF86AudioPrev" { Actions = "exec ~/bin/spotify-control.sh prev &" }
+	KeyPress = "XF86Display" { Actions = "exec ~/bin/hotplug-dp.sh &" }
 	KeyPress = "Mod4 L" { Actions = "Exec xscreensaver-command -lock" }
 	# Moving in frames
 	KeyPress = "Mod1 Tab" { Actions = "NextFrameMRU EndRaise" }
