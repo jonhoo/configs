@@ -18,3 +18,4 @@ publish
 .lvimrc
 .mutt/cache
 .mutt/aliases
+.vim/spell
