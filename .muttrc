@@ -7,7 +7,7 @@ set beep=no
 set beep_new=yes
 set collapse_unread=no
 set compose_format="-- Compose [~%lb, attachments: %a]%>~"
-set crypt_autosign=no
+set crypt_autosign=yes
 set crypt_replysign=yes
 set crypt_replysignencrypted=yes
 set date_format="!%b %d, %Y at %I:%M%p %Z"
@@ -69,7 +69,8 @@ subscribe getmail@lists.pyropus.ca gnuplot-beta@lists.sourceforge.net
 set alias_file=~/.mutt/aliases
 source $alias_file
 
-source /etc/Muttrc.gpg.dist
+source ~/.mutt/gpg
+set pgp_use_gpg_agent=yes
 
 color normal        brightblue      default
 color error         red             default
