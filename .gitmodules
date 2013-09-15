@@ -51,7 +51,7 @@
 	url = git://github.com/StanAngeloff/php.vim.git
 [submodule ".vim/bundle/ycm"]
 	path = .vim/bundle/ycm
-	url = git@github.com:Valloric/YouCompleteMe.git
+	url = git://github.com/Valloric/YouCompleteMe.git
 [submodule ".vim/bundle/securemodelines"]
 	path = .vim/bundle/securemodelines
 	url = https://github.com/ciaranm/securemodelines.git
