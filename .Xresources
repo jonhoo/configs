@@ -12,8 +12,8 @@ URxvt.background:      rgba:0000/2b00/3600/f400
 URxvt.font:            xft:SourceCodePro:size=13
 URxvt.scrollBar:       false
 URxvt.geometry:        130x33
-URxvt.urlLauncher:     /usr/bin/opera-next
-URxvt.url-launcher:     /usr/bin/opera-next
+URxvt.urlLauncher:     /usr/bin/firefox
+URxvt.url-launcher:     /usr/bin/firefox
 URxvt.matcher.button:  1
 ! Ctrl+arrows
 URxvt.keysym.Control-Up: \033[1;5A
