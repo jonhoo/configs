@@ -10,6 +10,8 @@ else
   fi
 fi
 export BROWSER='firefox'
+export NAME='Jon Gjengset'
+export EMAIL='jon@tsp.io'
 
 # Paths are needed
 export PATH="$PATH:/home/jon/bin"
