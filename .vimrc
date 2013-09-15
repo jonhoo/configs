@@ -76,6 +76,8 @@ nnoremap <leader><leader> <c-^>
 " ,= indents current 'section' (e.g. HTML tag)
 nnoremap <leader>> Vat>
 nnoremap <leader>< Vat<
+" ; as :
+nnoremap ; :
 
 " Good-bye arrow keys... =(
 nnoremap <up> <nop>
