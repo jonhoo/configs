@@ -10,6 +10,7 @@ set backspace=2 " Backspace over newlines
 let javaScript_fold=0
 set foldmethod=marker " Only fold on marks
 set tags=.git/tags
+set timeoutlen=300 " http://stackoverflow.com/questions/2158516/delay-before-o-opens-a-new-line
 
 " GUI fixes
 set ruler " Where am I?
