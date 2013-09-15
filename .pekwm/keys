@@ -7,7 +7,8 @@ Global {
 # Adding your own frequently used actions is easy -
 # just copy it over from CHAINS and edit the keypress!
 	KeyPress = "Mod4 a" { Actions = "Exec urxvt" }
-	KeyPress = "Mod4 e" { Actions = "Exec urxvt -e /bin/bash -ic mutt" }
+	KeyPress = "Mod4 r" { Actions = "Exec urxvt -e /bin/bash -ic mutt" }
+	KeyPress = "Mod4 e" { Actions = "Exec urxvt -e /bin/bash -ic \"mutt -e 'source ~/.mutt/account.fm'\"" }
 	KeyPress = "Print" { Actions = "Exec scrot" }
 	KeyPress = "Mod1 Print" { Actions = "Exec scrot -s" }
 	KeyPress = "XF86AudioLowerVolume" { Actions = "exec amixer set Master 5%- unmute &" }
@@ -117,34 +118,6 @@ Global {
 		KeyPress = "C" { Actions = "MoveToEdge BottomRight" }
 		KeyPress = "H" { Actions = "MoveToEdge Center" }
 		KeyPress = "S" { Actions = "MoveToEdge Center" }
-	}
-	# Menus
-	Chain = "Ctrl Mod1 M" {
-		KeyPress = "R" { Actions = "ShowMenu Root" }
-		KeyPress = "W" { Actions = "ShowMenu Window" }
-		KeyPress = "I" { Actions = "ShowMenu Icon" }
-		KeyPress = "G" { Actions = "ShowMenu Goto" }
-		KeyPress = "C" { Actions = "ShowMenu GotoClient" }
-		KeyPress = "D" { Actions = "ShowMenu Decor" }
-		KeyPress = "A" { Actions = "ShowMenu AttachClientInFrame" }
-		KeyPress = "F" { Actions = "ShowMenu AttachFrameInFrame" }
-		Keypress = "Shift A" { Actions = "ShowMenu AttachClient" }
-		Keypress = "Shift F" { Actions = "ShowMenu AttachFrame" }
-		KeyPress = "X" { Actions = "HideAllMenus" }
-	}
-	# Grouping
-	Chain = "Ctrl Mod1 T" {
-		KeyPress = "T" { Actions = "Toggle Tagged False" }
-		KeyPress = "B" { Actions = "Toggle Tagged True" }
-		KeyPress = "C" { Actions = "Unset Tagged" }
-		KeyPress = "G" { Actions = "Toggle GlobalGrouping" }
-		KeyPress = "M" { Actions = "Toggle Marked" }
-		KeyPress = "A" { Actions = "AttachMarked" }
-		KeyPress = "D" { Actions = "Detach" }
-		Keypress = "P" { Actions = "AttachClientInNextFrame" }
-		KeyPress = "O" { Actions = "AttachClientInPrevFrame" }
-		Keypress = "I" { Actions = "AttachFrameInNextFrame" }
-		KeyPress = "U" { Actions = "AttachFrameInPrevFrame" }
 	}
 	# Decor Toggles
 	Chain = "Ctrl Mod1 D" {
