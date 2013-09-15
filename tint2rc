@@ -107,8 +107,8 @@ mouse_scroll_down = none
 
 # Battery
 battery = 1
-battery_low_status = 15
-battery_low_cmd = notify-send "Low battery (15%)"
+battery_low_status = 5
+battery_low_cmd = notify-send "Low battery (5%)"
 battery_hide = 0
 bat1_font = DejaVu Sans 8
 bat2_font = DejaVu Sans Semi-Condensed 7
