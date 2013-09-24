@@ -1,0 +1,8 @@
+!AltGr is Mode_switch
+keycode 108 = Mode_switch
+keysym o = o O oslash Oslash
+keysym a = a A aring Aring
+keysym e = e E ae AE
+keysym 4 = 4 dollar sterling
+keysym u = u U udiaeresis Udiaeresis
+keysym 1 = 1 exclam U203D
