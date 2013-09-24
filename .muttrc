@@ -32,7 +32,7 @@ set wait_key=no
 # set header=no
 # set mail_check=5
 ignore *
-unignore from date subject cc
+unignore from to date subject cc
 
 bind index G imap-fetch-mail
 
