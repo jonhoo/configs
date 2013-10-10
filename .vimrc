@@ -27,7 +27,7 @@ let g:html_indent_style1 = "inc"
 
 let g:Powerline_symbols = 'unicode'
 let g:Powerline_colorscheme = 'skwp'
-let g:ctrlp_root_markers = ['.lvimrc']
+let g:ctrlp_root_markers = ['.lvimrc', '.git']
 let g:syntastic_enable_highlighting = 0
 
 " Shortcut for Switch
