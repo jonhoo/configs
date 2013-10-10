@@ -32,7 +32,8 @@ set wait_key=no
 # set header=no
 # set mail_check=5
 ignore *
-unignore from to date subject cc
+unignore from to date subject cc X-Bugzilla-Who
+
 
 bind index G imap-fetch-mail
 
