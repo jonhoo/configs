@@ -58,3 +58,6 @@
 [submodule ".vim/bundle/vim-opencl"]
 	path = .vim/bundle/vim-opencl
 	url = https://github.com/petRUShka/vim-opencl.git
+[submodule ".vim/bundle/graphviz-dot"]
+	path = .vim/bundle/graphviz-dot
+	url = https://github.com/wannesm/wmgraphviz.vim.git
