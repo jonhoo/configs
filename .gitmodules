@@ -55,3 +55,6 @@
 [submodule ".vim/bundle/securemodelines"]
 	path = .vim/bundle/securemodelines
 	url = https://github.com/ciaranm/securemodelines.git
+[submodule ".vim/bundle/vim-opencl"]
+	path = .vim/bundle/vim-opencl
+	url = https://github.com/petRUShka/vim-opencl.git
