@@ -40,7 +40,7 @@ if [ -e "$HOME/.local/bashrc" ]; then
 fi
 
 # Weston needs some custom vars
-if [[ ! -z `pidof weston` ]]; then
+if [[ ! -z `pgrep weston` ]]; then
   export GDK_BACKEND="wayland"
   export CLUTTER_BACKEND="wayland"
   export SDL_VIDEODRIVER="wayland"
