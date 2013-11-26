@@ -6,3 +6,8 @@ keysym e = e E ae AE
 keysym 4 = 4 dollar sterling
 keysym u = u U udiaeresis Udiaeresis
 keysym 1 = 1 exclam U203D
+
+! Caps Lock is Control
+remove Lock = Caps_Lock
+keysym Caps_Lock = Control_L
+add Control = Control_L
