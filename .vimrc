@@ -1,3 +1,6 @@
+" Fish doesn't play all that well with others
+set shell=/bin/bash
+
 " Pathogen
 call pathogen#infect()
 
