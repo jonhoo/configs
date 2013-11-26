@@ -1,7 +1,7 @@
- " Pathogen
+" Pathogen
 call pathogen#infect()
 
- " Get indentation
+" Get indentation
 set autoindent
 
 set guioptions-=T " Remove toolbar
