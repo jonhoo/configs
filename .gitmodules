@@ -61,3 +61,6 @@
 [submodule ".vim/bundle/graphviz-dot"]
 	path = .vim/bundle/graphviz-dot
 	url = https://github.com/wannesm/wmgraphviz.vim.git
+[submodule ".vim/bundle/vim-fish"]
+	path = .vim/bundle/vim-fish
+	url = https://github.com/dag/vim-fish.git
