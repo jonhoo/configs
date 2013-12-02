@@ -64,3 +64,6 @@
 [submodule ".vim/bundle/vim-fish"]
 	path = .vim/bundle/vim-fish
 	url = https://github.com/dag/vim-fish.git
+[submodule ".vim/bundle/tern"]
+	path = .vim/bundle/tern
+	url = https://github.com/marijnh/tern_for_vim.git
