@@ -32,6 +32,12 @@ set __fish_git_prompt_showstashstate ''
 set __fish_git_prompt_showupstream ''
 
 set PATH $PATH ~/bin
+set PATH $PATH /opt/android-sdk/platform-tools
+set PATH $PATH /usr/bin/vendor_perl/
+set PATH $PATH ~/.cabal/bin
+set PATH $PATH ~/.gem/ruby/1.9.1/bin
+set PATH $PATH ~/.gem/ruby/2.0.0/bin
+
 setenv EDITOR vim
 setenv BROWSER firefox
 setenv EMAIL jon@tsp.io
