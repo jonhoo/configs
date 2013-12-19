@@ -19,7 +19,7 @@ function up
 end
 
 set FORTUNES computers debian linux magic
-set FORTUNES futurama hitchhiker himym $FORTUNES
+set FORTUNES futurama hitchhiker $FORTUNES
 set FORTUNES firefly calvin perl $FORTUNES
 set FORTUNES science wisdom miscellaneous $FORTUNES
 set FORTUNES off/atheism off/debian off/linux off/privates $FORTUNES
