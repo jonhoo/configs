@@ -32,10 +32,10 @@ set __fish_git_prompt_showstashstate ''
 set __fish_git_prompt_showupstream ''
 
 set PATH $PATH ~/bin
-set EDITOR vim
-set BROWSER firefox
-set EMAIL jon@tsp.io
-set NAME "Jon Gjengset"
+setenv EDITOR vim
+setenv BROWSER firefox
+setenv EMAIL jon@tsp.io
+setenv NAME "Jon Gjengset"
 
 function fish_greeting
   set_color blue
