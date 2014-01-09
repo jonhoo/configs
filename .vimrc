@@ -80,6 +80,7 @@ set expandtab
 set diffopt+=iwhite
 
 " Get syntax
+let mysyntaxfile='~/.vim/doxygen_load.vim'
 syntax on
 
 " Style vim
