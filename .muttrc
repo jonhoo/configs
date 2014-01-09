@@ -19,6 +19,7 @@ set message_cachedir="~/.mutt/cache/messages"
 set certificate_file="~/.mutt/certificates"
 set mail_check=60
 set timeout=10 # Update folder status often when inactive
+set editor='vim'
 set pgp_auto_decode=yes
 set realname="Jon Gjengset";
 # set send_charset="us-ascii:iso-8859-1:utf-8"
