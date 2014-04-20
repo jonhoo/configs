@@ -20,14 +20,14 @@ fi
 source /etc/X11/xinit/xinitrc.d/30-dbus
 
 # gnome keyring agent
-if [ -n "$GNOME_KEYRING_CONTROL" ]; then
-  eval `gnome-keyring-daemon -s -c secrets,ssh,gpg` \
-  export GNOME_KEYRING_CONTROL GNOME_KEYRING_PID GPG_AGENT_INFO SSH_AUTH_SOCK
+if [[ -e "/usr/bin/gnome-keyring-daemon" ]]; then
+	eval $(/usr/bin/gnome-keyring-daemon -s -c secrets,ssh,gpg) \
+	export GNOME_KEYRING_CONTROL GNOME_KEYRING_PID GPG_AGENT_INFO SSH_AUTH_SOCK
 fi
 
 # ssh agent fallback
 if test -z "$SSH_AUTH_SOCK" ; then
-  eval `ssh-agent -s`
+	eval $(ssh-agent -s)
 fi
 
 # Start WM
