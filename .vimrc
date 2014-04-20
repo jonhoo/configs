@@ -137,9 +137,6 @@ autocmd BufRead *.md set filetype=markdown
 autocmd BufRead *.tex set filetype=tex
 autocmd BufRead *.trm set filetype=c
 
-" In css files, map D to split one-liners
-autocmd BufRead *.css nnoremap D :.s/\({\\|;\)\s*/\1\r/<cr>=%<cr>b>%
-
 " Proper search
 set incsearch     " Incremental search
 set ignorecase
