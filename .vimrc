@@ -42,6 +42,10 @@ set ruler " Where am I?
 set ttyfast
 set laststatus=2
 
+" Snipmate
+imap <C-e> <esc>a<Plug>snipMateNextOrTrigger
+smap <C-e> <Plug>snipMateNextOrTrigger
+
 " Prevent accidental writes to buffers that shouldn't be edited
 autocmd BufRead *.orig set readonly
 autocmd BufRead *.pacnew set readonly
