@@ -78,10 +78,10 @@ let g:ctrlp_custom_ignore = {
   \ }
 
 " Fix tabs
-set shiftwidth=2
-set softtabstop=2
-set tabstop=2
-set expandtab
+set shiftwidth=8
+set softtabstop=8
+set tabstop=8
+set noexpandtab
 
 " No whitespace in vimdiff
 set diffopt+=iwhite
@@ -129,7 +129,7 @@ inoremap <C-k> <Esc>:w<CR>
 
 " Show those damn hidden characters, but make it easy to turn off
 " Verbose: set listchars=nbsp:¬,eol:¶,extends:»,precedes:«,trail:•
-set list
+set nolist
 set listchars=nbsp:¬,extends:»,precedes:«,trail:•
 nnoremap <leader><SPACE> :set invlist<cr>
 
