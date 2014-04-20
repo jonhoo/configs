@@ -2,6 +2,11 @@
 set shell=/bin/bash
 
 " Pathogen
+let g:pathogen_disabled = []
+if !has('python')
+  call add(g:pathogen_disabled, 'ycm')
+endif
+
 call pathogen#infect()
 
 " Get indentation
