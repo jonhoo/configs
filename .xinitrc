@@ -50,8 +50,8 @@ if test -e "/usr/bin/xscreensaver" ; then
 fi
 
 # Tray icons
-if test -e "/usr/bin/dropboxd" ; then
-    dropboxd &
+if test -e "/usr/bin/SpiderOak" ; then
+    SpiderOak 2> .logs/spideroak.err > .logs/spideroak.log &
 fi
 if [[ -e "/usr/bin/getmail" && -n `getmail --help 2>&1 | grep idle` ]]; then
     /usr/bin/getmail --idle INBOX 2> .logs/getmail.err > .logs/getmail.log &
