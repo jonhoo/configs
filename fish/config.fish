@@ -18,6 +18,14 @@ function up
   end
 end
 
+function g
+  git $argv
+end
+
+function gc
+  git checkout $argv
+end
+
 set FORTUNES computers debian linux magic
 set FORTUNES futurama hitchhiker $FORTUNES
 set FORTUNES firefly calvin perl $FORTUNES
