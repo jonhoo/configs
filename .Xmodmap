@@ -11,3 +11,10 @@ keysym 1 = 1 exclam U203D
 remove Lock = Caps_Lock
 keysym Caps_Lock = Control_L
 add Control = Control_L
+
+! Greek letters
+keysym p = p P Greek_pi Greek_phi
+keysym t = t T Greek_theta Greek_alpha
+keysym l = l L Greek_lamda
+keysym period = period greater periodcentered
+keysym s = s S radical
