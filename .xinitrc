@@ -94,6 +94,10 @@ if test -e "/usr/bin/tint2" ; then
     tint2 &
 fi
 
+if [[ -e "/usr/bin/xflux" && -e ~/.config/xflux ]]; then
+    xflux $(cat ~/.config/xflux)
+fi
+
 # And wait for WM
 echo $wmpid > .wmpid
 wait $wmpid
