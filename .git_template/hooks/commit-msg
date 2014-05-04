@@ -9,6 +9,3 @@ summary_length = len(message.readline().splitlines()[0])
 if summary_length > 50:
   print("\x1b[31m[!] Commit summary is too long (> 50c)\x1b[0m")
   sys.exit(1)
-elif summary_length < 10:
-  print("\x1b[31m[!] Commit summary is too short (< 10c)\x1b[0m")
-  sys.exit(1)
