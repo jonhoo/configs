@@ -59,9 +59,6 @@ fi
 if test -e "/usr/bin/SpiderOak" ; then
     SpiderOak 2> .logs/spideroak.err > .logs/spideroak.log &
 fi
-if [[ -e "/usr/bin/getmail" && -n `getmail --help 2>&1 | grep idle` ]]; then
-    /usr/bin/getmail --idle INBOX 2> .logs/getmail.err > .logs/getmail.log &
-fi
 if test -e "/usr/bin/hasmail" ; then
     /usr/bin/hasmail 2> .logs/hasmail.err > .logs/hasmail.log &
 fi
