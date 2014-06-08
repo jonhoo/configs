@@ -37,6 +37,7 @@ unignore from to date subject cc X-Bugzilla-Who
 
 
 bind index G imap-fetch-mail
+bind index b search-opposite
 
 # Pager
 bind pager j next-line
