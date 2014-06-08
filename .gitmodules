@@ -10,15 +10,9 @@
 [submodule ".vim/bundle/local_vimrc"]
 	path = .vim/bundle/local_vimrc
 	url = git://github.com/vim-scripts/localvimrc.git
-[submodule ".vim/bundle/web-indent"]
-	path = .vim/bundle/web-indent
-	url = git://github.com/vim-scripts/JavaScript-Indent.git
 [submodule ".vim/bundle/haskell-syntax"]
 	path = .vim/bundle/haskell-syntax
 	url = git://github.com/vim-scripts/haskell.vim.git
-[submodule ".vim/bundle/js-syntax"]
-	path = .vim/bundle/js-syntax
-	url = git://github.com/othree/vim-javascript-syntax.git
 [submodule "urxvt-perls"]
 	path = urxvt-perls
 	url = git://github.com/muennich/urxvt-perls.git
@@ -73,3 +67,6 @@
 [submodule ".vim/bundle/vim-addon-mw-utils"]
 	path = .vim/bundle/vim-addon-mw-utils
 	url = https://github.com/MarcWeber/vim-addon-mw-utils.git
+[submodule ".vim/bundle/vim-javascript"]
+	path = .vim/bundle/vim-javascript
+	url = https://github.com/pangloss/vim-javascript.git
