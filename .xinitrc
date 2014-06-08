@@ -19,10 +19,16 @@ fi
 # Start user-space DBUS
 source /etc/X11/xinit/xinitrc.d/30-dbus
 
-# gnome keyring agent
-if [[ -e "/usr/bin/gnome-keyring-daemon" ]]; then
-	eval $(/usr/bin/gnome-keyring-daemon -s -c secrets,ssh,gpg) \
-	export GNOME_KEYRING_CONTROL GNOME_KEYRING_PID GPG_AGENT_INFO SSH_AUTH_SOCK
+# gnupg keyring agent
+if [[ -e "/usr/bin/gpg-agent" ]]; then
+	gnupginf="${HOME}/.gpg-agent-info"
+
+	if pgrep -x -u "${USER}" gpg-agent >/dev/null 2>&1; then
+	    eval `cat $gnupginf`
+	    eval `cut -d= -f1 $gnupginf | xargs echo export`
+	else
+	    eval `gpg-agent -s --enable-ssh-support --daemon --write-env-file "$gnupginf"`
+	fi
 fi
 
 # ssh agent fallback
