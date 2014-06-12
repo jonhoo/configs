@@ -44,7 +44,7 @@ xterm*geometry:           100x25
 xterm*dynamicColors:      true
 xterm*utf8:               1
 xterm*eightBitInput:      true
-xterm*saveLines:          512
+xterm*saveLines:          12000
 xterm*scrollTtyKeypress:  true
 xterm*scrollTtyOutput:    false
 xterm*jumpScroll:         true
