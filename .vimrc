@@ -189,6 +189,8 @@ nnoremap <silent> * *zz
 nnoremap <silent> # #zz
 nnoremap <silent> g* g*zz
 
+noremap M :!make -k -j4<cr>
+
 " Keymap for replacing up to next _ or -
 noremap <leader>m ct_
 noremap <leader>n ct-
