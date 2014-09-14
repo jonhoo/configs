@@ -78,8 +78,8 @@ fi
 if test -e "/usr/bin/volti" ; then
     volti &
 fi
-if test -e "/usr/bin/tidybattery" ; then
-    tidybattery &
+if test -e "/usr/bin/cbatticon" ; then
+    cbatticon -i notification &
 fi
 
 # Conky
