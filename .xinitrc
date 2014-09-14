@@ -106,7 +106,11 @@ if test -e "/usr/bin/parcellite" ; then
     parcellite -d &
 fi
 
-if test -e "/usr/bin/tint2" ; then
+if ((tiling)); then
+    if test -e ~/bin/usr-trayer; then
+	    ~/bin/usr-trayer &
+    fi
+elif test -e "/usr/bin/tint2"; then
     tint2 &
 fi
 

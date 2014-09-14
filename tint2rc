@@ -106,7 +106,7 @@ mouse_scroll_up = none
 mouse_scroll_down = none
 
 # Battery
-battery = 1
+battery = 0
 battery_low_status = 5
 battery_low_cmd = notify-send "Low battery (5%)"
 battery_hide = 0
