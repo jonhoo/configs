@@ -19,6 +19,14 @@ fi
 # Start user-space DBUS
 source /etc/X11/xinit/xinitrc.d/30-dbus
 
+autoif=$(systemctl | grep netctl-auto | awk '{print $1}' | sed 's/.*@\(.*\)\.service/\1/')
+if [[ -n $autoif ]]; then
+	has_carrier=$(cat /sys/class/net/autoif/carrier 2>/dev/null)
+	#if [[ $has_carrier != "1" ]]; then
+		sudo systemctl restart netctl-auto@$autoif &
+	#fi
+fi
+
 # gnupg keyring agent
 if [[ -e "/usr/bin/gpg-agent" ]]; then
 	gnupginf="${HOME}/.gpg-agent-info"
