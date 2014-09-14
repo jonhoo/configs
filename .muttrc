@@ -61,8 +61,7 @@ alternative_order text/plain text/enriched text/html
 source ~/.mutt/account.local
 
 macro index <f1> '<sync-mailbox><enter-command>source ~/.mutt/account.fm<enter><change-folder>!<enter>'
-macro index <f2> '<sync-mailbox><enter-command>source ~/.mutt/account.ucl<enter><change-folder>!<enter>'
-macro index <f3> '<sync-mailbox><enter-command>source ~/.mutt/account.aptoma<enter><change-folder>!<enter>'
+macro index <f2> '<sync-mailbox><enter-command>source ~/.mutt/account.aptoma<enter><change-folder>!<enter>'
 macro index <f12> '<sync-mailbox><enter-command>source ~/.mutt/account.local<enter><change-folder>!<enter>'
 
 # lists
