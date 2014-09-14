@@ -65,7 +65,13 @@ macro index <f2> '<sync-mailbox><enter-command>source ~/.mutt/account.aptoma<ent
 macro index <f12> '<sync-mailbox><enter-command>source ~/.mutt/account.local<enter><change-folder>!<enter>'
 
 # lists
-subscribe getmail@lists.pyropus.ca gnuplot-beta@lists.sourceforge.net nets@cs.ucl.ac.uk snarg@cs.ucl.ac.uk zed-user@googlegroups.com zeromq-dev@lists.zeromq.org
+subscribe getmail@lists.pyropus.ca gnuplot-beta@lists.sourceforge.net \
+	nets@cs.ucl.ac.uk snarg@cs.ucl.ac.uk zed-user@googlegroups.com \
+	zeromq-dev@lists.zeromq.org \
+	sp-4south-res@mit.edu social@csail.mit.edu assassins-guild@mit.edu \
+	newgrads1415@lists.csail.mit.edu prezfellow@mit.edu up@mit.edu \
+	seminars@csail.mit.edu csail-related@mit.edu iso-broadcast@mit.edu \
+	ult-team-new@mit.edu eecsnew14@MIT.EDU
 
 # aliases
 set alias_file=~/.mutt/aliases
