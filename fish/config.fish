@@ -26,6 +26,10 @@ function gc
   git checkout $argv
 end
 
+function px
+	ssh -fND localhost:8080 -C jon@thesquareplanet.com
+end
+
 function vim
   if [ -e /bin/nvim ]
     /bin/nvim $argv
