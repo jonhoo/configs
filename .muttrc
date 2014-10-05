@@ -54,6 +54,13 @@ macro index I '<change-folder>=<enter>'
 # Save (tagged or current) to archive
 macro index S ';<save-message>=Archive<tab><enter><enter>'
 
+# Make deletion non-permanent
+macro index d 's=Trash<enter><enter>' "Move message to trash"
+macro pager d 's=Trash<enter><enter>' "Move message to trash"
+# and expunge explicit
+macro index x '<delete-message>' "Delete message permanently"
+macro pager x '<delete-message>' "Delete message permanently"
+
 auto_view text/html
 alternative_order text/plain text/enriched text/html
 
