@@ -26,6 +26,14 @@ function gc
   git checkout $argv
 end
 
+function vim
+  if [ -e /bin/nvim ]
+    /bin/nvim $argv
+  else
+    /bin/vim $argv
+  end
+end
+
 set FORTUNES computers debian linux magic
 set FORTUNES futurama hitchhiker $FORTUNES
 set FORTUNES firefly calvin perl $FORTUNES
@@ -48,7 +56,7 @@ set PATH $PATH ~/.gem/ruby/1.9.1/bin
 set PATH $PATH ~/.gem/ruby/2.0.0/bin
 set PATH $PATH ~/.gem/ruby/2.1.0/bin
 
-setenv EDITOR vim
+setenv EDITOR nvim
 setenv BROWSER firefox
 setenv EMAIL jon@tsp.io
 setenv NAME "Jon Gjengset"
