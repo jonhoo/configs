@@ -216,3 +216,8 @@ autocmd BufWritePost *.less if filereadable("Makefile") | make | endif
 set exrc
 set secure
 let g:localvimrc_ask = 0
+
+" nvim
+if has('nvim')
+	runtime! plugin/python_setup.vim
+endif
