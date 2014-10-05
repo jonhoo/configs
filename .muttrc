@@ -74,11 +74,15 @@ macro index <f12> '<sync-mailbox><enter-command>source ~/.mutt/account.local<ent
 # lists
 subscribe getmail@lists.pyropus.ca gnuplot-beta@lists.sourceforge.net \
 	nets@cs.ucl.ac.uk snarg@cs.ucl.ac.uk zed-user@googlegroups.com \
-	zeromq-dev@lists.zeromq.org \
+	zeromq-dev@lists.zeromq.org g9@lists.csail.mit.edu \
 	sp-4south-res@mit.edu social@csail.mit.edu assassins-guild@mit.edu \
 	newgrads1415@lists.csail.mit.edu prezfellow@mit.edu up@mit.edu \
 	seminars@csail.mit.edu csail-related@mit.edu iso-broadcast@mit.edu \
-	ult-team-new@mit.edu eecsnew14@MIT.EDU
+	ult-team-new@mit.edu eecsnew14@MIT.EDU	csail-all@lists.csail.mit.edu \
+	csail-related@lists.csail.mit.edu calendar@csail.mit.edu \
+	vultures-request@lists.csail.mit.edu social@lists.csail.mit.edu \
+	csail-internal@lists.csail.mit.edu csail-related@csail.mit.edu \
+	all-grad@mit.edu pdos@csail.mit.edu g9@csail.mit.edu pdos@pdos.csail.mit.edu
 
 # aliases
 set alias_file=~/.mutt/aliases
