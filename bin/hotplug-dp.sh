@@ -39,7 +39,12 @@ else
 		edid=$(cat /sys/class/drm/card0/card0-$DEVC/edid | sha512sum - | sed 's/\s*-$//')
 
 		res=$(xrandr -q | grep -A1 "$DEV connected" | tail -n 1 | sed 's/^ *\([0-9x]*\).*/\1/')
-		xrandr --output $DEV --above LVDS1 --mode $res
+		pos="above"
+		if [[ $edid == "9ed75b31c6f1bce5db7420887ebbc71c126d6a152ddf00b2b5bbb7a5479cea2608273bfcae23d8ec7bcf01578256d672c5fb0d899005f46096ef98dc447d2244" ]]; then
+			pos="right-of"
+			maxlight
+		fi
+		xrandr --output $DEV --$pos LVDS1 --mode $res
 	fi
 	xset -dpms
 	xset s off
