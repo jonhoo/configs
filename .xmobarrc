@@ -1,0 +1,16 @@
+Config { font = "xft:Source Code Pro for Powerline:size=10"
+       , bgColor = "#212121"
+       , fgColor = "#FFFFFF"
+       , position = BottomW L 85
+       , commands = [ Run Date "%-I:%M %p, %A %B %d" "date" 10
+                    , Run StdinReader
+                    ]
+       , sepChar = "%"
+       , alignSep = "}{"
+       , template = "%date% :: %StdinReader%"
+       , lowerOnStart = True
+       , hideOnStart = False
+       , allDesktops = True
+       , overrideRedirect = True
+       , persistent = True
+       }

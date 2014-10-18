@@ -1,6 +1,6 @@
 #!/bin/bash
 /usr/bin/trayer --edge bottom --align right \
-   --monitor 1 \
-   --heighttype pixel --height 20 --SetDockType true \
+   --monitor 1 --width 15 \
+   --heighttype pixel --height 22 --SetDockType true \
    --SetPartialStrut true --transparent true --tint 0x212121 \
-   --alpha 80 --expand true --padding 4
+   --alpha 0 --expand true --padding 4
