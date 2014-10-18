@@ -172,7 +172,7 @@ set showcmd       " Show (partial) command in status line.
 set mouse=a       " Enable mouse usage (all modes) in terminals
 
 " Give me a colored column
-set textwidth=80
+set textwidth=79
 set colorcolumn=80
 
 " CtrlP per buffer
