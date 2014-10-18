@@ -212,6 +212,10 @@ autocmd BufReadPost * if line("'\"") > 0 && line ("'\"") <= line("$") | exe "nor
 " Auto-make less files on save
 autocmd BufWritePost *.less if filereadable("Makefile") | make | endif
 
+" Rust mandates these settings
+au Filetype rust source ~/.vim/scripts/spacetab.vim
+au Filetype rust set textwidth=99 colorcolumn=100
+
 " Per-project configs
 set exrc
 set secure
