@@ -49,6 +49,7 @@ bind index b search-opposite
 bind pager j next-line
 bind pager k previous-line
 bind pager H display-toggle-weed
+macro compose m '<edit-from><kill-line>Jon Gjengset <jfrg@mit.edu><enter><edit-reply-to><kill-line>Jon Gjengset <jon@thesquareplanet.com><enter>'
 
 # Convenience
 # Jump to archive
@@ -69,6 +70,9 @@ macro pager x '<delete-message>' "Delete message permanently"
 
 auto_view text/html
 alternative_order text/plain text/enriched text/html
+
+# Other me's
+alternates jon@*.tsp.io jon@*.thesquareplanet.com jon@*.gjengset.com jfrg@mit.edu j.gjengset@cs.ucl.ac.uk
 
 # switch to default account on startup
 source ~/.mutt/account.local
