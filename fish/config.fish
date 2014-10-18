@@ -38,6 +38,10 @@ function vim
   end
 end
 
+function mpva
+  mpv --no-video $argv
+end
+
 set FORTUNES computers debian linux magic
 set FORTUNES futurama hitchhiker $FORTUNES
 set FORTUNES firefly calvin perl $FORTUNES
