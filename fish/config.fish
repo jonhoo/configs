@@ -68,6 +68,7 @@ setenv EDITOR nvim
 setenv BROWSER firefox
 setenv EMAIL jon@tsp.io
 setenv NAME "Jon Gjengset"
+setenv GOPATH ~/dev/go
 
 function fish_greeting
   set_color blue
