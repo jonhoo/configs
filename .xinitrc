@@ -118,6 +118,11 @@ if [[ -e "/usr/bin/xflux" && -e ~/.config/xflux ]]; then
     xflux $(cat ~/.config/xflux)
 fi
 
+# Update screen layout
+if [[ -e ~/bin/hotplug-dp.sh ]]; then
+    (sleep 1; sudo ~/bin/hotplug-dp.sh;) &
+fi
+
 # And wait for WM
 echo $wmpid > .wmpid
 wait $wmpid
