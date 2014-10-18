@@ -5,7 +5,6 @@ set hostname=thesquareplanet.com
 set attribution="%n wrote:"
 set beep=no
 set beep_new=yes
-set collapse_unread=no
 set compose_format="-- Compose [~%lb, attachments: %a]%>~"
 set crypt_autosign=yes
 set crypt_replysign=yes
@@ -26,15 +25,22 @@ set realname="Jon Gjengset";
 set send_charset="us-ascii:utf-8"
 set ssl_force_tls=yes
 set wrap=80
-set sort = reverse-date-received
 set wait_key=no
+
+set sort="threads"
+set strict_threads="yes"
+set collapse_unread="no"
+set sort_browser="reverse-date"
+set sort_aux="reverse-last-date-received"
+bind index - collapse-thread
+bind index _ collapse-all
+
 # set envelope_from_address=""
 # set from=""
 # set header=no
 # set mail_check=5
 ignore *
 unignore from to date subject cc X-Bugzilla-Who
-
 
 bind index G imap-fetch-mail
 bind index b search-opposite
