@@ -9,6 +9,15 @@ maxlight() {
 	cat /sys/class/backlight/intel_backlight/max_brightness > /sys/class/backlight/intel_backlight/brightness
 }
 
+intsnd() {
+	sed -i 's/^/#/' ~jon/.asoundrc
+	sed -i 's/^##/#/' ~jon/.asoundrc
+}
+
+extsnd() {
+	sed -i 's/^#//' ~jon/.asoundrc
+}
+
 DEV=""
 DEVC=""
 STATUS="disconnected"
@@ -28,8 +37,7 @@ if [ "$STATUS" = "disconnected" ]; then
 	xrandr --output LVDS1 --mode 1600x900
 	xset +dpms
 	xset s default
-	sed -i 's/^/#/' ~jon/.asoundrc
-	sed -i 's/^##/#/' ~jon/.asoundrc
+	intsnd
 	sed -i 's/HandleLidSwitch\=ignore/HandleLidSwitch\=suspend/' /etc/systemd/logind.conf
 else
 	if [[ $1 == "mirror" ]]; then
@@ -48,7 +56,12 @@ else
 	fi
 	xset -dpms
 	xset s off
-	sed -i 's/^#//' ~jon/.asoundrc
+
+	if [[ $DEV == "HDMI1" ]]; then
+		extsnd
+	else
+		intsnd
+	fi
 	sed -i 's/HandleLidSwitch\=suspend/HandleLidSwitch\=ignore/' /etc/systemd/logind.conf
 fi
 
