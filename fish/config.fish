@@ -1,29 +1,29 @@
 function o
-  xdg-open $argv
+	xdg-open $argv
 end
 
 function p
-  sudo pacman $argv
+	sudo pacman $argv
 end
 
 function y
-  yaourt $argv
+	yaourt $argv
 end
 
 function up
-  if [ -e /usr/bin/yaourt ]
-    yaourt -Syu --aur
+	if [ -e /usr/bin/yaourt ]
+		yaourt -Syu --aur
   else
-    sudo pacman -Syu
+	  sudo pacman -Syu
   end
 end
 
 function g
-  git $argv
+	git $argv
 end
 
 function gc
-  git checkout $argv
+	git checkout $argv
 end
 
 function px
@@ -31,15 +31,15 @@ function px
 end
 
 function vim
-  if [ -e /bin/nvim ]
-    /bin/nvim $argv
+	if [ -e /bin/nvim ]
+		/bin/nvim $argv
   else
-    /bin/vim $argv
+	  /bin/vim $argv
   end
 end
 
 function mpva
-  mpv --no-video $argv
+	mpv --no-video $argv
 end
 
 set FORTUNES computers debian linux magic
@@ -71,9 +71,9 @@ setenv NAME "Jon Gjengset"
 setenv GOPATH ~/dev/go
 
 function fish_greeting
-  set_color blue
-  echo '\\'
-  fortune -asn 500 $FORTUNES | sed 's/^/ > /'
-  echo '/'
-  set_color normal
+	set_color blue
+	echo '\\'
+	fortune -asn 500 $FORTUNES | sed 's/^/ > /'
+	echo '/'
+	set_color normal
 end
