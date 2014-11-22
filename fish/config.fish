@@ -96,6 +96,7 @@ set PATH $PATH ~/.cabal/bin
 set PATH $PATH ~/.gem/ruby/1.9.1/bin
 set PATH $PATH ~/.gem/ruby/2.0.0/bin
 set PATH $PATH ~/.gem/ruby/2.1.0/bin
+set PATH $PATH ~/dev/go/bin
 
 setenv EDITOR nvim
 setenv BROWSER firefox
