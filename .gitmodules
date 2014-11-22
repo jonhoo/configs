@@ -37,9 +37,6 @@
 [submodule ".vim/bundle/php-syntax"]
 	path = .vim/bundle/php-syntax
 	url = git://github.com/StanAngeloff/php.vim.git
-[submodule ".vim/bundle/ycm"]
-	path = .vim/bundle/ycm
-	url = git://github.com/Valloric/YouCompleteMe.git
 [submodule ".vim/bundle/securemodelines"]
 	path = .vim/bundle/securemodelines
 	url = https://github.com/ciaranm/securemodelines.git
@@ -61,9 +58,6 @@
 [submodule ".vim/bundle/tlib_vim"]
 	path = .vim/bundle/tlib_vim
 	url = https://github.com/tomtom/tlib_vim.git
-[submodule ".vim/bundle/vim-snipmate"]
-	path = .vim/bundle/vim-snipmate
-	url = https://github.com/garbas/vim-snipmate.git
 [submodule ".vim/bundle/vim-addon-mw-utils"]
 	path = .vim/bundle/vim-addon-mw-utils
 	url = https://github.com/MarcWeber/vim-addon-mw-utils.git
@@ -73,3 +67,18 @@
 [submodule ".vim/bundle/toml"]
 	path = .vim/bundle/toml
 	url = https://github.com/cespare/vim-toml.git
+[submodule ".vim/bundle/vim-go"]
+	path = .vim/bundle/vim-go
+	url = https://github.com/fatih/vim-go.git
+[submodule ".vim/bundle/neosnippet"]
+	path = .vim/bundle/neosnippet
+	url = https://github.com/Shougo/neosnippet.vim.git
+[submodule ".vim/bundle/neosnippet-snippets"]
+	path = .vim/bundle/neosnippet-snippets
+	url = https://github.com/Shougo/neosnippet-snippets.git
+[submodule ".vim/bundle/neocomplete"]
+	path = .vim/bundle/neocomplete
+	url = https://github.com/Shougo/neocomplete.vim.git
+[submodule ".vim/bundle/echodoc"]
+	path = .vim/bundle/echodoc
+	url = https://github.com/Shougo/echodoc.vim.git
