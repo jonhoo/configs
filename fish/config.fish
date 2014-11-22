@@ -1,14 +1,11 @@
-function o
-	xdg-open $argv
-end
-
-function p
-	sudo pacman $argv
-end
-
-function y
-	yaourt $argv
-end
+set -U fish_user_abbreviations
+set -U fish_user_abbreviations $fish_user_abbreviations 'o=xdg-open'
+set -U fish_user_abbreviations $fish_user_abbreviations 'p=sudo pacman'
+set -U fish_user_abbreviations $fish_user_abbreviations 'y=yaourt'
+set -U fish_user_abbreviations $fish_user_abbreviations 'g=git'
+set -U fish_user_abbreviations $fish_user_abbreviations 'gc=git checkout'
+set -U fish_user_abbreviations $fish_user_abbreviations 'mpva=mpv --no-video'
+complete --command yaourt --wraps pacman
 
 function up
 	if [ -e /usr/bin/yaourt ]
@@ -16,14 +13,6 @@ function up
   else
 	  sudo pacman -Syu
   end
-end
-
-function g
-	git $argv
-end
-
-function gc
-	git checkout $argv
 end
 
 function px
@@ -36,10 +25,6 @@ function vim
   else
 	  /bin/vim $argv
   end
-end
-
-function mpva
-	mpv --no-video $argv
 end
 
 set nooverride PATH PWD
