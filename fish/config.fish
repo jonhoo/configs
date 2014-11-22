@@ -98,11 +98,15 @@ set PATH $PATH ~/.gem/ruby/2.0.0/bin
 set PATH $PATH ~/.gem/ruby/2.1.0/bin
 set PATH $PATH ~/dev/go/bin
 
-setenv EDITOR nvim
+setenv EDITOR vim
 setenv BROWSER firefox
 setenv EMAIL jon@tsp.io
 setenv NAME "Jon Gjengset"
 setenv GOPATH ~/dev/go
+
+# Fish should not add things to clipboard when killing
+# See https://github.com/fish-shell/fish-shell/issues/772
+set FISH_CLIPBOARD_CMD "cat"
 
 function fish_greeting
 	set_color blue
