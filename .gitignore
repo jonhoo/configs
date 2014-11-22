@@ -19,3 +19,5 @@ publish
 .mutt/cache
 .mutt/aliases
 .vim/spell
+*.pyc
+__pycache__
