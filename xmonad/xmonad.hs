@@ -56,7 +56,7 @@ myLayout = (smartBorders tiled) ||| (smartBorders $ Mirror tiled) ||| (smartBord
      nmaster = 1
 
      -- Default proportion of screen occupied by master pane
-     ratio   = 1/2
+     ratio   = toRational (2 / (1 + sqrt 5 :: Double))
 
      -- Percent of screen to increment by when resizing panes
      delta   = 3/100
