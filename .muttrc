@@ -72,7 +72,7 @@ auto_view text/html
 alternative_order text/plain text/enriched text/html
 
 # Other me's
-alternates jon@*.tsp.io jon@*.thesquareplanet.com jon@*.gjengset.com jfrg@mit.edu j.gjengset@cs.ucl.ac.uk
+alternates jon@*.tsp.io jon@*.thesquareplanet.com jon@*.gjengset.com jfrg@mit.edu j.gjengset@cs.ucl.ac.uk jon@dethvitehuset.no
 
 # switch to default account on startup
 source ~/.mutt/account.local
