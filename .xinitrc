@@ -28,15 +28,11 @@ if [[ -n $autoif ]]; then
 fi
 
 # gnupg keyring agent
-if [[ -e "/usr/bin/gpg-agent" ]]; then
-	gnupginf="${HOME}/.gpg-agent-info"
-
-	if pgrep -x -u "${USER}" gpg-agent >/dev/null 2>&1; then
-	    eval `cat $gnupginf`
-	    eval `cut -d= -f1 $gnupginf | xargs echo export`
-	else
-	    eval `gpg-agent -s --enable-ssh-support --daemon --write-env-file "$gnupginf"`
-	fi
+# ensure it's started so SSH will work
+# https://www.gnupg.org/faq/whats-new-in-2.1.html#autostart
+if [[ -e "/usr/bin/gpgconf" ]]; then
+	gpgconf --launch gpg-agent
+	export SSH_AUTH_SOCK=/home/jon/.gnupg/S.gpg-agent.ssh
 fi
 
 # ssh agent fallback

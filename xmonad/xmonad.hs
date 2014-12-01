@@ -79,6 +79,7 @@ myLayout = (smartBorders tiled) ||| (smartBorders $ Mirror tiled) ||| (smartBord
 myManageHook = composeAll
     [ className =? "Gimp"           --> doFloat
     , className =? "transmission-gtk" --> doFloat
+    , fmap (isInfixOf "Pinentry") className --> doFloat
     , resource  =? "desktop_window" --> doIgnore
     , resource  =? "kdesktop"       --> doIgnore
     , className =? "kupfer.py"      --> doIgnore
