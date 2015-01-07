@@ -8,4 +8,6 @@ augroup filetypedetect
   au FileType go nmap <leader>t <Plug>(go-test)
   au FileType go nmap <Leader>r <Plug>(go-rename)
   au FileType go nmap <leader>c <Plug>(go-coverage)
+  " Shorter columns in TeX
+  autocmd Filetype tex setlocal spell tw=72 colorcolumn=73
 augroup END
