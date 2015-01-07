@@ -104,6 +104,7 @@ source $alias_file
 
 source ~/.mutt/gpg
 set pgp_use_gpg_agent=yes
+set crypt_use_gpgme=yes
 
 color normal        brightblue      default
 color error         red             default
