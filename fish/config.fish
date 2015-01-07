@@ -11,6 +11,11 @@ if [ -e ~/dev/others/t/t.py ]
 end
 complete --command yaourt --wraps pacman
 
+function pdfo
+	echo $argv | xargs pdflatex
+	echo $argv | sed 's/\.tex$/.pdf/' | xargs xdg-open
+end
+
 function up
 	if [ -e /usr/bin/yaourt ]
 		yaourt -Syu --aur
