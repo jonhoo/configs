@@ -5,6 +5,10 @@ set -U fish_user_abbreviations $fish_user_abbreviations 'y=yaourt'
 set -U fish_user_abbreviations $fish_user_abbreviations 'g=git'
 set -U fish_user_abbreviations $fish_user_abbreviations 'gc=git checkout'
 set -U fish_user_abbreviations $fish_user_abbreviations 'mpva=mpv --no-video'
+set -U fish_user_abbreviations $fish_user_abbreviations 'a=asana amber/Amber'
+if [ -e ~/dev/others/t/t.py ]
+	set -U fish_user_abbreviations $fish_user_abbreviations 't=~/dev/others/t/t.py --vcs-rooted --list todo.txt'
+end
 complete --command yaourt --wraps pacman
 
 function up
