@@ -96,7 +96,7 @@ subscribe getmail@lists.pyropus.ca gnuplot-beta@lists.sourceforge.net \
 	sp-igroups-boards@mit.edu csail-all@csail.mit.edu sp-igroups-tv@mit.edu \
 	csail-announce@csail.mit.edu all-campus@mit.edu sp-igroups-foods@mit.edu \
 	sp-igroups-games@mit.edu sp-igroups-events@mit.edu sp-igroups-sports@mit.edu \
-	sp-all@mit.edu
+	sp-all@mit.edu grad-students@eecs.mit.edu
 
 # aliases
 set alias_file=~/.mutt/aliases
