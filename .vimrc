@@ -48,6 +48,7 @@ let g:html_indent_style1 = "inc"
 
 let g:ctrlp_root_markers = ['.lvimrc', '.git']
 let g:syntastic_enable_highlighting = 0
+let g:syntastic_javascript_checkers = ['eslint']
 
 let g:used_javascript_libs = ''
 
