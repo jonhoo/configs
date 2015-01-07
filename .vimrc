@@ -52,6 +52,10 @@ let g:syntastic_javascript_checkers = ['eslint']
 
 let g:used_javascript_libs = ''
 
+let g:latex_indent_enabled = 1
+let g:latex_fold_envs = 0
+let g:latex_fold_sections = []
+
 " Shortcut for Switch
 nnoremap - :Switch<cr>
 

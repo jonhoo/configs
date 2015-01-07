@@ -85,3 +85,6 @@
 [submodule ".vim/bundle/vim-js-libraries"]
 	path = .vim/bundle/vim-js-libraries
 	url = https://github.com/othree/javascript-libraries-syntax.vim.git
+[submodule ".vim/bundle/vim-latex"]
+	path = .vim/bundle/vim-latex
+	url = git://github.com/lervag/vim-latex
