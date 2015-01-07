@@ -61,9 +61,6 @@
 [submodule ".vim/bundle/vim-addon-mw-utils"]
 	path = .vim/bundle/vim-addon-mw-utils
 	url = https://github.com/MarcWeber/vim-addon-mw-utils.git
-[submodule ".vim/bundle/vim-javascript"]
-	path = .vim/bundle/vim-javascript
-	url = https://github.com/pangloss/vim-javascript.git
 [submodule ".vim/bundle/toml"]
 	path = .vim/bundle/toml
 	url = https://github.com/cespare/vim-toml.git
@@ -82,3 +79,6 @@
 [submodule ".vim/bundle/echodoc"]
 	path = .vim/bundle/echodoc
 	url = https://github.com/Shougo/echodoc.vim.git
+[submodule ".vim/bundle/vim-yajs"]
+	path = .vim/bundle/vim-yajs
+	url = https://github.com/othree/yajs.vim.git
