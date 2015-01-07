@@ -79,6 +79,9 @@
 [submodule ".vim/bundle/echodoc"]
 	path = .vim/bundle/echodoc
 	url = https://github.com/Shougo/echodoc.vim.git
-[submodule ".vim/bundle/vim-yajs"]
-	path = .vim/bundle/vim-yajs
-	url = https://github.com/othree/yajs.vim.git
+[submodule ".vim/bundle/vim-javascript"]
+	path = .vim/bundle/vim-javascript
+	url = https://github.com/pangloss/vim-javascript.git
+[submodule ".vim/bundle/vim-js-libraries"]
+	path = .vim/bundle/vim-js-libraries
+	url = https://github.com/othree/javascript-libraries-syntax.vim.git
