@@ -14,7 +14,7 @@ import System.IO
 import Control.Monad
 import qualified XMonad.StackSet as W
 
-myTerminal      = "urxvt"
+myTerminal      = "urxvtc"
 myFocusFollowsMouse = False
 myClickJustFocuses = False
 
@@ -23,14 +23,14 @@ myNormalBorderColor = "#212121"
 myFocusedBorderColor = "#FF2121"
 
 myModMask       = mod1Mask -- or mod4Mask for super
-myWorkspaces    = ["web","code","a","b","mx","sfx"]
+myWorkspaces    = ["web","code","a","msg","mx","sfx"]
 
 myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
 	[ ((0, xK_Print), (spawn "scrot"))
 	, ((mod4Mask, xK_a), (spawn myTerminal))
 	, ((mod4Mask, xK_f), (spawn "firefox"))
 	, ((mod4Mask, xK_q), (spawn "/usr/bin/bash -c 'notify-send -i time \"Right now, it is\" \"$(date \"+%-I:%M %p, %A %B %d, %Y\")\n$(acpi | sed \"s/Battery 0://\")\"'"))
-	, ((mod4Mask, xK_e), (spawn "urxvt -e /bin/bash -ic \"mutt -e 'source ~/.mutt/account.fm'\""))
+	, ((mod4Mask, xK_e), (spawn "urxvtc -e /bin/bash -ic \"mutt -e 'source ~/.mutt/account.fm'\""))
 	, ((modm, xK_Print), (spawn "scrot -s"))
 	, ((mod4Mask, xK_l), (spawn "slock"))
 	, ((mod4Mask, xK_j), (spawn "sudo ~jon/bin/hotplug-dp.sh &"))

@@ -114,6 +114,10 @@ if [[ -e "/usr/bin/xflux" && -e ~/.config/xflux ]]; then
     xflux $(cat ~/.config/xflux)
 fi
 
+if [[ -e "/usr/bin/urxvtd" ]]; then
+    urxvtd -q -o -f &
+fi
+
 # Update screen layout
 if [[ -e ~/bin/hotplug-dp.sh ]]; then
     (
