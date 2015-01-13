@@ -5,7 +5,7 @@ function fish_prompt
   echo -n (whoami)
   set_color normal
   echo -n '@'
-  set_color purple
+  set_color blue
   echo -n (hostname)" "
   set_color green
   echo -n (pwd | sed "s_$HOME""_~_")""

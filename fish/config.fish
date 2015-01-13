@@ -103,6 +103,9 @@ setenv GOPATH ~/dev/go
 # See https://github.com/fish-shell/fish-shell/issues/772
 set FISH_CLIPBOARD_CMD "cat"
 
+# Base16 Shell
+eval sh $HOME/dev/others/base16/shell/base16-solarized.dark.sh
+
 function fish_greeting
 	set_color blue
 	echo '\\'

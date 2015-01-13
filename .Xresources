@@ -1,4 +1,4 @@
-#include "/home/jon/dev/others/solarized/xresources/solarized"
+#include "/home/jon/dev/others/base16/xresources/base16-solarized.dark.256.xresources"
 emacs*geometry:           120x50
 *faceName:           inconsolata:size=15
 *multiClickTime: 300
