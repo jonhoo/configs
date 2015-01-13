@@ -154,7 +154,7 @@ color   body        color15   default '^diff .*'
 #color   body        color15   default '^=+$'
 #color   body        color15   default '^(---|\+\+\+) .*'
 color   body        color15   default '^@@ .*'
-color   body        green           default '^\+([^\+].*)?$'
+color   body        green           default '^\+([^+].*)?$'
 color   body        red             default '^-([^-].*)?$'
 
 # Colorize PGP signatures
