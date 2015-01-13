@@ -6,6 +6,9 @@ import XMonad.Actions.CycleWS
 import XMonad.Hooks.ManageDocks
 import XMonad.Layout.NoBorders
 import XMonad.Hooks.ManageHelpers
+import XMonad.Layout.PerWorkspace
+import XMonad.Layout.IM
+import XMonad.Layout.Grid
 import qualified XMonad.Hooks.EwmhDesktops as EWMH
 import qualified XMonad.Layout.Fullscreen as FS
 import XMonad.Util.Run(spawnPipe)
@@ -47,7 +50,7 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
 	, ((controlMask .|. mod1Mask .|. shiftMask, xK_Left), shiftToPrev >> prevWS)
 	] 
 
-myLayout = (smartBorders tiled) ||| (smartBorders $ Mirror tiled) ||| (smartBorders Full)
+myLayout = (smartBorders (onWorkspace "msg" pidginLayout $ tiled)) ||| (smartBorders $ Mirror tiled) ||| (smartBorders Full)
   where
      -- default tiling algorithm partitions the screen into two panes
      tiled   = Tall nmaster delta ratio
@@ -60,6 +63,8 @@ myLayout = (smartBorders tiled) ||| (smartBorders $ Mirror tiled) ||| (smartBord
 
      -- Percent of screen to increment by when resizing panes
      delta   = 3/100
+
+     pidginLayout = withIM (18/100) (Role "buddy_list") Grid
 
 ------------------------------------------------------------------------
 -- Window rules:
@@ -85,6 +90,7 @@ myManageHook = composeAll
     , className =? "kupfer.py"      --> doIgnore
     , fmap (isInfixOf "mutt") appCommand --> doFShift "mx"
     , className =? "Firefox"        --> doFShift "web"
+    , className =? "Pidgin"         --> doFShift "msg"
     , className =? "Spotify"        --> doFShift "sfx"
     , isFullscreen                  --> doFullFloat
     , FS.fullscreenManageHook
