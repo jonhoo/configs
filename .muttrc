@@ -106,59 +106,82 @@ source ~/.mutt/gpg
 set pgp_use_gpg_agent=yes
 set crypt_use_gpgme=yes
 
-color normal        brightblue      default
-color error         red             default
-color tilde         white           default
-color message       cyan            default
-color markers       red             black
-color attachment    black           default
-color search        brightmagenta   default
-color status        brightblue      white
-color indicator     brightwhite     yellow
-color tree          yellow          default
-
-color hdrdefault    brightcyan      default
-color header        blue      default         "^(From)"
-color header        blue            default         "^(Subject)"
-color   signature   color243        default
-
-color bold          white           default
-color underline     white           default
-color normal        default         default
-
-#color   body        color137        default [\-\.+_a-zA-Z0-9]+@[\-\.a-zA-Z0-9]+
-color   body        color137        default ((https?|ftp)://|www)+[\-\.\;@,/%~_:?&=\#a-zA-Z0-9+*]+
-
-color quoted        blue            default
-color quoted1       cyan            default
-color quoted2       yellow          default
-color quoted3       red             default
-color quoted4       brightred       default
-
-color   tilde       color39         default
-color   tree        color211        default
-color   attachment  brightcolor243  default
-
-color   index       brightcolor15   default ~N
-color   index       brightcolor15   default ~O
-color   index       yellow          default ~l
-color   index       color243        default ~P
-color   index       brightcolor221  default ~F
-color   index       brightcolor39   default ~T
-color   index       color196        default ~D
-
 # Colorize inline diffs, really helpful for LKML or other mailing lists where
 # mails frequently include patches.
-color   body        color15   default '^diff .*'
-#color   body        color15   default '^[Ii]{1}ndex .*'
-#color   body        color15   default '^=+$'
-#color   body        color15   default '^(---|\+\+\+) .*'
-color   body        color15   default '^@@ .*'
-color   body        green           default '^\+([^+].*)?$'
-color   body        red             default '^-([^-].*)?$'
+color   body        brightblue   default '^diff .*'
+color   body        brightblue   default '^@@ .*'
+color   body        green        default '^\+([^+].*)?$'
+color   body        red          default '^-([^-].*)?$'
 
-# Colorize PGP signatures
-color body          red             default         "(BAD signature)"
-color body          green           default         "(Good signature)"
+#source ~/dev/others/solarized/mutt-colors-solarized/mutt-colors-solarized-light-256.muttrc
+## Theme kindly inspired from
+## http://nongeekshandbook.blogspot.ie/2009/03/mutt-color-configuration.html
+## and
+## https://wiki.archlinux.org/index.php/mutt#Colors
 
-#source ~/dev/others/solarized/mutt-colors-solarized/mutt-colors-solarized-light-16.muttrc
+## Colours for items in the index
+# First, distinguish mailing list/cc from to=me
+color index yellow default "!~p"
+color index white default "~p!~P"
+color index brightyellow default "(~N|~O|~U)!~p"
+color index brightwhite default "(~N|~O|~U)~p"
+# Next, mark other messages
+color index magenta default ~Q # replied
+color index color243 default ~P # from me
+color index brightblue default ~T # selected
+color index red default ~D # deleted
+mono index bold ~N
+mono index bold ~O
+mono index bold ~F
+mono index bold ~T
+mono index bold ~D
+
+## Highlights inside the body of a message.
+
+## URLs
+color body red default ((https?|ftp)://|www)[\-\.\;@,/%~_:?&=\#a-zA-Z0-9+*]+
+color body red default "mailto:[-a-z_0-9.]+@[-a-z_0-9.]+"
+
+## Email addresses.
+color body red default "[-a-z_0-9.%$]+@[-a-z_0-9.]+\\.[-a-z][-a-z]+"
+
+## Header
+color hdrdefault default default
+color header blue default "^from:"
+color header blue default "^reply-to:"
+color header blue default "^subject:"
+
+## Coloring quoted text - coloring the first 7 levels:
+color quoted color243 default
+color quoted1 yellow default
+color quoted2 magenta default
+color quoted3 green default
+color quoted4 color243 default
+color quoted5 yellow default
+color quoted6 magenta default
+color quoted7 green default
+
+## Default color definitions
+color indicator black yellow
+color attachment magenta default
+color error red default
+color message white default
+color search brightwhite magenta
+color status black blue
+color tree brightblue default
+color normal white default
+color tilde brightred default
+color bold brightyellow default
+#color underline magenta default
+color markers brightred default
+
+## Colour definitions when on a mono screen
+mono bold bold
+mono underline underline
+mono indicator reverse
+
+# PGP messages
+color  body green default "^Good signature .*"
+color  body red   default "^\*BAD\* signature from.*"
+mono   body bold          "^Good signature"
+mono   body bold          "^\*BAD\* signature from.*"
