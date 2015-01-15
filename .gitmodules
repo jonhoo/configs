@@ -4,9 +4,6 @@
 [submodule ".vim/bundle/ctrlp"]
 	path = .vim/bundle/ctrlp
 	url = git://github.com/kien/ctrlp.vim.git
-[submodule ".vim/bundle/solarized"]
-	path = .vim/bundle/solarized
-	url = git://github.com/altercation/vim-colors-solarized.git
 [submodule ".vim/bundle/local_vimrc"]
 	path = .vim/bundle/local_vimrc
 	url = git://github.com/vim-scripts/localvimrc.git
@@ -16,9 +13,6 @@
 [submodule "urxvt-perls"]
 	path = urxvt-perls
 	url = git://github.com/muennich/urxvt-perls.git
-[submodule ".vim/bundle/vim-less"]
-	path = .vim/bundle/vim-less
-	url = git://github.com/groenewege/vim-less.git
 [submodule ".vim/bundle/css3-syntax"]
 	path = .vim/bundle/css3-syntax
 	url = git://github.com/hail2u/vim-css3-syntax.git
@@ -28,9 +22,6 @@
 [submodule ".vim/bundle/syntastic"]
 	path = .vim/bundle/syntastic
 	url = https://github.com/scrooloose/syntastic.git
-[submodule ".vim/bundle/switch"]
-	path = .vim/bundle/switch
-	url = git://github.com/AndrewRadev/switch.vim.git
 [submodule ".vim/bundle/haskell-template-syntax"]
 	path = .vim/bundle/haskell-template-syntax
 	url = git://github.com/pbrisbin/html-template-syntax.git
@@ -58,9 +49,6 @@
 [submodule ".vim/bundle/tlib_vim"]
 	path = .vim/bundle/tlib_vim
 	url = https://github.com/tomtom/tlib_vim.git
-[submodule ".vim/bundle/vim-addon-mw-utils"]
-	path = .vim/bundle/vim-addon-mw-utils
-	url = https://github.com/MarcWeber/vim-addon-mw-utils.git
 [submodule ".vim/bundle/toml"]
 	path = .vim/bundle/toml
 	url = https://github.com/cespare/vim-toml.git
