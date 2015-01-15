@@ -104,7 +104,7 @@ setenv GOPATH ~/dev/go
 set FISH_CLIPBOARD_CMD "cat"
 
 # Base16 Shell
-eval sh $HOME/dev/others/base16/shell/base16-solarized.dark.sh
+eval sh $HOME/dev/others/base16/shell/base16-atelierdune.dark.sh
 
 function fish_greeting
 	set_color blue

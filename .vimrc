@@ -47,7 +47,7 @@ let g:html_indent_script1 = "inc"
 let g:html_indent_style1 = "inc"
 
 let g:ctrlp_root_markers = ['.lvimrc', '.git']
-let g:airline_theme = "solarized"
+let g:airline_theme = "bubblegum"
 let g:syntastic_enable_highlighting = 0
 let g:syntastic_javascript_checkers = ['eslint']
 
@@ -150,7 +150,7 @@ syntax on
 " colors clouds
 set background=dark
 let base16colorspace=256  " Access colors present in 256 colorspace
-colorscheme base16-solarized
+colorscheme base16-atelierdune
 hi Normal ctermbg=NONE
 "colorscheme badwolf
 
