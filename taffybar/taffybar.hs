@@ -24,6 +24,7 @@ main = do
   defaultTaffybar defaultTaffybarConfig { startWidgets = [ clock, sep, pager ]
                                         , endWidgets = [ mpris, tray ]
 					, barHeight = 20
+					, monitorNumber = 1
 					, widgetSpacing = 0
 					, barPosition = Bottom
                                         }
