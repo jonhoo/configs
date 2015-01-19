@@ -17,6 +17,10 @@ import System.IO
 import Control.Monad
 import qualified XMonad.StackSet as W
 
+import DBus.Client
+import System.Taffybar.XMonadLog as TB
+import System.Taffybar.Hooks.PagerHints (pagerHints)
+
 myTerminal      = "urxvtc"
 myFocusFollowsMouse = False
 myClickJustFocuses = False
@@ -50,7 +54,7 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
 	, ((controlMask .|. mod1Mask .|. shiftMask, xK_Left), shiftToPrev >> prevWS)
 	] 
 
-myLayout = (smartBorders (onWorkspace "msg" pidginLayout $ tiled)) ||| (smartBorders $ Mirror tiled) ||| (smartBorders Full)
+myLayout = (onWorkspace "msg" pidginLayout $ smartBorders tiled) ||| (smartBorders $ Mirror tiled) ||| (smartBorders Full)
   where
      -- default tiling algorithm partitions the screen into two panes
      tiled   = Tall nmaster delta ratio
@@ -103,8 +107,8 @@ myManageHook = composeAll
 ------------------------------------------------------------------------
 -- Now run xmonad with all the defaults we set up.
 main = do
-	xmproc <- spawnPipe "xmobar"
-	xmonad $ EWMH.ewmh $ defaultConfig {
+	client <- connectSession
+	xmonad $ EWMH.ewmh $ pagerHints $ defaultConfig {
         terminal           = myTerminal,
         focusFollowsMouse  = myFocusFollowsMouse,
         clickJustFocuses   = myClickJustFocuses,
@@ -117,9 +121,5 @@ main = do
         layoutHook         = avoidStruts $ myLayout,
         manageHook         = myManageHook,
 	handleEventHook    = EWMH.fullscreenEventHook,
-	logHook = dynamicLogWithPP $ xmobarPP
-		{ ppOutput = hPutStrLn xmproc
-		, ppTitle = xmobarColor "green" "" . shorten 70
-		, ppHiddenNoWindows = xmobarColor "grey" "" 
-		}
+	logHook            = TB.dbusLog client
     }

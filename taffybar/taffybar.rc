@@ -1,0 +1,28 @@
+gtk_color_scheme = "black:#20201d\nwhite:#FFFFFF\ngreen:#00FF00\nred:#FF0000"
+
+style "default" {
+  bg[NORMAL]   = @black
+  fg[NORMAL]   = @white
+  text[NORMAL] = @white
+  fg[PRELIGHT] = @green
+  bg[PRELIGHT] = @black
+}
+
+style "active-window" = "default" {
+  fg[NORMAL] = @green
+}
+
+style "notification-button" = "default" {
+  text[NORMAL] = @red
+  fg[NORMAL]   = @red
+}
+
+style "schrift" {
+	font_name = "Source Code Pro for Powerline 10"
+}
+widget_class "Taffybar*" style "schrift"
+gtk-font-name = "Source Code Pro for Powerline 10"
+
+widget "Taffybar*" style "default"
+widget "Taffybar*WindowSwitcher*label" style "active-window"
+widget "*NotificationCloseButton" style "notification-button"

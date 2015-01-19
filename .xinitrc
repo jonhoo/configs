@@ -103,8 +103,10 @@ if test -e "/usr/bin/parcellite" ; then
 fi
 
 if ((tiling)); then
-    if test -e ~/bin/usr-trayer; then
-	    ~/bin/usr-trayer &
+    if test -e /usr/bin/taffybar; then
+        taffybar &
+    elif test -e ~/bin/usr-trayer; then
+        ~/bin/usr-trayer &
     fi
 elif test -e "/usr/bin/tint2"; then
     tint2 &
