@@ -105,8 +105,6 @@ fi
 if ((tiling)); then
     if test -e /usr/bin/taffybar; then
         taffybar &
-    elif test -e ~/bin/usr-trayer; then
-        ~/bin/usr-trayer &
     fi
 elif test -e "/usr/bin/tint2"; then
     tint2 &
@@ -125,7 +123,6 @@ if [[ -e ~/bin/hotplug-dp.sh ]]; then
     (
       sleep 1;
       sudo ~/bin/hotplug-dp.sh;
-      pkill -SIGUSR1 xmobar;
       pkill -SIGUSR1 tint2;
     ) &
 fi
