@@ -2,6 +2,7 @@
 emacs*geometry:           120x50
 *faceName:           inconsolata:size=15
 *multiClickTime: 300
+*international: true
 
 ! urxvt
 URxvt.depth:           32
