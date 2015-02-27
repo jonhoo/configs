@@ -94,7 +94,7 @@ set PATH $PATH ~/.gem/ruby/2.2.0/bin
 set PATH $PATH ~/dev/go/bin
 
 setenv EDITOR vim
-setenv BROWSER firefox
+setenv BROWSER opera-developer
 setenv EMAIL jon@tsp.io
 setenv NAME "Jon Gjengset"
 setenv GOPATH ~/dev/go

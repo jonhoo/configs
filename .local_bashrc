@@ -1,15 +1,14 @@
 # Sets the editor and browser to use
 export EDITOR='vim'
-if [ -e "/usr/bin/opera-next" ]; then
-  export BROWSER='opera-next'
+if [ -e "/usr/bin/opera-developer" ]; then
+  export BROWSER='opera-developer'
 else
   if [ -e "/usr/bin/opera" ]; then
     export BROWSER='opera'
   else
-    export BROWSER='chromium'
+    export BROWSER='firefox'
   fi
 fi
-export BROWSER='firefox'
 export NAME='Jon Gjengset'
 export EMAIL='jon@tsp.io'
 
