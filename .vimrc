@@ -224,7 +224,6 @@ set showcmd       " Show (partial) command in status line.
 set mouse=a       " Enable mouse usage (all modes) in terminals
 
 " Give me a colored column
-set textwidth=79
 set colorcolumn=80
 " Wrapping options
 set formatoptions=tc  " wrap text and comments using textwidth
@@ -272,7 +271,7 @@ autocmd BufWritePost *.less if filereadable("Makefile") | make | endif
 
 " Rust mandates these settings
 au Filetype rust source ~/.vim/scripts/spacetab.vim
-au Filetype rust set textwidth=99 colorcolumn=100
+au Filetype rust set colorcolumn=100
 
 " Per-project configs
 set exrc
