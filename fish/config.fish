@@ -107,6 +107,7 @@ set FISH_CLIPBOARD_CMD "cat"
 eval sh $HOME/dev/others/base16/shell/base16-atelierdune.dark.sh
 
 function fish_greeting
+	tput cup $LINES # start terminal at the bottom
 	set_color blue
 	echo '\\'
 	fortune -asn 500 $FORTUNES | sed 's/^/ > /'
