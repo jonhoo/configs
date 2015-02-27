@@ -6,6 +6,7 @@ emacs*geometry:           120x50
 
 ! urxvt
 URxvt.depth:           32
+URxvt.secondaryScroll: false
 !URxvt.background:      rgb:0000/2b00/3600
 !URxvt.background:      rgba:0000/2b00/3600/f400
 !URxvt.intensityStyles: false
