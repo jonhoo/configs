@@ -2,6 +2,7 @@ import System.Taffybar
 
 import System.Taffybar.Systray
 import System.Taffybar.TaffyPager
+import System.Taffybar.Pager
 import System.Taffybar.SimpleClock
 import System.Taffybar.FreedesktopNotifications
 import System.Taffybar.MPRIS
@@ -17,7 +18,9 @@ textWidgetNew str = do
 
 main = do
   let clock = textClockNew Nothing "%-I:%M %p, %A %B %d" 1
-      pager = taffyPagerNew defaultPagerConfig {widgetSep = " :: "}
+      pager = taffyPagerNew defaultPagerConfig { widgetSep      = " :: "
+					       , emptyWorkspace = colorize "gray" "" . escape
+					       }
       mpris = mprisNew
       tray = systrayNew
       sep = textWidgetNew " ::"

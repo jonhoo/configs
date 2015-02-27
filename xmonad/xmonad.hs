@@ -1,3 +1,5 @@
+import Data.Monoid
+
 import XMonad
 import qualified Data.Map as M
 import Data.List
@@ -35,7 +37,6 @@ myWorkspaces    = ["web","code","a","msg","mx","sfx"]
 myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
 	[ ((0, xK_Print), (spawn "scrot"))
 	, ((mod4Mask, xK_a), (spawn myTerminal))
-	, ((mod4Mask, xK_f), (spawn "firefox"))
 	, ((mod4Mask, xK_q), (spawn "/usr/bin/bash -c 'notify-send -i time \"Right now, it is\" \"$(date \"+%-I:%M %p, %A %B %d, %Y\")\n$(acpi | sed \"s/Battery 0://\")\"'"))
 	, ((mod4Mask, xK_e), (spawn "urxvtc -e /bin/bash -ic \"mutt -e 'source ~/.mutt/account.fm'\""))
 	, ((modm, xK_Print), (spawn "scrot -s"))
@@ -54,7 +55,7 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
 	, ((controlMask .|. mod1Mask .|. shiftMask, xK_Left), shiftToPrev >> prevWS)
 	] 
 
-myLayout = (onWorkspace "msg" pidginLayout $ smartBorders tiled) ||| (smartBorders $ Mirror tiled) ||| (smartBorders Full)
+myLayout = (onWorkspace "msg" pidginLayout $ tiled) ||| (Mirror tiled) ||| (noBorders Full)
   where
      -- default tiling algorithm partitions the screen into two panes
      tiled   = Tall nmaster delta ratio
@@ -88,12 +89,15 @@ myLayout = (onWorkspace "msg" pidginLayout $ smartBorders tiled) ||| (smartBorde
 myManageHook = composeAll
     [ className =? "Gimp"           --> doFloat
     , className =? "transmission-gtk" --> doFloat
+    , className =? "mpv" --> doFloat
     , fmap (isInfixOf "Pinentry") className --> doFloat
+    , fmap (isInfixOf "show.py") (stringProperty "WM_NAME") --> doFullFloat
     , resource  =? "desktop_window" --> doIgnore
     , resource  =? "kdesktop"       --> doIgnore
     , className =? "kupfer.py"      --> doIgnore
     , fmap (isInfixOf "mutt") appCommand --> doFShift "mx"
     , className =? "Firefox"        --> doFShift "web"
+    , fmap (isInfixOf "Opera") className        --> doFShift "web"
     , className =? "Pidgin"         --> doFShift "msg"
     , className =? "Spotify"        --> doFShift "sfx"
     , isFullscreen                  --> doFullFloat
@@ -118,8 +122,29 @@ main = do
         modMask            = myModMask,
         workspaces         = myWorkspaces,
         keys               = \c -> myKeys c `M.union` keys defaultConfig c,
-        layoutHook         = avoidStruts $ myLayout,
+        layoutHook         = avoidStruts $ lessBorders EmptyScreen $ myLayout,
         manageHook         = myManageHook,
-	handleEventHook    = EWMH.fullscreenEventHook,
+	handleEventHook    = EWMH.fullscreenEventHook <+> removeBordersEventHook,
 	logHook            = TB.dbusLog client
     }
+
+-- | Remove borders from every mpv window as soon as possible in an event
+-- hook, because otherwise dimensions are messed and the fullscreen mpv is
+-- stretched by a couple pixels.
+--
+-- Basically the effect is the same as with
+-- "XMonad.Layout.NoBorders.lessBorders OnlyFloat", except that OnlyFloat
+-- messes up the dimensions when used together with fullscreenEventHook
+-- (e.g. NET_WM_STATE). Well at least in mplayer/mpv.
+--
+-- I have no idea how often/where the border is re-applied, but resetting
+-- it to 0 whenever possible just works :)
+--
+-- From http://funktionaali.com/posts/2014-07-01-How%20to%20get%20XMonad%20play%20well%20with%20fullscreen%20mpv.html
+removeBordersEventHook :: Event -> X All
+removeBordersEventHook ev = do
+    whenX (className =? "mpv" `runQuery` w) $ withDisplay $ \d ->
+        io $ setWindowBorderWidth d w 0
+    return (All True)
+    where
+        w = ev_window ev
