@@ -21,3 +21,6 @@ publish
 .vim/spell
 *.pyc
 __pycache__
+.setenv-*
+*.log
+*.err
