@@ -185,6 +185,7 @@ set nolist
 set listchars=nbsp:¬,extends:»,precedes:«,trail:•
 nnoremap <leader><SPACE> :set invlist<cr>
 
+autocmd BufRead *.plot set filetype=gnuplot
 autocmd BufRead *.md set filetype=markdown
 autocmd BufRead *.tex set filetype=tex
 autocmd BufRead *.trm set filetype=c
