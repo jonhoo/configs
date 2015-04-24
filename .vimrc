@@ -60,6 +60,10 @@ let g:latex_fold_sections = []
 " Relative line numbers
 set relativenumber
 
+" Sane splits
+set splitright
+set splitbelow
+
 " Permanent undo
 set undodir=~/.vimdid
 set undofile
