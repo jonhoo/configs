@@ -10,12 +10,13 @@ maxlight() {
 }
 
 intsnd() {
-	sed -i 's/^/#/' ~jon/.asoundrc
-	sed -i 's/^##/#/' ~jon/.asoundrc
+	sed -i 's/^#\(<.*\/\.asoundrc-internal>\)/\1/' ~jon/.asoundrc
+	sed -i 's/^\(<.*\/\.asoundrc-external>\)/#\1/' ~jon/.asoundrc
 }
 
 extsnd() {
-	sed -i 's/^#//' ~jon/.asoundrc
+	sed -i 's/^\(<.*\/\.asoundrc-internal>\)/#\1/' ~jon/.asoundrc
+	sed -i 's/^#\(<.*\/\.asoundrc-external>\)/\1/' ~jon/.asoundrc
 }
 
 DEV=""
