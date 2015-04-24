@@ -97,7 +97,7 @@ setenv EDITOR vim
 setenv BROWSER opera-developer
 setenv EMAIL jon@tsp.io
 setenv NAME "Jon Gjengset"
-setenv GOPATH ~/dev/go
+setenv GOPATH "$HOME/dev/go:$HOME/dev/projects/cuckood:$HOME/dev/projects/hasmail"
 
 # Fish should not add things to clipboard when killing
 # See https://github.com/fish-shell/fish-shell/issues/772
