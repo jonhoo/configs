@@ -98,7 +98,7 @@ myManageHook = composeAll
     , fmap (isInfixOf "mutt") appCommand --> doFShift "mx"
     , className =? "Firefox"        --> doFShift "web"
     , fmap (isInfixOf "Opera") className        --> doFShift "web"
-    , className =? "Pidgin"         --> doFShift "msg"
+    , className =? "Pidgin"         --> doShift "msg"
     , className =? "Spotify"        --> doFShift "sfx"
     , isFullscreen                  --> doFullFloat
     , FS.fullscreenManageHook
