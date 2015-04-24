@@ -26,6 +26,8 @@ set send_charset="us-ascii:utf-8"
 set ssl_force_tls=yes
 set wrap=80
 set wait_key=no
+set mime_forward=yes
+set mime_forward_rest=yes
 
 set sort="threads"
 set strict_threads="yes"
