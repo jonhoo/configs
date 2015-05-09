@@ -87,10 +87,7 @@ set PATH $PATH /opt/android-sdk/platform-tools
 set PATH $PATH /usr/bin/core_perl/
 set PATH $PATH /usr/bin/vendor_perl/
 set PATH $PATH ~/.cabal/bin
-set PATH $PATH ~/.gem/ruby/1.9.1/bin
-set PATH $PATH ~/.gem/ruby/2.0.0/bin
-set PATH $PATH ~/.gem/ruby/2.1.0/bin
-set PATH $PATH ~/.gem/ruby/2.2.0/bin
+set PATH $PATH (ruby -e 'print Gem.user_dir')/bin
 set PATH $PATH ~/dev/go/bin
 
 setenv EDITOR vim
