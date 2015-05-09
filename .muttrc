@@ -72,6 +72,7 @@ macro pager x '<delete-message>' "Delete message permanently"
 
 auto_view text/html
 alternative_order text/plain text/enriched text/html
+bind attach <return> view-mailcap
 
 # Other me's
 alternates jon@*.tsp.io jon@*.thesquareplanet.com jon@*.gjengset.com jfrg@mit.edu j.gjengset@cs.ucl.ac.uk jon@dethvitehuset.no
