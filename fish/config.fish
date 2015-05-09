@@ -6,22 +6,22 @@ set -U fish_user_abbreviations $fish_user_abbreviations 'g=git'
 set -U fish_user_abbreviations $fish_user_abbreviations 'gc=git checkout'
 set -U fish_user_abbreviations $fish_user_abbreviations 'mpva=mpv --no-video'
 set -U fish_user_abbreviations $fish_user_abbreviations 'a=asana amber/Amber'
+set -U fish_user_abbreviations $fish_user_abbreviations 'l=ls'
 if [ -e ~/dev/others/t/t.py ]
 	set -U fish_user_abbreviations $fish_user_abbreviations 't=~/dev/others/t/t.py --vcs-rooted --list todo.txt'
 end
 complete --command yaourt --wraps pacman
 
+if [ -e /usr/bin/yaourt ]
+	set -U fish_user_abbreviations $fish_user_abbreviations 'up=yaourt -Syu --aur'
+else
+	set -U fish_user_abbreviations $fish_user_abbreviations 'up=sudo pacman -Syu'
+end
+
+
 function pdfo
 	echo $argv | xargs pdflatex
 	echo $argv | sed 's/\.tex$/.pdf/' | xargs xdg-open
-end
-
-function up
-	if [ -e /usr/bin/yaourt ]
-		yaourt -Syu --aur
-  else
-	  sudo pacman -Syu
-  end
 end
 
 function px
