@@ -101,7 +101,8 @@ subscribe getmail@lists.pyropus.ca gnuplot-beta@lists.sourceforge.net \
 	sp-igroups-games@mit.edu sp-igroups-events@mit.edu sp-igroups-sports@mit.edu \
 	sp-all@mit.edu grad-students@eecs.mit.edu \
 	csail-student-committee@lists.csail.mit.edu \
-	csail-student-committee@csail.mit.edu
+	csail-student-committee@csail.mit.edu \
+	golang-nuts@googlegroups.com tgit@mit.edu
 
 # aliases
 set alias_file=~/.mutt/aliases
