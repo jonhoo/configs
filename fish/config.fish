@@ -7,6 +7,8 @@ set -U fish_user_abbreviations $fish_user_abbreviations 'gc=git checkout'
 set -U fish_user_abbreviations $fish_user_abbreviations 'mpva=mpv --no-video'
 set -U fish_user_abbreviations $fish_user_abbreviations 'a=asana amber/Amber'
 set -U fish_user_abbreviations $fish_user_abbreviations 'l=ls'
+set -U fish_user_abbreviations $fish_user_abbreviations 'll=ls -l'
+set -U fish_user_abbreviations $fish_user_abbreviations 'lll=ls -la'
 if [ -e ~/dev/others/t/t.py ]
 	set -U fish_user_abbreviations $fish_user_abbreviations 't=~/dev/others/t/t.py --vcs-rooted --list todo.txt'
 end
