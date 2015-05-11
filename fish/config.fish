@@ -96,6 +96,10 @@ setenv EMAIL jon@tsp.io
 setenv NAME "Jon Gjengset"
 setenv GOPATH "$HOME/dev/go:$HOME/dev/projects/cuckood:$HOME/dev/projects/hasmail"
 
+setenv QT_DEVICE_PIXEL_RATIO=2
+setenv GDK_SCALE=2
+setenv GDK_DPI_SCALE=0.5
+
 # Fish should not add things to clipboard when killing
 # See https://github.com/fish-shell/fish-shell/issues/772
 set FISH_CLIPBOARD_CMD "cat"

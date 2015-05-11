@@ -1,8 +1,10 @@
 #include "/home/jon/dev/others/base16/xresources/base16-atelierdune.dark.256.xresources"
 emacs*geometry:           120x50
-*faceName:           inconsolata:size=15
+*faceName:           inconsolata:size=8
 *multiClickTime: 300
 *international: true
+Xcursor.theme: default
+Xcursor.size:  16       !  32, 48 or 64 may also be good values
 
 ! urxvt
 URxvt.depth:           32
@@ -13,7 +15,7 @@ URxvt*saveLines:       12000
 !URxvt.intensityStyles: false
 !URxvt.background       rgb:6200/6200/6200
 !URxvt.font:            xft:inconsolata:size=15
-URxvt.font:            xft:SourceCodePro:size=13
+URxvt.font:            xft:SourceCodePro:size=8
 URxvt.scrollBar:       false
 URxvt.geometry:        130x30
 URxvt.urlLauncher:     /usr/bin/firefox
@@ -37,10 +39,13 @@ URxvt.tabbed.tab-bg:    0
 
 ! Xft settings ---------------------------------------------------------------
 
+Xft.dpi: 192
+Xft.lcdfilter: lcddefault
 Xft.antialias:  true
 Xft.autohint:   false
 Xft.hinting:    true
-Xft.hintstyle:  hintslight
+Xft.hintstyle:  hintfull
+Xft.rgba: rgb
 
 ! xterm ----------------------------------------------------------------------
 xterm*geometry:           100x25
@@ -54,4 +59,4 @@ xterm*jumpScroll:         true
 xterm*multiScroll:        true
 xterm*toolBar:            false
 
-xscreensaver*font:           inconsolata:pixelsize=15
+xscreensaver*font:           inconsolata:pixelsize=8
