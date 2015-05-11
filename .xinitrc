@@ -114,7 +114,6 @@ if [[ -e ~/bin/hotplug-dp.sh ]]; then
     (
       sleep 1;
       sudo ~/bin/hotplug-dp.sh;
-      pkill -SIGUSR1 tint2;
     ) &
 fi
 
