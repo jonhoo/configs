@@ -41,19 +41,10 @@ if test -z "$SSH_AUTH_SOCK" ; then
 fi
 
 # Start WM
-tiling=0
-if [[ $1 == "weston" && -e "/usr/bin/weston-launch" ]]; then
-  weston-launch 2> .logs/weston.err > .logs/weston.log &
-elif [[ $1 == "xmonad" && -e "/usr/bin/xmonad" ]]; then
-  xsetroot -cursor_name left_ptr
-  xmonad 2> .logs/xmonad.err > .logs/xmonad.log &
-  tiling=1
-elif [[ -e "/usr/bin/pekwm" ]]; then
-  pekwm 2> .logs/pekwm.err > .logs/pekwm.log &
-else
-  xterm &
-fi
+xsetroot -cursor_name left_ptr
+xmonad 2> .logs/xmonad.err > .logs/xmonad.log &
 wmpid=$!
+tiling=1
 
 # Apps
 if test -e "/usr/bin/kupfer" ; then
