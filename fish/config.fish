@@ -30,14 +30,6 @@ function px
 	ssh -fND localhost:8080 -C jon@thesquareplanet.com
 end
 
-function vim
-	if [ -e /bin/nvim ]
-		/bin/nvim $argv
-  else
-	  /bin/vim $argv
-  end
-end
-
 set nooverride PATH PWD
 function -v PWD onchdir
 	set dr $PWD
