@@ -19,6 +19,30 @@ extsnd() {
 	sed -i 's/^#\(<.*\/\.asoundrc-external>\)/\1/' ~jon/.asoundrc
 }
 
+lowdpi() {
+	sed -i 's/Xft.dpi: .*/Xft.dpi: 144/' ~jon/.Xresources
+	sed -i 's/Sans 8/Sans 6/' ~jon/.gtkrc-2.0
+	sed -i 's/Sans 8/Sans 6/' ~jon/.config/gtk-3.0/settings.ini
+	sed -i 's/barHeight = .*/barHeight = 20/' ~jon/.config/taffybar/taffybar.hs
+	sudo -u jon xrdb ~jon/.Xresources
+	if $(pgrep urxvtd > /dev/null); then
+		pkill urxvtd; sudo -u jon urxvtd -q -o -f &
+	fi
+	sed -i 's/\(--alt-high-dpi-setting\).*/\1=96/' ~jon/.local/share/applications/opera-developer.desktop
+}
+
+hidpi() {
+	sed -i 's/Xft.dpi: .*/Xft.dpi: 192/' ~jon/.Xresources
+	sed -i 's/Sans 6/Sans 8/' ~jon/.gtkrc-2.0
+	sed -i 's/Sans 6/Sans 8/' ~jon/.config/gtk-3.0/settings.ini
+	sed -i 's/barHeight = .*/barHeight = 30/' ~jon/.config/taffybar/taffybar.hs
+	sudo -u jon xrdb ~jon/.Xresources
+	if $(pgrep urxvtd > /dev/null); then
+		pkill urxvtd; sudo -u jon urxvtd -q -o -f &
+	fi
+	sed -i 's/\(--alt-high-dpi-setting\).*/\1=144/' ~jon/.local/share/applications/opera-developer.desktop
+}
+
 DEV=""
 DEVC=""
 STATUS="disconnected"
@@ -35,25 +59,28 @@ fi
 if [ "$STATUS" = "disconnected" ]; then
 	xrandr --output DP1 --off
 	xrandr --output HDMI1 --off
-	xrandr --output LVDS1 --mode 1600x900
+	xrandr --output eDP1 --auto
 	xset +dpms
 	xset s default
 	intsnd
+	hidpi
 	sed -i 's/HandleLidSwitch\=ignore/HandleLidSwitch\=suspend/' /etc/systemd/logind.conf
 else
 	if [[ $1 == "mirror" ]]; then
 		xrandr --output $DEV --mode 1024x768
-		xrandr --output LVDS1 --mode 1024x768 --same-as $DEV
+		xrandr --output eDP1 --mode 1024x768 --same-as $DEV
 	else
 		edid=$(cat /sys/class/drm/card0/card0-$DEVC/edid | sha512sum - | sed 's/\s*-$//')
 
-		res=$(xrandr -q | grep -A1 "$DEV connected" | tail -n 1 | sed 's/^ *\([0-9x]*\).*/\1/')
 		pos="above"
 		if [[ $edid == "9ed75b31c6f1bce5db7420887ebbc71c126d6a152ddf00b2b5bbb7a5479cea2608273bfcae23d8ec7bcf01578256d672c5fb0d899005f46096ef98dc447d2244" ]]; then
 			pos="right-of"
 			maxlight
 		fi
-		xrandr --output $DEV --$pos LVDS1 --mode $res
+		xrandr --addmode eDP1 1920x1080
+		xrandr --output eDP1 --mode 1920x1080 --output $DEV --$pos eDP1 --auto
+		xrandr --dpi 96
+		lowdpi
 	fi
 	xset -dpms
 	xset s off
