@@ -99,9 +99,10 @@ fi
 if $(pgrep trayer > /dev/null); then
 	pkill trayer; sudo -u jon ~jon/bin/usr-trayer &
 fi
-if $(pgrep xmobar > /dev/null); then
-	sudo -u jon pkill -USR1 xmobar
+if $(pgrep taffybar > /dev/null); then
+	pkill taffybar; sudo -u jon taffybar &
 fi
+pkill notify-osd
 sudo -u jon nitrogen --restore
 
 systemctl restart systemd-logind
