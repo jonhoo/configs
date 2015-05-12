@@ -112,7 +112,7 @@ fi
 # Update screen layout
 if [[ -e ~/bin/hotplug-dp.sh ]]; then
     (
-      sleep 1;
+      sleep .2;
       sudo ~/bin/hotplug-dp.sh;
     ) &
 fi
