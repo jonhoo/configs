@@ -91,10 +91,9 @@ fi
 for p in taffybar kupfer urxvtd; do
 	pid=$(pgrep $p)
 	if [[ -n $pid ]]; then
-		cp /proc/$pid/cmdline /tmp/.restart
+		cp /proc/$pid/cmdline /tmp/.restart$pid
 		sudo -u jon kill $pid
-		sudo -u jon xargs -0 /bin/sh -c 'exec "$@"' ignored < /tmp/.restart &
-		rm /tmp/.restart
+		sudo -u jon xargs -0 /bin/sh -c 'exec "$@"' ignored < /tmp/.restart$pid &
 	fi
 done
 
