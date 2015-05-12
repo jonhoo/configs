@@ -21,8 +21,8 @@ extsnd() {
 
 lowdpi() {
 	sed -i 's/Xft.dpi: .*/Xft.dpi: 144/' ~jon/.Xresources
-	sed -i 's/Sans 8/Sans 6/' ~jon/.gtkrc-2.0
-	sed -i 's/Sans 8/Sans 6/' ~jon/.config/gtk-3.0/settings.ini
+	sed -i 's/Sans 7/Sans 6/' ~jon/.gtkrc-2.0
+	sed -i 's/Sans 7/Sans 6/' ~jon/.config/gtk-3.0/settings.ini
 	sed -i 's/barHeight = .*/barHeight = 20/' ~jon/.config/taffybar/taffybar.hs
 	sudo -u jon xrdb ~jon/.Xresources
 	sed -i 's/\(--alt-high-dpi-setting\).*/\1=96/' ~jon/.local/share/applications/opera-developer.desktop
@@ -30,8 +30,8 @@ lowdpi() {
 
 hidpi() {
 	sed -i 's/Xft.dpi: .*/Xft.dpi: 192/' ~jon/.Xresources
-	sed -i 's/Sans 6/Sans 8/' ~jon/.gtkrc-2.0
-	sed -i 's/Sans 6/Sans 8/' ~jon/.config/gtk-3.0/settings.ini
+	sed -i 's/Sans 6/Sans 7/' ~jon/.gtkrc-2.0
+	sed -i 's/Sans 6/Sans 7/' ~jon/.config/gtk-3.0/settings.ini
 	sed -i 's/barHeight = .*/barHeight = 30/' ~jon/.config/taffybar/taffybar.hs
 	sudo -u jon xrdb ~jon/.Xresources
 	sed -i 's/\(--alt-high-dpi-setting\).*/\1=144/' ~jon/.local/share/applications/opera-developer.desktop
