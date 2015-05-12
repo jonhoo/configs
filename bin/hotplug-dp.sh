@@ -25,9 +25,6 @@ lowdpi() {
 	sed -i 's/Sans 8/Sans 6/' ~jon/.config/gtk-3.0/settings.ini
 	sed -i 's/barHeight = .*/barHeight = 20/' ~jon/.config/taffybar/taffybar.hs
 	sudo -u jon xrdb ~jon/.Xresources
-	if $(pgrep urxvtd > /dev/null); then
-		pkill urxvtd; sudo -u jon urxvtd -q -o -f &
-	fi
 	sed -i 's/\(--alt-high-dpi-setting\).*/\1=96/' ~jon/.local/share/applications/opera-developer.desktop
 }
 
@@ -37,9 +34,6 @@ hidpi() {
 	sed -i 's/Sans 6/Sans 8/' ~jon/.config/gtk-3.0/settings.ini
 	sed -i 's/barHeight = .*/barHeight = 30/' ~jon/.config/taffybar/taffybar.hs
 	sudo -u jon xrdb ~jon/.Xresources
-	if $(pgrep urxvtd > /dev/null); then
-		pkill urxvtd; sudo -u jon urxvtd -q -o -f &
-	fi
 	sed -i 's/\(--alt-high-dpi-setting\).*/\1=144/' ~jon/.local/share/applications/opera-developer.desktop
 }
 
@@ -93,15 +87,18 @@ else
 	sed -i 's/HandleLidSwitch\=suspend/HandleLidSwitch\=ignore/' /etc/systemd/logind.conf
 fi
 
-if $(pgrep tint2 > /dev/null); then
-	pkill tint2; sudo -u jon tint2 &
-fi
-if $(pgrep trayer > /dev/null); then
-	pkill trayer; sudo -u jon ~jon/bin/usr-trayer &
-fi
-if $(pgrep taffybar > /dev/null); then
-	pkill taffybar; sudo -u jon taffybar &
-fi
+# restart services
+for p in taffybar kupfer urxvtd; do
+	pid=$(pgrep $p)
+	if [[ -n $pid ]]; then
+		cp /proc/$pid/cmdline /tmp/.restart
+		sudo -u jon kill $pid
+		sudo -u jon xargs -0 /bin/sh -c 'exec "$@"' ignored < /tmp/.restart &
+		rm /tmp/.restart
+	fi
+done
+
+# notify-osd doesn't need to be restored
 pkill notify-osd
 sudo -u jon nitrogen --restore
 
