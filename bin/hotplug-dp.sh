@@ -2,6 +2,7 @@
 
 read STATUS_DP < /sys/class/drm/card0-DP-1/status
 read STATUS_HDMI < /sys/class/drm/card0-HDMI-A-1/status
+read STATUS_HDMI2 < /sys/class/drm/card0-HDMI-A-2/status
 export DISPLAY=:0
 export XAUTHORITY=/home/jon/.Xauthority
 
@@ -48,11 +49,16 @@ elif [[ "$STATUS_HDMI" = "connected" ]]; then
 	STATUS="connected"
 	DEV="HDMI1"
 	DEVC="HDMI-A-1"
+elif [[ "$STATUS_HDMI2" = "connected" ]]; then
+	STATUS="connected"
+	DEV="HDMI2"
+	DEVC="HDMI-A-2"
 fi
 
 if [ "$STATUS" = "disconnected" ]; then
 	xrandr --output DP1 --off
 	xrandr --output HDMI1 --off
+	xrandr --output HDMI2 --off
 	xrandr --output eDP1 --auto
 	xset +dpms
 	xset s default
@@ -73,13 +79,14 @@ else
 		fi
 		xrandr --addmode eDP1 1920x1080
 		xrandr --output eDP1 --mode 1920x1080 --output $DEV --$pos eDP1 --auto
-		xrandr --dpi 96
-		lowdpi
 	fi
 	xset -dpms
 	xset s off
 
-	if [[ $DEV == "HDMI1" ]]; then
+	xrandr --dpi 96
+	lowdpi
+
+	if [[ $DEV == HDMI* ]]; then
 		extsnd
 	else
 		intsnd
