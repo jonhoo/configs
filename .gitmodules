@@ -55,15 +55,6 @@
 [submodule ".vim/bundle/vim-go"]
 	path = .vim/bundle/vim-go
 	url = https://github.com/fatih/vim-go.git
-[submodule ".vim/bundle/neosnippet"]
-	path = .vim/bundle/neosnippet
-	url = https://github.com/Shougo/neosnippet.vim.git
-[submodule ".vim/bundle/neosnippet-snippets"]
-	path = .vim/bundle/neosnippet-snippets
-	url = https://github.com/Shougo/neosnippet-snippets.git
-[submodule ".vim/bundle/neocomplete"]
-	path = .vim/bundle/neocomplete
-	url = https://github.com/Shougo/neocomplete.vim.git
 [submodule ".vim/bundle/echodoc"]
 	path = .vim/bundle/echodoc
 	url = https://github.com/Shougo/echodoc.vim.git
@@ -91,3 +82,6 @@
 [submodule ".vim/bundle/racer"]
 	path = .vim/bundle/racer
 	url = https://github.com/phildawes/racer.git
+[submodule ".vim/bundle/ycm"]
+	path = .vim/bundle/ycm
+	url = https://github.com/Valloric/YouCompleteMe.git
