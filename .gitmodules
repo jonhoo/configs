@@ -85,3 +85,6 @@
 [submodule ".vim/bundle/gnuplot"]
 	path = .vim/bundle/gnuplot
 	url = https://github.com/vim-scripts/gnuplot-syntax-highlighting.git
+[submodule ".vim/bundle/rust"]
+	path = .vim/bundle/rust
+	url = https://github.com/wting/rust.vim.git
