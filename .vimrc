@@ -48,8 +48,14 @@ let g:html_indent_style1 = "inc"
 
 let g:ctrlp_root_markers = ['.lvimrc', '.git']
 let g:airline_theme = "bubblegum"
+
+let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_enable_highlighting = 0
 let g:syntastic_javascript_checkers = ['eslint']
+inoremap <C-j> :lnext<cr>
+nnoremap <C-j> :lnext<cr>
+inoremap <C-k> :lprev<cr>
+nnoremap <C-k> :lprev<cr>
 
 let g:used_javascript_libs = ''
 
@@ -288,6 +294,8 @@ let g:go_fmt_fail_silently = 1
 let g:go_fmt_command = "goimports"
 let g:go_bin_path = expand("~/dev/go/bin")
 let g:go_snippet_engine = "neosnippet"
+
+autocmd BufRead,BufNewFile /home/jon/dev/others/biscuit/** let [g:go_fmt_command, g:go_fmt_autosave]=["", 0]
 
 " nvim
 if has('nvim')
