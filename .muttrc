@@ -52,6 +52,7 @@ bind pager j next-line
 bind pager k previous-line
 bind pager H display-toggle-weed
 macro compose m '<edit-from><kill-line>Jon Gjengset <jfrg@mit.edu><enter><edit-reply-to><kill-line>Jon Gjengset <jon@thesquareplanet.com><enter>'
+macro compose c '<edit-from><kill-line>Jon Gjengset <jfrg@csail.mit.edu><enter><edit-reply-to><kill-line>Jon Gjengset <jon@thesquareplanet.com><enter>'
 
 # Convenience
 # Jump to archive
@@ -75,7 +76,7 @@ alternative_order text/plain text/enriched text/html
 bind attach <return> view-mailcap
 
 # Other me's
-alternates jon@*.tsp.io jon@*.thesquareplanet.com jon@*.gjengset.com jfrg@mit.edu j.gjengset@cs.ucl.ac.uk jon@dethvitehuset.no
+alternates jon@*.tsp.io jon@*.thesquareplanet.com jon@*.gjengset.com jfrg@mit.edu jfrg@csail.mit.edu j.gjengset@cs.ucl.ac.uk jon@dethvitehuset.no
 
 # switch to default account on startup
 source ~/.mutt/account.local
