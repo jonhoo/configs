@@ -88,3 +88,6 @@
 [submodule ".vim/bundle/rust"]
 	path = .vim/bundle/rust
 	url = https://github.com/wting/rust.vim.git
+[submodule ".vim/bundle/racer"]
+	path = .vim/bundle/racer
+	url = https://github.com/phildawes/racer.git

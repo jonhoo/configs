@@ -140,6 +140,10 @@ if has('conceal')
   set conceallevel=2 concealcursor=i
 endif
 
+" racer
+let g:racer_cmd = "/usr/bin/racer"
+let $RUST_SRC_PATH = "/home/jon/.rust/src"
+
 " Fix tabs
 set shiftwidth=8
 set softtabstop=8
