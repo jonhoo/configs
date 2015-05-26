@@ -84,7 +84,6 @@ let g:ctrlp_custom_ignore = {
   \ }
 
 " Autocomplete
-set completeopt-=preview
 " Make space for echodoc
 let g:echodoc_enable_at_startup = 1
 set cmdheight=2
