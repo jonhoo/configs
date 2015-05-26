@@ -1,0 +1,35 @@
+# <- for syntax highlighting
+#logfile "$HOME/.logs/mailfilter.log"
+
+TYPE="maildir"
+GETMAIL="X-getmail-retrieved-from-mailbox:"
+DEFAULT="$HOME/.mail"
+SENT="$HOME/.mail/.Sent"
+SHELL="/bin/bash"
+
+# filter out duplicate messages
+`reformail -D 1048576 $HOME/.duplicate.cache`
+if ($RETURNCODE == 0)
+{
+  #log "File ignored as duplicate\n"
+  exit
+}
+
+if (/^$GETMAIL .*(\.|\b)sent(\.|\b)/:h)
+{
+  xfilter "reformail -I'$GETMAIL'"
+  to $SENT
+}
+
+# ignore mailing list messages
+if (/^List-Id:.*<([0-9A-Za-z_\-]+)\.+/)
+{
+  exit
+}
+
+if ( /^Message-ID:.*<\ *>/ )
+{
+  #log "Message-ID is empty\n"
+}
+
+xfilter "reformail -I'$GETMAIL'"

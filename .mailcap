@@ -1,0 +1,6 @@
+image/*; geeqie %s; test=test -n "$DISPLAY";
+application/pdf; mupdf %s; test=test -n "$DISPLAY";
+application/msword; lowriter %s; test=test -n "$DISPLAY";
+application/vnd.msword; lowriter %s; test=test -n "$DISPLAY";
+text/html; "$BROWSER" %s && exit 1; test=test -n "$DISPLAY"; needsterminal;
+text/html; links -html-numbered-links 1 -dump %s; nametemplate=%s.html; copiousoutput;

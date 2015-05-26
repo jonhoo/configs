@@ -1,6 +1,3 @@
-[submodule "urxvt-perls"]
-	path = urxvt-perls
-	url = git://github.com/muennich/urxvt-perls.git
 [submodule ".vim/bundle/Vundle.vim"]
 	path = .vim/bundle/Vundle.vim
 	url = https://github.com/gmarik/Vundle.vim.git
