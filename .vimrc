@@ -83,11 +83,6 @@ let g:ctrlp_custom_ignore = {
   \ 'file': '\~$\|\.png$\|\.jpg$\|\.gif$\|\.settings$\|Thumbs\.db\|\.min\.js$\|\.swp\|\.o$\|\.hi$\|.a$\|.sqlite3$\|.key$\|.pub$',
   \ }
 
-" Autocomplete
-" Make space for echodoc
-let g:echodoc_enable_at_startup = 1
-set cmdheight=2
-
 " racer
 let g:racer_cmd = "/usr/bin/racer"
 let $RUST_SRC_PATH = "/home/jon/.rust/src"
