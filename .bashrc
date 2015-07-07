@@ -38,6 +38,9 @@ fi
 if [ -f /etc/bashrc ]; then
   echo -e '\e[37mbtw: merging master bashrc...\e[0m';
   source /etc/bashrc
+elif [ -f /etc/bash.bashrc ]; then
+  echo -e '\e[37mbtw: merging master bash.bashrc...\e[0m';
+  source /etc/bash.bashrc
 fi
 
 # And to users who like to tweak
