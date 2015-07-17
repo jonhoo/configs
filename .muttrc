@@ -52,7 +52,7 @@ bind pager j next-line
 bind pager k previous-line
 bind pager H display-toggle-weed
 macro compose m '<edit-from><kill-line>Jon Gjengset <jfrg@mit.edu><enter><edit-reply-to><kill-line>Jon Gjengset <jon@thesquareplanet.com><enter>'
-macro compose c '<edit-from><kill-line>Jon Gjengset <jfrg@csail.mit.edu><enter><edit-reply-to><kill-line>Jon Gjengset <jon@thesquareplanet.com><enter>'
+macro compose x '<edit-from><kill-line>Jon Gjengset <jfrg@csail.mit.edu><enter><edit-reply-to><kill-line>Jon Gjengset <jon@thesquareplanet.com><enter>'
 
 # Convenience
 # Jump to archive
