@@ -96,14 +96,16 @@ subscribe getmail@lists.pyropus.ca gnuplot-beta@lists.sourceforge.net \
 	csail-related@lists.csail.mit.edu calendar@csail.mit.edu \
 	vultures-request@lists.csail.mit.edu social@lists.csail.mit.edu \
 	csail-internal@lists.csail.mit.edu csail-related@csail.mit.edu \
-	all-grad@mit.edu pdos@csail.mit.edu g9@csail.mit.edu pdos@pdos.csail.mit.edu \
+	all-grad@mit.edu pdos@csail.mit.edu g9@csail.mit.edu pdos@lists.csail.mit.edu \
 	sp-igroups-boards@mit.edu csail-all@csail.mit.edu sp-igroups-tv@mit.edu \
 	csail-announce@csail.mit.edu all-campus@mit.edu sp-igroups-foods@mit.edu \
 	sp-igroups-games@mit.edu sp-igroups-events@mit.edu sp-igroups-sports@mit.edu \
 	sp-all@mit.edu grad-students@eecs.mit.edu \
 	csail-student-committee@lists.csail.mit.edu \
 	csail-student-committee@csail.mit.edu \
-	golang-nuts@googlegroups.com tgit@mit.edu
+	golang-nuts@googlegroups.com tgit@mit.edu \
+	dsrg@csail.mit.edu \
+	locksport@mit.edu
 
 # aliases
 set alias_file=~/.mutt/aliases
