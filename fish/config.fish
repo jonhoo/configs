@@ -13,9 +13,12 @@ if [ -e ~/dev/others/t/t.py ]
 	set -U fish_user_abbreviations $fish_user_abbreviations 't=~/dev/others/t/t.py --vcs-rooted --list todo.txt'
 end
 complete --command yaourt --wraps pacman
+complete --command pacaur --wraps pacman
 
 if [ -e /usr/bin/yaourt ]
 	set -U fish_user_abbreviations $fish_user_abbreviations 'up=yaourt -Syu --aur'
+else if [ -e /usr/bin/pacaur ]
+	set -U fish_user_abbreviations $fish_user_abbreviations 'up=pacaur -Syu'
 else
 	set -U fish_user_abbreviations $fish_user_abbreviations 'up=sudo pacman -Syu'
 end
