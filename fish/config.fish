@@ -91,6 +91,7 @@ setenv BROWSER vivaldi-snapshot
 setenv EMAIL jon@tsp.io
 setenv NAME "Jon Gjengset"
 setenv GOPATH "$HOME/dev/go:$HOME/dev/projects/cuckood:$HOME/dev/projects/hasmail"
+setenv RUST_BACKTRACE 1
 
 set -U fish_user_abbreviations $fish_user_abbreviations 'nova=env OS_PASSWORD=(pass www/mit-openstack) nova'
 set -U fish_user_abbreviations $fish_user_abbreviations 'glance=env OS_PASSWORD=(pass www/mit-openstack) glance'
