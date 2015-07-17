@@ -1,5 +1,6 @@
 " Fish doesn't play all that well with others
 set shell=/bin/bash
+let mapleader = "\<Space>"
 
 " =============================================================================
 " # PLUGINS
@@ -99,6 +100,8 @@ let g:ycm_global_ycm_extra_conf = "~/.vim/.ycm_extra_conf.py"
 
 " Per-buffer CtrlP hotkey
 nmap <leader>; :CtrlPBuffer<CR>
+nmap <Leader>o :CtrlP<CR>
+nmap <Leader>w :w<CR>
 
 " Don't confirm .lvimrc
 let g:localvimrc_ask = 0
@@ -213,8 +216,6 @@ set listchars=nbsp:¬,extends:»,precedes:«,trail:•
 " =============================================================================
 " # Keyboard shortcuts
 " =============================================================================
-let mapleader = ","
-
 " ; as :
 nnoremap ; :
 
@@ -261,8 +262,8 @@ nnoremap <leader><leader> <c-^>
 nnoremap <leader>> Vat>
 nnoremap <leader>< Vat<
 
-" ,<space> shows/hides hidden characters
-nnoremap <leader><SPACE> :set invlist<cr>
+" <leader>, shows/hides hidden characters
+nnoremap <leader>, :set invlist<cr>
 
 " Keymap for replacing up to next _ or -
 noremap <leader>m ct_
