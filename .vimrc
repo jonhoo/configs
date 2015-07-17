@@ -82,6 +82,15 @@ let g:ctrlp_custom_ignore = {
   \ 'file': '\~$\|\.png$\|\.jpg$\|\.gif$\|\.settings$\|Thumbs\.db\|\.min\.js$\|\.swp\|\.o$\|\.hi$\|.a$\|.sqlite3$\|.key$\|.pub$',
   \ }
 
+" from http://sheerun.net/2014/03/21/how-to-boost-your-vim-productivity/
+let g:ctrlp_use_caching = 0
+if executable('ag')
+	set grepprg=ag\ --nogroup\ --nocolor
+	let g:ctrlp_user_command = 'ag %s -l --nocolor --ignore-dir node_modules -g ""'
+else
+	let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files . -co --exclude-standard', 'find %s -type f']
+endif
+
 " Javascript
 let javaScript_fold=0
 
