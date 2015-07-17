@@ -2,6 +2,7 @@ pcm.!default {
     type plug
     slave.pcm "asymed"
 }
+
 pcm.asymed {
     type asym
     playback.pcm {

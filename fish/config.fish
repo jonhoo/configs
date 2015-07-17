@@ -23,7 +23,6 @@ else
 	set -U fish_user_abbreviations $fish_user_abbreviations 'up=sudo pacman -Syu'
 end
 
-
 function pdfo
 	echo $argv | xargs pdflatex
 	echo $argv | sed 's/\.tex$/.pdf/' | xargs xdg-open
