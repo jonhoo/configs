@@ -27,6 +27,7 @@ lowdpi() {
 	sed -i 's/barHeight = .*/barHeight = 20/' ~jon/.config/taffybar/taffybar.hs
 	sudo -u jon xrdb ~jon/.Xresources
 	sed -i 's/\(--alt-high-dpi-setting\).*/\1=96/' ~jon/.local/share/applications/opera-developer.desktop
+	sed -i 's/\(--force-device-scale-factor\).*/\1=0.5/' ~jon/.local/share/applications/vivaldi-snapshot.desktop
 }
 
 hidpi() {
@@ -36,6 +37,7 @@ hidpi() {
 	sed -i 's/barHeight = .*/barHeight = 30/' ~jon/.config/taffybar/taffybar.hs
 	sudo -u jon xrdb ~jon/.Xresources
 	sed -i 's/\(--alt-high-dpi-setting\).*/\1=144/' ~jon/.local/share/applications/opera-developer.desktop
+	sed -i 's/\(--force-device-scale-factor\).*/\1=1.5/' ~jon/.local/share/applications/vivaldi-snapshot.desktop
 }
 
 DEV=""

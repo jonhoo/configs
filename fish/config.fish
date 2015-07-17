@@ -85,7 +85,7 @@ set PATH $PATH (ruby -e 'print Gem.user_dir')/bin
 set PATH $PATH ~/dev/go/bin
 
 setenv EDITOR vim
-setenv BROWSER opera-developer
+setenv BROWSER vivaldi-snapshot
 setenv EMAIL jon@tsp.io
 setenv NAME "Jon Gjengset"
 setenv GOPATH "$HOME/dev/go:$HOME/dev/projects/cuckood:$HOME/dev/projects/hasmail"

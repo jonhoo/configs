@@ -97,7 +97,7 @@ myManageHook = composeAll
     , className =? "kupfer.py"      --> doIgnore
     , fmap (isInfixOf "mutt") appCommand --> doFShift "mx"
     , className =? "Firefox"        --> doFShift "web"
-    , fmap (isInfixOf "Opera") className        --> doFShift "web"
+    , fmap (isInfixOf "Vivaldi-snapshot") className        --> doFShift "web"
     , className =? "Pidgin"         --> doShift "msg"
     , className =? "Spotify"        --> doFShift "sfx"
     , isFullscreen                  --> doFullFloat
