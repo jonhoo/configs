@@ -93,6 +93,12 @@ setenv EMAIL jon@tsp.io
 setenv NAME "Jon Gjengset"
 setenv GOPATH "$HOME/dev/go:$HOME/dev/projects/cuckood:$HOME/dev/projects/hasmail"
 
+set -U fish_user_abbreviations $fish_user_abbreviations 'nova=env OS_PASSWORD=(pass www/mit-openstack) nova'
+set -U fish_user_abbreviations $fish_user_abbreviations 'glance=env OS_PASSWORD=(pass www/mit-openstack) glance'
+setenv OS_USERNAME jfrg
+setenv OS_TENANT_NAME usersandbox_jfrg
+setenv OS_AUTH_URL https://nimbus.csail.mit.edu:5001/v2.0
+
 setenv QT_DEVICE_PIXEL_RATIO=2
 setenv GDK_SCALE=2
 setenv GDK_DPI_SCALE=0.5
