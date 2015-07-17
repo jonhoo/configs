@@ -101,6 +101,10 @@ set FISH_CLIPBOARD_CMD "cat"
 # Base16 Shell
 eval sh $HOME/dev/others/base16/shell/base16-atelierdune.dark.sh
 
+function fish_user_key_bindings
+	bind \cr 'fg>/dev/null ^/dev/null'
+end
+
 function fish_greeting
 	tput cup $LINES # start terminal at the bottom
 	echo -e (uname -ro | awk '{print " \\\\e[1mOS: \\\\e[0;32m"$0"\\\\e[0m"}')
