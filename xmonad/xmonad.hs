@@ -96,8 +96,6 @@ myManageHook = composeAll
     , resource  =? "kdesktop"       --> doIgnore
     , className =? "kupfer.py"      --> doIgnore
     , fmap (isInfixOf "mutt") appCommand --> doFShift "mx"
-    , className =? "Firefox"        --> doFShift "web"
-    , fmap (isInfixOf "Vivaldi-snapshot") className        --> doFShift "web"
     , className =? "Spotify"        --> doFShift "sfx"
     , isFullscreen                  --> doFullFloat
     , FS.fullscreenManageHook
