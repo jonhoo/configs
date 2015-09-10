@@ -4,9 +4,3 @@ click=urxvt -e /bin/bash -ic "mutt -e 'source ~/.mutt/account.fm'"
 hostname=mail.messagingengine.com:993
 username=jon@eml.cc
 password=gnome-keyring-query get mutt_fastmail
-
-[@aptoma.com]
-hostname=imap.gmail.com:993
-username=jon@aptoma.com
-password=gnome-keyring-query get mutt_aptoma
-click=urxvt -e /bin/bash -ic "mutt -e 'source ~/.mutt/account.aptoma'"
