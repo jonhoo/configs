@@ -1,17 +1,15 @@
 # Sets the editor and browser to use
 export EDITOR='vim'
-if [ -e "/usr/bin/vivaldi-snapshot" ]; then
+if [ -e "/usr/bin/firefox-developer" ]; then
+  export BROWSER='firefox-developer'
+elif [ -e "/usr/bin/vivaldi-snapshot" ]; then
   export BROWSER='vivaldi-snapshot'
+elif [ -e "/usr/bin/opera-developer" ]; then
+  export BROWSER='opera-developer'
+elif [ -e "/usr/bin/opera" ]; then
+  export BROWSER='opera'
 else
-  if [ -e "/usr/bin/opera-developer" ]; then
-    export BROWSER='opera-developer'
-  else
-    if [ -e "/usr/bin/opera" ]; then
-      export BROWSER='opera'
-    else
-      export BROWSER='firefox'
-    fi
-  fi
+  export BROWSER='firefox'
 fi
 export NAME='Jon Gjengset'
 export EMAIL='jon@tsp.io'
