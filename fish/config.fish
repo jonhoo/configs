@@ -93,11 +93,27 @@ setenv NAME "Jon Gjengset"
 setenv GOPATH "$HOME/dev/go:$HOME/dev/projects/cuckood:$HOME/dev/projects/hasmail"
 setenv RUST_BACKTRACE 1
 
-set -U fish_user_abbreviations $fish_user_abbreviations 'nova=env OS_PASSWORD=(pass www/mit-openstack) nova'
-set -U fish_user_abbreviations $fish_user_abbreviations 'glance=env OS_PASSWORD=(pass www/mit-openstack) glance'
-setenv OS_USERNAME jfrg
+set -U fish_user_abbreviations $fish_user_abbreviations 'nova=env OS_PASSWORD=(pass www/mit-openstack | head -n1) nova'
+set -U fish_user_abbreviations $fish_user_abbreviations 'glance=env OS_PASSWORD=(pass www/mit-openstack | head -n1) glance'
+setenv OS_USERNAME jfrg@csail.mit.edu
 setenv OS_TENANT_NAME usersandbox_jfrg
 setenv OS_AUTH_URL https://nimbus.csail.mit.edu:5001/v2.0
+setenv OS_IMAGE_API_VERSION 1
+function penv -d "Set up environment for the PDOS openstack service"
+	env OS_PASSWORD=(pass www/mit-openstack | head -n1) OS_TENANT_NAME=pdos $argv
+end
+function pvm -d "Run nova/glance commands against the PDOS openstack service"
+	switch $argv[1]
+	case 'image-*'
+		penv glance $argv
+	case 'c'
+		penv cinder $argv[2..-1]
+	case 'g'
+		penv glance $argv[2..-1]
+	case '*'
+		penv nova $argv
+	end
+end
 
 setenv QT_DEVICE_PIXEL_RATIO=2
 setenv GDK_SCALE=2
