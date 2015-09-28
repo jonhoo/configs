@@ -91,6 +91,7 @@ myManageHook = composeAll
     , className =? "transmission-gtk" --> doFloat
     , className =? "mpv" --> doFloat
     , fmap (isInfixOf "Pinentry") className --> doFloat
+    , fmap (isInfixOf "MATLAB") className <&&> fmap (not . isInfixOf "MATLAB") (stringProperty "WM_NAME") --> doFloat
     , fmap (isInfixOf "show.py") (stringProperty "WM_NAME") --> doFullFloat
     , resource  =? "desktop_window" --> doIgnore
     , resource  =? "kdesktop"       --> doIgnore
