@@ -17,7 +17,9 @@ if test -e "/usr/bin/compton" ; then
 fi
 
 # Start user-space DBUS
-source /etc/X11/xinit/xinitrc.d/30-dbus.sh
+for f in /etc/X11/xinit/xinitrc.d/*.sh; do
+	source "$f"
+done
 
 autoif=$(systemctl | grep netctl-auto | awk '{print $1}' | sed 's/.*@\(.*\)\.service/\1/')
 if [[ -n $autoif ]]; then
