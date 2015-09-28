@@ -75,6 +75,7 @@ let g:secure_modelines_allowed_items = [
 let base16colorspace=256
 
 " Airline + CtrlP
+let g:airline_powerline_fonts = 1
 let g:airline_theme = "bubblegum"
 let g:ctrlp_root_markers = ['.lvimrc', '.git']
 let g:ctrlp_custom_ignore = {
