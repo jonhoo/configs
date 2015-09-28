@@ -120,7 +120,7 @@ let g:localvimrc_ask = 0
 let g:racer_cmd = "/usr/bin/racer"
 let $RUST_SRC_PATH = "/home/jon/.rust/src"
 
-" Doxugen
+" Doxygen
 let mysyntaxfile='~/.vim/doxygen_load.vim'
 
 " Golang
