@@ -115,9 +115,13 @@ function pvm -d "Run nova/glance commands against the PDOS openstack service"
 	end
 end
 
-setenv QT_DEVICE_PIXEL_RATIO=2
-setenv GDK_SCALE=2
-setenv GDK_DPI_SCALE=0.5
+setenv QT_DEVICE_PIXEL_RATIO 2
+setenv GDK_SCALE 2
+setenv GDK_DPI_SCALE 0.5
+setenv _JAVA_OPTIONS '-Dawt.useSystemAAFontSettings=lcd -Dswing.defaultlaf=com.sun.java.swing.plaf.gtk.GTKLookAndFeel'
+setenv JAVA_FONTS /usr/share/fonts/TTF
+setenv MATLAB_JAVA /usr/lib/jvm/default-runtime
+setenv J2D_D3D false
 
 # Fish should not add things to clipboard when killing
 # See https://github.com/fish-shell/fish-shell/issues/772
