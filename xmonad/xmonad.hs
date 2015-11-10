@@ -27,12 +27,8 @@ myTerminal      = "urxvtc"
 myFocusFollowsMouse = False
 myClickJustFocuses = False
 
-myBorderWidth   = 1
-myNormalBorderColor = "#212121"
-myFocusedBorderColor = "#FF2121"
-
 myModMask       = mod1Mask -- or mod4Mask for super
-myWorkspaces    = ["web","code","a","msg","mx","sfx"]
+myWorkspaces    = ["web","code","a","b","c","mx","sfx"]
 
 myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
 	[ ((0, xK_Print), (spawn "scrot"))
@@ -57,7 +53,7 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
 	, ((controlMask .|. mod1Mask .|. shiftMask, xK_Left), shiftToPrev >> prevWS)
 	] 
 
-myLayout = tiled ||| (Mirror tiled) ||| (noBorders Full)
+myLayout = tiled ||| (Mirror tiled) ||| Full
   where
      -- default tiling algorithm partitions the screen into two panes
      tiled   = Tall nmaster delta ratio
@@ -114,35 +110,12 @@ main = do
         terminal           = myTerminal,
         focusFollowsMouse  = myFocusFollowsMouse,
         clickJustFocuses   = myClickJustFocuses,
-        borderWidth        = myBorderWidth,
-	normalBorderColor  = myNormalBorderColor,
-	focusedBorderColor = myFocusedBorderColor,
+        borderWidth        = 0,
         modMask            = myModMask,
         workspaces         = myWorkspaces,
         keys               = \c -> myKeys c `M.union` keys defaultConfig c,
-        layoutHook         = avoidStruts $ lessBorders EmptyScreen $ myLayout,
+        layoutHook         = avoidStruts $ noBorders $ myLayout,
         manageHook         = myManageHook,
-	handleEventHook    = EWMH.fullscreenEventHook <+> removeBordersEventHook,
+	handleEventHook    = EWMH.fullscreenEventHook,
 	logHook            = TB.dbusLog client
     }
-
--- | Remove borders from every mpv window as soon as possible in an event
--- hook, because otherwise dimensions are messed and the fullscreen mpv is
--- stretched by a couple pixels.
---
--- Basically the effect is the same as with
--- "XMonad.Layout.NoBorders.lessBorders OnlyFloat", except that OnlyFloat
--- messes up the dimensions when used together with fullscreenEventHook
--- (e.g. NET_WM_STATE). Well at least in mplayer/mpv.
---
--- I have no idea how often/where the border is re-applied, but resetting
--- it to 0 whenever possible just works :)
---
--- From http://funktionaali.com/posts/2014-07-01-How%20to%20get%20XMonad%20play%20well%20with%20fullscreen%20mpv.html
-removeBordersEventHook :: Event -> X All
-removeBordersEventHook ev = do
-    whenX (className =? "mpv" `runQuery` w) $ withDisplay $ \d ->
-        io $ setWindowBorderWidth d w 0
-    return (All True)
-    where
-        w = ev_window ev
