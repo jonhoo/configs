@@ -18,10 +18,10 @@ style "notification-button" = "default" {
 }
 
 style "schrift" {
-	font_name = "SourceCodePro 7"
+	font_name = "SourceCodePro 10"
 }
 widget_class "Taffybar*" style "schrift"
-gtk-font-name = "SourceCodePro 7"
+gtk-font-name = "SourceCodePro 10"
 
 widget "Taffybar*" style "default"
 widget "Taffybar*WindowSwitcher*label" style "active-window"
