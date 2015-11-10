@@ -309,19 +309,9 @@ autocmd BufRead *.pacnew set readonly
 autocmd InsertLeave * set nopaste
 
 " Jump to last edit position on opening file
-set viminfo='10,\"100,:20,%,n~/.viminfo
-function! ResCur()
-  if line("'\"") <= line("$")
-    normal! g`"
-    normal! zz
-    return 1
-  endif
-endfunction
-
-augroup resCur
-  autocmd!
-  autocmd BufWinEnter * call ResCur()
-augroup END
+if has("autocmd")
+  au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
+endif
 
 " Auto-make less files on save
 autocmd BufWritePost *.less if filereadable("Makefile") | make | endif
