@@ -115,7 +115,7 @@ fi
 if [[ -e ~/bin/hotplug-dp.sh ]]; then
     (
       sleep .2;
-      sudo ~/bin/hotplug-dp.sh;
+      sudo -E ~/bin/hotplug-dp.sh;
     ) &
 fi
 

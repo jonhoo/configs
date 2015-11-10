@@ -47,7 +47,7 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
 	, ((0, xF86XK_MonBrightnessDown), (spawn "xbacklight - 10 &"))
 	, ((0, xF86XK_MonBrightnessUp), (spawn "xbacklight + 10 &"))
 	, ((0, xF86XK_AudioMute), (spawn "amixer set Master toggle &"))
-	, ((0, xF86XK_Display), (spawn "sudo ~jon/bin/hotplug-dp.sh &"))
+	, ((0, xF86XK_Display), (spawn "sudo -E ~jon/bin/hotplug-dp.sh &"))
 	, ((0, xF86XK_AudioPlay), (spawn "~/bin/spotify-control.sh start &"))
 	, ((0, xF86XK_AudioNext), (spawn "~/bin/spotify-control.sh next &"))
 	, ((0, xF86XK_AudioPrev), (spawn "~/bin/spotify-control.sh prev &"))

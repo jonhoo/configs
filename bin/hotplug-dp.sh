@@ -7,39 +7,36 @@ export DISPLAY=:0
 export XAUTHORITY=/home/jon/.Xauthority
 
 maxlight() {
-	cat /sys/class/backlight/intel_backlight/max_brightness > /sys/class/backlight/intel_backlight/brightness
+	/bin/cat /sys/class/backlight/intel_backlight/max_brightness > /sys/class/backlight/intel_backlight/brightness
 }
 
 intsnd() {
-	sed -i 's/^#\(<.*\/\.asoundrc-internal>\)/\1/' ~jon/.asoundrc
-	sed -i 's/^\(<.*\/\.asoundrc-external>\)/#\1/' ~jon/.asoundrc
+	/usr/bin/sed -i 's/^#\(<.*\/\.asoundrc-internal>\)/\1/' ~jon/.asoundrc
+	/usr/bin/sed -i 's/^\(<.*\/\.asoundrc-external>\)/#\1/' ~jon/.asoundrc
 }
 
 extsnd() {
-	sed -i 's/^\(<.*\/\.asoundrc-internal>\)/#\1/' ~jon/.asoundrc
-	sed -i 's/^#\(<.*\/\.asoundrc-external>\)/\1/' ~jon/.asoundrc
+	/usr/bin/sed -i 's/^\(<.*\/\.asoundrc-internal>\)/#\1/' ~jon/.asoundrc
+	/usr/bin/sed -i 's/^#\(<.*\/\.asoundrc-external>\)/\1/' ~jon/.asoundrc
 }
 
+
 lowdpi() {
-	sed -i 's/Xft.dpi: .*/Xft.dpi: 144/' ~jon/.Xresources
-	sed -i 's/Sans 7/Sans 6/' ~jon/.gtkrc-2.0
-	sed -i 's/Sans 7/Sans 6/' ~jon/.config/gtk-3.0/settings.ini
-	sed -i 's/barHeight = .*/barHeight = 20/' ~jon/.config/taffybar/taffybar.hs
-	sudo -u jon xrdb ~jon/.Xresources
-	sed -i 's/\(--alt-high-dpi-setting\).*/\1=96/' ~jon/.local/share/applications/opera-developer.desktop
-	sed -i 's/\(--force-device-scale-factor\).*/\1=0.5/' ~jon/.local/share/applications/vivaldi-snapshot.desktop
-	sed -i 's/\(--force-device-scale-factor\).*/\1=0.5/' ~jon/.local/share/applications/spotify.desktop
+	/usr/bin/sed -i 's/Xft.dpi: .*/Xft.dpi: 96/' ~jon/.Xresources
+	/usr/bin/sed -i 's/barHeight = .*/barHeight = 20/' ~jon/.config/taffybar/taffybar.hs
+	/usr/bin/sudo -E -u jon xrdb ~jon/.Xresources
+	/usr/bin/sed -i 's/\(--alt-high-dpi-setting\).*/\1=96/' ~jon/.local/share/applications/opera-developer.desktop
+	/usr/bin/sed -i 's/\(--force-device-scale-factor\).*/\1=0.5/' ~jon/.local/share/applications/vivaldi-snapshot.desktop
+	/usr/bin/sed -i 's/\(--force-device-scale-factor\).*/\1=0.5/' ~jon/.local/share/applications/spotify.desktop
 }
 
 hidpi() {
-	sed -i 's/Xft.dpi: .*/Xft.dpi: 192/' ~jon/.Xresources
-	sed -i 's/Sans 6/Sans 7/' ~jon/.gtkrc-2.0
-	sed -i 's/Sans 6/Sans 7/' ~jon/.config/gtk-3.0/settings.ini
-	sed -i 's/barHeight = .*/barHeight = 30/' ~jon/.config/taffybar/taffybar.hs
-	sudo -u jon xrdb ~jon/.Xresources
-	sed -i 's/\(--alt-high-dpi-setting\).*/\1=144/' ~jon/.local/share/applications/opera-developer.desktop
-	sed -i 's/\(--force-device-scale-factor\).*/\1=1.5/' ~jon/.local/share/applications/vivaldi-snapshot.desktop
-	sed -i 's/\(--force-device-scale-factor\).*/\1=1.5/' ~jon/.local/share/applications/spotify.desktop
+	/usr/bin/sed -i 's/Xft.dpi: .*/Xft.dpi: 144/' ~jon/.Xresources
+	/usr/bin/sed -i 's/barHeight = .*/barHeight = 30/' ~jon/.config/taffybar/taffybar.hs
+	/usr/bin/sudo -u jon xrdb ~jon/.Xresources
+	/usr/bin/sed -i 's/\(--alt-high-dpi-setting\).*/\1=144/' ~jon/.local/share/applications/opera-developer.desktop
+	/usr/bin/sed -i 's/\(--force-device-scale-factor\).*/\1=1.5/' ~jon/.local/share/applications/vivaldi-snapshot.desktop
+	/usr/bin/sed -i 's/\(--force-device-scale-factor\).*/\1=1.5/' ~jon/.local/share/applications/spotify.desktop
 }
 
 DEV=""
@@ -60,34 +57,34 @@ elif [[ "$STATUS_HDMI2" = "connected" ]]; then
 fi
 
 if [ "$STATUS" = "disconnected" ]; then
-	xrandr --output DP1 --off
-	xrandr --output HDMI1 --off
-	xrandr --output HDMI2 --off
-	xrandr --output eDP1 --auto
-	xset +dpms
-	xset s default
+	/usr/bin/xrandr --output DP1 --off
+	/usr/bin/xrandr --output HDMI1 --off
+	/usr/bin/xrandr --output HDMI2 --off
+	/usr/bin/xrandr --output eDP1 --auto
+	/usr/bin/xset +dpms
+	/usr/bin/xset s default
 	intsnd
 	hidpi
-	sed -i 's/HandleLidSwitch\=ignore/HandleLidSwitch\=suspend/' /etc/systemd/logind.conf
+	/usr/bin/sed -i 's/HandleLidSwitch\=ignore/HandleLidSwitch\=suspend/' /etc/systemd/logind.conf
 else
 	if [[ $1 == "mirror" ]]; then
-		xrandr --output $DEV --mode 1024x768
-		xrandr --output eDP1 --mode 1024x768 --same-as $DEV
+		/usr/bin/xrandr --output $DEV --mode 1024x768
+		/usr/bin/xrandr --output eDP1 --mode 1024x768 --same-as $DEV
 	else
-		edid=$(cat /sys/class/drm/card0/card0-$DEVC/edid | sha512sum - | sed 's/\s*-$//')
+		edid=$(/usr/bin/cat /sys/class/drm/card0/card0-$DEVC/edid | /usr/bin/sha512sum - | /usr/bin/sed 's/\s*-$//')
 
 		pos="above"
 		if [[ $edid == "9ed75b31c6f1bce5db7420887ebbc71c126d6a152ddf00b2b5bbb7a5479cea2608273bfcae23d8ec7bcf01578256d672c5fb0d899005f46096ef98dc447d2244" ]]; then
 			pos="right-of"
 			maxlight
 		fi
-		xrandr --addmode eDP1 1920x1080
-		xrandr --output eDP1 --mode 1920x1080 --output $DEV --$pos eDP1 --auto
+		/usr/bin/xrandr --addmode eDP1 1920x1080
+		/usr/bin/xrandr --output eDP1 --mode 1920x1080 --output $DEV --$pos eDP1 --auto
 	fi
-	xset -dpms
-	xset s off
+	/usr/bin/xset -dpms
+	/usr/bin/xset s off
 
-	xrandr --dpi 96
+	/usr/bin/xrandr --dpi 96
 	lowdpi
 
 	if [[ $DEV == HDMI* ]]; then
@@ -95,29 +92,28 @@ else
 	else
 		intsnd
 	fi
-	sed -i 's/HandleLidSwitch\=suspend/HandleLidSwitch\=ignore/' /etc/systemd/logind.conf
+	/usr/bin/sed -i 's/HandleLidSwitch\=suspend/HandleLidSwitch\=ignore/' /etc/systemd/logind.conf
 fi
 
 # restart services
 for p in kupfer urxvtd; do
-	pid=$(pgrep $p)
+	pid=$(/usr/bin/pgrep $p)
 	if [[ -n $pid ]]; then
-		cp /proc/$pid/cmdline /tmp/.restart$pid
-		sudo -u jon kill $pid
-		sleep .5
-		sudo -u jon xargs -0 /bin/sh -c 'exec "$@"' ignored < /tmp/.restart$pid &
+		/usr/bin/cp /proc/$pid/cmdline /tmp/.restart$pid
+		/usr/bin/sudo -E -u jon kill $pid
+		/usr/bin/sleep .5
+		/usr/bin/sudo -E -u jon xargs -0 /bin/sh -c 'exec "$@"' ignored < /tmp/.restart$pid &
 	fi
 done
-
-pid=$(pgrep taffybar)
+pid=$(/usr/bin/pgrep taffybar)
 if [[ -n $pid ]]; then
-	sudo -u jon kill $pid
-	sleep .5
-	sudo -u jon taffybar &
+	/usr/bin/sudo -E -u jon kill $pid
+	/usr/bin/sleep .5
+	/usr/bin/sudo -E -u jon taffybar &
 fi
 
 # notify-osd doesn't need to be restored
-pkill notify-osd
-sudo -u jon nitrogen --restore
+/usr/bin/pkill notify-osd
+/usr/bin/sudo -E -u jon nitrogen --restore
 
-systemctl restart systemd-logind
+/usr/bin/systemctl restart systemd-logind
