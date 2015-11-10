@@ -1,6 +1,7 @@
-#include "/home/jon/dev/others/base16/xresources/base16-atelierdune.dark.256.xresources"
+#include "/home/jon/dev/others/base16/builder/output/xresources/base16-atelierdune.dark.256.xresources"
 emacs*geometry:           120x50
-*faceName:           inconsolata:size=8
+*faceName: xft:SourceCodePro:size=10,xft:FiraMono:size=10
+*font: xft:SourceCodePro:size=10,xft:FiraMono:size=10
 *multiClickTime: 300
 *international: true
 Xcursor.theme: default
@@ -10,12 +11,13 @@ Xcursor.size:  16       !  32, 48 or 64 may also be good values
 URxvt.depth:           32
 URxvt.secondaryScroll: false
 URxvt*saveLines:       12000
+URxvt*scrollTtyOutput:      false
+URxvt*scrollWithBuffer:     true
+URxvt*scrollTtyKeypress:    true
 !URxvt.background:      rgb:0000/2b00/3600
 !URxvt.background:      rgba:0000/2b00/3600/f400
 !URxvt.intensityStyles: false
 !URxvt.background       rgb:6200/6200/6200
-!URxvt.font:            xft:inconsolata:size=15
-URxvt.font:            xft:SourceCodePro:size=8
 URxvt.scrollBar:       false
 URxvt.geometry:        130x30
 URxvt.urlLauncher:     /usr/bin/firefox
@@ -27,7 +29,7 @@ URxvt.keysym.Control-Down: \033[1;5B
 URxvt.keysym.Control-Left: \033[1;5D
 URxvt.keysym.Control-Right: \033[1;5C
 ! Paste!
-URxvt.perl-ext-common: default,clipboard,url-select,tabbedex
+URxvt.perl-ext-common: default,clipboard,tabbedex
 URxvt.keysym.M-c:   perl:clipboard:copy
 URxvt.keysym.M-v:   perl:clipboard:paste
 URxvt.keysym.M-C-v: perl:clipboard:paste_escaped
@@ -39,7 +41,7 @@ URxvt.tabbed.tab-bg:    0
 
 ! Xft settings ---------------------------------------------------------------
 
-Xft.dpi: 192
+Xft.dpi: 96
 Xft.lcdfilter: lcddefault
 Xft.antialias:  true
 Xft.autohint:   false
@@ -58,5 +60,3 @@ xterm*scrollTtyOutput:    false
 xterm*jumpScroll:         true
 xterm*multiScroll:        true
 xterm*toolBar:            false
-
-xscreensaver*font:           inconsolata:pixelsize=8
