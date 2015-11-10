@@ -22,6 +22,7 @@ Plugin 'chriskempson/base16-vim'
 " VIM enhancements
 Plugin 'ciaranm/securemodelines'
 Plugin 'vim-scripts/localvimrc'
+Plugin 'editorconfig/editorconfig-vim'
 
 " Editor enhancements
 Plugin 'goldfeld/vim-seek'
@@ -48,6 +49,7 @@ Plugin 'hail2u/vim-css3-syntax'
 Plugin 'wannesm/wmgraphviz.vim'
 Plugin 'petRUShka/vim-opencl'
 Plugin 'StanAngeloff/php.vim'
+Plugin 'rosstimson/bats.vim'
 Plugin 'juvenn/mustache.vim'
 Plugin 'cespare/vim-toml'
 Plugin 'lervag/vim-latex'
