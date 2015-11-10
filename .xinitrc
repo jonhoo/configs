@@ -48,14 +48,6 @@ xmonad 2> .logs/xmonad.err > .logs/xmonad.log &
 wmpid=$!
 tiling=1
 
-# Set root window name for matlab
-if test -e "/usr/bin/wmname" ; then
-    (
-      sleep 2;
-      wmname LG3D;
-    ) &
-fi
-
 # Apps
 if test -e "/usr/bin/kupfer" ; then
     kupfer --no-splash 2> .logs/kupfer.err > .logs/kupfer.log &
