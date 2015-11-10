@@ -105,7 +105,8 @@ subscribe getmail@lists.pyropus.ca gnuplot-beta@lists.sourceforge.net \
 	csail-student-committee@csail.mit.edu \
 	golang-nuts@googlegroups.com tgit@mit.edu \
 	dsrg@csail.mit.edu 6858-staff@lists.csail.mit.edu \
-	locksport@mit.edu
+	locksport@mit.edu \
+	6.858-staff@pdos.csail.mit.edu
 
 # aliases
 set alias_file=~/.mutt/aliases
