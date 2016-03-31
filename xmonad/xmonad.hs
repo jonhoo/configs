@@ -92,6 +92,8 @@ myManageHook = composeAll
     , resource  =? "desktop_window" --> doIgnore
     , resource  =? "kdesktop"       --> doIgnore
     , className =? "kupfer.py"      --> doIgnore
+    , fmap (isInfixOf "display") appCommand --> doFloat
+    , fmap (isInfixOf "feh") appCommand --> doFloat
     , fmap (isInfixOf "mutt") appCommand --> doFShift "mx"
     , className =? "Spotify"        --> doFShift "sfx"
     , isFullscreen                  --> doFullFloat
