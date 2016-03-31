@@ -49,7 +49,7 @@ function pdfo
 end
 
 function px
-	ssh -fND localhost:8080 -C jon@thesquareplanet.com
+	ssh -fND localhost:8080 -C jon@ssh.thesquareplanet.com -p 222
 end
 
 set nooverride PATH PWD
