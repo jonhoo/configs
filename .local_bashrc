@@ -1,9 +1,9 @@
 # Sets the editor and browser to use
 export EDITOR='vim'
-if [ -e "/usr/bin/firefox-developer" ]; then
-  export BROWSER='firefox-developer'
-elif [ -e "/usr/bin/vivaldi-snapshot" ]; then
+if [ -e "/usr/bin/vivaldi-snapshot" ]; then
   export BROWSER='vivaldi-snapshot'
+elif [ -e "/usr/bin/firefox-aurora" ]; then
+  export BROWSER='firefox-aurora'
 elif [ -e "/usr/bin/opera-developer" ]; then
   export BROWSER='opera-developer'
 elif [ -e "/usr/bin/opera" ]; then
