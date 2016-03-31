@@ -31,7 +31,7 @@ Plugin 'rking/ag.vim'
 " GUI enhancements
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
-Plugin 'scrooloose/syntastic'
+Plugin 'benekastah/neomake'
 Plugin 'kien/ctrlp.vim'
 
 " Semantic language support
@@ -98,10 +98,9 @@ endif
 " Javascript
 let javaScript_fold=0
 
-" Syntastic
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_enable_highlighting = 0
-let g:syntastic_javascript_checkers = ['eslint']
+" Neomake
+let g:neomake_verbose = 0
+autocmd! BufWritePost * Neomake
 
 " Latex
 let g:latex_indent_enabled = 1
