@@ -25,6 +25,24 @@ else
 	set -U fish_user_abbreviations $fish_user_abbreviations 'up=sudo pacman -Syu'
 end
 
+function md2pdf
+	set t (mktemp -t md2pdf.XXXXXXX.pdf)
+	pandoc --smart --standalone --from markdown_github -V geometry:letterpaper,margin=2cm $argv[1] -o $t
+	set --erase argv[1]
+	if test (count $argv) -gt 0 -a $argv[1] '!=' '-'
+		mv $t $argv[1]
+	else
+		cat $t
+		rm $t
+	end
+end
+
+function lpmd
+	set infile $argv[1]
+	set --erase argv[1]
+	md2pdf $infile - | lp $argv -
+end
+
 function pdfo
 	echo $argv | xargs pdflatex
 	echo $argv | sed 's/\.tex$/.pdf/' | xargs xdg-open
