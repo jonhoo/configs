@@ -73,7 +73,7 @@ else
 
 		pos="above"
 		if [[ $edid == "9ed75b31c6f1bce5db7420887ebbc71c126d6a152ddf00b2b5bbb7a5479cea2608273bfcae23d8ec7bcf01578256d672c5fb0d899005f46096ef98dc447d2244" ]]; then
-			pos="right-of"
+			pos="rotate left --right-of"
 			maxlight
 		fi
 		/usr/bin/xrandr --addmode eDP1 1920x1080
