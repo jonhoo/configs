@@ -150,6 +150,7 @@ set scrolloff=3
 set showmode
 set hidden
 set nowrap
+set nojoinspaces
 
 " Settings needed for .lvimrc
 set exrc
