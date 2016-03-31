@@ -9,6 +9,8 @@ set -U fish_user_abbreviations $fish_user_abbreviations 'a=asana amber/Amber'
 set -U fish_user_abbreviations $fish_user_abbreviations 'l=ls'
 set -U fish_user_abbreviations $fish_user_abbreviations 'll=ls -l'
 set -U fish_user_abbreviations $fish_user_abbreviations 'lll=ls -la'
+set -U fish_user_abbreviations $fish_user_abbreviations 'vim=nvim'
+set -U fish_user_abbreviations $fish_user_abbreviations 'n=nvim'
 if [ -e ~/dev/others/t/t.py ]
 	set -U fish_user_abbreviations $fish_user_abbreviations 't=~/dev/others/t/t.py --vcs-rooted --list todo.txt'
 end
