@@ -37,7 +37,8 @@ set sort_aux="reverse-last-date-received"
 bind index - collapse-thread
 bind index _ collapse-all
 
-# set envelope_from_address=""
+set envelope_from=yes
+set sendmail="/usr/bin/msmtp"
 # set from=""
 # set header=no
 # set mail_check=5
