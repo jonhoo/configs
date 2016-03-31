@@ -29,7 +29,8 @@ Plugin 'goldfeld/vim-seek'
 Plugin 'rking/ag.vim'
 
 " GUI enhancements
-Plugin 'bling/vim-airline'
+Plugin 'vim-airline/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
 Plugin 'scrooloose/syntastic'
 Plugin 'kien/ctrlp.vim'
 
@@ -78,7 +79,7 @@ let base16colorspace=256
 
 " Airline + CtrlP
 let g:airline_powerline_fonts = 1
-let g:airline_theme = "bubblegum"
+let g:airline_theme = "base16"
 let g:ctrlp_root_markers = ['.lvimrc', '.git']
 let g:ctrlp_custom_ignore = {
   \ 'dir': '\.git$\|\.hg$\|\.svn$\|publish$\|intermediate$\|node_modules$\|components$',
