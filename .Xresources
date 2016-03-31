@@ -30,9 +30,8 @@ URxvt.keysym.Control-Left: \033[1;5D
 URxvt.keysym.Control-Right: \033[1;5C
 ! Paste!
 URxvt.perl-ext-common: default,clipboard,tabbedex
-URxvt.keysym.M-c:   perl:clipboard:copy
-URxvt.keysym.M-v:   perl:clipboard:paste
-URxvt.keysym.M-C-v: perl:clipboard:paste_escaped
+URxvt.keysym.M-c:   eval:selection_to_clipboard
+URxvt.keysym.M-v:   eval:paste_clipboard
 ! Tabs
 URxvt.tabbed.tabbar-fg: 2
 URxvt.tabbed.tabbar-bg: 0
