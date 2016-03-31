@@ -43,6 +43,7 @@ Plugin 'marijnh/tern_for_vim'
 
 " Syntactic language support
 Plugin 'file:///home/jon/dev/projects/simio/.git', {'rtp': 'src/vim-syntax/'}
+Plugin 'file:///home/jon/dev/projects/api-soup/.git', {'rtp': 'vim-syntax/'}
 Plugin 'puppetlabs/puppet-syntax-vim'
 Plugin 'vim-scripts/gnuplot-syntax-highlighting'
 Plugin 'treycordova/rustpeg.vim.git'
