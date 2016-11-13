@@ -143,7 +143,9 @@ setenv J2D_D3D false
 set FISH_CLIPBOARD_CMD "cat"
 
 # Base16 Shell
-eval sh $HOME/dev/others/base16/builder/output/shell/base16-atelierdune.dark.sh
+if status --is-interactive
+    eval sh $HOME/dev/others/base16/builder/output/shell/base16-atelierdune.dark.sh
+end
 
 function fish_user_key_bindings
 	bind \cr 'fg>/dev/null ^/dev/null'
