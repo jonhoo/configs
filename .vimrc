@@ -224,7 +224,7 @@ set mouse=a " Enable mouse usage (all modes) in terminals
 
 " Colors
 set background=dark
-colorscheme base16-atelierdune
+colorscheme base16-atelier-dune
 hi Normal ctermbg=NONE
 
 " Show those damn hidden characters
