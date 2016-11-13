@@ -13,25 +13,17 @@ call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 
 " Load plugins
-" Dependencies
-Plugin 'tomtom/tlib_vim'
-
 " Colors
 Plugin 'chriskempson/base16-vim'
 
 " VIM enhancements
 Plugin 'ciaranm/securemodelines'
 Plugin 'vim-scripts/localvimrc'
-Plugin 'editorconfig/editorconfig-vim'
-
-" Editor enhancements
-Plugin 'goldfeld/vim-seek'
-Plugin 'rking/ag.vim'
 
 " GUI enhancements
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
-Plugin 'benekastah/neomake'
+Plugin 'neomake/neomake'
 Plugin 'kien/ctrlp.vim'
 
 " Semantic language support
@@ -39,24 +31,15 @@ if has('python')
 	Plugin 'Valloric/YouCompleteMe'
 endif
 Plugin 'phildawes/racer'
-Plugin 'marijnh/tern_for_vim'
 
 " Syntactic language support
-Plugin 'file:///home/jon/dev/projects/simio/.git', {'rtp': 'src/vim-syntax/'}
+" Plugin 'file:///home/jon/dev/projects/simio/.git', {'rtp': 'src/vim-syntax/'}
 Plugin 'file:///home/jon/dev/projects/api-soup/.git', {'rtp': 'vim-syntax/'}
-Plugin 'puppetlabs/puppet-syntax-vim'
-Plugin 'vim-scripts/gnuplot-syntax-highlighting'
-Plugin 'treycordova/rustpeg.vim.git'
-Plugin 'vim-scripts/haskell.vim'
-Plugin 'pangloss/vim-javascript'
-Plugin 'hail2u/vim-css3-syntax'
-Plugin 'wannesm/wmgraphviz.vim'
-Plugin 'petRUShka/vim-opencl'
-Plugin 'StanAngeloff/php.vim'
-Plugin 'rosstimson/bats.vim'
-Plugin 'juvenn/mustache.vim'
+" Plugin 'vim-scripts/gnuplot-syntax-highlighting'
+" Plugin 'treycordova/rustpeg.vim.git'
+" Plugin 'vim-scripts/haskell.vim'
 Plugin 'cespare/vim-toml'
-Plugin 'lervag/vim-latex'
+" Plugin 'lervag/vim-latex'
 Plugin 'rust-lang/rust.vim'
 Plugin 'fatih/vim-go'
 Plugin 'dag/vim-fish'
