@@ -123,6 +123,7 @@ let g:localvimrc_ask = 0
 
 " racer + rust
 let g:rustfmt_autosave = 1
+let g:rustfmt_fail_silently = 1
 let g:racer_cmd = "/usr/bin/racer"
 let g:racer_experimental_completer = 1
 let $RUST_SRC_PATH = "/home/jon/.rust/src"
