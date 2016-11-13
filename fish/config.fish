@@ -4,16 +4,8 @@ set -U fish_user_abbreviations $fish_user_abbreviations 'p=sudo pacman'
 set -U fish_user_abbreviations $fish_user_abbreviations 'y=yaourt'
 set -U fish_user_abbreviations $fish_user_abbreviations 'g=git'
 set -U fish_user_abbreviations $fish_user_abbreviations 'gc=git checkout'
-set -U fish_user_abbreviations $fish_user_abbreviations 'mpva=mpv --no-video'
-set -U fish_user_abbreviations $fish_user_abbreviations 'a=asana amber/Amber'
-set -U fish_user_abbreviations $fish_user_abbreviations 'l=ls'
-set -U fish_user_abbreviations $fish_user_abbreviations 'll=ls -l'
-set -U fish_user_abbreviations $fish_user_abbreviations 'lll=ls -la'
 set -U fish_user_abbreviations $fish_user_abbreviations 'vim=nvim'
-set -U fish_user_abbreviations $fish_user_abbreviations 'n=nvim'
-if [ -e ~/dev/others/t/t.py ]
-	set -U fish_user_abbreviations $fish_user_abbreviations 't=~/dev/others/t/t.py --vcs-rooted --list todo.txt'
-end
+set -U fish_user_abbreviations $fish_user_abbreviations 'e=nvim'
 complete --command yaourt --wraps pacman
 complete --command pacaur --wraps pacman
 
