@@ -67,6 +67,8 @@ macro index O '<change-folder>=Sent<tab><enter>'
 macro index I '<change-folder>=<enter>'
 # Save (tagged or current) to archive
 macro index S ';<save-message>=Archive<tab><enter><enter>'
+# Mark as spam
+macro index ! ';<save-message>=Junk<tab><enter><enter>'
 
 # Make deletion non-permanent
 macro index d 's=Trash<enter><enter>' "Move message to trash"
