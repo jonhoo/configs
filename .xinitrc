@@ -24,9 +24,9 @@ done
 autoif=$(systemctl | grep netctl-auto | awk '{print $1}' | sed 's/.*@\(.*\)\.service/\1/')
 if [[ -n $autoif ]]; then
 	has_carrier=$(cat /sys/class/net/autoif/carrier 2>/dev/null)
-	#if [[ $has_carrier != "1" ]]; then
+	if [[ $has_carrier -ne "1" ]]; then
 		sudo systemctl restart netctl-auto@$autoif &
-	#fi
+	fi
 fi
 
 # gnupg keyring agent
