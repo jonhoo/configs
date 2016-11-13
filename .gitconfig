@@ -26,5 +26,6 @@
 	user = jonhoo
 [diff]
 	algorithm = patience
+	compactionHeuristic = true
 [commit]
 	gpgsign = true
