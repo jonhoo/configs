@@ -80,6 +80,10 @@ if executable('ag')
 else
 	let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files . -co --exclude-standard', 'find %s -type f']
 endif
+if executable('rg')
+	set grepprg=rg\ --no-heading\ --vimgrep
+	set grepformat=%f:%l:%c:%m
+endif
 
 " Javascript
 let javaScript_fold=0
@@ -105,6 +109,9 @@ let g:latex_fold_sections = []
 
 " YCM
 let g:ycm_global_ycm_extra_conf = "~/.vim/.ycm_extra_conf.py"
+let g:ycm_warning_symbol = '⚠'
+let g:ycm_error_symbol = '☠'
+let g:ycm_extra_conf_globlist = ['~/dev/pdos/classes/6.828/lab/.ycm_extra_conf.py']
 
 " Per-buffer CtrlP hotkey
 nmap <leader>; :CtrlPBuffer<CR>
