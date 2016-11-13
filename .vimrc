@@ -221,6 +221,7 @@ set diffopt+=iwhite " No whitespace in vimdiff
 set colorcolumn=80 " and give me a colored column
 set showcmd " Show (partial) command in status line.
 set mouse=a " Enable mouse usage (all modes) in terminals
+set completeopt-=preview
 
 " Colors
 set background=dark
