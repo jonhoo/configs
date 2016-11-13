@@ -1,6 +1,7 @@
 [user]
 	name = Jon Gjengset
 	email = jon@thesquareplanet.com
+	signingkey = 7176DC71
 [ui "color"]
 	ui = always
 [color]
@@ -26,3 +27,5 @@
 	templatedir = ~/.git_template
 [diff]
 	algorithm = patience
+[commit]
+	gpgsign = true
