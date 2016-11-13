@@ -89,11 +89,11 @@ else
 	/usr/bin/xrandr --dpi 96
 	lowdpi
 
-	if [[ $DEV == HDMI* ]]; then
-		extsnd
-	else
-		intsnd
-	fi
+	#if [[ $DEV == HDMI* ]]; then
+	#	extsnd
+	#else
+	#	intsnd
+	#fi
 	/usr/bin/sed -i 's/HandleLidSwitch\=suspend/HandleLidSwitch\=ignore/' /etc/systemd/logind.conf
 fi
 
