@@ -36,6 +36,7 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
 	, ((mod4Mask, xK_q), (spawn "/usr/bin/bash -c 'notify-send -i time \"Right now, it is\" \"$(date \"+%-I:%M %p, %A %B %d, %Y\")\n$(acpi | sed \"s/Battery 0://\")\"'"))
 	, ((mod4Mask, xK_e), (spawn "urxvtc -e tmux new-session -A -s mail /bin/bash -ic \"mutt -e 'source ~/.mutt/account.fm'\""))
 	, ((modm, xK_Print), (spawn "scrot -s"))
+	--, ((mod4Mask, xK_l), (spawn "physlock -dms"))
 	, ((mod4Mask, xK_l), (spawn "slock"))
 	, ((mod4Mask, xK_j), (spawn "sudo ~jon/bin/hotplug-dp.sh &"))
 	, ((0, xF86XK_AudioLowerVolume), (spawn "amixer set Master 5%- unmute &"))
