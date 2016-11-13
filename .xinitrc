@@ -42,6 +42,14 @@ if test -z "$SSH_AUTH_SOCK" ; then
 	eval $(ssh-agent -s)
 fi
 
+# Update screen layout
+if [[ -e ~/bin/hotplug-dp.sh ]]; then
+    (
+      sleep .2;
+      sudo -E ~/bin/hotplug-dp.sh;
+    ) &
+fi
+
 # Start WM
 xsetroot -cursor_name left_ptr
 xmonad 2> .logs/xmonad.err > .logs/xmonad.log &
@@ -109,14 +117,6 @@ fi
 
 if [[ -e "/usr/bin/urxvtd" ]]; then
     urxvtd -q -o -f &
-fi
-
-# Update screen layout
-if [[ -e ~/bin/hotplug-dp.sh ]]; then
-    (
-      sleep .2;
-      sudo -E ~/bin/hotplug-dp.sh;
-    ) &
 fi
 
 # And wait for WM
