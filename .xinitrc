@@ -66,6 +66,12 @@ if test -e "/usr/bin/xscreensaver" ; then
 fi
 
 # Tray icons
+if test -e "/usr/bin/gatotray" ; then
+    gatotray 2> .logs/gatotray.err > .logs/gatotray.log &
+fi
+if test -e "/usr/bin/caffeine" ; then
+    caffeine 2> .logs/caffeine.err > .logs/caffeine.log &
+fi
 if test -e "/usr/bin/SpiderOak" ; then
     SpiderOak 2> .logs/spideroak.err > .logs/spideroak.log &
 fi
