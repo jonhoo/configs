@@ -34,7 +34,7 @@ fi
 # https://www.gnupg.org/faq/whats-new-in-2.1.html#autostart
 if [[ -e "/usr/bin/gpgconf" ]]; then
 	gpgconf --launch gpg-agent
-	export SSH_AUTH_SOCK=/home/jon/.gnupg/S.gpg-agent.ssh
+	export "SSH_AUTH_SOCK=/run/user/$(id -u)/gnupg/S.gpg-agent.ssh"
 fi
 
 # ssh agent fallback
