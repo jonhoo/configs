@@ -76,7 +76,7 @@ function -v PWD onchdir
 				setenv $envn $envv
 			end
 		end
-		set dr (realpath -eL $dr/..)
+		set dr (dirname $dr)
 	end
 end
 
