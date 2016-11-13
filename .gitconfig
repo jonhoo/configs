@@ -18,6 +18,10 @@
 	default = simple
 [help]
 	autocorrect = 1
+[url "git@g.csail.mit.edu:"]
+	insteadOf = g:
+[url "git@github.com:"]
+	insteadOf = gh:
 [github]
 	user = jonhoo
 [diff]
