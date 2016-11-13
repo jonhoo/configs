@@ -164,11 +164,35 @@ function fish_greeting
 		sed -e 's/^\(.*\([8][5-9]\|[9][0-9]\)%.*\)$/\\\\e[0;31m\1\\\\e[0m/' -e 's/^\(.*\([7][5-9]\|[8][0-4]\)%.*\)$/\\\\e[0;33m\1\\\\e[0m/' | \
 		paste -sd ''\
 	)
+	echo
 
-	echo
-	echo -e " \\e[1mAnd here's a quote:\\e[0m"
+	#echo -e " \\e[1mAnd here's a quote:\\e[0m"
+	#set_color blue
+	#fortune -asn 500 $FORTUNES | sed 's/^/ /'
+	#echo
+
+	echo -e " \e[1mBacklog\e[0;32m"
 	set_color blue
-	fortune -asn 500 $FORTUNES | sed 's/^/ /'
+	echo "  [project] <description>"
 	echo
+
+	set_color normal
+	echo -e " \e[1mIn progress\e[0;32m"
+	set_color magenta
+	echo "  [project] <description>"
+	echo
+
+	set_color normal
+	echo -e " \e[1mTODOs\e[0;32m"
+	set_color cyan
+	echo "  [project] <description>"
+	set_color green
+	echo "  [project] <description>"
+	set_color yellow
+	echo "  [project] <description>"
+	set_color red
+	echo "  [project] <description>"
+	echo
+
 	set_color normal
 end
