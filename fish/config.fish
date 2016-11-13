@@ -97,7 +97,7 @@ set PATH $PATH ~/bin
 set PATH $PATH /opt/android-sdk/platform-tools
 set PATH $PATH /usr/bin/core_perl/
 set PATH $PATH /usr/bin/vendor_perl/
-set PATH $PATH ~/.cabal/bin
+set PATH $PATH ~/.cargo/bin
 set PATH $PATH (ruby -e 'print Gem.user_dir')/bin
 set PATH $PATH ~/dev/go/bin
 
