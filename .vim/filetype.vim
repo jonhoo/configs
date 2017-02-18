@@ -11,7 +11,7 @@ augroup filetypedetect
   " Rust language server
   "au FileType rust :LanguageClientStart
   " Shorter columns in text
-  autocmd Filetype tex setlocal spell tw=72 colorcolumn=73
+  autocmd Filetype tex setlocal spell tw=80 colorcolumn=81
   autocmd Filetype text setlocal spell tw=72 colorcolumn=73
   autocmd Filetype markdown setlocal spell tw=72 colorcolumn=73
   " No autocomplete in text
