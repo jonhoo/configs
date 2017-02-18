@@ -10,17 +10,6 @@ maxlight() {
 	/bin/cat /sys/class/backlight/intel_backlight/max_brightness > /sys/class/backlight/intel_backlight/brightness
 }
 
-intsnd() {
-	/usr/bin/sed -i 's/^#\(<.*\/\.asoundrc-internal>\)/\1/' ~jon/.asoundrc
-	/usr/bin/sed -i 's/^\(<.*\/\.asoundrc-external>\)/#\1/' ~jon/.asoundrc
-}
-
-extsnd() {
-	/usr/bin/sed -i 's/^\(<.*\/\.asoundrc-internal>\)/#\1/' ~jon/.asoundrc
-	/usr/bin/sed -i 's/^#\(<.*\/\.asoundrc-external>\)/\1/' ~jon/.asoundrc
-}
-
-
 lowdpi() {
 	/usr/bin/sed -i 's/Xft.dpi: .*/Xft.dpi: 96/' ~jon/.Xresources
 	/usr/bin/sed -i 's/x: 6.0/x: 2.0/' ~jon/.config/alacritty.yml
@@ -69,7 +58,6 @@ if [ "$STATUS" = "disconnected" ]; then
 	/usr/bin/xrandr --output eDP-1 --auto
 	/usr/bin/xset +dpms
 	/usr/bin/xset s default
-	intsnd
 	hidpi
 	/usr/bin/sed -i 's/HandleLidSwitch\=ignore/HandleLidSwitch\=suspend/' /etc/systemd/logind.conf
 else
