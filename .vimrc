@@ -296,8 +296,10 @@ nnoremap j gj
 nnoremap k gk
 
 " Jump to next/previous error
-nnoremap <C-j> :lnext<cr>
-nnoremap <C-k> :lprev<cr>
+nnoremap <C-j> :cn<cr>
+nnoremap <C-k> :cp<cr>
+nnoremap <C-l> :copen<cr>
+nnoremap <C-h> :cclose<cr>
 
 " ,, toggles between buffers
 nnoremap <leader><leader> <c-^>
