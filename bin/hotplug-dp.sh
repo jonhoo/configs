@@ -18,8 +18,6 @@ lowdpi() {
 	/usr/bin/sed -i 's/y: 144.0/y: 96.0/' ~jon/.config/alacritty.yml
 	/usr/bin/sed -i 's/barHeight = .*/barHeight = 20/' ~jon/.config/taffybar/taffybar.hs
 	/usr/bin/sudo -E -u jon xrdb ~jon/.Xresources
-	/usr/bin/sed -i 's/\(--alt-high-dpi-setting\).*/\1=96/' ~jon/.local/share/applications/opera-developer.desktop
-	/usr/bin/sed -i 's/\(--force-device-scale-factor\).*/\1=0.5/' ~jon/.local/share/applications/vivaldi-snapshot.desktop
 }
 
 hidpi() {
@@ -30,8 +28,6 @@ hidpi() {
 	/usr/bin/sed -i 's/y: 96.0/y: 144.0/' ~jon/.config/alacritty.yml
 	/usr/bin/sed -i 's/barHeight = .*/barHeight = 30/' ~jon/.config/taffybar/taffybar.hs
 	/usr/bin/sudo -u jon xrdb ~jon/.Xresources
-	/usr/bin/sed -i 's/\(--alt-high-dpi-setting\).*/\1=144/' ~jon/.local/share/applications/opera-developer.desktop
-	/usr/bin/sed -i 's/\(--force-device-scale-factor\).*/\1=1.5/' ~jon/.local/share/applications/vivaldi-snapshot.desktop
 }
 
 DEV=""
