@@ -8,6 +8,8 @@ augroup filetypedetect
   au FileType go nmap <leader>t <Plug>(go-test)
   au FileType go nmap <Leader>r <Plug>(go-rename)
   au FileType go nmap <leader>c <Plug>(go-coverage)
+  " Rust language server
+  "au FileType rust :LanguageClientStart
   " Shorter columns in text
   autocmd Filetype tex setlocal spell tw=72 colorcolumn=73
   autocmd Filetype text setlocal spell tw=72 colorcolumn=73

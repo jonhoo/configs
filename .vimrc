@@ -24,6 +24,8 @@ Plug 'kien/ctrlp.vim'
 
 " Semantic language support
 Plug 'phildawes/racer'
+Plug 'racer-rust/vim-racer'
+"Plug 'autozimu/LanguageClient-neovim', { 'do': ':UpdateRemotePlugins' }
 if has('python3')
     Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 endif
@@ -95,7 +97,11 @@ let g:neomake_tex_proselint_maker = {
 	\ 'errorformat': '%f:%l:%c: %m'
 	\ }
 let g:neomake_tex_enabled_makers = ['chktex', 'lacheck', 'proselint']
+let g:neomake_rust_enabled_makers = []
+let g:neomake_info_sign = {'text': '⚕', 'texthl': 'NeomakeInfoSign'}
 autocmd! BufWritePost * Neomake
+autocmd BufWritePost *.rs Neomake! cargo
+"autocmd BufWritePost *.rs Neomake! clippy
 nnoremap <C-g> :Neomake!<CR>
 inoremap <C-g> :Neomake!<CR>
 
@@ -112,12 +118,20 @@ nmap <Leader>w :w<CR>
 " Don't confirm .lvimrc
 let g:localvimrc_ask = 0
 
+" language server protocol
+"let g:LanguageClient_serverCommands = {
+"    \ 'rust': ['rustup', 'run', 'nightly', 'cargo', 'run', '--release', '--manifest-path=/home/jon/dev/others/rls/Cargo.toml'],
+"    \ }
+"nnoremap <silent> K :call LanguageClient_textDocument_hover()<CR>
+"nnoremap <silent> gd :call LanguageClient_textDocument_definition()<CR>
+"nnoremap <silent> <F2> :call LanguageClient_textDocument_rename()<CR>
+
 " racer + rust
 let g:rustfmt_autosave = 1
 let g:rustfmt_fail_silently = 1
 let g:racer_cmd = "/usr/bin/racer"
 let g:racer_experimental_completer = 1
-let $RUST_SRC_PATH = "/home/jon/.rust/src"
+let $RUST_SRC_PATH = systemlist("rustc --print sysroot")[0] . "/lib/rustlib/src/rust/src"
 
 " Completion
 let g:deoplete#enable_at_startup = 1
