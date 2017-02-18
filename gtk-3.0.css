@@ -1,0 +1,22 @@
+#kupfer {
+	background: white;
+	border-top: 1px solid #EEE;
+	border-bottom: 1px solid #DDD;
+	border-radius: 0;
+	color: #AAA;
+}
+#kupfer { /* main window */ }
+#kupfer-object-pane,
+#kupfer-action-pane,
+#kupfer-indirect-object-pane
+{ /* the three panes */ }
+.matchview { /* a pane's view */ }
+.matchview {
+	background: white;
+	border-width: 0;
+	border-bottom: 1px solid #555;
+	border-radius: 0;
+	color: #222;
+}
+#kupfer-list { /* result list window */ }
+#kupfer-list-view { /* result list tree view */ }
