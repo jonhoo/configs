@@ -16,10 +16,12 @@ textWidgetNew str = do
     return $ toWidget box
 
 main = do
-    let clock = textClockNew Nothing "%-I:%M %p, %A %B %d" 1
+    let clock = textClockNew Nothing "<span fgcolor='#bbbbbb'>%-I:%M %p, %A %B %d</span>" 1
         pager = taffyPagerNew defaultPagerConfig
             { widgetSep = " :: "
-            , emptyWorkspace = colorize "gray" "" . escape
+            , activeWorkspace = colorize "#ffaa00" "" . escape
+            , visibleWorkspace = colorize "#aa5500" "" . escape
+            , emptyWorkspace = colorize "#444444" "" . escape
             }
         tray = systrayNew
         sep = textWidgetNew " ::"

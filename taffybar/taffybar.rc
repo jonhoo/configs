@@ -1,28 +1,49 @@
-gtk_color_scheme = "black:#20201d\nwhite:#FFFFFF\ngreen:#00FF00\nred:#FF0000"
+style "taffybar-default" {
+  color["black"] = "#20201d"
+  color["white"] = "#dddddd"
+  color["orange"] = "#ffaa00"
+  color["green"] = "#00ff00"
+  color["red"]   = "#ff0000"
 
-style "default" {
   bg[NORMAL]   = @black
   fg[NORMAL]   = @white
   text[NORMAL] = @white
   fg[PRELIGHT] = @green
   bg[PRELIGHT] = @black
+
+  font_name = "SourceCodePro 10"
 }
 
-style "active-window" = "default" {
-  fg[NORMAL] = @green
+style "taffybar-active-window" = "taffybar-default" {
+  fg[NORMAL] = @orange
 }
 
-style "notification-button" = "default" {
+style "taffybar-notification-button" = "taffybar-default" {
   text[NORMAL] = @red
   fg[NORMAL]   = @red
 }
 
-style "schrift" {
-	font_name = "SourceCodePro 10"
+style "taffybar-workspace-border-active" = "taffybar-default" {
+  bg[NORMAL] = @white
 }
-widget_class "Taffybar*" style "schrift"
-gtk-font-name = "SourceCodePro 10"
+style "taffybar-workspace-border-visible" = "taffybar-default" {
+  bg[NORMAL] = @white
+}
+style "taffybar-workspace-border-empty" = "taffybar-default" {
+  bg[NORMAL] = @white
+}
+style "taffybar-workspace-border-hidden" = "taffybar-default" {
+  bg[NORMAL] = @white
+}
+style "taffybar-workspace-border-urgent" = "taffybar-default" {
+  bg[NORMAL] = @white
+}
 
-widget "Taffybar*" style "default"
-widget "Taffybar*WindowSwitcher*label" style "active-window"
-widget "*NotificationCloseButton" style "notification-button"
+widget "Taffybar*" style "taffybar-default"
+widget "Taffybar*WindowSwitcher*label" style "taffybar-active-window"
+widget "*NotificationCloseButton" style "taffybar-notification-button"
+widget "*Workspace-*-active*" style "taffybar-workspace-border-active"
+widget "*Workspace-*-visible*" style "taffybar-workspace-border-visible"
+widget "*Workspace-*-empty*" style "taffybar-workspace-border-empty"
+widget "*Workspace-*-hidden*" style "taffybar-workspace-border-hidden"
+widget "*Workspace-*-urgent*" style "taffybar-workspace-border-urgent"
