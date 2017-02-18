@@ -168,6 +168,7 @@ set showmode
 set hidden
 set nowrap
 set nojoinspaces
+set termguicolors
 
 " Settings needed for .lvimrc
 set exrc

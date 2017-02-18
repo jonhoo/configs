@@ -121,9 +121,6 @@ if [[ -e "/usr/bin/xflux" && -e ~/.config/xflux ]]; then
     xflux $(cat ~/.config/xflux)
 fi
 
-if [[ -e "/usr/bin/urxvtd" ]]; then
-    urxvtd -q -o -f &
-fi
 
 # And wait for WM
 echo $wmpid > .wmpid

@@ -1,4 +1,4 @@
-click=urxvt -e /bin/bash -ic "mutt -e 'source ~/.mutt/account.fm'"
+click=alacritty -e /bin/bash -ic "mutt -e 'source ~/.mutt/account.fm'"
 
 [@tsp.io]
 hostname=mail.messagingengine.com:993

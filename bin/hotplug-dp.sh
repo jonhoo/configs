@@ -23,6 +23,10 @@ extsnd() {
 
 lowdpi() {
 	/usr/bin/sed -i 's/Xft.dpi: .*/Xft.dpi: 96/' ~jon/.Xresources
+	/usr/bin/sed -i 's/x: 6.0/x: 2.0/' ~jon/.config/alacritty.yml
+	/usr/bin/sed -i 's/y: 0.0/y: -8.0/' ~jon/.config/alacritty.yml
+	/usr/bin/sed -i 's/x: 144.0/x: 96.0/' ~jon/.config/alacritty.yml
+	/usr/bin/sed -i 's/y: 144.0/y: 96.0/' ~jon/.config/alacritty.yml
 	/usr/bin/sed -i 's/barHeight = .*/barHeight = 20/' ~jon/.config/taffybar/taffybar.hs
 	/usr/bin/sudo -E -u jon xrdb ~jon/.Xresources
 	/usr/bin/sed -i 's/\(--alt-high-dpi-setting\).*/\1=96/' ~jon/.local/share/applications/opera-developer.desktop
@@ -31,6 +35,10 @@ lowdpi() {
 
 hidpi() {
 	/usr/bin/sed -i 's/Xft.dpi: .*/Xft.dpi: 144/' ~jon/.Xresources
+	/usr/bin/sed -i 's/x: 2.0/x: 6.0/' ~jon/.config/alacritty.yml
+	/usr/bin/sed -i 's/y: -8.0/y: 0.0/' ~jon/.config/alacritty.yml
+	/usr/bin/sed -i 's/x: 96.0/x: 144.0/' ~jon/.config/alacritty.yml
+	/usr/bin/sed -i 's/y: 96.0/y: 144.0/' ~jon/.config/alacritty.yml
 	/usr/bin/sed -i 's/barHeight = .*/barHeight = 30/' ~jon/.config/taffybar/taffybar.hs
 	/usr/bin/sudo -u jon xrdb ~jon/.Xresources
 	/usr/bin/sed -i 's/\(--alt-high-dpi-setting\).*/\1=144/' ~jon/.local/share/applications/opera-developer.desktop
@@ -89,28 +97,16 @@ else
 	/usr/bin/xrandr --dpi 96
 	lowdpi
 
-	#if [[ $DEV == HDMI* ]]; then
-	#	extsnd
-	#else
-	#	intsnd
-	#fi
 	/usr/bin/sed -i 's/HandleLidSwitch\=suspend/HandleLidSwitch\=ignore/' /etc/systemd/logind.conf
 fi
 
 # restart services
-for p in kupfer urxvtd; do
-	pid=$(/usr/bin/pgrep $p)
-	if [[ -n $pid ]]; then
-		/usr/bin/cp /proc/$pid/cmdline /tmp/.restart$pid
-		/usr/bin/sudo -E -u jon kill $pid
-		/usr/bin/sleep .5
-		/usr/bin/sudo -E -u jon xargs -0 /bin/sh -c 'exec "$@"' ignored < /tmp/.restart$pid &
-	fi
-done
+pkill kupfer
+sudo -E -u jon kupfer --no-splash > /dev/null 2>/dev/null &
 pid=$(/usr/bin/pgrep taffybar)
 if [[ -n $pid ]]; then
 	/usr/bin/sudo -E -u jon kill $pid
-	/usr/bin/sleep .5
+	/usr/bin/sleep 1
 	/usr/bin/sudo -E -u jon taffybar &
 fi
 

@@ -9,6 +9,10 @@ set -U fish_user_abbreviations $fish_user_abbreviations 'e=nvim'
 complete --command yaourt --wraps pacman
 complete --command pacaur --wraps pacman
 
+if status --is-interactive
+	tmux ^ /dev/null; and exec true
+end
+
 if [ -e /usr/bin/yaourt ]
 	set -U fish_user_abbreviations $fish_user_abbreviations 'up=yaourt -Syu --aur'
 else if [ -e /usr/bin/pacaur ]

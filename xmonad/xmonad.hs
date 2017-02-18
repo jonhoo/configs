@@ -23,7 +23,7 @@ import DBus.Client
 import System.Taffybar.XMonadLog as TB
 import System.Taffybar.Hooks.PagerHints (pagerHints)
 
-myTerminal      = "urxvtc"
+myTerminal      = "alacritty"
 myFocusFollowsMouse = False
 myClickJustFocuses = False
 
@@ -33,8 +33,9 @@ myWorkspaces    = ["web","code","a","b","c","mx","sfx"]
 myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
 	[ ((0, xK_Print), (spawn "scrot"))
 	, ((mod4Mask, xK_a), (spawn myTerminal))
+	, ((mod4Mask, xK_c), (spawn "alacritty"))
 	, ((mod4Mask, xK_q), (spawn "/usr/bin/bash -c 'notify-send -i time \"Right now, it is\" \"$(date \"+%-I:%M %p, %A %B %d, %Y\")\n$(acpi | sed \"s/Battery 0://\")\"'"))
-	, ((mod4Mask, xK_e), (spawn "urxvtc -e tmux new-session -A -s mail /bin/bash -ic \"mutt -e 'source ~/.mutt/account.fm'\""))
+	, ((mod4Mask, xK_e), (spawn "alacritty -e tmux new-session -A -s mail /bin/bash -ic \"mutt -e 'source ~/.mutt/account.fm'\""))
 	, ((modm, xK_Print), (spawn "scrot -s"))
 	--, ((mod4Mask, xK_l), (spawn "physlock -dms"))
 	, ((mod4Mask, xK_l), (spawn "slock"))
