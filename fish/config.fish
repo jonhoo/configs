@@ -61,7 +61,7 @@ function athena
 end
 
 set nooverride PATH PWD
-function -v PWD onchdir
+function onchdir -v PWD
 	set dr $PWD
 	while [ "$dr" != "/" ]
 		for e in $dr/.setenv-*
