@@ -82,8 +82,8 @@ if [ ! "$TERM" = "linux" ]; then
 fi
 
 # Solarized ls
-if [ -e .dircolors ]; then
-    eval "$(dircolors -b .dircolors)"
+if [ -e .dir_colors ]; then
+    eval "$(dircolors -b .dir_colors)"
 else
     echo -e '\e[37mbtw: no dircolors available...\e[0m';
 fi

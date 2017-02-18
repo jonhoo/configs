@@ -147,6 +147,11 @@ if status --is-interactive
     eval sh $HOME/dev/others/base16/builder/templates/shell/scripts/base16-atelier-dune.sh
 end
 
+# Pretty ls colors
+if test -e ~/.dir_colors
+	setenv LS_COLORS (sh --noprofile -c 'eval "$(dircolors -b ~/.dir_colors)"; echo $LS_COLORS')
+end
+
 function fish_user_key_bindings
 	bind \cr 'fg>/dev/null ^/dev/null'
 end
