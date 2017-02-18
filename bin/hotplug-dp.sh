@@ -50,23 +50,23 @@ DEVC=""
 STATUS="disconnected"
 if [[ "$STATUS_DP" = "connected" ]]; then
 	STATUS="conected"
-	DEV="DP1"
+	DEV="DP-1"
 	DEVC="DP-1"
 elif [[ "$STATUS_HDMI" = "connected" ]]; then
 	STATUS="connected"
-	DEV="HDMI1"
+	DEV="HDMI-1"
 	DEVC="HDMI-A-1"
 elif [[ "$STATUS_HDMI2" = "connected" ]]; then
 	STATUS="connected"
-	DEV="HDMI2"
+	DEV="HDMI-2"
 	DEVC="HDMI-A-2"
 fi
 
 if [ "$STATUS" = "disconnected" ]; then
-	/usr/bin/xrandr --output DP1 --off
-	/usr/bin/xrandr --output HDMI1 --off
-	/usr/bin/xrandr --output HDMI2 --off
-	/usr/bin/xrandr --output eDP1 --auto
+	/usr/bin/xrandr --output DP-1 --off
+	/usr/bin/xrandr --output HDMI-1 --off
+	/usr/bin/xrandr --output HDMI-2 --off
+	/usr/bin/xrandr --output eDP-1 --auto
 	/usr/bin/xset +dpms
 	/usr/bin/xset s default
 	intsnd
@@ -75,7 +75,7 @@ if [ "$STATUS" = "disconnected" ]; then
 else
 	if [[ $1 == "mirror" ]]; then
 		/usr/bin/xrandr --output $DEV --mode 1024x768
-		/usr/bin/xrandr --output eDP1 --mode 1024x768 --same-as $DEV
+		/usr/bin/xrandr --output eDP-1 --mode 1024x768 --same-as $DEV
 	else
 		edid=$(/usr/bin/cat /sys/class/drm/card0/card0-$DEVC/edid | /usr/bin/sha512sum - | /usr/bin/sed 's/\s*-$//')
 
@@ -88,8 +88,8 @@ else
 			pos="primary --right-of"
 			maxlight
 		fi
-		/usr/bin/xrandr --addmode eDP1 1920x1080
-		/usr/bin/xrandr --output eDP1 --mode 1920x1080 --output $DEV --$pos eDP1 --auto
+		/usr/bin/xrandr --addmode eDP-1 1920x1080
+		/usr/bin/xrandr --output eDP-1 --mode 1920x1080 --output $DEV --$pos eDP-1 --auto
 	fi
 	/usr/bin/xset -dpms
 	/usr/bin/xset s off

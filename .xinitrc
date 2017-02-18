@@ -13,7 +13,10 @@ xrdb .Xresources;
 
 # composition manager
 if test -e "/usr/bin/compton" ; then
-    compton -CGb
+    compton -CGb \
+	--paint-on-overlay \
+	--backend=glx \
+	--glx-swap-method=buffer-age # --vsync=opengl-swc
 fi
 
 # Start user-space DBUS
