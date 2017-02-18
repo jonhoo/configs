@@ -9,40 +9,38 @@ let mapleader = "\<Space>"
 set nocompatible
 filetype off
 set rtp+=/home/jon/dev/others/base16/builder/templates/vim/
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-Plugin 'VundleVim/Vundle.vim'
+call plug#begin('~/.local/share/nvim/plugged')
 
 " Load plugins
 " VIM enhancements
-Plugin 'ciaranm/securemodelines'
-Plugin 'vim-scripts/localvimrc'
+Plug 'ciaranm/securemodelines'
+Plug 'vim-scripts/localvimrc'
 
 " GUI enhancements
-Plugin 'vim-airline/vim-airline'
-Plugin 'vim-airline/vim-airline-themes'
-Plugin 'neomake/neomake'
-Plugin 'kien/ctrlp.vim'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'neomake/neomake'
+Plug 'kien/ctrlp.vim'
 
 " Semantic language support
-if has('python')
-	Plugin 'Valloric/YouCompleteMe'
+if has('python3')
+    Plug 'Valloric/YouCompleteMe'
 endif
-Plugin 'phildawes/racer'
+Plug 'phildawes/racer'
 
 " Syntactic language support
-" Plugin 'file:///home/jon/dev/projects/simio/.git', {'rtp': 'src/vim-syntax/'}
-Plugin 'file:///home/jon/dev/projects/api-soup/.git', {'rtp': 'vim-syntax/'}
+" Plugin '~/dev/projects/simio', {'rtp': 'src/vim-syntax/'}
+Plug '~/dev/projects/api-soup', {'rtp': 'vim-syntax/'}
 " Plugin 'vim-scripts/gnuplot-syntax-highlighting'
 " Plugin 'treycordova/rustpeg.vim.git'
 " Plugin 'vim-scripts/haskell.vim'
-Plugin 'cespare/vim-toml'
+Plug 'cespare/vim-toml'
 " Plugin 'lervag/vim-latex'
-Plugin 'rust-lang/rust.vim'
-Plugin 'fatih/vim-go'
-Plugin 'dag/vim-fish'
+Plug 'rust-lang/rust.vim'
+Plug 'fatih/vim-go'
+Plug 'dag/vim-fish'
 
-call vundle#end()
+call plug#end()
 
 " Plugin settings
 let g:secure_modelines_allowed_items = [
