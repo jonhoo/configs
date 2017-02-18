@@ -232,6 +232,7 @@ set backspace=2 " Backspace over newlines
 set foldmethod=marker " Only fold on marks
 set ruler " Where am I?
 set ttyfast
+set lazyredraw
 set laststatus=2
 set relativenumber " Relative line numbers
 set diffopt+=iwhite " No whitespace in vimdiff
