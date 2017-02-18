@@ -75,8 +75,8 @@ fi
 if test -e "/usr/bin/caffeine" ; then
     caffeine 2> .logs/caffeine.err > .logs/caffeine.log &
 fi
-if test -e "/usr/bin/SpiderOak" ; then
-    SpiderOak 2> .logs/spideroak.err > .logs/spideroak.log &
+if test -e "/usr/bin/SpiderOakONE" ; then
+    SpiderOakONE 2> .logs/spideroak.err > .logs/spideroak.log &
 fi
 if test -e "/usr/bin/hasmail" ; then
     /usr/bin/hasmail 2> .logs/hasmail.err > .logs/hasmail.log &
