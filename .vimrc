@@ -8,14 +8,12 @@ let mapleader = "\<Space>"
 " Load vundle
 set nocompatible
 filetype off
+set rtp+=/home/jon/dev/others/base16/builder/templates/vim/
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 
 " Load plugins
-" Colors
-Plugin 'chriskempson/base16-vim'
-
 " VIM enhancements
 Plugin 'ciaranm/securemodelines'
 Plugin 'vim-scripts/localvimrc'
@@ -62,6 +60,7 @@ let g:secure_modelines_allowed_items = [
 
 " Base16
 let base16colorspace=256
+let g:base16_shell_path="~/dev/others/base16/builder/templates/shell/scripts/"
 
 " Airline + CtrlP
 let g:airline_powerline_fonts = 1

@@ -144,7 +144,7 @@ set FISH_CLIPBOARD_CMD "cat"
 
 # Base16 Shell
 if status --is-interactive
-    eval sh $HOME/dev/others/base16/builder/output/shell/base16-atelierdune.dark.sh
+    eval sh $HOME/dev/others/base16/builder/templates/shell/scripts/base16-atelier-dune.sh
 end
 
 function fish_user_key_bindings
