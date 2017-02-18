@@ -23,10 +23,10 @@ Plug 'neomake/neomake'
 Plug 'kien/ctrlp.vim'
 
 " Semantic language support
-if has('python3')
-    Plug 'Valloric/YouCompleteMe'
-endif
 Plug 'phildawes/racer'
+if has('python3')
+    Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+endif
 
 " Syntactic language support
 " Plugin '~/dev/projects/simio', {'rtp': 'src/vim-syntax/'}
@@ -104,12 +104,6 @@ let g:latex_indent_enabled = 1
 let g:latex_fold_envs = 0
 let g:latex_fold_sections = []
 
-" YCM
-let g:ycm_global_ycm_extra_conf = "~/.vim/.ycm_extra_conf.py"
-let g:ycm_warning_symbol = '⚠'
-let g:ycm_error_symbol = '☠'
-let g:ycm_extra_conf_globlist = ['~/dev/pdos/classes/6.828/lab/.ycm_extra_conf.py']
-
 " Per-buffer CtrlP hotkey
 nmap <leader>; :CtrlPBuffer<CR>
 nmap <Leader>o :CtrlP<CR>
@@ -124,6 +118,17 @@ let g:rustfmt_fail_silently = 1
 let g:racer_cmd = "/usr/bin/racer"
 let g:racer_experimental_completer = 1
 let $RUST_SRC_PATH = "/home/jon/.rust/src"
+
+" Completion
+let g:deoplete#enable_at_startup = 1
+inoremap <silent><expr> <TAB>
+		\ pumvisible() ? "\<C-n>" :
+		\ <SID>check_back_space() ? "\<TAB>" :
+		\ deoplete#mappings#manual_complete()
+		function! s:check_back_space() abort "{{{
+		let col = col('.') - 1
+		return !col || getline('.')[col - 1]  =~ '\s'
+		endfunction"}}}
 
 " Doxygen
 let mysyntaxfile='~/.vim/doxygen_load.vim'
