@@ -4,8 +4,6 @@ set -U fish_user_abbreviations $fish_user_abbreviations 'p=sudo pacman'
 set -U fish_user_abbreviations $fish_user_abbreviations 'y=yaourt'
 set -U fish_user_abbreviations $fish_user_abbreviations 'g=git'
 set -U fish_user_abbreviations $fish_user_abbreviations 'gc=git checkout'
-set -U fish_user_abbreviations $fish_user_abbreviations 'vim=nvim'
-set -U fish_user_abbreviations $fish_user_abbreviations 'e=nvim'
 complete --command yaourt --wraps pacman
 complete --command pacaur --wraps pacman
 
@@ -19,6 +17,17 @@ else if [ -e /usr/bin/pacaur ]
 	set -U fish_user_abbreviations $fish_user_abbreviations 'up=pacaur -Syu'
 else
 	set -U fish_user_abbreviations $fish_user_abbreviations 'up=sudo pacman -Syu'
+end
+
+if [ -e /usr/local/bin/exa ]
+	set -U fish_user_abbreviations $fish_user_abbreviations 'l=exa'
+	set -U fish_user_abbreviations $fish_user_abbreviations 'ls=exa'
+	set -U fish_user_abbreviations $fish_user_abbreviations 'll=exa -l'
+	set -U fish_user_abbreviations $fish_user_abbreviations 'lll=exa -la'
+else
+	set -U fish_user_abbreviations $fish_user_abbreviations 'l=ls'
+	set -U fish_user_abbreviations $fish_user_abbreviations 'll=ls -l'
+	set -U fish_user_abbreviations $fish_user_abbreviations 'lll=ls -la'
 end
 
 function md2pdf
@@ -105,10 +114,10 @@ set PATH $PATH ~/.cargo/bin
 set PATH $PATH (ruby -e 'print Gem.user_dir')/bin
 set PATH $PATH ~/dev/go/bin
 
-setenv EDITOR vim
 # For RLS
 setenv LD_LIBRARY_PATH $LD_LIBRARY_PATH ~/.rustup/toolchains/nightly-x86_64-unknown-linux-gnu/lib
 
+setenv EDITOR nvim
 setenv BROWSER vivaldi-snapshot
 setenv EMAIL jon@tsp.io
 setenv NAME "Jon Gjengset"
