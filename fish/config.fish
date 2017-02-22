@@ -126,6 +126,9 @@ setenv RUST_BACKTRACE 1
 setenv CARGO_INCREMENTAL 1
 setenv WINEDEBUG fixme-all
 
+# https://blog.packagecloud.io/eng/2017/02/21/set-environment-variable-save-thousands-of-system-calls/
+setenv TZ ":/etc/localtime"
+
 set -U fish_user_abbreviations $fish_user_abbreviations 'nova=env OS_PASSWORD=(pass www/mit-openstack | head -n1) nova'
 set -U fish_user_abbreviations $fish_user_abbreviations 'glance=env OS_PASSWORD=(pass www/mit-openstack | head -n1) glance'
 setenv OS_USERNAME jfrg@csail.mit.edu
