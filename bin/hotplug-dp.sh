@@ -85,8 +85,6 @@ else
 fi
 
 # restart services
-pkill kupfer
-sudo -E -u jon kupfer --no-splash > /dev/null 2>/dev/null &
 pid=$(/usr/bin/pgrep taffybar)
 if [[ -n $pid ]]; then
 	/usr/bin/sudo -E -u jon kill $pid
