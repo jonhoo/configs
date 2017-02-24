@@ -41,7 +41,7 @@ main = do
           , graphBorderWidth = 0
           , graphLabel = Nothing
         }
-        cpu = pollingGraphNew cpuCfg 0.5 cpuCallback
+        cpu = pollingGraphNew cpuCfg 1 cpuCallback
     defaultTaffybar defaultTaffybarConfig
                         { startWidgets = [ clock, sep, pager ]
                         , barHeight = 30
