@@ -57,7 +57,6 @@ fi
 xsetroot -cursor_name left_ptr
 xmonad 2> .logs/xmonad.err > .logs/xmonad.log &
 wmpid=$!
-tiling=1
 
 # Apps
 if test -e "/usr/bin/kupfer" ; then
@@ -69,33 +68,14 @@ if test -e "/usr/bin/xscreensaver" ; then
 fi
 
 # Tray icons
-if test -e "/usr/bin/gatotray" ; then
-    gatotray 2> .logs/gatotray.err > .logs/gatotray.log &
-fi
 if test -e "/usr/bin/caffeine" ; then
     caffeine 2> .logs/caffeine.err > .logs/caffeine.log &
-fi
-if test -e "/usr/bin/SpiderOakONE" ; then
-    SpiderOakONE 2> .logs/spideroak.err > .logs/spideroak.log &
 fi
 if test -e "/usr/bin/hasmail" ; then
     /usr/bin/hasmail 2> .logs/hasmail.err > .logs/hasmail.log &
 fi
-if test -e "/usr/bin/volti" ; then
-    volti &
-fi
 if test -e "/usr/bin/cbatticon" ; then
     cbatticon -i notification &
-fi
-
-# Conky
-if test -e "/usr/bin/conky" ; then
-    conky &
-fi
-
-# nVidia settings
-if test -e "/usr/bin/nvidia-settings" ; then
-    nvidia-settings --load-config-only &
 fi
 
 # wallpaper
@@ -103,21 +83,8 @@ if test -e "/usr/bin/nitrogen" ; then
     nitrogen --restore &
 fi
 
-# numlockx
-if test -e "/usr/bin/numlockx" ; then
-    numlockx &
-fi
-
-if test -e "/usr/bin/parcellite" ; then
-    parcellite -d &
-fi
-
-if ((tiling)); then
-    if test -e /usr/bin/taffybar; then
-        taffybar &
-    fi
-elif test -e "/usr/bin/tint2"; then
-    tint2 &
+if test -e /usr/bin/taffybar; then
+taffybar &
 fi
 
 # And wait for WM
