@@ -44,8 +44,8 @@ main = do
         cpu = pollingGraphNew cpuCfg 1 cpuCallback
     defaultTaffybar defaultTaffybarConfig
                         { startWidgets = [ clock, sep, pager ]
-                        , barHeight = 30
                         , endWidgets = [ tray, cpu ]
+                        , barHeight = 20
                         , monitorNumber = 1
                         , widgetSpacing = 0
                         , barPosition = Bottom
