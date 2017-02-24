@@ -4,7 +4,7 @@ keysym o = o O oslash Oslash
 keysym a = a A aring Aring
 keysym e = e E ae AE
 keysym 4 = 4 dollar sterling
-keysym u = u U udiaeresis Udiaeresis
+keysym u = u U UB5 U222A
 keysym 1 = 1 exclam U203D
 
 ! Caps Lock is Control
