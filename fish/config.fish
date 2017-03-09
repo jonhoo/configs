@@ -4,6 +4,7 @@ set -U fish_user_abbreviations $fish_user_abbreviations 'p=sudo pacman'
 set -U fish_user_abbreviations $fish_user_abbreviations 'y=yaourt'
 set -U fish_user_abbreviations $fish_user_abbreviations 'g=git'
 set -U fish_user_abbreviations $fish_user_abbreviations 'gc=git checkout'
+set -U fish_user_abbreviations $fish_user_abbreviations 'vimdiff=nvim -d'
 complete --command yaourt --wraps pacman
 complete --command pacaur --wraps pacman
 
