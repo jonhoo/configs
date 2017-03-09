@@ -11,14 +11,6 @@ fi
 # X styling
 xrdb .Xresources;
 
-# composition manager
-if test -e "/usr/bin/compton" ; then
-    compton -CGb \
-	--paint-on-overlay \
-	--backend=glx \
-	--glx-swap-method=buffer-age # --vsync=opengl-swc
-fi
-
 # Start user-space DBUS
 for f in /etc/X11/xinit/xinitrc.d/*.sh; do
 	source "$f"
