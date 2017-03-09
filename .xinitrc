@@ -63,7 +63,9 @@ fi
 if test -e "/usr/bin/caffeine" ; then
     caffeine 2> .logs/caffeine.err > .logs/caffeine.log &
 fi
-if test -e "/usr/bin/hasmail" ; then
+if test -e "/home/jon/dev/minor/buzz/target/release/buzz"; then
+    ~/dev/minor/buzz/target/release/buzz 2> .logs/buzz.err > .logs/buzz.log &
+elif test -e "/usr/bin/hasmail" ; then
     /usr/bin/hasmail 2> .logs/hasmail.err > .logs/hasmail.log &
 fi
 if test -e "/usr/bin/cbatticon" ; then
