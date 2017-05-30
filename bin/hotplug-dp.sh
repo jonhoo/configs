@@ -12,8 +12,6 @@ maxlight() {
 
 lowdpi() {
 	/usr/bin/sed -i 's/Xft.dpi: .*/Xft.dpi: 96/' ~jon/.Xresources
-	/usr/bin/sed -i 's/x: 6.0/x: 2.0/' ~jon/.config/alacritty.yml
-	/usr/bin/sed -i 's/y: 0.0/y: -8.0/' ~jon/.config/alacritty.yml
 	/usr/bin/sed -i 's/x: 144.0/x: 96.0/' ~jon/.config/alacritty.yml
 	/usr/bin/sed -i 's/y: 144.0/y: 96.0/' ~jon/.config/alacritty.yml
 	/usr/bin/sed -i 's/barHeight = .*/barHeight = 20/' ~jon/.config/taffybar/taffybar.hs
@@ -22,8 +20,6 @@ lowdpi() {
 
 hidpi() {
 	/usr/bin/sed -i 's/Xft.dpi: .*/Xft.dpi: 144/' ~jon/.Xresources
-	/usr/bin/sed -i 's/x: 2.0/x: 6.0/' ~jon/.config/alacritty.yml
-	/usr/bin/sed -i 's/y: -8.0/y: 0.0/' ~jon/.config/alacritty.yml
 	/usr/bin/sed -i 's/x: 96.0/x: 144.0/' ~jon/.config/alacritty.yml
 	/usr/bin/sed -i 's/y: 96.0/y: 144.0/' ~jon/.config/alacritty.yml
 	/usr/bin/sed -i 's/barHeight = .*/barHeight = 30/' ~jon/.config/taffybar/taffybar.hs
