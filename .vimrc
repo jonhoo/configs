@@ -25,7 +25,7 @@ Plug 'kien/ctrlp.vim'
 " Semantic language support
 Plug 'phildawes/racer'
 Plug 'racer-rust/vim-racer'
-"Plug 'autozimu/LanguageClient-neovim', { 'do': ':UpdateRemotePlugins' }
+Plug 'autozimu/LanguageClient-neovim', { 'do': ':UpdateRemotePlugins' }
 if has('python3')
     Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 endif
@@ -120,7 +120,7 @@ let g:localvimrc_ask = 0
 
 " language server protocol
 "let g:LanguageClient_serverCommands = {
-"    \ 'rust': ['rustup', 'run', 'nightly', 'cargo', 'run', '--release', '--manifest-path=/home/jon/dev/others/rls/Cargo.toml'],
+"    \ 'rust': ['/home/jon/.rustup/toolchains/nightly-x86_64-unknown-linux-gnu/bin/rls'],
 "    \ }
 "nnoremap <silent> K :call LanguageClient_textDocument_hover()<CR>
 "nnoremap <silent> gd :call LanguageClient_textDocument_definition()<CR>
