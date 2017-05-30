@@ -47,6 +47,7 @@ if [ "$STATUS" = "disconnected" ]; then
 	/usr/bin/xrandr --output DP-1 --off
 	/usr/bin/xrandr --output HDMI-1 --off
 	/usr/bin/xrandr --output HDMI-2 --off
+	/usr/bin/xrandr --output eDP-1 --mode 1920x1440
 	/usr/bin/xrandr --output eDP-1 --auto
 	/usr/bin/xset +dpms
 	/usr/bin/xset s default
