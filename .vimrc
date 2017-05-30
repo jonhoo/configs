@@ -139,6 +139,7 @@ inoremap <silent><expr> <TAB>
 		let col = col('.') - 1
 		return !col || getline('.')[col - 1]  =~ '\s'
 		endfunction"}}}
+let g:deoplete#auto_complete_delay=50
 
 " Doxygen
 let mysyntaxfile='~/.vim/doxygen_load.vim'
