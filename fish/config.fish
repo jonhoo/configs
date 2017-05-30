@@ -58,7 +58,7 @@ function px
 	ssh -fND localhost:8080 -C jon@ssh.thesquareplanet.com -p 222
 end
 function athena
-	env SSHPASS=(pass www/mit) sshpass -e ssh athena
+	env SSHPASS=(pass www/mit) sshpass -e ssh athena $argv
 end
 
 set nooverride PATH PWD
