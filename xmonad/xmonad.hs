@@ -32,32 +32,36 @@ myModMask       = mod1Mask -- or mod4Mask for super
 myWorkspaces    = ["web","code","a","b","c","mx","sfx"]
 
 myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
-	[ ((0, xK_Print), (spawn "scrot"))
-	, ((mod4Mask, xK_a), (spawn myTerminal))
-	, ((mod4Mask, xK_c), (spawn "alacritty"))
-	, ((mod4Mask, xK_q), (spawn "/usr/bin/bash -c 'notify-send -i time \"Right now, it is\" \"$(date \"+%-I:%M %p, %A %B %d, %Y\")\n$(acpi | sed \"s/Battery 0://\")\"'"))
-	, ((mod4Mask, xK_e), (spawn "alacritty -e tmux new-session -A -s mail /bin/bash -ic \"mutt -e 'source ~/.mutt/account.fm'\""))
-	, ((modm, xK_Print), (spawn "scrot -s"))
-	--, ((mod4Mask, xK_l), (spawn "physlock -dms"))
-	, ((mod4Mask, xK_l), (spawn "slock"))
-	, ((mod4Mask, xK_j), (spawn "pactl set-sink-mute @DEFAULT_SINK@ false ; pactl set-sink-volume @DEFAULT_SINK@ -3% &"))
-	, ((mod4Mask, xK_k), (spawn "pactl set-sink-mute @DEFAULT_SINK@ false ; pactl set-sink-volume @DEFAULT_SINK@ +3% &"))
-	, ((0, xF86XK_AudioLowerVolume), (spawn "amixer set Master 3%- unmute &"))
-	, ((0, xF86XK_AudioRaiseVolume), (spawn "amixer set Master 3%+ unmute &"))
-	--, ((0, xF86XK_MonBrightnessDown), (spawn "xbacklight - 10 &"))
-	--, ((0, xF86XK_MonBrightnessUp), (spawn "xbacklight + 10 &"))
-	, ((0, xF86XK_MonBrightnessDown), (spawn "~/bin/adjust-brightness - &"))
-	, ((0, xF86XK_MonBrightnessUp), (spawn "~/bin/adjust-brightness + &"))
-	, ((0, xF86XK_AudioMute), (spawn "amixer set Master toggle &"))
-	, ((0, xF86XK_Display), (spawn "sudo -E ~jon/bin/hotplug-dp.sh &"))
-	, ((0, xF86XK_AudioPlay), (spawn "~/bin/spotify-control.sh start &"))
-	, ((0, xF86XK_AudioNext), (spawn "~/bin/spotify-control.sh next &"))
-	, ((0, xF86XK_AudioPrev), (spawn "~/bin/spotify-control.sh prev &"))
-	, ((controlMask .|. mod1Mask, xK_Right), nextWS)
-	, ((controlMask .|. mod1Mask, xK_Left), prevWS)
-	, ((controlMask .|. mod1Mask .|. shiftMask, xK_Right), shiftToNext >> nextWS)
-	, ((controlMask .|. mod1Mask .|. shiftMask, xK_Left), shiftToPrev >> prevWS)
-	] 
+    [ ((0, xK_Print), (spawn "scrot"))
+    , ((mod4Mask, xK_a), (spawn myTerminal))
+    , ((mod4Mask, xK_c), (spawn "xterm"))
+    , ((mod4Mask, xK_q), (spawn "/usr/bin/bash -c 'notify-send -i time \"Right now, it is\" \"$(date \"+%-I:%M %p, %A %B %d, %Y\")\n$(acpi | sed \"s/Battery 0://\")\"'"))
+    , ((mod4Mask, xK_e), (windows $ W.greedyView "mx") >> spawn "alacritty -t mutt -e tmux new-session -A -s mail /bin/bash -ic \"mutt -e 'source ~/.mutt/account.fm'\"")
+    , ((mod4Mask, xK_t), (spawn "alacritty -e /bin/bash -i"))
+    , ((modm, xK_Print), (spawn "scrot -s"))
+    --, ((mod4Mask, xK_l), (spawn "physlock -dms"))
+    , ((mod4Mask, xK_l), (spawn "slock"))
+    , ((mod4Mask, xK_j), (spawn "pactl set-sink-mute @DEFAULT_SINK@ false ; pactl set-sink-volume @DEFAULT_SINK@ -3% &"))
+    , ((mod4Mask, xK_k), (spawn "pactl set-sink-mute @DEFAULT_SINK@ false ; pactl set-sink-volume @DEFAULT_SINK@ +3% &"))
+    , ((0, xF86XK_AudioLowerVolume), (spawn "amixer set Master 3%- unmute &"))
+    , ((0, xF86XK_AudioRaiseVolume), (spawn "amixer set Master 3%+ unmute &"))
+    --, ((0, xF86XK_MonBrightnessDown), (spawn "xbacklight - 10 &"))
+    --, ((0, xF86XK_MonBrightnessUp), (spawn "xbacklight + 10 &"))
+    , ((0, xF86XK_MonBrightnessDown), (spawn "~/bin/adjust-brightness - &"))
+    , ((0, xF86XK_MonBrightnessUp), (spawn "~/bin/adjust-brightness + &"))
+    , ((0, xF86XK_AudioMute), (spawn "amixer set Master toggle &"))
+    , ((0, xF86XK_Display), (spawn "sudo -E ~jon/bin/hotplug-dp.sh &"))
+    , ((0, xF86XK_AudioPlay), (spawn "playerctl play-pause &"))
+    , ((mod4Mask, xK_p), (spawn "playerctl play-pause &"))
+    , ((0, xF86XK_AudioNext), (spawn "playerctl next &"))
+    , ((mod4Mask, xK_i), (spawn "playerctl next &"))
+    , ((0, xF86XK_AudioPrev), (spawn "playerctl previous &"))
+    , ((mod4Mask, xK_u), (spawn "playerctl previous &"))
+    , ((controlMask .|. mod1Mask, xK_Right), nextWS)
+    , ((controlMask .|. mod1Mask, xK_Left), prevWS)
+    , ((controlMask .|. mod1Mask .|. shiftMask, xK_Right), shiftToNext >> nextWS)
+    , ((controlMask .|. mod1Mask .|. shiftMask, xK_Left), shiftToPrev >> prevWS)
+    ] 
 
 myLayout = tiled ||| (Mirror tiled) ||| Full
   where
@@ -98,16 +102,18 @@ myManageHook = composeAll
     , resource  =? "desktop_window" --> doIgnore
     , resource  =? "kdesktop"       --> doIgnore
     , className =? "kupfer.py"      --> doIgnore
+    , className =? "foobar"      --> doShift "sfx"
+    , title =? "foobar"      --> doShift "sfx"
     , fmap (isInfixOf "display") appCommand --> doFloat
     , fmap (isInfixOf "feh") appCommand --> doFloat
-    , fmap (isInfixOf "mutt") appCommand --> doFShift "mx"
-    , className =? "Spotify"        --> doFShift "sfx"
+    --, (className =? "" <&&> title =? "") --> doShift "sfx" -- Spotify: https://bbs.archlinux.org/viewtopic.php?id=204636
+    , (stringProperty "WM_WINDOW_ROLE" =? "GtkFileChooserDialog") --> doFullFloat
     , isFullscreen                  --> doFullFloat
     , FS.fullscreenManageHook
     ]
     where
-	appCommand = stringProperty "WM_COMMAND"
-	doFShift = doF . liftM2 (.) W.greedyView W.shift
+    appCommand = stringProperty "WM_COMMAND"
+    --doShiftAndGo = doF . liftM2 (.) W.greedyView W.shift
 
 ------------------------------------------------------------------------
 -- Now run xmonad with all the defaults we set up.
