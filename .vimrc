@@ -88,10 +88,6 @@ endif
 let javaScript_fold=0
 
 " Neomake
-"let g:syntastic_always_populate_loc_list = 1
-"let g:syntastic_enable_highlighting = 0
-"let g:syntastic_javascript_checkers = ['eslint']
-"let g:syntastic_sh_shellcheck_post_args = "-x"  " allow sourcing external files
 let g:neomake_verbose = 0
 let g:neomake_tex_proselint_maker = {
 	\ 'errorformat': '%f:%l:%c: %m'
