@@ -8,7 +8,7 @@ set beep_new=yes
 set compose_format="-- Compose [~%lb, attachments: %a]%>~"
 set crypt_autosign=yes
 set crypt_replysign=yes
-set crypt_replysignencrypted=yes
+#set crypt_replysignencrypted=yes
 set date_format="!%b %d, %Y at %I:%M%p %Z"
 set imap_idle
 set imap_check_subscribed
