@@ -5,13 +5,11 @@ import qualified Data.Map as M
 import Data.List
 import Graphics.X11.ExtraTypes.XF86
 import XMonad.Actions.CycleWS
-import XMonad.Hooks.ManageDocks
 import XMonad.Layout.NoBorders
 import XMonad.Hooks.ManageHelpers
 import XMonad.Layout.PerWorkspace
 import XMonad.Layout.IM
 import XMonad.Layout.Grid
-import qualified XMonad.Hooks.EwmhDesktops as EWMH
 import qualified XMonad.Layout.Fullscreen as FS
 import XMonad.Util.Run(spawnPipe)
 import XMonad.Hooks.DynamicLog
@@ -20,7 +18,10 @@ import Control.Monad
 import qualified XMonad.StackSet as W
 
 import DBus.Client
-import System.Taffybar.XMonadLog as TB
+
+import XMonad.Hooks.EwmhDesktops (ewmh, fullscreenEventHook)
+import XMonad.Hooks.ManageDocks
+import XMonad.Config.Desktop
 import System.Taffybar.Hooks.PagerHints (pagerHints)
 
 myTerminal      = "alacritty"
@@ -103,7 +104,6 @@ myManageHook = composeAll
     , className =? "Spotify"        --> doFShift "sfx"
     , isFullscreen                  --> doFullFloat
     , FS.fullscreenManageHook
-    , manageDocks
     ]
     where
 	appCommand = stringProperty "WM_COMMAND"
@@ -112,17 +112,16 @@ myManageHook = composeAll
 ------------------------------------------------------------------------
 -- Now run xmonad with all the defaults we set up.
 main = do
-	client <- connectSession
-	xmonad $ EWMH.ewmh $ pagerHints $ defaultConfig {
+    client <- connectSession
+    xmonad $ pagerHints $ desktopConfig {
         terminal           = myTerminal,
         focusFollowsMouse  = myFocusFollowsMouse,
         clickJustFocuses   = myClickJustFocuses,
         borderWidth        = 0,
         modMask            = myModMask,
         workspaces         = myWorkspaces,
-        keys               = \c -> myKeys c `M.union` keys defaultConfig c,
-        layoutHook         = avoidStruts $ noBorders $ myLayout,
-        manageHook         = myManageHook,
-	handleEventHook    = EWMH.fullscreenEventHook,
-	logHook            = TB.dbusLog client
+        keys               = \c -> myKeys c `M.union` keys XMonad.def c,
+        layoutHook         = desktopLayoutModifiers $ noBorders $ myLayout,
+        manageHook         = myManageHook <+> manageHook desktopConfig,
+        handleEventHook    = fullscreenEventHook <+> handleEventHook desktopConfig
     }
