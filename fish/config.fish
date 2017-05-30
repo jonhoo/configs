@@ -117,6 +117,7 @@ set PATH $PATH ~/dev/go/bin
 
 # For RLS
 setenv LD_LIBRARY_PATH $LD_LIBRARY_PATH ~/.rustup/toolchains/nightly-x86_64-unknown-linux-gnu/lib
+setenv RLS_ROOT ~/dev/others/rls
 
 setenv EDITOR nvim
 setenv BROWSER vivaldi-snapshot
