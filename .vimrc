@@ -93,13 +93,13 @@ let g:neomake_tex_proselint_maker = {
 	\ 'errorformat': '%f:%l:%c: %m'
 	\ }
 let g:neomake_tex_enabled_makers = ['chktex', 'lacheck', 'proselint']
-let g:neomake_rust_enabled_makers = []
 let g:neomake_info_sign = {'text': '⚕', 'texthl': 'NeomakeInfoSign'}
 autocmd! BufWritePost * Neomake
-autocmd BufWritePost *.rs Neomake! cargo
+"autocmd BufWritePost *.rs Neomake! rust
 "autocmd BufWritePost *.rs Neomake! clippy
-nnoremap <C-g> :Neomake!<CR>
-inoremap <C-g> :Neomake!<CR>
+"let g:neomake_rust_cargo_command = ['check', '--tests']
+nnoremap <C-t> :Neomake!<CR>
+inoremap <C-t> :Neomake!<CR>
 
 " Latex
 let g:latex_indent_enabled = 1
