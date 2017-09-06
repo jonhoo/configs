@@ -17,4 +17,4 @@ keysym p = p P Greek_pi Greek_phi
 keysym t = t T Greek_theta Greek_alpha
 keysym l = l L Greek_lamda
 keysym period = period greater periodcentered
-keysym s = s S radical
+keysym s = s S radical section
