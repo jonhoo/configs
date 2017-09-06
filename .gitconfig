@@ -20,6 +20,8 @@
 	default = simple
 [help]
 	autocorrect = 1
+[url "git.launchpad.net"]
+	insteadOf = lp:
 [url "git@g.csail.mit.edu:"]
 	insteadOf = g:
 [url "git@github.com:"]
