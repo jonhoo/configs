@@ -228,5 +228,14 @@ function fish_greeting
 	echo "  [project] <description>"
 	echo
 
+	if test -e ~/todo
+		set_color normal
+		echo -e " \e[1mImmediate\e[0;32m"
+		set_color magenta
+		echo
+		cat todo | sed 's/^/  /'
+		echo
+	end
+
 	set_color normal
 end
