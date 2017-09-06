@@ -310,12 +310,11 @@ nmap <silent> <C-j> <Plug>(ale_next_wrap)
 nnoremap <C-l> :lopen<cr>
 nnoremap <C-g> :lclose<cr>
 
-" ,, toggles between buffers
+" <leader><leader> toggles between buffers
 nnoremap <leader><leader> <c-^>
 
-" ,= indents current 'section' (e.g. HTML tag)
-nnoremap <leader>> Vat>
-nnoremap <leader>< Vat<
+" <leader>= reformats current tange
+nnoremap <leader>= :'<,'>RustFmtRange<cr>
 
 " <leader>, shows/hides hidden characters
 nnoremap <leader>, :set invlist<cr>
