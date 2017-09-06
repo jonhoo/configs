@@ -119,7 +119,8 @@ set PATH $PATH ~/dev/go/bin
 set PATH $PATH ~/.npm-global/bin
 
 # For RLS
-setenv LD_LIBRARY_PATH $LD_LIBRARY_PATH ~/.rustup/toolchains/nightly-x86_64-unknown-linux-gnu/lib
+# https://github.com/fish-shell/fish-shell/issues/2456
+setenv LD_LIBRARY_PATH "$LD_LIBRARY_PATH:$HOME/.rustup/toolchains/nightly-x86_64-unknown-linux-gnu/lib/"
 setenv RLS_ROOT ~/dev/others/rls
 
 setenv EDITOR nvim
