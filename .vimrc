@@ -19,16 +19,26 @@ Plug 'vim-scripts/localvimrc'
 " GUI enhancements
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-Plug 'neomake/neomake'
+Plug 'w0rp/ale'
 Plug 'kien/ctrlp.vim'
 
 " Semantic language support
 Plug 'phildawes/racer'
 Plug 'racer-rust/vim-racer'
 Plug 'autozimu/LanguageClient-neovim', { 'do': ':UpdateRemotePlugins' }
-if has('python3')
-    Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-endif
+Plug 'roxma/nvim-completion-manager'
+Plug 'roxma/nvim-cm-racer'
+Plug 'junegunn/vader.vim'
+
+" Completion manager plugins
+Plug 'roxma/python-support.nvim'
+" for python completions
+let g:python_support_python3_requirements = add(get(g:,'python_support_python3_requirements',[]),'jedi')
+" language specific completions on markdown file
+let g:python_support_python3_requirements = add(get(g:,'python_support_python3_requirements',[]),'mistune')
+" utils, optional
+let g:python_support_python3_requirements = add(get(g:,'python_support_python3_requirements',[]),'psutil')
+let g:python_support_python3_requirements = add(get(g:,'python_support_python3_requirements',[]),'setproctitle')
 
 " Syntactic language support
 " Plugin '~/dev/projects/simio', {'rtp': 'src/vim-syntax/'}
@@ -43,6 +53,12 @@ Plug 'fatih/vim-go'
 Plug 'dag/vim-fish'
 
 call plug#end()
+
+if has('nvim')
+    set guicursor=n-v-c:block-Cursor/lCursor-blinkon0,i-ci:ver25-Cursor/lCursor,r-cr:hor20-Cursor/lCursor
+    set inccommand=nosplit
+    noremap <C-q> :confirm qall<CR>
+end
 
 " Plugin settings
 let g:secure_modelines_allowed_items = [
@@ -87,19 +103,14 @@ endif
 " Javascript
 let javaScript_fold=0
 
-" Neomake
-let g:neomake_verbose = 0
-let g:neomake_tex_proselint_maker = {
-	\ 'errorformat': '%f:%l:%c: %m'
-	\ }
-let g:neomake_tex_enabled_makers = ['chktex', 'lacheck', 'proselint']
-let g:neomake_info_sign = {'text': '⚕', 'texthl': 'NeomakeInfoSign'}
-autocmd! BufWritePost * Neomake
-"autocmd BufWritePost *.rs Neomake! rust
-"autocmd BufWritePost *.rs Neomake! clippy
-"let g:neomake_rust_cargo_command = ['check', '--tests']
-nnoremap <C-t> :Neomake!<CR>
-inoremap <C-t> :Neomake!<CR>
+" Linter
+let g:ale_sign_column_always = 1
+" only lint on save
+let g:ale_lint_on_text_changed = 'never'
+let g:ale_lint_on_save = 0
+let g:ale_lint_on_enter = 0
+let g:ale_rust_cargo_use_check = 1
+" let g:neomake_info_sign = {'text': '⚕', 'texthl': 'NeomakeInfoSign'}
 
 " Latex
 let g:latex_indent_enabled = 1
@@ -130,16 +141,11 @@ let g:racer_experimental_completer = 1
 let $RUST_SRC_PATH = systemlist("rustc --print sysroot")[0] . "/lib/rustlib/src/rust/src"
 
 " Completion
-let g:deoplete#enable_at_startup = 1
-inoremap <silent><expr> <TAB>
-		\ pumvisible() ? "\<C-n>" :
-		\ <SID>check_back_space() ? "\<TAB>" :
-		\ deoplete#mappings#manual_complete()
-		function! s:check_back_space() abort "{{{
-		let col = col('.') - 1
-		return !col || getline('.')[col - 1]  =~ '\s'
-		endfunction"}}}
-let g:deoplete#auto_complete_delay=50
+" newline on enter
+inoremap <expr> <CR> (pumvisible() ? "\<c-y>\<cr>" : "\<CR>")
+" tab to select
+inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 
 " Doxygen
 let mysyntaxfile='~/.vim/doxygen_load.vim'
@@ -237,6 +243,7 @@ set colorcolumn=80 " and give me a colored column
 set showcmd " Show (partial) command in status line.
 set mouse=a " Enable mouse usage (all modes) in terminals
 set completeopt-=preview
+set shortmess+=c " don't give |ins-completion-menu| messages.
 
 " Colors
 set background=dark
@@ -295,8 +302,11 @@ nnoremap j gj
 nnoremap k gk
 
 " Jump to next/previous error
-nnoremap <C-j> :lnext<cr>
-nnoremap <C-k> :lprev<cr>
+"nnoremap <C-j> :lnext<cr>
+"nnoremap <C-k> :lprev<cr>
+nmap <silent> L <Plug>(ale_lint)
+nmap <silent> <C-k> <Plug>(ale_previous_wrap)
+nmap <silent> <C-j> <Plug>(ale_next_wrap)
 nnoremap <C-l> :lopen<cr>
 nnoremap <C-g> :lclose<cr>
 
