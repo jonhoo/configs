@@ -171,7 +171,7 @@ set FISH_CLIPBOARD_CMD "cat"
 
 # Base16 Shell
 if status --is-interactive
-    eval sh $HOME/dev/others/base16/builder/templates/shell/scripts/base16-atelier-dune.sh
+    eval sh $HOME/dev/others/base16/shell/scripts/base16-atelier-dune.sh
 end
 
 # Pretty ls colors
