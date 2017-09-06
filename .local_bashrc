@@ -15,9 +15,9 @@ export NAME='Jon Gjengset'
 export EMAIL='jon@tsp.io'
 
 # Paths are needed
+export PATH="/usr/local/bin:$PATH"
 export PATH="$PATH:/home/jon/bin"
 export PATH="$PATH:/home/jon/.gem/ruby/2.3.0/bin"
-export PATH="$PATH:/usr/local/bin"
 export PATH="$PATH:/home/jon/dev/go/bin/"
 export WINEARCH=win32
 export GOPATH=~/dev/go

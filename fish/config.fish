@@ -107,11 +107,11 @@ set __fish_git_prompt_showdirtystate 'yes'
 set __fish_git_prompt_showstashstate ''
 set __fish_git_prompt_showupstream ''
 
+set PATH /usr/local/bin/ $PATH
 set PATH $PATH ~/bin
 set PATH $PATH /opt/android-sdk/platform-tools
 set PATH $PATH /usr/bin/core_perl/
 set PATH $PATH /usr/bin/vendor_perl/
-set PATH $PATH /usr/local/bin/
 set PATH $PATH ~/.cargo/bin
 set PATH $PATH (ruby -e 'print Gem.user_dir')/bin
 set PATH $PATH ~/dev/go/bin
