@@ -130,7 +130,7 @@ setenv NAME "Jon Gjengset"
 setenv GOPATH "$HOME/dev/go:$HOME/dev/projects/cuckood:$HOME/dev/projects/hasmail"
 setenv RUST_BACKTRACE 1
 setenv CARGO_INCREMENTAL 1
-setenv RUSTFLAGS "-C link-args=-fuse-ld=gold"
+setenv RUSTFLAGS "-C link-args=-fuse-ld=gold -C target-cpu=native"
 setenv WINEDEBUG fixme-all
 
 # https://blog.packagecloud.io/eng/2017/02/21/set-environment-variable-save-thousands-of-system-calls/
