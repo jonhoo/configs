@@ -1,7 +1,5 @@
 set -U fish_user_abbreviations
 set -U fish_user_abbreviations $fish_user_abbreviations 'o=xdg-open'
-set -U fish_user_abbreviations $fish_user_abbreviations 'p=sudo pacman'
-set -U fish_user_abbreviations $fish_user_abbreviations 'y=yaourt'
 set -U fish_user_abbreviations $fish_user_abbreviations 'g=git'
 set -U fish_user_abbreviations $fish_user_abbreviations 'gc=git checkout'
 set -U fish_user_abbreviations $fish_user_abbreviations 'vimdiff=nvim -d'
@@ -13,11 +11,14 @@ if status --is-interactive
 	tmux ^ /dev/null; and exec true
 end
 
-if [ -e /usr/bin/yaourt ]
-	set -U fish_user_abbreviations $fish_user_abbreviations 'up=yaourt -Syu --aur'
-else if [ -e /usr/bin/pacaur ]
+if [ -e /usr/bin/pacaur ]
+	set -U fish_user_abbreviations $fish_user_abbreviations 'p=pacaur'
 	set -U fish_user_abbreviations $fish_user_abbreviations 'up=pacaur -Syu'
+else if [ -e /usr/bin/yaourt ]
+	set -U fish_user_abbreviations $fish_user_abbreviations 'p=yaourt'
+	set -U fish_user_abbreviations $fish_user_abbreviations 'up=yaourt -Syu --aur'
 else
+	set -U fish_user_abbreviations $fish_user_abbreviations 'p=sudo pacman'
 	set -U fish_user_abbreviations $fish_user_abbreviations 'up=sudo pacman -Syu'
 end
 
