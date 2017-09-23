@@ -201,6 +201,25 @@ function fish_greeting
 	)
 	echo
 
+	echo -e " \\e[1mNetwork:\\e[0m"
+	echo
+	echo -ne (\
+		ip addr show up scope global | \
+			grep -E ': <|inet' | \
+			sed \
+				-e 's/^[[:digit:]]\+: //' \
+				-e 's/: <.*//' \
+				-e 's/.*inet[[:digit:]]* //' \
+				-e 's/\/.*//'| \
+			awk 'BEGIN {i=""} /\.|:/ {print i" "$0"\\\n"; next} // {i = $0}' | \
+			sort | \
+			column -t | \
+			sed 's/\(\(enp\|eth\)[^ ]*\)/\\\e[0;32m\1\\\e[0m/' | \
+			sed 's/\(wlp[^ ]*\)/\\\e[0;33m\1\\\e[0m/' | \
+			sed 's/^/\t/' \
+		)
+	echo
+
 	#echo -e " \\e[1mAnd here's a quote:\\e[0m"
 	#set_color blue
 	#fortune -asn 500 $FORTUNES | sed 's/^/ /'
