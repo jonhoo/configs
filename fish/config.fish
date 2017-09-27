@@ -203,6 +203,7 @@ function fish_greeting
 
 	echo -e " \\e[1mNetwork:\\e[0m"
 	echo
+	# http://tdt.rocks/linux_network_interface_naming.html
 	echo -ne (\
 		ip addr show up scope global | \
 			grep -E ': <|inet' | \
@@ -213,9 +214,20 @@ function fish_greeting
 				-e 's/\/.*//'| \
 			awk 'BEGIN {i=""} /\.|:/ {print i" "$0"\\\n"; next} // {i = $0}' | \
 			sort | \
-			column -t | \
-			sed 's/\(\(enp\|eth\)[^ ]*\)/\\\e[0;32m\1\\\e[0m/' | \
-			sed 's/\(wlp[^ ]*\)/\\\e[0;33m\1\\\e[0m/' | \
+			column -t -R1 | \
+			# public addresses are underlined for visibility \
+			sed 's/ \([^ ]\+\)$/ \\\e[4m\1/' | \
+			# private addresses are not \
+			sed 's/m\(\(10\.\|172\.\(1[6-9]\|2[0-9]\|3[01]\)\|192\.168\.\).*\)/m\\\e[24m\1/' | \
+			# unknown interfaces are cyan \
+			sed 's/^\( *[^ ]\+\)/\\\e[36m\1/' | \
+			# ethernet interfaces are normal \
+			sed 's/\(\(en\|em\|eth\)[^ ]* .*\)/\\\e[39m\1/' | \
+			# wireless interfaces are purple \
+			sed 's/\(wl[^ ]* .*\)/\\\e[35m\1/' | \
+			# wwan interfaces are yellow \
+			sed 's/\(ww[^ ]* .*\).*/\\\e[33m\1/' | \
+			sed 's/$/\\\e[0m/' | \
 			sed 's/^/\t/' \
 		)
 	echo
