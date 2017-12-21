@@ -8,21 +8,13 @@ if test -e /usr/bin/xmodmap; then
   fi
 fi
 
-# X styling
-xrdb .Xresources;
-
-# Start user-space DBUS
-for f in /etc/X11/xinit/xinitrc.d/*.sh; do
-	source "$f"
-done
-
-autoif=$(systemctl | grep netctl-auto | awk '{print $1}' | sed 's/.*@\(.*\)\.service/\1/')
-if [[ -n $autoif ]]; then
-	has_carrier=$(cat /sys/class/net/autoif/carrier 2>/dev/null)
-	if [[ $has_carrier -ne "1" ]]; then
-		sudo systemctl restart netctl-auto@$autoif &
-	fi
-fi
+# autoif=$(systemctl | grep netctl-auto | awk '{print $1}' | sed 's/.*@\(.*\)\.service/\1/')
+# if [[ -n $autoif ]]; then
+# 	has_carrier=$(cat /sys/class/net/autoif/carrier 2>/dev/null)
+# 	if [[ $has_carrier -ne "1" ]]; then
+# 		sudo systemctl restart netctl-auto@$autoif &
+# 	fi
+# fi
 
 # gnupg keyring agent
 # ensure it's started so SSH will work
@@ -55,18 +47,11 @@ if test -e "/usr/bin/kupfer" ; then
     kupfer --no-splash 2> .logs/kupfer.err > .logs/kupfer.log &
 fi
 
-if test -e "/usr/bin/xscreensaver" ; then
-    xscreensaver -no-splash &
-fi
-
 # Tray icons
-if test -e "/usr/bin/caffeine" ; then
-    caffeine 2> .logs/caffeine.err > .logs/caffeine.log &
-fi
-if test -e "/home/jon/dev/minor/buzz/target/release/buzz"; then
+if test -e "/home/jon/.no-net-start" ; then
+    :
+elif test -e "/home/jon/dev/minor/buzz/target/release/buzz"; then
     ~/dev/minor/buzz/target/release/buzz 2> .logs/buzz.err > .logs/buzz.log &
-elif test -e "/usr/bin/hasmail" ; then
-    /usr/bin/hasmail 2> .logs/hasmail.err > .logs/hasmail.log &
 fi
 if test -e "/usr/bin/cbatticon" ; then
     cbatticon -i notification &
@@ -78,7 +63,7 @@ if test -e "/usr/bin/nitrogen" ; then
 fi
 
 if test -e /usr/bin/taffybar; then
-taffybar &
+    taffybar &
 fi
 
 # And wait for WM
