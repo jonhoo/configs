@@ -37,7 +37,7 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     , ((mod4Mask, xK_c), (spawn "xterm"))
     , ((mod4Mask, xK_q), (spawn "/usr/bin/bash -c 'notify-send -i time \"Right now, it is\" \"$(date \"+%-I:%M %p, %A %B %d, %Y\")\n$(acpi | sed \"s/Battery 0://\")\"'"))
     , ((mod4Mask, xK_e), (windows $ W.greedyView "mx") >> spawn "alacritty -t mutt -e tmux new-session -A -s mail /bin/bash -ic \"mutt -e 'source ~/.mutt/account.fm'\"")
-    , ((mod4Mask, xK_t), (spawn "alacritty -e /bin/bash -i"))
+    , ((mod4Mask, xK_t), (spawn "xterm -e /bin/bash -i"))
     , ((modm, xK_Print), (spawn "scrot -s"))
     --, ((mod4Mask, xK_l), (spawn "physlock -dms"))
     , ((mod4Mask, xK_l), (spawn "slock"))
