@@ -4,6 +4,7 @@ set -U fish_user_abbreviations $fish_user_abbreviations 'g=git'
 set -U fish_user_abbreviations $fish_user_abbreviations 'gc=git checkout'
 set -U fish_user_abbreviations $fish_user_abbreviations 'vimdiff=nvim -d'
 set -U fish_user_abbreviations $fish_user_abbreviations 'clippy=cargo +nightly clippy'
+set -U fish_user_abbreviations $fish_user_abbreviations 'cargot=cargo t'
 complete --command yaourt --wraps pacman
 complete --command pacaur --wraps pacman
 
@@ -125,7 +126,8 @@ set PATH $PATH ~/.npm-global/bin
 
 # For RLS
 # https://github.com/fish-shell/fish-shell/issues/2456
-setenv LD_LIBRARY_PATH "$LD_LIBRARY_PATH:$HOME/.rustup/toolchains/nightly-x86_64-unknown-linux-gnu/lib/"
+setenv LD_LIBRARY_PATH (rustc +nightly --print sysroot)"/lib:$LD_LIBRARY_PATH"
+setenv RUST_SRC_PATH (rustc --print sysroot)"/lib/rustlib/src/rust/src"
 setenv RLS_ROOT ~/dev/others/rls
 
 setenv EDITOR nvim
@@ -133,9 +135,10 @@ setenv BROWSER firefox-developer-edition
 setenv EMAIL jon@tsp.io
 setenv NAME "Jon Gjengset"
 setenv GOPATH "$HOME/dev/go:$HOME/dev/projects/cuckood:$HOME/dev/projects/hasmail"
-setenv RUST_BACKTRACE 1
+setenv RUST_BACKTRACE full
 setenv CARGO_INCREMENTAL 1
-setenv RUSTFLAGS "-C link-args=-fuse-ld=gold -C target-cpu=native"
+#setenv RUSTFLAGS "-C codegen-units=4 -Z thinlto -C target-cpu=native"
+setenv RUSTFLAGS "-C target-cpu=native"
 setenv WINEDEBUG fixme-all
 setenv FZF_DEFAULT_COMMAND 'rg --files --follow'
 setenv FZF_CTRL_T_COMMAND 'rg --files --follow'
