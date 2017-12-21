@@ -1,6 +1,6 @@
 set imap_user="jon@eml.cc"
-set spoolfile="imaps://mail.messagingengine.com"
-set folder="imaps://mail.messagingengine.com/INBOX"
+set spoolfile="imaps://imap.fastmail.com"
+set folder="imaps://imap.fastmail.com/INBOX"
 set from="jon@thesquareplanet.com"
 set record="+.Sent Items"
 set postponed="+.Drafts
