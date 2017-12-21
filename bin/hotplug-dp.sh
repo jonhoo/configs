@@ -96,4 +96,4 @@ fi
 /usr/bin/pkill notify-osd
 /usr/bin/sudo -E -u jon nitrogen --restore
 
-/usr/bin/systemctl restart systemd-logind
+# /usr/bin/systemctl restart systemd-logind
