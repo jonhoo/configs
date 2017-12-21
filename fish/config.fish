@@ -129,7 +129,7 @@ setenv LD_LIBRARY_PATH "$LD_LIBRARY_PATH:$HOME/.rustup/toolchains/nightly-x86_64
 setenv RLS_ROOT ~/dev/others/rls
 
 setenv EDITOR nvim
-setenv BROWSER vivaldi-snapshot
+setenv BROWSER firefox-developer-edition
 setenv EMAIL jon@tsp.io
 setenv NAME "Jon Gjengset"
 setenv GOPATH "$HOME/dev/go:$HOME/dev/projects/cuckood:$HOME/dev/projects/hasmail"
