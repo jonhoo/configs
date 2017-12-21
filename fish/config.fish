@@ -112,7 +112,7 @@ set FORTUNES off/religion off/vulgarity $FORTUNES
 set __fish_git_prompt_showuntrackedfiles 'yes'
 set __fish_git_prompt_showdirtystate 'yes'
 set __fish_git_prompt_showstashstate ''
-set __fish_git_prompt_showupstream ''
+set __fish_git_prompt_showupstream 'none'
 
 set PATH /usr/local/bin/ $PATH
 set PATH $PATH ~/bin
