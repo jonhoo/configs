@@ -33,6 +33,10 @@ else
 	set -U fish_user_abbreviations $fish_user_abbreviations 'lll=ls -la'
 end
 
+if [ -e /usr/share/fish/functions/fzf_key_bindings.fish ]; and status --is-interactive
+	source /usr/share/fish/functions/fzf_key_bindings.fish
+end
+
 function md2pdf
 	set t (mktemp -t md2pdf.XXXXXXX.pdf)
 	pandoc --smart --standalone --from markdown_github -V geometry:letterpaper,margin=2cm $argv[1] -o $t
@@ -133,6 +137,9 @@ setenv RUST_BACKTRACE 1
 setenv CARGO_INCREMENTAL 1
 setenv RUSTFLAGS "-C link-args=-fuse-ld=gold -C target-cpu=native"
 setenv WINEDEBUG fixme-all
+setenv FZF_DEFAULT_COMMAND 'rg --files --follow'
+setenv FZF_CTRL_T_COMMAND 'rg --files --follow'
+setenv FZF_DEFAULT_OPTS '--height 20%'
 
 # https://blog.packagecloud.io/eng/2017/02/21/set-environment-variable-save-thousands-of-system-calls/
 setenv TZ ":/etc/localtime"
@@ -183,7 +190,10 @@ if test -e ~/.dir_colors
 end
 
 function fish_user_key_bindings
-	bind \cr 'fg>/dev/null ^/dev/null'
+	bind \cz 'fg>/dev/null ^/dev/null'
+	if functions -q fzf_key_bindings
+		fzf_key_bindings
+	end
 end
 
 function fish_greeting

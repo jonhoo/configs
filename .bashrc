@@ -203,3 +203,5 @@ EOF
   chmod +x /tmp/watcher-$$
   watch /tmp/watcher-$$
 }
+
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash

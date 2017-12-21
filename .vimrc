@@ -17,10 +17,14 @@ Plug 'ciaranm/securemodelines'
 Plug 'vim-scripts/localvimrc'
 
 " GUI enhancements
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
+Plug 'itchyny/lightline.vim'
 Plug 'w0rp/ale'
-Plug 'kien/ctrlp.vim'
+Plug 'machakann/vim-highlightedyank'
+
+" Fuzzy finder
+Plug 'airblade/vim-rooter'
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
 
 " Semantic language support
 Plug 'phildawes/racer'
@@ -62,6 +66,10 @@ if has('nvim')
     noremap <C-q> :confirm qall<CR>
 end
 
+if !has('gui_running')
+  set t_Co=256
+endif
+
 " Plugin settings
 let g:secure_modelines_allowed_items = [
                 \ "textwidth",   "tw",
@@ -80,22 +88,20 @@ let g:secure_modelines_allowed_items = [
 let base16colorspace=256
 let g:base16_shell_path="~/dev/others/base16/shell/scripts/"
 
-" Airline + CtrlP
-let g:airline_powerline_fonts = 1
-let g:airline_theme = "base16"
-let g:ctrlp_root_markers = ['.lvimrc', '.git']
-let g:ctrlp_custom_ignore = {
-  \ 'dir': '\.git$\|\.hg$\|\.svn$\|publish$\|intermediate$\|node_modules$\|components$\|target$',
-  \ 'file': '\~$\|\.png$\|\.jpg$\|\.gif$\|\.settings$\|Thumbs\.db\|\.min\.js$\|\.swp\|\.o$\|\.hi$\|.a$\|.sqlite3$\|.key$\|.pub$\|.racertmp$',
-  \ }
+" Lightline
+" let g:lightline = { 'colorscheme': 'wombat' }
+let g:lightline = {
+      \ 'component_function': {
+      \   'filename': 'LightlineFilename',
+      \ },
+\ }
+function! LightlineFilename()
+  return expand('%:t') !=# '' ? @% : '[No Name]'
+endfunction
 
 " from http://sheerun.net/2014/03/21/how-to-boost-your-vim-productivity/
-let g:ctrlp_use_caching = 0
 if executable('ag')
 	set grepprg=ag\ --nogroup\ --nocolor
-	let g:ctrlp_user_command = 'ag %s -l --nocolor --ignore-dir node_modules --ignore-dir target -g ""'
-else
-	let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files . -co --exclude-standard', 'find %s -type f']
 endif
 if executable('rg')
 	set grepprg=rg\ --no-heading\ --vimgrep
@@ -112,6 +118,7 @@ let g:ale_lint_on_text_changed = 'never'
 let g:ale_lint_on_save = 0
 let g:ale_lint_on_enter = 0
 let g:ale_rust_cargo_use_check = 1
+let g:ale_rust_cargo_check_all_targets = 1
 " let g:neomake_info_sign = {'text': '⚕', 'texthl': 'NeomakeInfoSign'}
 
 " Latex
@@ -119,21 +126,25 @@ let g:latex_indent_enabled = 1
 let g:latex_fold_envs = 0
 let g:latex_fold_sections = []
 
-" Per-buffer CtrlP hotkey
-nmap <leader>; :CtrlPBuffer<CR>
-nmap <Leader>o :CtrlP<CR>
+" Open hotkeys
+nmap <c-p> :Files<CR>
+nmap <leader>; :Buffers<CR>
+nmap <Leader>o :Files<CR>
+
+" Quick-save
 nmap <Leader>w :w<CR>
 
 " Don't confirm .lvimrc
 let g:localvimrc_ask = 0
 
 " language server protocol
-"let g:LanguageClient_serverCommands = {
-"    \ 'rust': ['/home/jon/.rustup/toolchains/nightly-x86_64-unknown-linux-gnu/bin/rls'],
-"    \ }
-"nnoremap <silent> K :call LanguageClient_textDocument_hover()<CR>
-"nnoremap <silent> gd :call LanguageClient_textDocument_definition()<CR>
-"nnoremap <silent> <F2> :call LanguageClient_textDocument_rename()<CR>
+let g:LanguageClient_serverCommands = {
+    \ 'rust': ['rustup', 'run', 'nightly', 'rls'],
+    \ }
+let g:LanguageClient_autoStart = 1
+nnoremap <silent> K :call LanguageClient_textDocument_hover()<CR>
+nnoremap <silent> gd :call LanguageClient_textDocument_definition()<CR>
+nnoremap <silent> <F2> :call LanguageClient_textDocument_rename()<CR>
 
 " racer + rust
 let g:rustfmt_autosave = 1
@@ -284,8 +295,16 @@ map L $
 noremap <leader>p :read !xsel --clipboard --output<cr>
 noremap <leader>c :w !xsel -ib<cr><cr>
 
-" <leader>s for Ack/Ag search
-noremap <leader>s :Ag
+" <leader>s for Rg search
+noremap <leader>s :Rg
+let g:fzf_layout = { 'down': '~20%' }
+command! -bang -nargs=* Rg
+  \ call fzf#vim#grep(
+  \   'rg --column --line-number --no-heading --color=always '.shellescape(<q-args>), 1,
+  \   <bang>0 ? fzf#vim#with_preview('up:60%')
+  \           : fzf#vim#with_preview('right:50%:hidden', '?'),
+  \   <bang>0)
+
 
 " No arrow keys --- force yourself to use the home row
 nnoremap <up> <nop>
