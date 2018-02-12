@@ -49,6 +49,15 @@ function ssh
 	end
 end
 
+function remote_alacritty
+	# https://gist.github.com/costis/5135502
+	set fn (mktemp)
+	infocmp alacritty-256color > $fn
+	scp $fn $argv[1]":alacritty-256color.ti"
+	ssh $argv[1] tic "alacritty-256color.ti"
+	ssh $argv[1] rm "alacritty-256color.ti"
+end
+
 function md2pdf
 	set t (mktemp -t md2pdf.XXXXXXX.pdf)
 	pandoc --smart --standalone --from markdown_github -V geometry:letterpaper,margin=2cm $argv[1] -o $t
