@@ -58,6 +58,21 @@ function remote_alacritty
 	ssh $argv[1] rm "alacritty-256color.ti"
 end
 
+function remarkable
+	if test (count $argv) -ne 1
+		echo "No file given"
+		return
+	end
+
+	ip addr show up to 10.11.99.0/29 | grep enp0s20u2 >/dev/null
+	if test $status -ne 0
+		# not yet connected
+		echo "Connecting to reMarkable internal network"
+		sudo dhcpcd enp0s20u2
+	end
+	curl --form "file=@"$argv[1] http://10.11.99.1/upload
+end
+
 function md2pdf
 	set t (mktemp -t md2pdf.XXXXXXX.pdf)
 	pandoc --smart --standalone --from markdown_github -V geometry:letterpaper,margin=2cm $argv[1] -o $t
