@@ -38,6 +38,17 @@ if [ -e /usr/share/fish/functions/fzf_key_bindings.fish ]; and status --is-inter
 	source /usr/share/fish/functions/fzf_key_bindings.fish
 end
 
+function ssh
+	switch $argv[1]
+	case "*.amazonaws.com"
+		env TERM=xterm /usr/bin/ssh $argv
+	case "ec2-user@"
+		env TERM=xterm /usr/bin/ssh $argv
+	case "*"
+		/usr/bin/ssh $argv
+	end
+end
+
 function md2pdf
 	set t (mktemp -t md2pdf.XXXXXXX.pdf)
 	pandoc --smart --standalone --from markdown_github -V geometry:letterpaper,margin=2cm $argv[1] -o $t
