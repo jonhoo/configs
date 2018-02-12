@@ -152,7 +152,7 @@ type = internal/github
 token = ${file:/home/jon/.config/github/notifications.token}
 empty-notifications = false
 ;label = %{u#ff9900 +u} %notifications% %{u-}
-label = %{u#ff9900 +u} 📫 %{u-}
+label = %{u#0099ff +u} 📫 %{u-}
 interval = 10
 
 [settings]
