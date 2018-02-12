@@ -42,30 +42,6 @@ xsetroot -cursor_name left_ptr
 xmonad 2> .logs/xmonad.err > .logs/xmonad.log &
 wmpid=$!
 
-# Apps
-if test -e "/usr/bin/kupfer" ; then
-    kupfer --no-splash 2> .logs/kupfer.err > .logs/kupfer.log &
-fi
-
-# Tray icons
-if test -e "/home/jon/.no-net-start" ; then
-    :
-elif test -e "/home/jon/dev/minor/buzz/target/release/buzz"; then
-    ~/dev/minor/buzz/target/release/buzz 2> .logs/buzz.err > .logs/buzz.log &
-fi
-if test -e "/usr/bin/cbatticon" ; then
-    cbatticon -i notification &
-fi
-
-# wallpaper
-if test -e "/usr/bin/nitrogen" ; then
-    nitrogen --restore &
-fi
-
-if test -e /usr/bin/taffybar; then
-    taffybar &
-fi
-
 # And wait for WM
 echo $wmpid > .wmpid
 wait $wmpid

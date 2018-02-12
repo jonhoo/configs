@@ -1,3 +1,4 @@
+import qualified Codec.Binary.UTF8.String as UTF8
 import Data.Monoid
 
 import XMonad
@@ -17,12 +18,10 @@ import System.IO
 import Control.Monad
 import qualified XMonad.StackSet as W
 
-import DBus.Client
-
 import XMonad.Hooks.EwmhDesktops (ewmh, fullscreenEventHook)
 import XMonad.Hooks.ManageDocks
 import XMonad.Config.Desktop
-import System.Taffybar.Hooks.PagerHints (pagerHints)
+import XMonad.Util.SpawnOnce
 
 myTerminal      = "alacritty"
 myFocusFollowsMouse = False
@@ -115,11 +114,16 @@ myManageHook = composeAll
     appCommand = stringProperty "WM_COMMAND"
     --doShiftAndGo = doF . liftM2 (.) W.greedyView W.shift
 
+myStartupHook = do
+  spawnOnce "$HOME/.config/polybar/launch.sh"
+  spawnOnce "$HOME/dev/minor/buzz/target/release/buzz"
+  spawnOnce "kupfer --no-splash"
+  spawnOnce "nitrogen --restore"
+
 ------------------------------------------------------------------------
 -- Now run xmonad with all the defaults we set up.
 main = do
-    client <- connectSession
-    xmonad $ pagerHints $ desktopConfig {
+    xmonad $ desktopConfig {
         terminal           = myTerminal,
         focusFollowsMouse  = myFocusFollowsMouse,
         clickJustFocuses   = myClickJustFocuses,
@@ -129,5 +133,6 @@ main = do
         keys               = \c -> myKeys c `M.union` keys XMonad.def c,
         layoutHook         = desktopLayoutModifiers $ noBorders $ myLayout,
         manageHook         = myManageHook <+> manageHook desktopConfig,
-        handleEventHook    = fullscreenEventHook <+> handleEventHook desktopConfig
+        handleEventHook    = fullscreenEventHook <+> handleEventHook desktopConfig,
+	startupHook        = myStartupHook <+> startupHook desktopConfig
     }
