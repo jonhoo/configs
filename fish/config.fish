@@ -23,7 +23,7 @@ else
 	set -U fish_user_abbreviations $fish_user_abbreviations 'up=sudo pacman -Syu'
 end
 
-if [ -e /usr/local/bin/exa ]
+if [ -e ~/.cargo/bin/exa ]
 	set -U fish_user_abbreviations $fish_user_abbreviations 'l=exa'
 	set -U fish_user_abbreviations $fish_user_abbreviations 'ls=exa'
 	set -U fish_user_abbreviations $fish_user_abbreviations 'll=exa -l'
