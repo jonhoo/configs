@@ -343,6 +343,9 @@ nnoremap <leader>= :'<,'>RustFmtRange<cr>
 " <leader>, shows/hides hidden characters
 nnoremap <leader>, :set invlist<cr>
 
+" <leader>q shows stats
+nnoremap <leader>q g<c-g>
+
 " Keymap for replacing up to next _ or -
 noremap <leader>m ct_
 noremap <leader>n ct-
