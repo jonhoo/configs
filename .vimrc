@@ -44,6 +44,10 @@ let g:python_support_python3_requirements = add(get(g:,'python_support_python3_r
 let g:python_support_python3_requirements = add(get(g:,'python_support_python3_requirements',[]),'psutil')
 let g:python_support_python3_requirements = add(get(g:,'python_support_python3_requirements',[]),'setproctitle')
 
+" LanguageClient enhancements
+" Showing function signature and inline doc.
+Plug 'Shougo/echodoc.vim'
+
 " Syntactic language support
 " Plugin '~/dev/projects/simio', {'rtp': 'src/vim-syntax/'}
 Plug '~/dev/projects/api-soup', {'rtp': 'vim-syntax/'}
@@ -179,7 +183,7 @@ set autoindent
 set timeoutlen=300 " http://stackoverflow.com/questions/2158516/delay-before-o-opens-a-new-line
 set encoding=utf-8
 set scrolloff=3
-set showmode
+set noshowmode
 set hidden
 set nowrap
 set nojoinspaces
