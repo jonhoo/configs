@@ -12,15 +12,11 @@ maxlight() {
 
 lowdpi() {
 	/usr/bin/sed -i 's/Xft.dpi: .*/Xft.dpi: 96/' ~jon/.Xresources
-	/usr/bin/sed -i 's/x: 144.0/x: 96.0/' ~jon/.config/alacritty.yml
-	/usr/bin/sed -i 's/y: 144.0/y: 96.0/' ~jon/.config/alacritty.yml
 	/usr/bin/sudo -E -u jon xrdb ~jon/.Xresources
 }
 
 hidpi() {
 	/usr/bin/sed -i 's/Xft.dpi: .*/Xft.dpi: 144/' ~jon/.Xresources
-	/usr/bin/sed -i 's/x: 96.0/x: 144.0/' ~jon/.config/alacritty.yml
-	/usr/bin/sed -i 's/y: 96.0/y: 144.0/' ~jon/.config/alacritty.yml
 	/usr/bin/sudo -u jon xrdb ~jon/.Xresources
 }
 
