@@ -172,8 +172,8 @@ setenv CARGO_INCREMENTAL 1
 #setenv RUSTFLAGS "-C codegen-units=4 -Z thinlto -C target-cpu=native"
 setenv RUSTFLAGS "-C target-cpu=native"
 setenv WINEDEBUG fixme-all
-setenv FZF_DEFAULT_COMMAND 'rg --files --follow'
-setenv FZF_CTRL_T_COMMAND 'rg --files --follow'
+setenv FZF_DEFAULT_COMMAND 'fd --type file --follow'
+setenv FZF_CTRL_T_COMMAND 'fd --type file --follow'
 setenv FZF_DEFAULT_OPTS '--height 20%'
 
 # https://blog.packagecloud.io/eng/2017/02/21/set-environment-variable-save-thousands-of-system-calls/
