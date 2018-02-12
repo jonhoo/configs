@@ -276,11 +276,6 @@ function fish_greeting
 		)
 	echo
 
-	#echo -e " \\e[1mAnd here's a quote:\\e[0m"
-	#set_color blue
-	#fortune -asn 500 $FORTUNES | sed 's/^/ /'
-	#echo
-
 	set r (random 0 100)
 	if [ $r -lt 2 ] # only occasionally show backlog (2%)
 		echo -e " \e[1mBacklog\e[0;32m"
@@ -288,12 +283,6 @@ function fish_greeting
 		echo "  [project] <description>"
 		echo
 	end
-
-	set_color normal
-	echo -e " \e[1mIn progress\e[0;32m"
-	set_color magenta
-	echo "  [project] <description>"
-	echo
 
 	set_color normal
 	echo -e " \e[1mTODOs\e[0;32m"
