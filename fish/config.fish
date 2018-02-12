@@ -308,7 +308,7 @@ function fish_greeting
 
 	echo
 
-	if test -e ~/todo
+	if test -s ~/todo
 		set_color normal
 		echo -e " \e[1mImmediate\e[0;32m"
 		set_color magenta
