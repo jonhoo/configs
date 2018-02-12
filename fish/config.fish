@@ -167,9 +167,8 @@ setenv BROWSER firefox-developer-edition
 setenv EMAIL jon@tsp.io
 setenv NAME "Jon Gjengset"
 setenv GOPATH "$HOME/dev/go:$HOME/dev/projects/cuckood:$HOME/dev/projects/hasmail"
-setenv RUST_BACKTRACE full
+setenv RUST_BACKTRACE 1
 setenv CARGO_INCREMENTAL 1
-#setenv RUSTFLAGS "-C codegen-units=4 -Z thinlto -C target-cpu=native"
 setenv RUSTFLAGS "-C target-cpu=native"
 setenv WINEDEBUG fixme-all
 setenv FZF_DEFAULT_COMMAND 'fd --type file --follow'
