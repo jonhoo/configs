@@ -127,12 +127,11 @@ let g:latex_fold_envs = 0
 let g:latex_fold_sections = []
 
 " Open hotkeys
-nmap <c-p> :Files<CR>
+map <C-p> :Files<CR>
 nmap <leader>; :Buffers<CR>
-nmap <Leader>o :Files<CR>
 
 " Quick-save
-nmap <Leader>w :w<CR>
+nmap <leader>w :w<CR>
 
 " Don't confirm .lvimrc
 let g:localvimrc_ask = 0
@@ -155,7 +154,7 @@ let $RUST_SRC_PATH = systemlist("rustc --print sysroot")[0] . "/lib/rustlib/src/
 
 " Completion
 " newline on enter
-inoremap <expr> <CR> (pumvisible() ? "\<c-y>\<cr>" : "\<CR>")
+inoremap <expr><CR> (pumvisible()?(empty(v:completed_item)?"\<C-n>\<C-y>":"\<C-y>"):"\<CR>")
 " tab to select
 inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
