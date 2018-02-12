@@ -14,7 +14,6 @@ lowdpi() {
 	/usr/bin/sed -i 's/Xft.dpi: .*/Xft.dpi: 96/' ~jon/.Xresources
 	/usr/bin/sed -i 's/x: 144.0/x: 96.0/' ~jon/.config/alacritty.yml
 	/usr/bin/sed -i 's/y: 144.0/y: 96.0/' ~jon/.config/alacritty.yml
-	/usr/bin/sed -i 's/barHeight = .*/barHeight = 20/' ~jon/.config/taffybar/taffybar.hs
 	/usr/bin/sudo -E -u jon xrdb ~jon/.Xresources
 }
 
@@ -22,7 +21,6 @@ hidpi() {
 	/usr/bin/sed -i 's/Xft.dpi: .*/Xft.dpi: 144/' ~jon/.Xresources
 	/usr/bin/sed -i 's/x: 96.0/x: 144.0/' ~jon/.config/alacritty.yml
 	/usr/bin/sed -i 's/y: 96.0/y: 144.0/' ~jon/.config/alacritty.yml
-	/usr/bin/sed -i 's/barHeight = .*/barHeight = 30/' ~jon/.config/taffybar/taffybar.hs
 	/usr/bin/sudo -u jon xrdb ~jon/.Xresources
 }
 
@@ -84,16 +82,9 @@ else
 	/usr/bin/sed -i 's/HandleLidSwitch\=suspend/HandleLidSwitch\=ignore/' /etc/systemd/logind.conf
 fi
 
-# restart services
-pid=$(/usr/bin/pgrep taffybar)
-if [[ -n $pid ]]; then
-	/usr/bin/sudo -E -u jon kill $pid
-	/usr/bin/sleep 1
-	/usr/bin/sudo -E -u jon taffybar &
-fi
-
 # notify-osd doesn't need to be restored
 /usr/bin/pkill notify-osd
 /usr/bin/sudo -E -u jon nitrogen --restore
+/usr/bin/sudo -E -u jon /home/jon/.config/polybar/launch.sh
 
 # /usr/bin/systemctl restart systemd-logind
