@@ -281,10 +281,13 @@ function fish_greeting
 	#fortune -asn 500 $FORTUNES | sed 's/^/ /'
 	#echo
 
-	echo -e " \e[1mBacklog\e[0;32m"
-	set_color blue
-	echo "  [project] <description>"
-	echo
+	set r (random 0 100)
+	if [ $r -lt 2 ] # only occasionally show backlog (2%)
+		echo -e " \e[1mBacklog\e[0;32m"
+		set_color blue
+		echo "  [project] <description>"
+		echo
+	end
 
 	set_color normal
 	echo -e " \e[1mIn progress\e[0;32m"
@@ -294,14 +297,26 @@ function fish_greeting
 
 	set_color normal
 	echo -e " \e[1mTODOs\e[0;32m"
-	set_color cyan
-	echo "  [project] <description>"
-	set_color green
-	echo "  [project] <description>"
-	set_color yellow
-	echo "  [project] <description>"
+	if [ $r -lt 10 ]
+		# unimportant, so show rarely
+		set_color cyan
+		# echo "  [project] <description>"
+	end
+	if [ $r -lt 25 ]
+		# back-of-my-mind, so show occasionally
+		set_color green
+		# echo "  [project] <description>"
+	end
+	if [ $r -lt 50 ]
+		# upcoming, so prompt regularly
+		set_color yellow
+		# echo "  [project] <description>"
+	end
+
+	# urgent, so prompt always
 	set_color red
-	echo "  [project] <description>"
+	# echo "  [project] <description>"
+
 	echo
 
 	if test -e ~/todo
