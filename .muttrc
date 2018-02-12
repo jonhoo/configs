@@ -61,19 +61,19 @@ macro compose x '<edit-from><kill-line>Jon Gjengset <jfrg@csail.mit.edu><enter><
 
 # Convenience
 # Jump to archive
-macro index A '<change-folder>=Archive<tab><enter>'
+macro index A '<change-folder>!Archive<tab><enter>'
 # Jump to sent
-macro index O '<change-folder>=Sent<tab><enter>'
+macro index O '<change-folder>!Sent<tab><enter>'
 # Jump to inbox
-macro index I '<change-folder>=<enter>'
+macro index I '<change-folder>!<enter>'
 # Save (tagged or current) to archive
-macro index S ';<save-message>=Archive<tab><enter><enter>'
+macro index S ';<save-message>!Archive<tab><enter><enter>'
 # Mark as spam
-macro index ! ';<save-message>=Junk<tab><enter><enter>'
+macro index ! ';<save-message>!Junk<tab><enter><enter>'
 
 # Make deletion non-permanent
-macro index d 's=Trash<enter><enter>' "Move message to trash"
-macro pager d 's=Trash<enter><enter>' "Move message to trash"
+macro index d 's!Trash<enter><enter>' "Move message to trash"
+macro pager d 's!Trash<enter><enter>' "Move message to trash"
 # and expunge explicit
 macro index x '<delete-message>' "Delete message permanently"
 macro pager x '<delete-message>' "Delete message permanently"
