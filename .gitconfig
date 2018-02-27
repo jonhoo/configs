@@ -16,6 +16,7 @@
 	st = status
 	lg = log --oneline
 	last = log -1 HEAD
+	force = push --force-with-lease
 [push]
 	default = simple
 [help]
