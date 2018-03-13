@@ -46,7 +46,6 @@ if [ "$STATUS" = "disconnected" ]; then
 	/usr/bin/xset +dpms
 	/usr/bin/xset s default
 	hidpi
-	/usr/bin/sed -i 's/HandleLidSwitch\=ignore/HandleLidSwitch\=suspend/' /etc/systemd/logind.conf
 else
 	if [[ $1 == "mirror" ]]; then
 		/usr/bin/xrandr --output $DEV --mode 1024x768
@@ -74,13 +73,9 @@ else
 
 	/usr/bin/xrandr --dpi 96
 	lowdpi
-
-	/usr/bin/sed -i 's/HandleLidSwitch\=suspend/HandleLidSwitch\=ignore/' /etc/systemd/logind.conf
 fi
 
 # notify-osd doesn't need to be restored
 /usr/bin/pkill notify-osd
 /usr/bin/sudo -E -u jon nitrogen --restore
 /usr/bin/sudo -E -u jon /home/jon/.config/polybar/launch.sh
-
-# /usr/bin/systemctl restart systemd-logind
