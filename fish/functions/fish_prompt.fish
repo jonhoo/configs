@@ -8,7 +8,7 @@ function fish_prompt
   set_color blue
   echo -n (hostname)" "
   set_color green
-  echo -n (pwd | sed "s_$HOME""_~_")""
+  echo -n (prompt_pwd)
   set_color brown
   printf '%s ' (__fish_git_prompt)
   set_color red
