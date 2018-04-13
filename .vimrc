@@ -336,8 +336,8 @@ nnoremap k gk
 nmap <silent> L <Plug>(ale_lint)
 nmap <silent> <C-k> <Plug>(ale_previous_wrap)
 nmap <silent> <C-j> <Plug>(ale_next_wrap)
-nnoremap <C-l> :lopen<cr>
-nnoremap <C-g> :lclose<cr>
+nnoremap <C-l> :copen<cr>
+nnoremap <C-g> :cclose<cr>
 
 " <leader><leader> toggles between buffers
 nnoremap <leader><leader> <c-^>
