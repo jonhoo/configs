@@ -38,6 +38,10 @@ if [ -e /usr/share/fish/functions/fzf_key_bindings.fish ]; and status --is-inter
 	source /usr/share/fish/functions/fzf_key_bindings.fish
 end
 
+if test -f /usr/share/autojump/autojump.fish;
+	source /usr/share/autojump/autojump.fish;
+end
+
 function ssh
 	switch $argv[1]
 	case "*.amazonaws.com"
