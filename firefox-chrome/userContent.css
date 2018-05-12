@@ -1,4 +1,0 @@
-/* Disable Search box in New Tab page */
-@-moz-document url(about:newtab) {
-	#newtab-search-container, #newtab-search-logo { display:none !important; }
-}

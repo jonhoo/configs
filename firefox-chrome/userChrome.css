@@ -1,0 +1,21 @@
+@namespace url("http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul");
+
+/* tabs on bottom of window */
+#navigator-toolbox { -moz-box-ordinal-group: 10; }
+#TabsToolbar { -moz-box-ordinal-group: 10; }
+#PopupAutoCompleteRichResult {
+  margin-top: -35vh;
+  /*
+  position: fixed;
+  bottom: 74px;
+  margin-left: 0 !important;
+  */
+}
+#PopupAutoCompleteRichResult > hbox { display: none; }
+.tab-background { border-top: none !important; }
+#navigator-toolbox::after { border: none; }
+#TabsToolbar .tabbrowser-arrowscrollbox,
+#tabbrowser-tabs, .tab-stack { min-height: 28px !important; }
+.tabbrowser-tab { font-size: 80%; }
+.tab-content { padding: 0 5px; }
+.tab-close-button .toolbarbutton-icon { width: 12px !important; height: 12px !important; }
