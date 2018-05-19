@@ -285,7 +285,7 @@ function fish_greeting
 	echo
 
 	set r (random 0 100)
-	if [ $r -lt 2 ] # only occasionally show backlog (2%)
+	if [ $r -lt 5 ] # only occasionally show backlog (5%)
 		echo -e " \e[1mBacklog\e[0;32m"
 		set_color blue
 		echo "  [project] <description>"
@@ -294,6 +294,7 @@ function fish_greeting
 
 	set_color normal
 	echo -e " \e[1mTODOs\e[0;32m"
+	echo
 	if [ $r -lt 10 ]
 		# unimportant, so show rarely
 		set_color cyan
@@ -317,11 +318,8 @@ function fish_greeting
 	echo
 
 	if test -s ~/todo
-		set_color normal
-		echo -e " \e[1mImmediate\e[0;32m"
 		set_color magenta
-		echo
-		cat todo | sed 's/^/  /'
+		cat todo | sed 's/^/ /'
 		echo
 	end
 
