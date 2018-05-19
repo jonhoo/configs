@@ -5,6 +5,9 @@ set -U fish_user_abbreviations $fish_user_abbreviations 'gc=git checkout'
 set -U fish_user_abbreviations $fish_user_abbreviations 'vimdiff=nvim -d'
 set -U fish_user_abbreviations $fish_user_abbreviations 'clippy=cargo +nightly clippy'
 set -U fish_user_abbreviations $fish_user_abbreviations 'cargot=cargo t'
+set -U fish_user_abbreviations $fish_user_abbreviations 'aws=env AWS_SECRET_ACCESS_KEY=(pass www/aws-secret-key | head -n1)'
+set -U fish_user_abbreviations $fish_user_abbreviations 'gah=git stash; and git pull --rebase; and git stash pop'
+set -U fish_user_abbreviations $fish_user_abbreviations 'c=cargo'
 complete --command yaourt --wraps pacman
 complete --command pacaur --wraps pacman
 
@@ -190,9 +193,6 @@ setenv OS_TENANT_NAME usersandbox_jfrg
 setenv OS_AUTH_URL https://nimbus.csail.mit.edu:5001/v2.0
 setenv OS_IMAGE_API_VERSION 1
 setenv OS_VOLUME_API_VERSION 2
-function aws -d "Set up environment for AWS"
-	env AWS_SECRET_ACCESS_KEY=(pass www/aws-secret-key | head -n1) $argv
-end
 function penv -d "Set up environment for the PDOS openstack service"
 	env OS_PASSWORD=(pass www/mit-openstack | head -n1) OS_TENANT_NAME=pdos OS_PROJECT_NAME=pdos $argv
 end
