@@ -27,11 +27,15 @@ Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 
 " Semantic language support
-Plug 'phildawes/racer'
-Plug 'racer-rust/vim-racer'
-Plug 'autozimu/LanguageClient-neovim', { 'do': ':UpdateRemotePlugins' }
+"Plug 'phildawes/racer'
+"Plug 'racer-rust/vim-racer'
+Plug 'autozimu/LanguageClient-neovim', {
+    \ 'branch': 'next',
+    \ 'do': 'bash install.sh',
+    \ }
+Plug 'mattn/webapi-vim'
 Plug 'roxma/nvim-completion-manager'
-Plug 'roxma/nvim-cm-racer'
+"Plug 'roxma/nvim-cm-racer'
 Plug 'junegunn/vader.vim'
 
 " Completion manager plugins
@@ -142,7 +146,7 @@ let g:localvimrc_ask = 0
 
 " language server protocol
 let g:LanguageClient_serverCommands = {
-    \ 'rust': ['rustup', 'run', 'nightly', 'rls'],
+    \ 'rust': ['env', 'CARGO_TARGET_DIR=/home/jon/dev/tmp/cargo-target/rls', 'rls'],
     \ }
 let g:LanguageClient_autoStart = 1
 nnoremap <silent> K :call LanguageClient_textDocument_hover()<CR>
@@ -150,18 +154,21 @@ nnoremap <silent> gd :call LanguageClient_textDocument_definition()<CR>
 nnoremap <silent> <F2> :call LanguageClient_textDocument_rename()<CR>
 
 " racer + rust
+" https://github.com/rust-lang/rust.vim/issues/192
+let g:rustfmt_command = "rustfmt +nightly"
+let g:rustfmt_options = "--emit files"
 let g:rustfmt_autosave = 1
-let g:rustfmt_fail_silently = 1
-let g:racer_cmd = "/usr/bin/racer"
-let g:racer_experimental_completer = 1
+let g:rustfmt_fail_silently = 0
+let g:rust_clip_command = 'xclip -selection clipboard'
+"let g:racer_cmd = "/usr/bin/racer"
+"let g:racer_experimental_completer = 1
 let $RUST_SRC_PATH = systemlist("rustc --print sysroot")[0] . "/lib/rustlib/src/rust/src"
 
 " Completion
-" newline on enter
-inoremap <expr><CR> (pumvisible()?(empty(v:completed_item)?"\<C-n>\<C-y>":"\<C-y>"):"\<CR>")
 " tab to select
-inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
-inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+" and don't hijack my enter key
+inoremap <expr><Tab> (pumvisible()?(empty(v:completed_item)?"\<C-n>":"\<C-y>"):"\<Tab>")
+inoremap <expr><CR> (pumvisible()?(empty(v:completed_item)?"\<CR>\<CR>":"\<C-y>"):"\<CR>")
 
 " Doxygen
 let mysyntaxfile='~/.vim/doxygen_load.vim'
@@ -254,7 +261,9 @@ set backspace=2 " Backspace over newlines
 set foldmethod=marker " Only fold on marks
 set ruler " Where am I?
 set ttyfast
+" https://github.com/vim/vim/issues/1735#issuecomment-383353563
 set lazyredraw
+set synmaxcol=200
 set laststatus=2
 set relativenumber " Relative line numbers
 set diffopt+=iwhite " No whitespace in vimdiff
@@ -331,11 +340,11 @@ nnoremap j gj
 nnoremap k gk
 
 " Jump to next/previous error
-"nnoremap <C-j> :lnext<cr>
-"nnoremap <C-k> :lprev<cr>
+nnoremap <C-j> :cnext<cr>
+nnoremap <C-k> :cprev<cr>
 nmap <silent> L <Plug>(ale_lint)
-nmap <silent> <C-k> <Plug>(ale_previous_wrap)
-nmap <silent> <C-j> <Plug>(ale_next_wrap)
+"nmap <silent> <C-k> <Plug>(ale_previous_wrap)
+"nmap <silent> <C-j> <Plug>(ale_next_wrap)
 nnoremap <C-l> :copen<cr>
 nnoremap <C-g> :cclose<cr>
 
