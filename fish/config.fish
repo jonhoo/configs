@@ -10,12 +10,16 @@ set -U fish_user_abbreviations $fish_user_abbreviations 'gah=git stash; and git 
 set -U fish_user_abbreviations $fish_user_abbreviations 'c=cargo'
 complete --command yaourt --wraps pacman
 complete --command pacaur --wraps pacman
+complete --command aurman --wraps pacman
 
 if status --is-interactive
 	tmux ^ /dev/null; and exec true
 end
 
-if [ -e /usr/bin/pacaur ]
+if [ -e /usr/bin/aurman ]
+	set -U fish_user_abbreviations $fish_user_abbreviations 'p=aurman'
+	set -U fish_user_abbreviations $fish_user_abbreviations 'up=aurman -Syu'
+else if [ -e /usr/bin/pacaur ]
 	set -U fish_user_abbreviations $fish_user_abbreviations 'p=pacaur'
 	set -U fish_user_abbreviations $fish_user_abbreviations 'up=pacaur -Syu'
 else if [ -e /usr/bin/yaourt ]
