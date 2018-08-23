@@ -1,0 +1,6 @@
+{
+	"rust": {
+		"all_targets": true,
+		"build_on_save": true
+	}
+}

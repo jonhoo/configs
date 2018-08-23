@@ -142,6 +142,7 @@ nmap <leader>w :w<CR>
 let g:localvimrc_ask = 0
 
 " language server protocol
+let g:LanguageClient_settingsPath = "/home/jon/.vim/settings.json"
 let g:LanguageClient_serverCommands = {
     \ 'rust': ['env', 'CARGO_TARGET_DIR=/home/jon/dev/tmp/cargo-target/rls', 'rls'],
     \ }
