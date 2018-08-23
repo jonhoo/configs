@@ -23,7 +23,7 @@ line-size = 2
 padding = 1
 module-margin = 1
 
-font-0 = "Noto Mono:size=10;1"
+font-0 = "Noto Sans Mono:size=10;1"
 font-1 = "Noto Sans Mono:size=10;1"
 font-2 = "Noto Sans Symbols:size=10;1"
 font-3 = "Noto Sans Symbols2:size=10;1"

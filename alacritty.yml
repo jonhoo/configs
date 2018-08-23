@@ -61,19 +61,19 @@ draw_bold_text_with_bright_colors: true
 font:
   # The normal (roman) font face to use.
   normal:
-    family: "Noto Mono" # should be "Menlo" or something on macOS.
+    family: "Noto Sans Mono" # should be "Menlo" or something on macOS.
     # Style can be specified to pick a specific face.
     # style: Regular
 
   # The bold font face
   bold:
-    family: "Noto Mono" # should be "Menlo" or something on macOS.
+    family: "Noto Sans Mono" # should be "Menlo" or something on macOS.
     # Style can be specified to pick a specific face.
     # style: Bold
 
   # The italic font face
   italic:
-    family: "Noto Mono" # should be "Menlo" or something on macOS.
+    family: "Noto Sans Mono" # should be "Menlo" or something on macOS.
     # Style can be specified to pick a specific face.
     # style: Italic
 
