@@ -15,6 +15,7 @@ call plug#begin('~/.local/share/nvim/plugged')
 " VIM enhancements
 Plug 'ciaranm/securemodelines'
 Plug 'vim-scripts/localvimrc'
+Plug 'justinmk/vim-sneak'
 
 " GUI enhancements
 Plug 'itchyny/lightline.vim'
@@ -34,19 +35,15 @@ Plug 'autozimu/LanguageClient-neovim', {
     \ 'do': 'bash install.sh',
     \ }
 Plug 'mattn/webapi-vim'
-Plug 'roxma/nvim-completion-manager'
+Plug 'ncm2/ncm2'
+Plug 'roxma/nvim-yarp'
 "Plug 'roxma/nvim-cm-racer'
 Plug 'junegunn/vader.vim'
 
-" Completion manager plugins
-Plug 'roxma/python-support.nvim'
-" for python completions
-let g:python_support_python3_requirements = add(get(g:,'python_support_python3_requirements',[]),'jedi')
-" language specific completions on markdown file
-let g:python_support_python3_requirements = add(get(g:,'python_support_python3_requirements',[]),'mistune')
-" utils, optional
-let g:python_support_python3_requirements = add(get(g:,'python_support_python3_requirements',[]),'psutil')
-let g:python_support_python3_requirements = add(get(g:,'python_support_python3_requirements',[]),'setproctitle')
+" Completion plugins
+Plug 'ncm2/ncm2-bufword'
+Plug 'ncm2/ncm2-tmux'
+Plug 'ncm2/ncm2-path'
 
 " LanguageClient enhancements
 " Showing function signature and inline doc.
@@ -156,8 +153,8 @@ nnoremap <silent> <F2> :call LanguageClient_textDocument_rename()<CR>
 " racer + rust
 " https://github.com/rust-lang/rust.vim/issues/192
 let g:rustfmt_command = "rustfmt +nightly"
-let g:rustfmt_options = "--emit files"
 let g:rustfmt_autosave = 1
+let g:rustfmt_emit_files = 1
 let g:rustfmt_fail_silently = 0
 let g:rust_clip_command = 'xclip -selection clipboard'
 "let g:racer_cmd = "/usr/bin/racer"
@@ -165,6 +162,8 @@ let g:rust_clip_command = 'xclip -selection clipboard'
 let $RUST_SRC_PATH = systemlist("rustc --print sysroot")[0] . "/lib/rustlib/src/rust/src"
 
 " Completion
+autocmd BufEnter * call ncm2#enable_for_buffer()
+set completeopt=noinsert,menuone,noselect
 " tab to select
 " and don't hijack my enter key
 inoremap <expr><Tab> (pumvisible()?(empty(v:completed_item)?"\<C-n>":"\<C-y>"):"\<Tab>")
@@ -270,7 +269,6 @@ set diffopt+=iwhite " No whitespace in vimdiff
 set colorcolumn=80 " and give me a colored column
 set showcmd " Show (partial) command in status line.
 set mouse=a " Enable mouse usage (all modes) in terminals
-set completeopt-=preview
 set shortmess+=c " don't give |ins-completion-menu| messages.
 
 " Colors
