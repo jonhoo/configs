@@ -21,6 +21,7 @@ export PATH="$PATH:/home/jon/.cargo/bin"
 export WINEARCH=win32
 export GOPATH=~/dev/go
 export CCACHE_DIR="/var/cache/ccache"
+export CARGO_INCREMENTAL=1
 
 export GPODDER_HOME="/home/jon/.config/gpodder"
 export GPODDER_DOWNLOAD_DIR="/home/jon/.cache/gpodder"
