@@ -23,6 +23,5 @@ results/
 *.pyc
 __pycache__
 .setenv-*
-*.log
 *.err
 .vscode/settings.json
