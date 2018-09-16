@@ -192,6 +192,7 @@ setenv WINEDEBUG fixme-all
 setenv FZF_DEFAULT_COMMAND 'fd --type file --follow'
 setenv FZF_CTRL_T_COMMAND 'fd --type file --follow'
 setenv FZF_DEFAULT_OPTS '--height 20%'
+setenv R_LIBS_USER ~/.Rpackages
 
 # https://blog.packagecloud.io/eng/2017/02/21/set-environment-variable-save-thousands-of-system-calls/
 setenv TZ ":/etc/localtime"
