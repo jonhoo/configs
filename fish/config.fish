@@ -179,7 +179,6 @@ set PATH $PATH ~/dev/go/bin
 # https://github.com/fish-shell/fish-shell/issues/2456
 setenv LD_LIBRARY_PATH (rustc +nightly --print sysroot)"/lib:$LD_LIBRARY_PATH"
 setenv RUST_SRC_PATH (rustc --print sysroot)"/lib/rustlib/src/rust/src"
-setenv RLS_ROOT ~/dev/others/rls
 
 setenv EDITOR nvim
 setenv BROWSER firefox-developer-edition
