@@ -53,7 +53,7 @@ function ssh
 	switch $argv[1]
 	case "*.amazonaws.com"
 		env TERM=xterm /usr/bin/ssh $argv
-	case "ec2-user@"
+	case "ubuntu@"
 		env TERM=xterm /usr/bin/ssh $argv
 	case "*"
 		/usr/bin/ssh $argv
