@@ -74,8 +74,8 @@ function remote_alacritty
 end
 
 function remarkable
-	if test (count $argv) -ne 1
-		echo "No file given"
+	if test (count $argv) -lt 1
+		echo "No files given"
 		return
 	end
 
@@ -85,7 +85,10 @@ function remarkable
 		echo "Connecting to reMarkable internal network"
 		sudo dhcpcd enp0s20u2
 	end
-	curl --form "file=@"$argv[1] http://10.11.99.1/upload
+	for f in $argv
+		curl --form "file=@"$f http://10.11.99.1/upload
+		echo
+	end
 end
 
 function md2pdf
