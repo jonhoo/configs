@@ -60,6 +60,10 @@ function ssh
 	end
 end
 
+function limit
+	numactl -C 0,2 $argv
+end
+
 function remote_alacritty
 	# https://gist.github.com/costis/5135502
 	set fn (mktemp)
