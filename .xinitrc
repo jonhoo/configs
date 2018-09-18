@@ -19,15 +19,9 @@ fi
 # gnupg keyring agent
 # ensure it's started so SSH will work
 # https://www.gnupg.org/faq/whats-new-in-2.1.html#autostart
-if [[ -e "/usr/bin/gpgconf" ]]; then
-	gpgconf --launch gpg-agent
-	export "SSH_AUTH_SOCK=/run/user/$(id -u)/gnupg/S.gpg-agent.ssh"
-fi
-
-# ssh agent fallback
-if test -z "$SSH_AUTH_SOCK" ; then
-	eval $(ssh-agent -s)
-fi
+dbus-update-activation-environment --systemd DISPLAY
+gpgconf --launch gpg-agent
+export "SSH_AUTH_SOCK=/run/user/$(id -u)/gnupg/S.gpg-agent.ssh"
 
 # Update screen layout
 if [[ -e ~/bin/hotplug-dp.sh ]]; then
@@ -48,4 +42,3 @@ wait $wmpid
 
 # Cleanup
 killall --user $USER
-eval `ssh-agent -k`
