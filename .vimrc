@@ -189,7 +189,7 @@ filetype plugin indent on
 set autoindent
 set timeoutlen=300 " http://stackoverflow.com/questions/2158516/delay-before-o-opens-a-new-line
 set encoding=utf-8
-set scrolloff=3
+set scrolloff=2
 set noshowmode
 set hidden
 set nowrap
@@ -263,7 +263,7 @@ set ruler " Where am I?
 set ttyfast
 " https://github.com/vim/vim/issues/1735#issuecomment-383353563
 set lazyredraw
-set synmaxcol=200
+set synmaxcol=500
 set laststatus=2
 set relativenumber " Relative line numbers
 set diffopt+=iwhite " No whitespace in vimdiff
