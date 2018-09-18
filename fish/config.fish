@@ -9,6 +9,7 @@ set -U fish_user_abbreviations $fish_user_abbreviations 'amz=env AWS_SECRET_ACCE
 set -U fish_user_abbreviations $fish_user_abbreviations 'gah=git stash; and git pull --rebase; and git stash pop'
 set -U fish_user_abbreviations $fish_user_abbreviations 'c=cargo'
 complete --command yaourt --wraps pacman
+complete --command aurman --wraps pacman
 complete --command pacaur --wraps pacman
 complete --command aurman --wraps pacman
 
