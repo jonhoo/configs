@@ -28,7 +28,7 @@ myFocusFollowsMouse = False
 myClickJustFocuses = False
 
 myModMask       = mod1Mask -- or mod4Mask for super
-myWorkspaces    = ["web","code","a","b","c","mx","sfx"]
+myWorkspaces    = ["web","a","b","c","long","mx","sfx"]
 
 myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     [ ((0, xK_Print), (spawn "scrot"))
