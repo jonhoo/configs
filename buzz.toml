@@ -2,4 +2,4 @@
 server = "imap.fastmail.com"
 port = 993
 username = "jon@eml.cc"
-pwcmd = "gnome-keyring-query get mutt_fastmail"
+pwcmd = "pass sec/mutt_fastmail"
