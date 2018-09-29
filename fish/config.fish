@@ -1,4 +1,6 @@
 set -U fish_user_abbreviations
+set -U fish_user_abbreviations $fish_user_abbreviations 'c=cargo'
+set -U fish_user_abbreviations $fish_user_abbreviations 'm=make'
 set -U fish_user_abbreviations $fish_user_abbreviations 'o=xdg-open'
 set -U fish_user_abbreviations $fish_user_abbreviations 'g=git'
 set -U fish_user_abbreviations $fish_user_abbreviations 'gc=git checkout'
