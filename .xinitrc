@@ -33,12 +33,4 @@ fi
 
 # Start WM
 xsetroot -cursor_name left_ptr
-xmonad 2> .logs/xmonad.err > .logs/xmonad.log &
-wmpid=$!
-
-# And wait for WM
-echo $wmpid > .wmpid
-wait $wmpid
-
-# Cleanup
-killall --user $USER
+exec xmonad 2> .logs/xmonad.err > .logs/xmonad.log &
