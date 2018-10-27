@@ -65,6 +65,15 @@ function ssh
 	end
 end
 
+function apass
+	if test (count $argv) -ne 1
+		pass $argv
+		return
+	end
+
+	adb shell input text (pass $argv[0] | head -n1 | sed -e 's/ /%s/g' -e 's/\([()<>|;&*\\~"\'`]\)/\\\\\1/g')
+end
+
 function limit
 	numactl -C 0,2 $argv
 end
