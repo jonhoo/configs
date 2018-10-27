@@ -189,6 +189,7 @@ setenv EDITOR nvim
 setenv BROWSER firefox-developer-edition
 setenv EMAIL jon@tsp.io
 setenv NAME "Jon Gjengset"
+setenv TZ 'America/New_York'
 setenv GOPATH "$HOME/dev/go:$HOME/dev/projects/cuckood:$HOME/dev/projects/hasmail"
 setenv RUST_BACKTRACE 1
 setenv CARGO_INCREMENTAL 1
@@ -198,9 +199,6 @@ setenv FZF_DEFAULT_COMMAND 'fd --type file --follow'
 setenv FZF_CTRL_T_COMMAND 'fd --type file --follow'
 setenv FZF_DEFAULT_OPTS '--height 20%'
 setenv R_LIBS_USER ~/.Rpackages
-
-# https://blog.packagecloud.io/eng/2017/02/21/set-environment-variable-save-thousands-of-system-calls/
-setenv TZ ":/etc/localtime"
 
 set -U fish_user_abbreviations $fish_user_abbreviations 'nova=env OS_PASSWORD=(pass www/mit-openstack | head -n1) nova'
 set -U fish_user_abbreviations $fish_user_abbreviations 'glance=env OS_PASSWORD=(pass www/mit-openstack | head -n1) glance'
