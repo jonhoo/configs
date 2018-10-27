@@ -18,6 +18,7 @@ export PATH="$PATH:/home/jon/bin"
 export PATH="$PATH:/home/jon/.gem/ruby/2.3.0/bin"
 export PATH="$PATH:/home/jon/dev/go/bin/"
 export PATH="$PATH:/home/jon/.cargo/bin"
+export PATH="$PATH:/data/jon/cargo-target/release/"
 export WINEARCH=win32
 export GOPATH=~/dev/go
 export CCACHE_DIR="/var/cache/ccache"
