@@ -144,7 +144,7 @@ let g:localvimrc_ask = 0
 " language server protocol
 let g:LanguageClient_settingsPath = "/home/jon/.vim/settings.json"
 let g:LanguageClient_serverCommands = {
-    \ 'rust': ['env', 'CARGO_TARGET_DIR=/home/jon/dev/tmp/cargo-target/rls', 'rls'],
+    \ 'rust': ['env', 'CARGO_TARGET_DIR=/data/jon/cargo-target/rls', 'rls'],
     \ }
 let g:LanguageClient_autoStart = 1
 nnoremap <silent> K :call LanguageClient_textDocument_hover()<CR>
