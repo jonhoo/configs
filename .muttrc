@@ -203,6 +203,6 @@ mono indicator reverse
 
 # PGP messages
 color  body green default "^Good signature .*"
-color  body red   default "^\*BAD\* signature from.*"
+color  body red   default "^\\*BAD\\* signature from.*"
 mono   body bold          "^Good signature"
-mono   body bold          "^\*BAD\* signature from.*"
+mono   body bold          "^\\*BAD\\* signature from.*"
