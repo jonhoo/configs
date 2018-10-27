@@ -33,4 +33,4 @@ fi
 
 # Start WM
 xsetroot -cursor_name left_ptr
-exec xmonad 2> .logs/xmonad.err > .logs/xmonad.log &
+xmonad 2> .logs/xmonad.err > .logs/xmonad.log
