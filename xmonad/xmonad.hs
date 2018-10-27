@@ -1,3 +1,5 @@
+{-# LANGUAGE FlexibleInstances, MultiParamTypeClasses, TypeSynonymInstances #-}
+
 import qualified Codec.Binary.UTF8.String as UTF8
 import Data.Monoid
 
@@ -8,9 +10,6 @@ import Graphics.X11.ExtraTypes.XF86
 import XMonad.Actions.CycleWS
 import XMonad.Layout.NoBorders
 import XMonad.Hooks.ManageHelpers
-import XMonad.Layout.PerWorkspace
-import XMonad.Layout.IM
-import XMonad.Layout.Grid
 import qualified XMonad.Layout.Fullscreen as FS
 import XMonad.Util.Run(spawnPipe)
 import XMonad.Hooks.DynamicLog
@@ -22,6 +21,27 @@ import XMonad.Hooks.EwmhDesktops (ewmh, fullscreenEventHook)
 import XMonad.Hooks.ManageDocks
 import XMonad.Config.Desktop
 import XMonad.Util.SpawnOnce
+
+-- Make our own Picture-in-Picture mode
+import XMonad.Config.Prime (LayoutClass)
+import Graphics.X11 (Rectangle(..))
+
+data PiP a = PiP deriving (Show, Read)
+
+mkpip rect@(Rectangle sx sy sw sh) (master:snd:ws) = [small, (master, rect)]
+  where small = (snd, (Rectangle px py pw ph))
+        px = sx + fromIntegral sw - fromIntegral pw - 32
+        py = sy + fromIntegral sh - fromIntegral ph - 32
+	pw = sw `div` 4
+	ph = sh `div` 4
+mkpip rect (master:ws) = [(master, rect)]
+mkpip rect [] = []
+
+instance LayoutClass PiP a where
+    pureLayout PiP rect stack = mkpip rect ws
+      where ws = W.integrate stack
+
+    description _ = "PiP"
 
 myTerminal      = "/data/jon/cargo-target/release/alacritty"
 myFocusFollowsMouse = False
@@ -62,7 +82,7 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     , ((controlMask .|. mod1Mask .|. shiftMask, xK_Left), shiftToPrev >> prevWS)
     ] 
 
-myLayout = tiled ||| (Mirror tiled) ||| Full
+myLayout = tiled ||| (Mirror tiled) ||| Full ||| PiP
   where
      -- default tiling algorithm partitions the screen into two panes
      tiled   = Tall nmaster delta ratio
