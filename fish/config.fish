@@ -174,11 +174,11 @@ set __fish_git_prompt_showupstream 'none'
 set -g fish_prompt_pwd_dir_length 3
 
 set PATH /usr/local/bin/ $PATH
+set PATH $PATH /data/jon/cargo-target/release/
+set PATH $PATH ~/.gem/ruby/2.5.0/bin
 set PATH $PATH ~/bin
-set PATH $PATH ~/.local/bin
 set PATH $PATH ~/.cargo/bin
 set PATH $PATH ~/.npm-global/bin
-set PATH $PATH ~/dev/go/bin
 
 # For RLS
 # https://github.com/fish-shell/fish-shell/issues/2456
