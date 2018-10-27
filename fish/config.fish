@@ -8,6 +8,8 @@ set -U fish_user_abbreviations $fish_user_abbreviations 'vimdiff=nvim -d'
 set -U fish_user_abbreviations $fish_user_abbreviations 'clippy=cargo +nightly clippy'
 set -U fish_user_abbreviations $fish_user_abbreviations 'cargot=cargo t'
 set -U fish_user_abbreviations $fish_user_abbreviations 'amz=env AWS_SECRET_ACCESS_KEY=(pass www/aws-secret-key | head -n1)'
+set -U fish_user_abbreviations $fish_user_abbreviations "ais=aws ec2 describe-instances | jq '.Reservations[] | .Instances[] | {iid: .InstanceId, type: .InstanceType, key:.KeyName, state:.State.Name, host:.PublicDnsName}'"
+set -U fish_user_abbreviations $fish_user_abbreviations 'print=lp -h cups.csail.mit.edu -d xerox9 -oDuplex=DuplexNoTumble -oStapleLocation=SinglePortrait'
 set -U fish_user_abbreviations $fish_user_abbreviations 'gah=git stash; and git pull --rebase; and git stash pop'
 set -U fish_user_abbreviations $fish_user_abbreviations 'c=cargo'
 complete --command yaourt --wraps pacman
