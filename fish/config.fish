@@ -71,7 +71,7 @@ function apass
 		return
 	end
 
-	adb shell input text (pass $argv[0] | head -n1 | sed -e 's/ /%s/g' -e 's/\([()<>|;&*\\~"\'`]\)/\\\\\1/g')
+	adb shell input text (pass $argv[1] | head -n1 | sed -e 's/ /%s/g' -e 's/\([()<>|;&*\\~"\'`]\)/\\\\\1/g')
 end
 
 function limit
