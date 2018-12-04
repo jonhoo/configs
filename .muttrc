@@ -32,6 +32,9 @@ set mime_forward=no
 set mime_forward_rest=yes
 # http://nullprogram.com/blog/2017/06/15/
 set text_flowed
+# faster imap
+set imap_condstore=yes
+set imap_qresync=yes
 
 set sort="threads"
 set strict_threads="yes"
