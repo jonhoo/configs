@@ -266,6 +266,7 @@ set lazyredraw
 set synmaxcol=500
 set laststatus=2
 set relativenumber " Relative line numbers
+set number " Also show current absolute line
 set diffopt+=iwhite " No whitespace in vimdiff
 set colorcolumn=80 " and give me a colored column
 set showcmd " Show (partial) command in status line.
