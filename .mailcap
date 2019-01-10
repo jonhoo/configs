@@ -1,4 +1,4 @@
-image/*; eog %s; test=test -n "$DISPLAY";
+image/*; sxiv %s; test=test -n "$DISPLAY";
 application/pdf; mupdf %s; test=test -n "$DISPLAY";
 file/pdf; mupdf %s; test=test -n "$DISPLAY";
 application/msword; lowriter %s; test=test -n "$DISPLAY";
