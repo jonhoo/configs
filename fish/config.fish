@@ -33,7 +33,7 @@ else
 	abbr -a up 'sudo pacman -Syu'
 end
 
-if which exa >/dev/null
+if which exa >/dev/null 2>/dev/null
 	abbr -a l 'exa'
 	abbr -a ls 'exa'
 	abbr -a ll 'exa -l'
