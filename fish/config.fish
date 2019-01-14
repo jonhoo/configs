@@ -182,7 +182,7 @@ set -g fish_prompt_pwd_dir_length 3
 
 set PATH /usr/local/bin/ $PATH
 set PATH $PATH /data/jon/cargo-target/release/
-set PATH $PATH ~/.gem/ruby/2.5.0/bin
+set PATH $PATH (ruby -e 'print Gem.user_dir')/bin
 set PATH $PATH ~/bin
 set PATH $PATH ~/.cargo/bin
 set PATH $PATH ~/.npm-global/bin
