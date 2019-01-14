@@ -23,6 +23,8 @@ export WINEARCH=win32
 export GOPATH=~/dev/go
 export CCACHE_DIR="/var/cache/ccache"
 export CARGO_INCREMENTAL=1
+export RUSTFLAGS="-C target-cpu=native"
+export ROCKSDB_LIB_DIR=/usr/lib
 export TZ='America/New_York'
 
 export GPODDER_HOME="/home/jon/.config/gpodder"
