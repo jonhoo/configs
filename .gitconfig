@@ -42,3 +42,6 @@
 	gpgsign = true
 [protocol]
 	version = 2
+[sendemail]
+	smtpserver = /usr/bin/msmtp
+	annotate = yes
