@@ -1,16 +1,15 @@
-set -U fish_user_abbreviations
-set -U fish_user_abbreviations $fish_user_abbreviations 'c=cargo'
-set -U fish_user_abbreviations $fish_user_abbreviations 'm=make'
-set -U fish_user_abbreviations $fish_user_abbreviations 'o=xdg-open'
-set -U fish_user_abbreviations $fish_user_abbreviations 'g=git'
-set -U fish_user_abbreviations $fish_user_abbreviations 'gc=git checkout'
-set -U fish_user_abbreviations $fish_user_abbreviations 'vimdiff=nvim -d'
-set -U fish_user_abbreviations $fish_user_abbreviations 'cargot=cargo t'
-set -U fish_user_abbreviations $fish_user_abbreviations 'amz=env AWS_SECRET_ACCESS_KEY=(pass www/aws-secret-key | head -n1)'
-set -U fish_user_abbreviations $fish_user_abbreviations "ais=aws ec2 describe-instances | jq '.Reservations[] | .Instances[] | {iid: .InstanceId, type: .InstanceType, key:.KeyName, state:.State.Name, host:.PublicDnsName}'"
-set -U fish_user_abbreviations $fish_user_abbreviations 'print=lp -h cups.csail.mit.edu -d xerox9 -oDuplex=DuplexNoTumble -oStapleLocation=SinglePortrait'
-set -U fish_user_abbreviations $fish_user_abbreviations 'gah=git stash; and git pull --rebase; and git stash pop'
-set -U fish_user_abbreviations $fish_user_abbreviations 'c=cargo'
+abbr -a c cargo
+abbr -a e nvim
+abbr -a m make
+abbr -a o xdg-open
+abbr -a g git
+abbr -a gc 'git checkout'
+abbr -a vimdiff 'nvim -d'
+abbr -a ct 'cargo t'
+abbr -a amz 'env AWS_SECRET_ACCESS_KEY=(pass www/aws-secret-key | head -n1)'
+abbr -a ais "aws ec2 describe-instances | jq '.Reservations[] | .Instances[] | {iid: .InstanceId, type: .InstanceType, key:.KeyName, state:.State.Name, host:.PublicDnsName}'"
+abbr -a print 'lp -h cups.csail.mit.edu -d xerox9 -oDuplex=DuplexNoTumble -oStapleLocation=SinglePortrait'
+abbr -a gah 'git stash; and git pull --rebase; and git stash pop'
 complete --command yaourt --wraps pacman
 complete --command aurman --wraps pacman
 complete --command pacaur --wraps pacman
@@ -21,28 +20,28 @@ if status --is-interactive
 end
 
 if [ -e /usr/bin/aurman ]
-	set -U fish_user_abbreviations $fish_user_abbreviations 'p=aurman'
-	set -U fish_user_abbreviations $fish_user_abbreviations 'up=aurman -Syu'
+	abbr -a p 'aurman'
+	abbr -a up 'aurman -Syu'
 else if [ -e /usr/bin/pacaur ]
-	set -U fish_user_abbreviations $fish_user_abbreviations 'p=pacaur'
-	set -U fish_user_abbreviations $fish_user_abbreviations 'up=pacaur -Syu'
+	abbr -a p 'pacaur'
+	abbr -a up 'pacaur -Syu'
 else if [ -e /usr/bin/yaourt ]
-	set -U fish_user_abbreviations $fish_user_abbreviations 'p=yaourt'
-	set -U fish_user_abbreviations $fish_user_abbreviations 'up=yaourt -Syu --aur'
+	abbr -a p 'yaourt'
+	abbr -a up 'yaourt -Syu --aur'
 else
-	set -U fish_user_abbreviations $fish_user_abbreviations 'p=sudo pacman'
-	set -U fish_user_abbreviations $fish_user_abbreviations 'up=sudo pacman -Syu'
+	abbr -a p 'sudo pacman'
+	abbr -a up 'sudo pacman -Syu'
 end
 
-if exa --version >/dev/null
-	set -U fish_user_abbreviations $fish_user_abbreviations 'l=exa'
-	set -U fish_user_abbreviations $fish_user_abbreviations 'ls=exa'
-	set -U fish_user_abbreviations $fish_user_abbreviations 'll=exa -l'
-	set -U fish_user_abbreviations $fish_user_abbreviations 'lll=exa -la'
+if which exa >/dev/null
+	abbr -a l 'exa'
+	abbr -a ls 'exa'
+	abbr -a ll 'exa -l'
+	abbr -a lll 'exa -la'
 else
-	set -U fish_user_abbreviations $fish_user_abbreviations 'l=ls'
-	set -U fish_user_abbreviations $fish_user_abbreviations 'll=ls -l'
-	set -U fish_user_abbreviations $fish_user_abbreviations 'lll=ls -la'
+	abbr -a l 'ls'
+	abbr -a ll 'ls -l'
+	abbr -a lll 'ls -la'
 end
 
 if [ -e /usr/share/fish/functions/fzf_key_bindings.fish ]; and status --is-interactive
@@ -208,8 +207,8 @@ setenv FZF_CTRL_T_COMMAND 'fd --type file --follow'
 setenv FZF_DEFAULT_OPTS '--height 20%'
 setenv R_LIBS_USER ~/.Rpackages
 
-set -U fish_user_abbreviations $fish_user_abbreviations 'nova=env OS_PASSWORD=(pass www/mit-openstack | head -n1) nova'
-set -U fish_user_abbreviations $fish_user_abbreviations 'glance=env OS_PASSWORD=(pass www/mit-openstack | head -n1) glance'
+abbr -a nova 'env OS_PASSWORD=(pass www/mit-openstack | head -n1) nova'
+abbr -a glance 'env OS_PASSWORD=(pass www/mit-openstack | head -n1) glance'
 setenv OS_USERNAME jfrg@csail.mit.edu
 setenv OS_TENANT_NAME usersandbox_jfrg
 setenv OS_AUTH_URL https://nimbus.csail.mit.edu:5001/v2.0
