@@ -155,6 +155,7 @@ persistent_logging: false
 draw_bold_text_with_bright_colors: true
 
 # Colors (Base16 Atelier Dune)
+# See https://github.com/aaron-williamson/base16-alacritty/blob/master/colors/base16-atelier-dune-256.yml
 colors:
   # Default colors
   primary:
@@ -174,8 +175,8 @@ colors:
   # Colors which should be used to draw the terminal cursor. If these are unset,
   # the cursor color will be the inverse of the cell color.
   cursor:
-    text: '0x000000'
-    cursor: '0xaaaaaa'
+    text: '0x20201d'
+    cursor: '0xa6a28c'
 
   # Normal colors
   normal:
@@ -191,13 +192,13 @@ colors:
   # Bright colors
   bright:
     black:   '0x7d7a68'
-    red:     '0xb65611'
-    green:   '0x292824'
-    yellow:  '0x6e6b5e'
-    blue:    '0x999580'
-    magenta: '0xe8e4cf'
-    cyan:    '0xd43552'
-    white:   '0xa6a28c'
+    red:     '0xd73737'
+    green:   '0x60ac39'
+    yellow:  '0xae9513'
+    blue:    '0x6684e1'
+    magenta: '0xb854d4'
+    cyan:    '0x1fad83'
+    white:   '0xfefbec'
 
   # Dim colors
   #
@@ -212,7 +213,13 @@ colors:
   # Example:
   #   `- { index: 16, color: '0xff00ff' }`
   #
-  indexed_colors: []
+  indexed_colors:
+    - { index: 16, color: '0xb65611' }
+    - { index: 17, color: '0xd43552' }
+    - { index: 19, color: '0x292824' }
+    - { index: 19, color: '0x6e6b5e' }
+    - { index: 20, color: '0x999580' }
+    - { index: 21, color: '0xe8e4cf' }
 
 # Visual Bell
 #
