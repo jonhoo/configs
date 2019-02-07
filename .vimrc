@@ -126,6 +126,7 @@ let g:ale_lint_on_save = 0
 let g:ale_lint_on_enter = 0
 let g:ale_rust_cargo_use_check = 1
 let g:ale_rust_cargo_check_all_targets = 1
+let g:ale_virtualtext_cursor = 0
 " let g:neomake_info_sign = {'text': '⚕', 'texthl': 'NeomakeInfoSign'}
 
 " Latex
