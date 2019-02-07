@@ -4,11 +4,16 @@
 # Note that it is _not_ important to set things like FZF_DEFAULT_COMMAND here since
 # that is only relevant when using an interactive shell, so we may as well just set
 # that directly in the shell config.
+#
+# Also note that pam_env is _really_ picky about formatting.
+# Lines can _either_ be KEY=VALUE (no spaces!)
+#  _or_ they can be KEY DEFAULT="VALUE" where VALUE can then have spaces
+#  KEY="VALUE" does _not_ work!
 
 EDITOR=nvim
 BROWSER=firefox-developer-edition
-NAME='Jon Gjengset'
-EMAIL='jon@tsp.io'
+NAME DEFAULT="Jon Gjengset"
+EMAIL=jon@tsp.io
 
 PATH DEFAULT=${PATH}:/home/@{PAM_USER}/bin
 #export PATH="/usr/local/bin:$PATH"
@@ -25,19 +30,19 @@ PATH DEFAULT=${PATH}:/home/@{PAM_USER}/bin
 #set PATH $PATH ~/.npm-global/bin
 
 # Globals
-TZ='America/New_York'
+TZ=America/New_York
 
 # Configs
 R_LIBS_USER=/home/@{PAM_USER}/.Rpackages
 
 # Rust stuff
 CARGO_INCREMENTAL=1
-RUSTFLAGS="-C target-cpu=native"
+RUSTFLAGS DEFAULT="-C target-cpu=native"
 ROCKSDB_LIB_DIR=/usr/lib
 RUST_BACKTRACE=1
 
 # Java stuff
-_JAVA_OPTIONS='-Dawt.useSystemAAFontSettings=lcd -Dswing.defaultlaf=com.sun.java.swing.plaf.gtk.GTKLookAndFeel'
+_JAVA_OPTIONS DEFAULT="-Dawt.useSystemAAFontSettings=lcd -Dswing.defaultlaf=com.sun.java.swing.plaf.gtk.GTKLookAndFeel"
 JAVA_FONTS=/usr/share/fonts/TTF
 MATLAB_JAVA=/usr/lib/jvm/default-runtime
 J2D_D3D=false
@@ -50,8 +55,7 @@ WINEDEBUG=fixme-all
 # F = quit automatically if less than one screenfull
 # R = raw terminal characters (fixes git diff)
 #     see http://jugglingbits.wordpress.com/2010/03/24/a-better-less-playing-nice-with-git/
-LESS="-F -X -R"
+LESS DEFAULT="-F -X -R"
 
 # Enable VA-API+OpenGL for VDPAU
 VDPAU_DRIVER=va_gl
-
