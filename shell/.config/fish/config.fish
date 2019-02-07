@@ -11,30 +11,21 @@ abbr -a amz 'env AWS_SECRET_ACCESS_KEY=(pass www/aws-secret-key | head -n1)'
 abbr -a ais "aws ec2 describe-instances | jq '.Reservations[] | .Instances[] | {iid: .InstanceId, type: .InstanceType, key:.KeyName, state:.State.Name, host:.PublicDnsName}'"
 abbr -a print 'lp -h cups.csail.mit.edu -d xerox9 -oDuplex=DuplexNoTumble -oStapleLocation=SinglePortrait'
 abbr -a gah 'git stash; and git pull --rebase; and git stash pop'
-complete --command yaourt --wraps pacman
-complete --command aurman --wraps pacman
-complete --command pacaur --wraps pacman
 complete --command aurman --wraps pacman
 
 if status --is-interactive
 	tmux ^ /dev/null; and exec true
 end
 
-if [ -e /usr/bin/aurman ]
+if command -v aurman > /dev/null
 	abbr -a p 'aurman'
 	abbr -a up 'aurman -Syu'
-else if [ -e /usr/bin/pacaur ]
-	abbr -a p 'pacaur'
-	abbr -a up 'pacaur -Syu'
-else if [ -e /usr/bin/yaourt ]
-	abbr -a p 'yaourt'
-	abbr -a up 'yaourt -Syu --aur'
 else
 	abbr -a p 'sudo pacman'
 	abbr -a up 'sudo pacman -Syu'
 end
 
-if which exa >/dev/null 2>/dev/null
+if command -v exa > /dev/null
 	abbr -a l 'exa'
 	abbr -a ls 'exa'
 	abbr -a ll 'exa -l'
@@ -104,96 +95,19 @@ function remarkable
 	end
 end
 
-function md2pdf
-	set t (mktemp -t md2pdf.XXXXXXX.pdf)
-	pandoc --smart --standalone --from markdown_github -V geometry:letterpaper,margin=2cm $argv[1] -o $t
-	set --erase argv[1]
-	if test (count $argv) -gt 0 -a $argv[1] '!=' '-'
-		mv $t $argv[1]
-	else
-		cat $t
-		rm $t
-	end
-end
-
-function lpmd
-	set infile $argv[1]
-	set --erase argv[1]
-	md2pdf $infile - | lp $argv -
-end
-
-function pdfo
-	echo $argv | xargs pdflatex
-	echo $argv | sed 's/\.tex$/.pdf/' | xargs xdg-open
-end
-
-function px
-	ssh -fND localhost:8080 -C jon@ssh.thesquareplanet.com -p 222
-end
 function athena
 	env SSHPASS=(pass www/mit) sshpass -e ssh athena $argv
 end
 
-set nooverride PATH PWD
-function onchdir -v PWD
-	set dr $PWD
-	while [ "$dr" != "/" ]
-		for e in $dr/.setenv-*
-			set envn (basename -- $e | sed 's/^\.setenv-//')
-			if contains $envn $nooverride
-				continue
-			end
-
-			if not test -s $e
-				# setenv is empty
-				# var value is file's dir
-				set envv (readlink -e $dr)
-			else if test -L $e; and test -d $e
-				# setenv is symlink to directory
-				# var value is target directory
-				set envv (readlink -e $e)
-			else
-				# setenv is non-empty file
-				# var value is file content
-				set envv (cat $e)
-			end
-
-			if not contains $envn $wasset
-				set wasset $wasset $envn
-				setenv $envn $envv
-			end
+# Type - to move up to top parent dir which is a repository
+function d
+	while test $PWD != "/"
+		if test -d .git
+			break
 		end
-		set dr (dirname $dr)
+		cd ..
 	end
 end
-
-# Type - to move up to top parent dir which is a repository
-#function - {
-#  local p=""
-#  for f in `pwd | tr '/' ' '`; do
-#    p="$p/$f"
-#    if [ -e "$p/.git" ]; then
-#      cd "$p"
-#      break
-#    fi
-#  done
-#}
-
-#lid() {
-#  if [[ $1 == "on" ]]; then
-#    sudo sed -i 's/HandleLidSwitch\=ignore/HandleLidSwitch\=suspend/' /etc/systemd/logind.conf
-#    xset +dpms
-#  elif [[ $1 == "off" ]]; then
-#    sudo sed -i 's/HandleLidSwitch\=suspend/HandleLidSwitch\=ignore/' /etc/systemd/logind.conf
-#    xset -dpms
-#  else
-#    echo "Usage: lid <on|off>"
-#  fi
-#
-#  if [[ ! -z $1 ]]; then
-#    sudo systemctl restart systemd-logind
-#  fi
-#}
 
 # Fish git prompt
 set __fish_git_prompt_showuntrackedfiles 'yes'
@@ -204,14 +118,13 @@ set -g fish_prompt_pwd_dir_length 3
 
 # colored man output
 # from http://linuxtidbits.wordpress.com/2009/03/23/less-colors-for-man-pages/
-#setenv LESS_TERMCAP_mb $'\E[01;31m'       # begin blinking
-#setenv LESS_TERMCAP_md $'\E[01;38;5;74m'  # begin bold
-#setenv LESS_TERMCAP_me $'\E[0m'           # end mode
-#setenv LESS_TERMCAP_se $'\E[0m'           # end standout-mode
-#setenv LESS_TERMCAP_so $'\E[38;5;246m'    # begin standout-mode - info box
-#setenv LESS_TERMCAP_ue $'\E[0m'           # end underline
-#setenv LESS_TERMCAP_us $'\E[04;38;5;146m' # begin underline
-#abbr -a man 'man -P less'
+setenv LESS_TERMCAP_mb \e'[01;31m'       # begin blinking
+setenv LESS_TERMCAP_md \e'[01;38;5;74m'  # begin bold
+setenv LESS_TERMCAP_me \e'[0m'           # end mode
+setenv LESS_TERMCAP_se \e'[0m'           # end standout-mode
+setenv LESS_TERMCAP_so \e'[38;5;246m'    # begin standout-mode - info box
+setenv LESS_TERMCAP_ue \e'[0m'           # end underline
+setenv LESS_TERMCAP_us \e'[04;38;5;146m' # begin underline
 
 # For RLS
 # https://github.com/fish-shell/fish-shell/issues/2456
@@ -249,21 +162,29 @@ end
 # See https://github.com/fish-shell/fish-shell/issues/772
 set FISH_CLIPBOARD_CMD "cat"
 
-# Base16 Shell
-if status --is-interactive
-    eval sh $HOME/dev/others/base16/shell/scripts/base16-atelier-dune.sh
-end
-
-# Pretty ls colors
-if test -e ~/.dir_colors
-	setenv LS_COLORS (sh --noprofile -c 'eval "$(dircolors -b ~/.dir_colors)"; echo $LS_COLORS')
-end
-
 function fish_user_key_bindings
 	bind \cz 'fg>/dev/null ^/dev/null'
 	if functions -q fzf_key_bindings
 		fzf_key_bindings
 	end
+end
+
+function fish_prompt
+	set_color brblack
+	echo -n "["(date "+%H:%M")"] "
+	set_color blue
+	echo -n (hostname)
+	if [ $PWD != $HOME ]
+		set_color brblack
+		echo -n ':'
+		set_color yellow
+		echo -n (basename $PWD)
+	end
+	set_color green
+	printf '%s ' (__fish_git_prompt)
+	set_color red
+	echo -n '| '
+	set_color normal
 end
 
 function fish_greeting
