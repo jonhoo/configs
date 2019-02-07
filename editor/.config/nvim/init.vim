@@ -416,7 +416,7 @@ endif
 autocmd BufWritePost *.less if filereadable("Makefile") | make | endif
 
 " Follow Rust code style rules
-au Filetype rust source ~/.vim/scripts/spacetab.vim
+au Filetype rust source ~/.config/nvim/scripts/spacetab.vim
 au Filetype rust set colorcolumn=100
 
 " Help filetype detection
