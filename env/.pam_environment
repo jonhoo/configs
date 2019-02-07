@@ -16,24 +16,19 @@ NAME DEFAULT="Jon Gjengset"
 EMAIL=jon@tsp.io
 
 PATH DEFAULT=${PATH}:/home/@{PAM_USER}/bin
-#export PATH="/usr/local/bin:$PATH"
-#export PATH="$PATH:/home/jon/bin"
-#export PATH="$PATH:/home/jon/.gem/ruby/2.3.0/bin"
-#export PATH="$PATH:/home/jon/dev/go/bin/"
-#export PATH="$PATH:/home/jon/.cargo/bin"
-#export PATH="$PATH:/data/jon/cargo-target/release/"
-#set PATH /usr/local/bin/ $PATH
-#set PATH $PATH /data/jon/cargo-target/release/
-#set PATH $PATH (ruby -e 'print Gem.user_dir')/bin
-#set PATH $PATH ~/bin
-#set PATH $PATH ~/.cargo/bin
-#set PATH $PATH ~/.npm-global/bin
+PATH DEFAULT=${PATH}:/home/@{PAM_USER}/.cargo/bin
+PATH DEFAULT=${PATH}:/home/@{PAM_USER}/.npm-global/bin
+PATH DEFAULT=${PATH}:/home/@{PAM_USER}/.gem/ruby/2.6.0/bin
 
 # Globals
 TZ=America/New_York
 
 # Configs
 R_LIBS_USER=/home/@{PAM_USER}/.Rpackages
+
+# Environment-local
+#CARGO_TARGET_DIR DEFAULT=/data/@{PAM_USER}/cargo-target
+#PATH DEFAULT=${PATH}:/data/jon/cargo-target/release/
 
 # Rust stuff
 CARGO_INCREMENTAL=1
