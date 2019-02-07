@@ -1,0 +1,57 @@
+# This file sets environment variables that should be globally set on the system
+# That is, across graphical and non-graphical logins, and across all shell types
+#
+# Note that it is _not_ important to set things like FZF_DEFAULT_COMMAND here since
+# that is only relevant when using an interactive shell, so we may as well just set
+# that directly in the shell config.
+
+EDITOR=nvim
+BROWSER=firefox-developer-edition
+NAME='Jon Gjengset'
+EMAIL='jon@tsp.io'
+
+PATH DEFAULT=${PATH}:/home/@{PAM_USER}/bin
+#export PATH="/usr/local/bin:$PATH"
+#export PATH="$PATH:/home/jon/bin"
+#export PATH="$PATH:/home/jon/.gem/ruby/2.3.0/bin"
+#export PATH="$PATH:/home/jon/dev/go/bin/"
+#export PATH="$PATH:/home/jon/.cargo/bin"
+#export PATH="$PATH:/data/jon/cargo-target/release/"
+#set PATH /usr/local/bin/ $PATH
+#set PATH $PATH /data/jon/cargo-target/release/
+#set PATH $PATH (ruby -e 'print Gem.user_dir')/bin
+#set PATH $PATH ~/bin
+#set PATH $PATH ~/.cargo/bin
+#set PATH $PATH ~/.npm-global/bin
+
+# Globals
+TZ='America/New_York'
+
+# Configs
+R_LIBS_USER=/home/@{PAM_USER}/.Rpackages
+
+# Rust stuff
+CARGO_INCREMENTAL=1
+RUSTFLAGS="-C target-cpu=native"
+ROCKSDB_LIB_DIR=/usr/lib
+RUST_BACKTRACE=1
+
+# Java stuff
+_JAVA_OPTIONS='-Dawt.useSystemAAFontSettings=lcd -Dswing.defaultlaf=com.sun.java.swing.plaf.gtk.GTKLookAndFeel'
+JAVA_FONTS=/usr/share/fonts/TTF
+MATLAB_JAVA=/usr/lib/jvm/default-runtime
+J2D_D3D=false
+
+# Handy for debugging
+WINEDEBUG=fixme-all
+
+# make less better
+# X = leave content on-screen
+# F = quit automatically if less than one screenfull
+# R = raw terminal characters (fixes git diff)
+#     see http://jugglingbits.wordpress.com/2010/03/24/a-better-less-playing-nice-with-git/
+LESS="-F -X -R"
+
+# Enable VA-API+OpenGL for VDPAU
+VDPAU_DRIVER=va_gl
+

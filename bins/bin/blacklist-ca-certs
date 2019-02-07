@@ -1,0 +1,52 @@
+#!/usr/bin/bash
+echo "==> Clear blacklist"
+sudo rm /etc/ca-certificates/trust-source/blacklist/*.pem
+echo "==> Regenerate CA list"
+sudo update-ca-trust
+echo "==> Blacklisting all"
+for f in /etc/ca-certificates/extracted/cadir/*.pem; do
+	sudo cp "$f" "/etc/ca-certificates/trust-source/blacklist/$(basename "$f")"
+done
+
+except() {
+	echo "  -> Whitelist $(echo "$1" | tr _ " ") (for $2)"
+	sudo rm "/etc/ca-certificates/trust-source/blacklist/$1.pem"
+}
+
+echo "==> Whitelist trusted CAs"
+except "DST_Root_CA_X3" "letsencrypt.org"
+except "GeoTrust_Global_CA" "google.com"
+except "DigiCert_High_Assurance_EV_Root_CA" "github.com"
+except "Go_Daddy_Class_2_CA" "wordpress.com"
+except "VeriSign_Class_3_Public_Primary_Certification_Authority_-_G5" "amazon.com"
+except "Entrust_Root_Certification_Authority_-_G2" "washingtonpost.com"
+except "GlobalSign_Root_CA" "theatlantic.com"
+except "Baltimore_CyberTrust_Root" "s3.amazonaws.com"
+except "GlobalSign_Root_CA_-_R3" "wikipedia.org"
+except "VeriSign_Universal_Root_Certification_Authority" "secure.backblaze.com"
+except "Verisign_Class_3_Public_Primary_Certification_Authority_-_G3" "netflix.com"
+except "QuoVadis_Root_CA_2" "stat.ethz.ch" # R language manual
+except "GeoTrust_Primary_Certification_Authority" "teamviewer"
+except "Go_Daddy_Root_Certificate_Authority_-_G2" "locu.com"
+
+except "Starfield_Root_Certificate_Authority_-_G2" "tools.ietf.org"
+except "thawte_Primary_Root_CA" "quikpayasp.com" # mitpay
+except "thawte_Primary_Root_CA_-_G3" "usenix.org"
+except "GlobalSign_Root_CA_-_R2" "vivaldi.com"
+except "Entrust.net_Premium_2048_Secure_Server_CA" "techcrunch.com"
+except "Buypass_Class_3_Root_CA" "nrk.no"
+except "GeoTrust_Primary_Certification_Authority_-_G3" "tv2.no"
+except "Buypass_Class_2_Root_CA" "fs.lanekassen.no"
+except "AddTrust_External_Root" "tsp.io"
+except "DigiCert_Global_Root_CA" "boardgamegeek.com"
+except "DigiCert_Assured_ID_Root_CA" "ntnu.no"
+except "USERTrust_RSA_Certification_Authority" "csail.mit.edu"
+except "Amazon_Root_CA_1" "gfycat.com"
+except "SecureTrust_CA" "thestar.com"
+except "Network_Solutions_Certificate_Authority" "samsonite.com"
+except "T-TeleSec_GlobalRoot_Class_2" "dblp.uni-trier.de"
+except "QuoVadis_Root_CA_2_G3" "myaccount.ucl.ac.uk"
+except "DigiCert_Global_Root_G2" "saucelabs.com"
+except "Certum_Trusted_Network_CA" "www.eff.org"
+
+sudo update-ca-trust

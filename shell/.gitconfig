@@ -1,0 +1,47 @@
+[user]
+	name = Jon Gjengset
+	email = jon@thesquareplanet.com
+	signingkey = 7176DC71
+[ui "color"]
+	ui = always
+[color]
+	ui = true
+[core]
+	excludesfile = ~/.gitignore_global
+	autocrlf = input
+	safecrlf = true
+[merge]
+	tool = vimdiff
+[alias]
+	c = commit
+	s = status
+	st = status
+	lg = log --oneline
+	last = log -1 HEAD
+	f = push --force-with-lease
+	# https://stackoverflow.com/a/11688523/472927
+	ss = "!f() { git stash show stash^{/$*} -p; }; f"
+	sa = "!f() { git stash apply stash^{/$*}; }; f"
+	sl = stash list
+[push]
+	default = simple
+[help]
+	autocorrect = 1
+[url "git.launchpad.net"]
+	insteadOf = lp:
+[url "git@g.csail.mit.edu:"]
+	insteadOf = g:
+[url "git@github.com:"]
+	insteadOf = gh:
+[github]
+	user = jonhoo
+[diff]
+	algorithm = patience
+	compactionHeuristic = true
+[commit]
+	gpgsign = true
+[protocol]
+	version = 2
+[sendemail]
+	smtpserver = /usr/bin/msmtp
+	annotate = yes

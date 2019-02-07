@@ -1,6 +1,0 @@
-click=alacritty -e /bin/bash -ic "mutt -e 'source ~/.mutt/account.fm'"
-
-[@tsp.io]
-hostname=imap.fastmail.com:993
-username=jon@eml.cc
-password=gnome-keyring-query get mutt_fastmail
