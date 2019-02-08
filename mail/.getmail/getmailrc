@@ -2,7 +2,7 @@
 type = SimpleIMAPSSLRetriever
 server = imap.fastmail.com
 mailboxes = ("INBOX", "Archive", "Sent Items",
-  "Legacy.Bond", "Legacy.InternationalFriend", "Legacy.Hotmail")
+  "Legacy/Bond", "Legacy/InternationalFriend", "Legacy/Hotmail")
 username = jon@eml.cc
 password_command = ("pass", "sec/mutt_fastmail")
 
