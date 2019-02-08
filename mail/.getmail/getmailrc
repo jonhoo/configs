@@ -1,0 +1,19 @@
+[retriever]
+type = SimpleIMAPSSLRetriever
+server = imap.fastmail.com
+mailboxes = ("INBOX", "Archive", "Sent Items",
+  "Legacy.Bond", "Legacy.InternationalFriend", "Legacy.Hotmail")
+username = jon@eml.cc
+password_command = ("pass", "sec/mutt_fastmail")
+
+[destination]
+type = Maildir
+path = ~/.mail/
+
+[options]
+verbose = 2
+message_log = ~/.getmail/log
+
+read_all = false
+delivered_to = false
+received = false
