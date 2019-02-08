@@ -1,33 +1,20 @@
-abbr -a yr 'cal -y'
 abbr -a c cargo
 abbr -a e nvim
 abbr -a m make
-abbr -a o xdg-open
 abbr -a g git
-abbr -a gc 'git checkout'
 abbr -a vimdiff 'nvim -d'
 abbr -a ct 'cargo t'
-abbr -a amz 'env AWS_SECRET_ACCESS_KEY=(pass www/aws-secret-key | head -n1)'
-abbr -a ais "aws ec2 describe-instances | jq '.Reservations[] | .Instances[] | {iid: .InstanceId, type: .InstanceType, key:.KeyName, state:.State.Name, host:.PublicDnsName}'"
-abbr -a print 'lp -h cups.csail.mit.edu -d xerox9 -oDuplex=DuplexNoTumble -oStapleLocation=SinglePortrait'
-abbr -a gah 'git stash; and git pull --rebase; and git stash pop'
 complete --command aurman --wraps pacman
 
-if [ -e /usr/bin/aurman ]
+if command -v aurman > /dev/null
 	abbr -a p 'aurman'
 	abbr -a up 'aurman -Syu'
-else if [ -e /usr/bin/pacaur ]
-	abbr -a p 'pacaur'
-	abbr -a up 'pacaur -Syu'
-else if [ -e /usr/bin/yaourt ]
-	abbr -a p 'yaourt'
-	abbr -a up 'yaourt -Syu --aur'
 else
 	abbr -a p 'sudo pacman'
 	abbr -a up 'sudo pacman -Syu'
 end
 
-if which exa >/dev/null 2>/dev/null
+if command -v exa > /dev/null
 	abbr -a l 'exa'
 	abbr -a ls 'exa'
 	abbr -a ll 'exa -l'
@@ -44,6 +31,28 @@ set __fish_git_prompt_showdirtystate 'yes'
 set __fish_git_prompt_showstashstate ''
 set __fish_git_prompt_showupstream 'none'
 set -g fish_prompt_pwd_dir_length 3
+
+# colored man output
+# from http://linuxtidbits.wordpress.com/2009/03/23/less-colors-for-man-pages/
+setenv LESS_TERMCAP_mb \e'[01;31m'       # begin blinking
+setenv LESS_TERMCAP_md \e'[01;38;5;74m'  # begin bold
+setenv LESS_TERMCAP_me \e'[0m'           # end mode
+setenv LESS_TERMCAP_se \e'[0m'           # end standout-mode
+setenv LESS_TERMCAP_so \e'[38;5;246m'    # begin standout-mode - info box
+setenv LESS_TERMCAP_ue \e'[0m'           # end underline
+setenv LESS_TERMCAP_us \e'[04;38;5;146m' # begin underline
+
+# Set envvars since we don't have .pam_environment
+setenv EDITOR nvim
+setenv BROWSER links
+setenv NAME "Jon Gjengset"
+setenv EMAIL jon@tsp.io
+setenv CARGO_INCREMENTAL 1
+setenv RUSTFLAGS DEFAULT "-C target-cpu=native"
+setenv ROCKSDB_LIB_DIR /usr/lib
+setenv RUST_BACKTRACE 1
+setenv LESS "-F -X -R"
+set PATH $PATH ~/.cargo/bin
 
 # Fish should not add things to clipboard when killing
 # See https://github.com/fish-shell/fish-shell/issues/772
