@@ -2,6 +2,7 @@ abbr -a c cargo
 abbr -a e nvim
 abbr -a m make
 abbr -a g git
+abbr -a gc 'git checkout'
 abbr -a vimdiff 'nvim -d'
 abbr -a ct 'cargo t'
 complete --command aurman --wraps pacman
