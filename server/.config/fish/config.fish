@@ -48,7 +48,7 @@ setenv BROWSER links
 setenv NAME "Jon Gjengset"
 setenv EMAIL jon@tsp.io
 setenv CARGO_INCREMENTAL 1
-setenv RUSTFLAGS DEFAULT "-C target-cpu=native"
+setenv RUSTFLAGS "-C target-cpu=native"
 setenv ROCKSDB_LIB_DIR /usr/lib
 setenv RUST_BACKTRACE 1
 setenv LESS "-F -X -R"
