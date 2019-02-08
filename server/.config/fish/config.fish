@@ -52,6 +52,9 @@ setenv RUSTFLAGS "-C target-cpu=native"
 setenv ROCKSDB_LIB_DIR /usr/lib
 setenv RUST_BACKTRACE 1
 setenv LESS "-F -X -R"
+if test -e ~/.cargo-target
+	setenv CARGO_TARGET_DIR ~/.cargo-target
+end
 set PATH $PATH ~/.cargo/bin
 
 # Fish should not add things to clipboard when killing
