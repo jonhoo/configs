@@ -39,8 +39,8 @@ window:
   #     - none: Neither borders nor title bar
   #
   # Values for `decorations` (macOS only):
-  #     - buttonless: Title bar, transparent background and title bar buttons
-  #     - transparent: Title bar, transparent background, but no title bar buttons
+  #     - transparent: Title bar, transparent background and title bar buttons
+  #     - buttonless: Title bar, transparent background, but no title bar buttons
   decorations: none
 
   # When true, alacritty starts maximized.
@@ -289,6 +289,8 @@ mouse:
     # This program is executed when clicking on a text which is recognized as a URL.
     # The URL is always added to the command as the last parameter.
     #
+    # When set to `None`, URL launching will be disabled completely.
+    #
     # Default:
     #   - (macOS) open
     #   - (Linux) xdg-open
@@ -469,10 +471,12 @@ key_bindings:
   - { key: Home,                    chars: "\x1b[H",   mode: ~AppCursor  }
   - { key: End,                     chars: "\x1bOF",   mode: AppCursor   }
   - { key: End,                     chars: "\x1b[F",   mode: ~AppCursor  }
-  - { key: PageUp,   mods: Shift,   chars: "\x1b[5;2~"                   }
+  - { key: PageUp,   mods: Shift,   action: ScrollPageUp,   mode: ~Alt       }
+  - { key: PageUp,   mods: Shift,   chars: "\x1b[5;2~",     mode: Alt        }
   - { key: PageUp,   mods: Control, chars: "\x1b[5;5~"                   }
   - { key: PageUp,                  chars: "\x1b[5~"                     }
-  - { key: PageDown, mods: Shift,   chars: "\x1b[6;2~"                   }
+  - { key: PageDown, mods: Shift,   action: ScrollPageDown, mode: ~Alt       }
+  - { key: PageDown, mods: Shift,   chars: "\x1b[6;2~",     mode: Alt        }
   - { key: PageDown, mods: Control, chars: "\x1b[6;5~"                   }
   - { key: PageDown,                chars: "\x1b[6~"                     }
   - { key: Tab,      mods: Shift,   chars: "\x1b[Z"                      }
