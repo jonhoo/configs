@@ -33,7 +33,6 @@ R_LIBS_USER=/home/@{PAM_USER}/.Rpackages
 # Rust stuff
 CARGO_INCREMENTAL=1
 RUSTFLAGS DEFAULT="-C target-cpu=native"
-ROCKSDB_LIB_DIR=/usr/lib
 RUST_BACKTRACE=1
 
 # Java stuff
