@@ -71,10 +71,10 @@ end
 function remote_alacritty
 	# https://gist.github.com/costis/5135502
 	set fn (mktemp)
-	infocmp alacritty-256color > $fn
-	scp $fn $argv[1]":alacritty-256color.ti"
-	ssh $argv[1] tic "alacritty-256color.ti"
-	ssh $argv[1] rm "alacritty-256color.ti"
+	infocmp alacritty > $fn
+	scp $fn $argv[1]":alacritty.ti"
+	ssh $argv[1] tic "alacritty.ti"
+	ssh $argv[1] rm "alacritty.ti"
 end
 
 function remarkable
