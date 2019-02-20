@@ -9,7 +9,7 @@ let mapleader = "\<Space>"
 set nocompatible
 filetype off
 set rtp+=~/dev/others/base16/vim/
-call plug#begin('~/.local/share/nvim/plugged')
+call plug#begin()
 
 " Load plugins
 " VIM enhancements
@@ -21,6 +21,7 @@ Plug 'justinmk/vim-sneak'
 Plug 'itchyny/lightline.vim'
 Plug 'w0rp/ale'
 Plug 'machakann/vim-highlightedyank'
+Plug 'andymass/vim-matchup'
 
 " Fuzzy finder
 Plug 'airblade/vim-rooter'
@@ -34,38 +35,23 @@ Plug 'autozimu/LanguageClient-neovim', {
     \ 'branch': 'next',
     \ 'do': 'bash install.sh',
     \ }
-Plug 'mattn/webapi-vim'
 Plug 'ncm2/ncm2'
 Plug 'roxma/nvim-yarp'
-"Plug 'roxma/nvim-cm-racer'
-Plug 'junegunn/vader.vim'
 
 " Completion plugins
 Plug 'ncm2/ncm2-bufword'
 Plug 'ncm2/ncm2-tmux'
 Plug 'ncm2/ncm2-path'
 
-" LanguageClient enhancements
-" Showing function signature and inline doc.
-Plug 'Shougo/echodoc.vim'
-
 " Syntactic language support
-" Plugin '~/dev/projects/simio', {'rtp': 'src/vim-syntax/'}
-Plug '~/dev/projects/api-soup', {'rtp': 'vim-syntax/'}
-" Plugin 'vim-scripts/gnuplot-syntax-highlighting'
-" Plugin 'treycordova/rustpeg.vim.git'
-" Plugin 'vim-scripts/haskell.vim'
 Plug 'cespare/vim-toml'
-" Plugin 'lervag/vim-latex'
 Plug 'rust-lang/rust.vim'
-Plug 'fatih/vim-go'
+"Plug 'fatih/vim-go'
 Plug 'dag/vim-fish'
 Plug 'godlygeek/tabular'
 Plug 'plasticboy/vim-markdown'
 
 call plug#end()
-
-runtime macros/matchit.vim
 
 if has('nvim')
     set guicursor=n-v-c:block-Cursor/lCursor-blinkon0,i-ci:ver25-Cursor/lCursor,r-cr:hor20-Cursor/lCursor
@@ -173,17 +159,11 @@ set completeopt=noinsert,menuone,noselect
 inoremap <expr><Tab> (pumvisible()?(empty(v:completed_item)?"\<C-n>":"\<C-y>"):"\<Tab>")
 inoremap <expr><CR> (pumvisible()?(empty(v:completed_item)?"\<CR>\<CR>":"\<C-y>"):"\<CR>")
 
-" Doxygen
-let mysyntaxfile='~/.vim/doxygen_load.vim'
-
 " Golang
 let g:go_play_open_browser = 0
 let g:go_fmt_fail_silently = 1
 let g:go_fmt_command = "goimports"
 let g:go_bin_path = expand("~/dev/go/bin")
-
-" Don't gofmt Biscuit (yet)
-autocmd BufRead,BufNewFile /home/jon/dev/others/biscuit/** let [g:go_fmt_command, g:go_fmt_autosave]=["", 0]
 
 " =============================================================================
 " # Editor settings
@@ -212,8 +192,6 @@ set printoptions=paper:letter
 " Settings needed for .lvimrc
 set exrc
 set secure
-
-set tags=.git/tags
 
 " Sane splits
 set splitright
