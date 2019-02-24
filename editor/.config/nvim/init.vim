@@ -105,7 +105,6 @@ endif
 let javaScript_fold=0
 
 " Linter
-let g:ale_sign_column_always = 1
 " only lint on save
 let g:ale_lint_on_text_changed = 'never'
 let g:ale_lint_on_save = 0
@@ -218,6 +217,8 @@ let g:vim_markdown_frontmatter = 1
 set printfont=:h10
 set printencoding=utf-8
 set printoptions=paper:letter
+" Always draw sign column. Prevent buffer moving when adding/deleting sign.
+set signcolumn=yes
 
 " Settings needed for .lvimrc
 set exrc
