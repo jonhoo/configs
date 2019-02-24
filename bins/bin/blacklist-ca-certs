@@ -48,5 +48,6 @@ except "T-TeleSec_GlobalRoot_Class_2" "dblp.uni-trier.de"
 except "QuoVadis_Root_CA_2_G3" "myaccount.ucl.ac.uk"
 except "DigiCert_Global_Root_G2" "saucelabs.com"
 except "Certum_Trusted_Network_CA" "www.eff.org"
+except "Comodo_AAA_Services_root" "access.harvard.edu"
 
 sudo update-ca-trust
