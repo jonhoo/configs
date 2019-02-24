@@ -5,6 +5,7 @@ abbr -a m make
 abbr -a o xdg-open
 abbr -a g git
 abbr -a gc 'git checkout'
+abbr -a ga 'git add -p'
 abbr -a vimdiff 'nvim -d'
 abbr -a ct 'cargo t'
 abbr -a amz 'env AWS_SECRET_ACCESS_KEY=(pass www/aws-secret-key | head -n1)'
