@@ -112,8 +112,38 @@ let g:ale_lint_on_save = 0
 let g:ale_lint_on_enter = 0
 let g:ale_rust_cargo_use_check = 1
 let g:ale_rust_cargo_check_all_targets = 1
-let g:ale_virtualtext_cursor = 0
 " let g:neomake_info_sign = {'text': '⚕', 'texthl': 'NeomakeInfoSign'}
+" don't make errors so painful to look at
+let g:LanguageClient_diagnosticsDisplay = {
+    \     1: {
+    \         "name": "Error",
+    \         "texthl": "ALEError",
+    \         "signText": "✖",
+    \         "signTexthl": "ErrorMsg",
+    \         "virtualTexthl": "WarningMsg",
+    \     },
+    \     2: {
+    \         "name": "Warning",
+    \         "texthl": "ALEWarning",
+    \         "signText": "⚠",
+    \         "signTexthl": "ALEWarningSign",
+    \         "virtualTexthl": "Todo",
+    \     },
+    \     3: {
+    \         "name": "Information",
+    \         "texthl": "ALEInfo",
+    \         "signText": "ℹ",
+    \         "signTexthl": "ALEInfoSign",
+    \         "virtualTexthl": "Todo",
+    \     },
+    \     4: {
+    \         "name": "Hint",
+    \         "texthl": "ALEInfo",
+    \         "signText": "➤",
+    \         "signTexthl": "ALEInfoSign",
+    \         "virtualTexthl": "Todo",
+    \     },
+    \ }
 
 " Latex
 let g:latex_indent_enabled = 1
