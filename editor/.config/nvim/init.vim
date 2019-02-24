@@ -111,7 +111,22 @@ let g:ale_lint_on_save = 0
 let g:ale_lint_on_enter = 0
 let g:ale_rust_cargo_use_check = 1
 let g:ale_rust_cargo_check_all_targets = 1
-" let g:neomake_info_sign = {'text': '⚕', 'texthl': 'NeomakeInfoSign'}
+
+" language server protocol
+" work around the lack of a global language client settings file:
+" https://github.com/rust-lang/rls/issues/1324
+" https://github.com/autozimu/LanguageClient-neovim/issues/431
+" I primarily want that for the ability to set `build_on_save`,
+" which I in turn want because of
+" https://github.com/autozimu/LanguageClient-neovim/issues/603
+let g:LanguageClient_settingsPath = expand('~/.config/nvim/settings.json')
+let g:LanguageClient_serverCommands = {
+    \ 'rust': ['env', 'CARGO_TARGET_DIR=/data/jon/cargo-target/rls', 'rls'],
+    \ }
+let g:LanguageClient_autoStart = 1
+nnoremap <silent> K :call LanguageClient_textDocument_hover()<CR>
+nnoremap <silent> gd :call LanguageClient_textDocument_definition()<CR>
+nnoremap <silent> <F2> :call LanguageClient_textDocument_rename()<CR>
 " don't make errors so painful to look at
 let g:LanguageClient_diagnosticsDisplay = {
     \     1: {
@@ -158,16 +173,6 @@ nmap <leader>w :w<CR>
 
 " Don't confirm .lvimrc
 let g:localvimrc_ask = 0
-
-" language server protocol
-let g:LanguageClient_settingsPath = "/home/jon/.vim/settings.json"
-let g:LanguageClient_serverCommands = {
-    \ 'rust': ['env', 'CARGO_TARGET_DIR=/data/jon/cargo-target/rls', 'rls'],
-    \ }
-let g:LanguageClient_autoStart = 1
-nnoremap <silent> K :call LanguageClient_textDocument_hover()<CR>
-nnoremap <silent> gd :call LanguageClient_textDocument_definition()<CR>
-nnoremap <silent> <F2> :call LanguageClient_textDocument_rename()<CR>
 
 " racer + rust
 " https://github.com/rust-lang/rust.vim/issues/192

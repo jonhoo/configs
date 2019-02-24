@@ -1,6 +1,7 @@
 {
 	"rust": {
 		"all_targets": true,
-		"build_on_save": true
+		"build_on_save": true,
+		"clippy_preference": "on"
 	}
 }
