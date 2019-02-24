@@ -91,7 +91,8 @@ function remarkable
 		sudo dhcpcd enp0s20f0u2
 	end
 	for f in $argv
-		curl --form "file=@"$f http://10.11.99.1/upload
+		echo "-> uploading $f"
+		curl --form "file=@\""$f"\"" http://10.11.99.1/upload
 		echo
 	end
 end
