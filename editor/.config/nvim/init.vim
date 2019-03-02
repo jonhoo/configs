@@ -84,8 +84,17 @@ let g:base16_shell_path="~/dev/others/base16/shell/scripts/"
 " Lightline
 " let g:lightline = { 'colorscheme': 'wombat' }
 let g:lightline = {
+      \ 'active': {
+      \ 'left': [ [ 'mode', 'paste' ],
+      \           [ 'readonly', 'filename', 'modified' ] ],
+      \  'right': [
+      \             ['teststatus'], ['lineinfo'],
+      \             ['percent'], ['fileformat', 'fileencoding', 'filetype']
+      \           ]
+      \ },
       \ 'component_function': {
       \   'filename': 'LightlineFilename',
+      \   'teststatus': 'TestStatus',
       \ },
 \ }
 function! LightlineFilename()
@@ -431,7 +440,9 @@ autocmd BufWritePost *.less if filereadable("Makefile") | make | endif
 
 " Follow Rust code style rules
 au Filetype rust source ~/.config/nvim/scripts/spacetab.vim
-au Filetype rust set colorcolumn=100
+" Highlight the excess characters
+au FileType rust highlight rightMargin ctermbg=233
+au FileType rust 2match rightMargin /.\%>100v/
 
 " Help filetype detection
 autocmd BufRead *.plot set filetype=gnuplot
@@ -452,3 +463,78 @@ autocmd Filetype html,xml,xsl,php source ~/.config/nvim/scripts/closetag.vim
 if has('nvim')
 	runtime! plugin/python_setup.vim
 endif
+
+" =============================================================================
+" # HILIGHT CURRENT WORD
+" =============================================================================
+setl updatetime=200
+highlight currentWordHi term=bold ctermbg=236 guibg=green
+au CursorHold * exe 'match currentWordHi /\V\<'.substitute(escape(expand('<cword>'),'\'),"/","\\\\/","g").'\>/'
+au CursorHoldI * exe 'match currentWordHi /\V\<'.substitute(escape(expand('<cword>'),'\'),"/","\\\\/","g").'\>/'
+
+" =============================================================================
+" # RUN TESTS IN BACKGROUND
+" =============================================================================
+let g:TestStatus=-1
+function! TestStatus()
+  if &filetype != "rust"
+    return ""
+  elseif g:TestStatus == -1
+    return "[Test: N/A]"
+  elseif g:TestStatus == 0
+    return "[Test: OK.]"
+  else
+    return "[Test: ERR]"
+  endif
+endfunction
+function! s:BgCmdCB(job_id, data, event)
+    call writefile([join(a:data)], g:bgCmdOutput, 'a')
+endfunction
+function! s:BgCmdExit(job_id, data, status)
+  let l:bufno = bufwinnr("__Bg_Res__")
+  echo 'Running' g:bgCmd 'in background... Done.'
+  let g:TestStatus=a:data
+  " Change status line to show errors
+  if a:data > 0
+    hi statusline guibg=DarkRed ctermfg=1 guifg=Black ctermbg=0
+    if l:bufno == -1
+      below 8split __Bg_Res__
+      let l:bufno = bufwinnr("__Bg_Res__")
+    else
+      execute bufno . "wincmd w"
+    endif
+    normal! ggdG
+    setlocal buftype=nofile
+    call append(0,readfile(g:bgCmdOutput))
+    normal! gg
+    execute "-1 wincmd w"
+  else
+    " Restore status line
+    hi statusline term=bold,reverse cterm=bold ctermfg=233 ctermbg=66 gui=bold guifg=#1c1c1c guibg=#5f8787
+    " Close tests result window
+    if l:bufno != -1
+      execute bufno . "wincmd w"
+      close
+    endif
+  endif
+  unlet g:bgCmdOutput
+endfunction
+
+function! RunBgCmd(command)
+  let g:bgCmd = a:command
+  if exists('g:bgCmdOutput')
+    echo 'Task' g:bgCmd 'running in background'
+  else
+    echo 'Running' g:bgCmd 'in background'
+    let g:bgCmdOutput = tempname()
+    call jobstart(a:command,{
+      \'on_stderr': function('s:BgCmdCB'),
+      \'on_stdout': function('s:BgCmdCB'),
+      \'on_exit': function('s:BgCmdExit')})
+  endif
+endfunction
+
+command! -nargs=+ -complete=shellcmd RunBg call RunBgCmd(<q-args>)
+autocmd FileType rust nmap <leader>tc :RunBg cargo test<CR>
+autocmd FileType rust nmap <leader>tC :RunBg cargo test -- --nocapture<CR>
+
