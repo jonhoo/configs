@@ -31,10 +31,6 @@ Plug 'junegunn/fzf.vim'
 " Semantic language support
 "Plug 'phildawes/racer'
 "Plug 'racer-rust/vim-racer'
-Plug 'autozimu/LanguageClient-neovim', {
-    \ 'branch': 'next',
-    \ 'do': 'bash install.sh',
-    \ }
 Plug 'ncm2/ncm2'
 Plug 'roxma/nvim-yarp'
 
@@ -107,57 +103,32 @@ let javaScript_fold=0
 " Linter
 " only lint on save
 let g:ale_lint_on_text_changed = 'never'
+let g:ale_lint_on_insert_leave = 1
 let g:ale_lint_on_save = 0
 let g:ale_lint_on_enter = 0
-let g:ale_rust_cargo_use_check = 1
-let g:ale_rust_cargo_check_all_targets = 1
+let g:ale_virtualtext_cursor = 1
+let g:ale_rust_rls_config = {
+	\ 'rust': {
+		\ 'all_targets': 1,
+		\ 'build_on_save': 1,
+		\ 'clippy_preference': 'on'
+	\ }
+	\ }
+let g:ale_rust_rls_toolchain = ''
+let g:ale_linters = {'rust': ['rls']}
+highlight link ALEWarningSign Todo
+highlight link ALEErrorSign WarningMsg
+highlight link ALEVirtualTextWarning Todo
+highlight link ALEVirtualTextInfo Todo
+highlight link ALEVirtualTextError WarningMsg
+let g:ale_sign_error = "✖"
+let g:ale_sign_warning = "⚠"
+let g:ale_sign_info = "i"
+let g:ale_sign_hint = "➤"
 
-" language server protocol
-" work around the lack of a global language client settings file:
-" https://github.com/rust-lang/rls/issues/1324
-" https://github.com/autozimu/LanguageClient-neovim/issues/431
-" I primarily want that for the ability to set `build_on_save`,
-" which I in turn want because of
-" https://github.com/autozimu/LanguageClient-neovim/issues/603
-let g:LanguageClient_settingsPath = expand('~/.config/nvim/settings.json')
-let g:LanguageClient_serverCommands = {
-    \ 'rust': ['env', 'CARGO_TARGET_DIR=/data/jon/cargo-target/rls', 'rls'],
-    \ }
-let g:LanguageClient_autoStart = 1
-nnoremap <silent> K :call LanguageClient_textDocument_hover()<CR>
-nnoremap <silent> gd :call LanguageClient_textDocument_definition()<CR>
-nnoremap <silent> <F2> :call LanguageClient_textDocument_rename()<CR>
-" don't make errors so painful to look at
-let g:LanguageClient_diagnosticsDisplay = {
-    \     1: {
-    \         "name": "Error",
-    \         "texthl": "ALEError",
-    \         "signText": "✖",
-    \         "signTexthl": "ErrorMsg",
-    \         "virtualTexthl": "WarningMsg",
-    \     },
-    \     2: {
-    \         "name": "Warning",
-    \         "texthl": "ALEWarning",
-    \         "signText": "⚠",
-    \         "signTexthl": "ALEWarningSign",
-    \         "virtualTexthl": "Todo",
-    \     },
-    \     3: {
-    \         "name": "Information",
-    \         "texthl": "ALEInfo",
-    \         "signText": "ℹ",
-    \         "signTexthl": "ALEInfoSign",
-    \         "virtualTexthl": "Todo",
-    \     },
-    \     4: {
-    \         "name": "Hint",
-    \         "texthl": "ALEInfo",
-    \         "signText": "➤",
-    \         "signTexthl": "ALEInfoSign",
-    \         "virtualTexthl": "Todo",
-    \     },
-    \ }
+nnoremap <silent> K :ALEHover<CR>
+nnoremap <silent> gd :ALEGoToDefinition<CR>
+"nnoremap <silent> <F2> :call LanguageClient_textDocument_rename()<CR>
 
 " Latex
 let g:latex_indent_enabled = 1
