@@ -55,9 +55,20 @@ if has('nvim')
     noremap <C-q> :confirm qall<CR>
 end
 
+" deal with colors
 if !has('gui_running')
   set t_Co=256
 endif
+if (match($TERM, "-256color") != -1) && (match($TERM, "screen-256color") == -1)
+  " screen does not (yet) support truecolor
+  set termguicolors
+endif
+" Colors
+set background=dark
+colorscheme base16-atelier-dune
+hi Normal ctermbg=NONE
+" Get syntax
+syntax on
 
 " Plugin settings
 let g:secure_modelines_allowed_items = [
@@ -121,6 +132,8 @@ highlight link ALEErrorSign WarningMsg
 highlight link ALEVirtualTextWarning Todo
 highlight link ALEVirtualTextInfo Todo
 highlight link ALEVirtualTextError WarningMsg
+highlight ALEError guibg=#330000
+highlight ALEWarning guibg=#333300
 let g:ale_sign_error = "✖"
 let g:ale_sign_warning = "⚠"
 let g:ale_sign_info = "i"
@@ -182,10 +195,6 @@ set noshowmode
 set hidden
 set nowrap
 set nojoinspaces
-if (match($TERM, "-256color") != -1) && (match($TERM, "screen-256color") == -1)
-  " screen does not (yet) support truecolor
-  set termguicolors
-endif
 let g:sneak#s_next = 1
 let g:vim_markdown_new_list_item_indent = 0
 let g:vim_markdown_auto_insert_bullets = 0
@@ -218,9 +227,6 @@ set shiftwidth=8
 set softtabstop=8
 set tabstop=8
 set noexpandtab
-
-" Get syntax
-syntax on
 
 " Wrapping options
 set formatoptions=tc " wrap text and comments using textwidth
@@ -270,11 +276,6 @@ set colorcolumn=80 " and give me a colored column
 set showcmd " Show (partial) command in status line.
 set mouse=a " Enable mouse usage (all modes) in terminals
 set shortmess+=c " don't give |ins-completion-menu| messages.
-
-" Colors
-set background=dark
-colorscheme base16-atelier-dune
-hi Normal ctermbg=NONE
 
 " Show those damn hidden characters
 " Verbose: set listchars=nbsp:¬,eol:¶,extends:»,precedes:«,trail:•
@@ -348,13 +349,11 @@ nnoremap j gj
 nnoremap k gk
 
 " Jump to next/previous error
-nnoremap <C-j> :cnext<cr>
-nnoremap <C-k> :cprev<cr>
+nmap <silent> <C-k> <Plug>(ale_previous_wrap)
+nmap <silent> <C-j> <Plug>(ale_next_wrap)
 nmap <silent> L <Plug>(ale_lint)
-"nmap <silent> <C-k> <Plug>(ale_previous_wrap)
-"nmap <silent> <C-j> <Plug>(ale_next_wrap)
-nnoremap <C-l> :copen<cr>
-nnoremap <C-g> :cclose<cr>
+nmap <silent> <C-l> <Plug>(ale_detail)
+nmap <silent> <C-g> :close<cr>
 
 " <leader><leader> toggles between buffers
 nnoremap <leader><leader> <c-^>
