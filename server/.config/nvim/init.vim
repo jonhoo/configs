@@ -75,8 +75,8 @@ set colorcolumn=80 " and give me a colored column
 set background=dark
 colors desert
 "colors slate
-hi Normal ctermbg=NONE
-highlight nonText ctermbg=NONE
+hi Normal guibg=NONE
+highlight nonText guibg=NONE
 
 " Show those damn hidden characters
 " Verbose: set listchars=nbsp:¬,eol:¶,extends:»,precedes:«,trail:•
