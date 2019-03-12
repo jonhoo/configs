@@ -33,5 +33,6 @@ except "GlobalSign_ECC_Root_CA_-_R5" "google.com"
 except "Go_Daddy_Class_2_CA" "piazza.com"
 except "GlobalSign_Root_CA_-_R2" "googleapis.com"
 except "GeoTrust_Global_CA" "webkit.org"
+except "GlobalSign_Root_CA" "www.kickstarter.com"
 
 sudo update-ca-trust
