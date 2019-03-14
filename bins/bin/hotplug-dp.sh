@@ -46,6 +46,8 @@ dpi=96
 if [ "$STATUS" = "disconnected" ]; then
 	/usr/bin/xrandr --output DP-1 --off
 	/usr/bin/xrandr --output DP-2 --off
+	/usr/bin/xrandr --output DP-3 --off
+	/usr/bin/xrandr --output DP-4 --off
 	/usr/bin/xrandr --output HDMI-1 --off
 	/usr/bin/xrandr --output HDMI-2 --off
 	/usr/bin/xrandr --output eDP-1 --mode 2560x1440
