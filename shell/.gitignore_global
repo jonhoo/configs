@@ -14,7 +14,6 @@
 .externalToolBuilders
 intermediate
 publish
-results/
 .netrwhist
 .lvimrc
 .mutt/cache
