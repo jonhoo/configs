@@ -24,7 +24,7 @@ PATH DEFAULT=${PATH}:/home/@{PAM_USER}/.gem/ruby/2.6.0/bin
 TZ=America/New_York
 
 # Configs
-R_LIBS_USER=/home/@{PAM_USER}/.Rpackages
+R_LIBS_USER DEFAULT=/home/@{PAM_USER}/.Rpackages
 
 # Environment-local
 #CARGO_TARGET_DIR DEFAULT=/data/@{PAM_USER}/cargo-target
