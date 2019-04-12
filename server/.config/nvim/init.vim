@@ -49,6 +49,12 @@ set ignorecase
 set smartcase
 set gdefault
 
+" Ctrl+c and Ctrl+j as Esc
+inoremap <C-j> <Esc>
+vnoremap <C-j> <Esc>
+inoremap <C-c> <Esc>
+vnoremap <C-c> <Esc>
+
 " Search results centered please
 nnoremap <silent> n nzz
 nnoremap <silent> N Nzz
