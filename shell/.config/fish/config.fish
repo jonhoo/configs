@@ -64,7 +64,16 @@ function apass
 		return
 	end
 
-	adb shell input text (pass $argv[1] | head -n1 | sed -e 's/ /%s/g' -e 's/\([[()<>{}$|;&*\\~"\'`]\)/\\\\\1/g')
+	asend (pass $argv[1] | head -n1)
+end
+
+function asend
+	if test (count $argv) -ne 1
+		echo "No argument given"
+		return
+	end
+
+	adb shell input text (echo $argv[1] | sed -e 's/ /%s/g' -e 's/\([[()<>{}$|;&*\\~"\'`]\)/\\\\\1/g')
 end
 
 function limit
