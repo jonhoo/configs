@@ -77,7 +77,7 @@ function asend
 end
 
 function limit
-	numactl -C 0,2 $argv
+	numactl -C 0,1,2 $argv
 end
 
 function remote_alacritty
