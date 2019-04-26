@@ -74,7 +74,8 @@ else
 				;;
 			"22bddaae13e6f792f1d720f7571e79340455bccacba7aab64b267cf51b1f48d31f49a3894396419a146820279be7221997d5c9bb903b1d61365666c6dd57b2e3")
 				pos="primary --right-of"
-				background_primary="uhd"
+				background_primary="4k"
+				background_secondary="uhd"
 				laptop_res="2560x1440"
 				maxlight
 				dpi=140
