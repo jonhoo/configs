@@ -34,5 +34,6 @@ except "Go_Daddy_Class_2_CA" "piazza.com"
 except "GlobalSign_Root_CA_-_R2" "googleapis.com"
 except "GeoTrust_Global_CA" "webkit.org"
 except "GlobalSign_Root_CA" "www.kickstarter.com"
+except "Entrust_Root_Certification_Authority_-_G2" "syfy.com"
 
 sudo update-ca-trust
