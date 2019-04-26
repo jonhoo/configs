@@ -170,13 +170,13 @@ persistent_logging: false
 # If `true`, bold text is drawn using the bright color variants.
 draw_bold_text_with_bright_colors: true
 
-# Colors (Base16 Atelier Dune)
-# See https://github.com/aaron-williamson/base16-alacritty/blob/master/colors/base16-atelier-dune-256.yml
+# Base16 Gruvbox dark, hard 256 - alacritty color config
+# Dawid Kurek (dawikur@gmail.com), morhetz (https://github.com/morhetz/gruvbox)
 colors:
   # Default colors
   primary:
-    background: '0x20201d'
-    foreground: '0xa6a28c'
+    background: '0x1d2021'
+    foreground: '0xd5c4a1'
 
     # Bright and dim foreground colors
     #
@@ -191,8 +191,8 @@ colors:
   # Colors which should be used to draw the terminal cursor. If these are unset,
   # the cursor color will be the inverse of the cell color.
   cursor:
-    text: '0x20201d'
-    cursor: '0xa6a28c'
+    text: '0x1d2021'
+    cursor: '0xd5c4a1'
 
   # Selection colors
   #
@@ -205,25 +205,25 @@ colors:
 
   # Normal colors
   normal:
-    black:   '0x20201d'
-    red:     '0xd73737'
-    green:   '0x60ac39'
-    yellow:  '0xae9513'
-    blue:    '0x6684e1'
-    magenta: '0xb854d4'
-    cyan:    '0x1fad83'
-    white:   '0xa6a28c'
+    black:   '0x1d2021'
+    red:     '0xfb4934'
+    green:   '0xb8bb26'
+    yellow:  '0xfabd2f'
+    blue:    '0x83a598'
+    magenta: '0xd3869b'
+    cyan:    '0x8ec07c'
+    white:   '0xd5c4a1'
 
   # Bright colors
   bright:
-    black:   '0x7d7a68'
-    red:     '0xd73737'
-    green:   '0x60ac39'
-    yellow:  '0xae9513'
-    blue:    '0x6684e1'
-    magenta: '0xb854d4'
-    cyan:    '0x1fad83'
-    white:   '0xfefbec'
+    black:   '0x665c54'
+    red:     '0xfb4934'
+    green:   '0xb8bb26'
+    yellow:  '0xfabd2f'
+    blue:    '0x83a598'
+    magenta: '0xd3869b'
+    cyan:    '0x8ec07c'
+    white:   '0xfbf1c7'
 
   # Dim colors
   #
@@ -239,12 +239,12 @@ colors:
   #   `- { index: 16, color: '0xff00ff' }`
   #
   indexed_colors:
-    - { index: 16, color: '0xb65611' }
-    - { index: 17, color: '0xd43552' }
-    - { index: 19, color: '0x292824' }
-    - { index: 19, color: '0x6e6b5e' }
-    - { index: 20, color: '0x999580' }
-    - { index: 21, color: '0xe8e4cf' }
+    - { index: 16, color: '0xfe8019' }
+    - { index: 17, color: '0xd65d0e' }
+    - { index: 18, color: '0x3c3836' }
+    - { index: 19, color: '0x504945' }
+    - { index: 20, color: '0xbdae93' }
+    - { index: 21, color: '0xebdbb2' }
 
 # Visual Bell
 #

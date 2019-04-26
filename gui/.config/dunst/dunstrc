@@ -242,29 +242,23 @@
     # Context menu.
     context = ctrl+shift+period
 
+frame_color = "#d5c4a1"
+separator_color = "#d5c4a1"
+
 [urgency_low]
-    # IMPORTANT: colors have to be defined in quotation marks.
-    # Otherwise the "#" and following would be interpreted as a comment.
-    background = "#222222"
-    foreground = "#888888"
-    timeout = 10
-    # Icon for notifications with low urgency, uncomment to enable
-    #icon = /path/to/icon
+    msg_urgency = low
+    background = "#3c3836"
+    foreground = "#665c54"
 
 [urgency_normal]
-    background = "#111111"
-    foreground = "#ffffff"
-    timeout = 10
-    # Icon for notifications with normal urgency, uncomment to enable
-    #icon = /path/to/icon
+    msg_urgency = normal
+    background = "#504945"
+    foreground = "#d5c4a1"
 
 [urgency_critical]
-    background = "#900000"
-    foreground = "#ffffff"
-    frame_color = "#ff0000"
-    timeout = 0
-    # Icon for notifications with critical urgency, uncomment to enable
-    #icon = /path/to/icon
+    msg_urgency = critical
+    background = "#fb4934"
+    foreground = "#ebdbb2"
 
 # Every section that isn't one of the above is interpreted as a rules to
 # override settings for certain messages.
