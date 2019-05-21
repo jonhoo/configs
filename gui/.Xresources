@@ -1,46 +1,13 @@
-#include "/home/jon/dev/others/base16/builder/output/xresources/base16-atelierdune.dark.256.xresources"
-emacs*geometry:           120x50
-*faceName: xft:SourceCodePro:size=10,xft:FiraMono:size=10
-*font: xft:SourceCodePro:size=10,xft:FiraMono:size=10
+#include "/home/jon/dev/others/base16/builder/templates/xresources/xresources/base16-gruvbox-dark-hard-256.Xresources"
+*faceName: Public Sans
+xterm*faceSize: 14
 *multiClickTime: 300
 *international: true
 Xcursor.theme: default
 Xcursor.size:  16       !  32, 48 or 64 may also be good values
 
-! urxvt
-URxvt.depth:           32
-URxvt.secondaryScroll: false
-URxvt*saveLines:       12000
-URxvt*scrollTtyOutput:      false
-URxvt*scrollWithBuffer:     true
-URxvt*scrollTtyKeypress:    true
-!URxvt.background:      rgb:0000/2b00/3600
-!URxvt.background:      rgba:0000/2b00/3600/f400
-!URxvt.intensityStyles: false
-!URxvt.background       rgb:6200/6200/6200
-URxvt.scrollBar:       false
-URxvt.geometry:        130x30
-URxvt.urlLauncher:     /usr/bin/firefox
-URxvt.url-launcher:     /usr/bin/firefox
-URxvt.matcher.button:  1
-! Ctrl+arrows
-URxvt.keysym.Control-Up: \033[1;5A
-URxvt.keysym.Control-Down: \033[1;5B
-URxvt.keysym.Control-Left: \033[1;5D
-URxvt.keysym.Control-Right: \033[1;5C
-! Paste!
-URxvt.perl-ext-common: default,clipboard,tabbedex
-URxvt.keysym.M-c:   eval:selection_to_clipboard
-URxvt.keysym.M-v:   eval:paste_clipboard
-! Tabs
-URxvt.tabbed.tabbar-fg: 2
-URxvt.tabbed.tabbar-bg: 0
-URxvt.tabbed.tab-fg:    3
-URxvt.tabbed.tab-bg:    0
-
 ! Xft settings ---------------------------------------------------------------
 
-Xft.dpi: 96
 Xft.lcdfilter: lcddefault
 Xft.antialias:  true
 Xft.autohint:   false
@@ -59,3 +26,5 @@ xterm*scrollTtyOutput:    false
 xterm*jumpScroll:         true
 xterm*multiScroll:        true
 xterm*toolBar:            false
+xterm*termName:           xterm-256color
+xterm*faceName: Noto Sans Mono
