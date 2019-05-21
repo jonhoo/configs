@@ -1,24 +1,16 @@
-@namespace url("http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul");
-
-/* tabs on bottom of window */
-#navigator-toolbox { -moz-box-ordinal-group: 10; }
-#titlebar { -moz-box-ordinal-group: 10; }
-#PopupAutoCompleteRichResult {
-	margin-top: -35vh;
-/*
-position: fixed;
-bottom: 74px;
-margin-left: 0 !important;
-*/
+@-moz-document url(chrome://browser/content/browser.xul) {
+	/* tabs on bottom of window */
+	#navigator-toolbox { -moz-box-ordinal-group: 10; }
+	#titlebar { -moz-box-ordinal-group: 10; }
+	#urlbar-results { margin-top: -35vh !important; }
+	.urlbarView-body-inner { }
+	#urlbarView-results { }
+	.search-one-offs { display: none; }
+	.tab-background { border-top: none !important; }
+	#navigator-toolbox::after { border: none; }
+	#TabsToolbar .tabbrowser-arrowscrollbox,
+	#tabbrowser-tabs, .tab-stack { min-height: 28px !important; }
+	.tabbrowser-tab { font-size: 80%; }
+	.tab-content { padding: 0 5px; }
+	.tab-close-button .toolbarbutton-icon { width: 12px !important; height: 12px !important; }
 }
-#PopupAutoCompleteRichResult .autocomplete-richlistbox[style] {
-	/*height: 30vh !important;*/
-}
-#PopupAutoCompleteRichResult > hbox { display: none; }
-.tab-background { border-top: none !important; }
-#navigator-toolbox::after { border: none; }
-#TabsToolbar .tabbrowser-arrowscrollbox,
-#tabbrowser-tabs, .tab-stack { min-height: 28px !important; }
-.tabbrowser-tab { font-size: 80%; }
-.tab-content { padding: 0 5px; }
-.tab-close-button .toolbarbutton-icon { width: 12px !important; height: 12px !important; }
