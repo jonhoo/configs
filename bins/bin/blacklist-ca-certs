@@ -35,5 +35,8 @@ except "GlobalSign_Root_CA_-_R2" "googleapis.com"
 except "GeoTrust_Global_CA" "webkit.org"
 except "GlobalSign_Root_CA" "www.kickstarter.com"
 except "Entrust_Root_Certification_Authority_-_G2" "syfy.com"
+except "GlobalSign_Root_CA_-_R3" "www.airbnb.com"
+except "QuoVadis_Root_CA_2_G3" "core.ac.uk"
+except "DigiCert_Assured_ID_Root_CA" "uio.no"
 
 sudo update-ca-trust
