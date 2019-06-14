@@ -89,6 +89,12 @@ highlight nonText guibg=NONE
 set nolist
 set listchars=nbsp:¬,extends:»,precedes:«,trail:•
 
+" Open new file adjacent to current file
+nnoremap <leader>e :e <C-R>=expand("%:p:h") . "/" <CR>
+
+" <leader><leader> toggles between buffers
+nnoremap <leader><leader> <c-^>
+
 " Jump to last edit position on opening file
 " https://stackoverflow.com/questions/31449496/vim-ignore-specifc-file-in-autocommand
 au BufReadPost * if expand('%:p') !~# '\m/\.git/' && line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
