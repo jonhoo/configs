@@ -89,6 +89,9 @@ highlight nonText guibg=NONE
 set nolist
 set listchars=nbsp:¬,extends:»,precedes:«,trail:•
 
+" ; as :
+nnoremap ; :
+
 " Open new file adjacent to current file
 nnoremap <leader>e :e <C-R>=expand("%:p:h") . "/" <CR>
 
