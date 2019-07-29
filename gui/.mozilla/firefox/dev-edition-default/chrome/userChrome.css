@@ -1,4 +1,4 @@
-@-moz-document url(chrome://browser/content/browser.xul) {
+@-moz-document url(chrome://browser/content/browser.xhtml) {
 	/* tabs on bottom of window */
 	#navigator-toolbox { -moz-box-ordinal-group: 10; }
 	#titlebar { -moz-box-ordinal-group: 10; }
