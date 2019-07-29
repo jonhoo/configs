@@ -30,7 +30,7 @@ font-3 = "Noto Sans Symbols2:size=10;1"
 
 modules-left = date ewmh xwindow
 modules-center =
-modules-right = github eth wlan cpu battery
+modules-right = github eth1 eth2 wlan cpu battery
 
 tray-position = right
 tray-padding = 2
@@ -79,7 +79,7 @@ label = %percentage_used:2%%
 
 [module/wlan]
 type = internal/network
-interface = wlp4s0
+interface = wlp2s0
 interval = 5.0
 
 format-connected = <ramp-signal> <label-connected>
@@ -94,9 +94,21 @@ ramp-signal-2 = 🌥
 ramp-signal-3 = 🌤
 ramp-signal-4 = 🌣
 
-[module/eth]
+[module/eth2]
 type = internal/network
-interface = enp0s25
+interface = enp12s0u1
+interval = 3.0
+
+format-connected-underline = #115511
+format-connected-prefix = "🖧 "
+format-connected-prefix-foreground = ${colors.foreground-alt}
+label-connected = %local_ip%
+
+format-disconnected =
+
+[module/eth1]
+type = internal/network
+interface = enp0s31f6
 interval = 3.0
 
 format-connected-underline = #55aa55
