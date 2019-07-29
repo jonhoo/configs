@@ -14,7 +14,7 @@ call plug#begin()
 " Load plugins
 " VIM enhancements
 Plug 'ciaranm/securemodelines'
-Plug 'vim-scripts/localvimrc'
+Plug 'editorconfig/editorconfig-vim'
 Plug 'justinmk/vim-sneak'
 
 " GUI enhancements
