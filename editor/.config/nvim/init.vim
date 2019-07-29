@@ -41,6 +41,7 @@ Plug 'ncm2/ncm2-path'
 
 " Syntactic language support
 Plug 'cespare/vim-toml'
+Plug 'stephpy/vim-yaml'
 Plug 'rust-lang/rust.vim'
 "Plug 'fatih/vim-go'
 Plug 'dag/vim-fish'
