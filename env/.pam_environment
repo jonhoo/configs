@@ -27,8 +27,8 @@ TZ=America/New_York
 R_LIBS_USER DEFAULT=/home/@{PAM_USER}/.Rpackages
 
 # Environment-local
-#CARGO_TARGET_DIR DEFAULT=/data/@{PAM_USER}/cargo-target
-#PATH DEFAULT=${PATH}:/data/jon/cargo-target/release/
+CARGO_TARGET_DIR DEFAULT=/home/@{PAM_USER}/.cargo-target
+PATH DEFAULT=${PATH}:/home/@{PAM_USER}/.cargo-target/release/
 
 # Rust stuff
 CARGO_INCREMENTAL=1
