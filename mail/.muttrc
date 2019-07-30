@@ -6,9 +6,6 @@ set attribution="%n wrote:"
 set beep=no
 set beep_new=yes
 set compose_format="-- Compose [~%lb, attachments: %a]%>~"
-set crypt_autosign=yes
-set crypt_replysign=yes
-#set crypt_replysignencrypted=yes
 set date_format="!%b %d, %Y at %I:%M%p %Z"
 set imap_idle
 set imap_check_subscribed
@@ -127,10 +124,6 @@ subscribe getmail@lists.pyropus.ca gnuplot-beta@lists.sourceforge.net \
 # aliases
 set alias_file=~/.mutt/aliases
 source $alias_file
-
-source ~/.mutt/gpg
-set pgp_use_gpg_agent=yes
-set crypt_use_gpgme=yes
 
 # Colorize inline diffs, really helpful for LKML or other mailing lists where
 # mails frequently include patches.
