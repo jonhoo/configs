@@ -38,5 +38,6 @@ except "Entrust_Root_Certification_Authority_-_G2" "syfy.com"
 except "GlobalSign_Root_CA_-_R3" "www.airbnb.com"
 except "QuoVadis_Root_CA_2_G3" "core.ac.uk"
 except "DigiCert_Assured_ID_Root_CA" "uio.no"
+except "Buypass_Class_2_Root_CA" "flytoget.no"
 
 sudo update-ca-trust
