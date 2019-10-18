@@ -1,0 +1,3 @@
+{
+  "rust-analyzer.enableCargoWatchOnStartup": "disabled"
+}
