@@ -9,8 +9,7 @@ keysym 1 = 1 exclam U203D
 ! We want to rewire caps lock and control keys
 clear      lock
 clear   control
-! Control_L -> Hyper_L
-keycode      37 = Hyper_L
+keycode      37 = Control_L
 ! Caps -> Control_L
 keycode      66 = Control_L
 ! Control_R stays
