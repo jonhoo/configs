@@ -49,7 +49,6 @@ setenv BROWSER links
 setenv NAME "Jon Gjengset"
 setenv EMAIL jon@tsp.io
 setenv CARGO_INCREMENTAL 1
-setenv RUSTFLAGS "-C target-cpu=native"
 setenv RUST_BACKTRACE 1
 setenv LESS "-F -X -R"
 if test -e ~/.cargo-target
