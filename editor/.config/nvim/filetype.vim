@@ -22,4 +22,6 @@ augroup filetypedetect
   autocmd Filetype tex let g:deoplete#enable_at_startup = 0
   autocmd Filetype text let g:deoplete#enable_at_startup = 0
   autocmd Filetype markdown let g:deoplete#enable_at_startup = 0
+  " clang format
+  autocmd FileType c,cpp ClangFormatAutoEnable
 augroup END
