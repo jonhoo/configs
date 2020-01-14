@@ -236,7 +236,6 @@ set guioptions-=T " Remove toolbar
 set vb t_vb= " No more beeps
 set backspace=2 " Backspace over newlines
 set nofoldenable
-set ruler " Where am I?
 set ttyfast
 " https://github.com/vim/vim/issues/1735#issuecomment-383353563
 set lazyredraw
@@ -255,7 +254,6 @@ set shortmess+=c " don't give |ins-completion-menu| messages.
 
 " Show those damn hidden characters
 " Verbose: set listchars=nbsp:¬,eol:¶,extends:»,precedes:«,trail:•
-set nolist
 set listchars=nbsp:¬,extends:»,precedes:«,trail:•
 
 " =============================================================================
@@ -372,9 +370,6 @@ endfunction
 " <leader><leader> toggles between buffers
 nnoremap <leader><leader> <c-^>
 
-" <leader>= reformats current tange
-nnoremap <leader>= :'<,'>RustFmtRange<cr>
-
 " <leader>, shows/hides hidden characters
 nnoremap <leader>, :set invlist<cr>
 
@@ -383,10 +378,6 @@ nnoremap <leader>q g<c-g>
 
 " Keymap for replacing up to next _ or -
 noremap <leader>m ct_
-noremap <leader>n ct-
-
-" M to make
-noremap M :!make -k -j4<cr>
 
 " I can type :help on my own, thanks.
 map <F1> <Esc>
@@ -409,9 +400,6 @@ if has("autocmd")
   " https://stackoverflow.com/questions/31449496/vim-ignore-specifc-file-in-autocommand
   au BufReadPost * if expand('%:p') !~# '\m/\.git/' && line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 endif
-
-" Auto-make less files on save
-autocmd BufWritePost *.less if filereadable("Makefile") | make | endif
 
 " Follow Rust code style rules
 au Filetype rust source ~/.config/nvim/scripts/spacetab.vim

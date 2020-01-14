@@ -62,9 +62,9 @@ nnoremap <silent> * *zz
 nnoremap <silent> # #zz
 nnoremap <silent> g* g*zz
 
+set vb t_vb= " No more beeps
 set backspace=2 " Backspace over newlines
 set nofoldenable
-set ruler " Where am I?
 set ttyfast
 " https://github.com/vim/vim/issues/1735#issuecomment-383353563
 set lazyredraw
