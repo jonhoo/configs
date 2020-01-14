@@ -38,6 +38,8 @@ except "Entrust_Root_Certification_Authority_-_G2" "syfy.com"
 except "GlobalSign_Root_CA_-_R3" "www.airbnb.com"
 except "QuoVadis_Root_CA_2_G3" "core.ac.uk"
 except "DigiCert_Assured_ID_Root_CA" "uio.no"
+except "SecureTrust_CA" "wikipedia donation"
 except "Buypass_Class_2_Root_CA" "flytoget.no"
+except "USERTrust_RSA_Certification_Authority" "itch.io"
 
 sudo update-ca-trust
