@@ -349,6 +349,7 @@ nnoremap k gk
 " 'Smart' nevigation
 nmap <silent> E <Plug>(coc-diagnostic-prev)
 nmap <silent> W <Plug>(coc-diagnostic-next)
+nmap <silent> <leader>l <Plug>(coc-diagnostic-info)
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
