@@ -119,7 +119,8 @@ subscribe getmail@lists.pyropus.ca gnuplot-beta@lists.sourceforge.net \
 	6.828-staff@pdos.csail.mit.edu 6828-staff@lists.csail.mit.edu \
 	pdos-students@csail.mit.edu pdos-students@lists.csail.mit.edu \
 	linux-perf-users@vger.kernel.org \
-	hacker-tools@mit.edu botc@lists.csail.mit.edu
+	hacker-tools@mit.edu botc@lists.csail.mit.edu \
+	missing-semester@mit.edu
 
 # aliases
 set alias_file=~/.mutt/aliases
