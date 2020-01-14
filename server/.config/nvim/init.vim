@@ -49,12 +49,6 @@ set ignorecase
 set smartcase
 set gdefault
 
-" Ctrl+c and Ctrl+j as Esc
-inoremap <C-j> <Esc>
-vnoremap <C-j> <Esc>
-inoremap <C-c> <Esc>
-vnoremap <C-c> <Esc>
-
 " Search results centered please
 nnoremap <silent> n nzz
 nnoremap <silent> N Nzz
@@ -86,11 +80,26 @@ highlight nonText guibg=NONE
 
 " Show those damn hidden characters
 " Verbose: set listchars=nbsp:¬,eol:¶,extends:»,precedes:«,trail:•
-set nolist
 set listchars=nbsp:¬,extends:»,precedes:«,trail:•
 
 " ; as :
 nnoremap ; :
+
+" Ctrl+j as Esc
+" Ctrl-j is a little awkward unfortunately:
+" https://github.com/neovim/neovim/issues/5916
+" So we also map Ctrl+k
+inoremap <C-j> <Esc>
+
+nnoremap <C-k> <Esc>
+inoremap <C-k> <Esc>
+vnoremap <C-k> <Esc>
+snoremap <C-k> <Esc>
+xnoremap <C-k> <Esc>
+cnoremap <C-k> <Esc>
+onoremap <C-k> <Esc>
+lnoremap <C-k> <Esc>
+tnoremap <C-k> <Esc>
 
 " Open new file adjacent to current file
 nnoremap <leader>e :e <C-R>=expand("%:p:h") . "/" <CR>
