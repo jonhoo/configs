@@ -65,14 +65,14 @@ window:
   # Window title
   #title: Alacritty
 
-  # Window class (Linux only):
+  # Window class (Linux/BSD only):
   #class:
     # Application instance name
     #instance: Alacritty
     # General application class
     #general: Alacritty
 
-  # GTK theme variant (Linux only)
+  # GTK theme variant (Linux/BSD only)
   #
   # Override the variant of the GTK theme. Commonly supported values are `dark` and `light`.
   # Set this to `None` to use the default theme variant.
@@ -86,9 +86,6 @@ scrolling:
   # Number of lines the viewport will move for every line scrolled when
   # scrollback is enabled (history > 0).
   #multiplier: 3
-
-  # Scroll to the bottom when new text is written to the terminal.
-  #auto_scroll: false
 
 # Spaces per Tab (changes require restart)
 #
@@ -107,7 +104,7 @@ font:
     #
     # Default:
     #   - (macOS) Menlo
-    #   - (Linux) monospace
+    #   - (Linux/BSD) monospace
     #   - (Windows) Consolas
     family: "Noto Sans Mono"
 
@@ -148,7 +145,7 @@ font:
     #style: Bold Italic
 
   # Point size
-  size: 10.0
+  #size: 11.0
 
   # Offset is the extra space around each character. `offset.y` can be thought of
   # as modifying the line spacing, and `offset.x` as modifying the letter spacing.
@@ -180,7 +177,7 @@ font:
   #use_thin_strokes: true
 
 # If `true`, bold text is drawn using the bright color variants.
-#draw_bold_text_with_bright_colors: true
+#draw_bold_text_with_bright_colors: false
 
 # Base16 Gruvbox dark, hard 256 - alacritty color config
 # Dawid Kurek (dawikur@gmail.com), morhetz (https://github.com/morhetz/gruvbox)
@@ -331,7 +328,7 @@ colors:
 #
 # Default:
 #   - (macOS) /bin/bash --login
-#   - (Linux) user login shell
+#   - (Linux/BSD) user login shell
 #   - (Windows) powershell
 #shell:
 #   program: /bin/bash
@@ -344,16 +341,15 @@ colors:
 # directory of the parent process will be used.
 #working_directory: None
 
-# Windows 10 ConPTY backend (Windows only)
+# WinPTY backend (Windows only)
 #
-# This will enable better color support and may resolve other issues,
-# however this API and its implementation is still young and so is
-# disabled by default, as stability may not be as good as the winpty
-# backend.
+# Alacritty defaults to using the newer ConPTY backend if it is available,
+# since it resolves a lot of bugs and is quite a bit faster. If it is not
+# available, the the WinPTY backend will be used instead.
 #
-# Alacritty will fall back to the WinPTY automatically if the ConPTY
-# backend cannot be initialized.
-#enable_experimental_conpty_backend: false
+# Setting this option to `true` makes Alacritty use the legacy WinPTY backend,
+# even if the ConPTY backend is available.
+#winpty_backend: false
 
 # Send ESC (\x1b) before characters when alt is pressed.
 #alt_send_esc: true
@@ -404,7 +400,7 @@ colors:
     #
     # Default:
     #   - (macOS) open
-    #   - (Linux) xdg-open
+    #   - (Linux/BSD) xdg-open
     #   - (Windows) explorer
     #launcher:
     #  program: xdg-open
@@ -420,6 +416,9 @@ colors:
 #
 # Mouse bindings are specified as a list of objects, much like the key
 # bindings further below.
+#
+# To trigger mouse bindings when an application running within Alacritty captures the mouse, the
+# `Shift` modifier is automatically added as a requirement.
 #
 # Each mouse binding will specify a:
 #
@@ -490,6 +489,7 @@ colors:
 #   - ScrollToBottom
 #   - ClearHistory
 #   - Hide
+#   - Minimize
 #   - Quit
 #   - ToggleFullscreen
 #   - SpawnNewInstance
@@ -538,7 +538,7 @@ colors:
 # be mapped to the `ReceiveChar` action. Alternatively, you can use `None` for
 # a no-op if you do not wish to receive input characters for that binding.
 key_bindings:
-  # (Windows/Linux only)
+  # (Windows, Linux, and BSD only)
   - { key: V,        mods: Alt, action: Paste                            }
   - { key: C,        mods: Alt, action: Copy                             }
   #- { key: V,        mods: Control|Shift,    action: Paste               }
@@ -549,6 +549,8 @@ key_bindings:
   #- { key: Add,      mods: Control,       action: IncreaseFontSize }
   #- { key: Subtract, mods: Control,       action: DecreaseFontSize }
   #- { key: Minus,    mods: Control,       action: DecreaseFontSize }
+
+  # (Windows only)
   #- { key: Return,   mods: Alt,           action: ToggleFullscreen }
 
   # (macOS only)
@@ -561,6 +563,7 @@ key_bindings:
   #- { key: V,        mods: Command, action: Paste                        }
   #- { key: C,        mods: Command, action: Copy                         }
   #- { key: H,        mods: Command, action: Hide                         }
+  #- { key: M,      mods: Command,         action: Minimize         }
   #- { key: Q,        mods: Command, action: Quit                         }
   #- { key: W,        mods: Command, action: Quit                         }
   #- { key: F,      mods: Command|Control, action: ToggleFullscreen }
