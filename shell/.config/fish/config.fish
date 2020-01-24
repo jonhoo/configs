@@ -126,10 +126,6 @@ function remarkable
 	end
 end
 
-function athena
-	env SSHPASS=(pass www/mit) sshpass -e ssh athena $argv
-end
-
 # Type - to move up to top parent dir which is a repository
 function d
 	while test $PWD != "/"
