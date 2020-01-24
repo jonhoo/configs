@@ -67,6 +67,15 @@ function apass
 	asend (pass $argv[1] | head -n1)
 end
 
+function qrpass
+	if test (count $argv) -ne 1
+		pass $argv
+		return
+	end
+
+	qrsend (pass $argv[1] | head -n1)
+end
+
 function asend
 	if test (count $argv) -ne 1
 		echo "No argument given"
@@ -74,6 +83,15 @@ function asend
 	end
 
 	adb shell input text (echo $argv[1] | sed -e 's/ /%s/g' -e 's/\([[()<>{}$|;&*\\~"\'`]\)/\\\\\1/g')
+end
+
+function qrsend
+	if test (count $argv) -ne 1
+		echo "No argument given"
+		return
+	end
+
+	qrencode -t ASCII $argv[1]
 end
 
 function limit
