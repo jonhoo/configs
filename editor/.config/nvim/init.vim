@@ -104,6 +104,9 @@ endif
 " Javascript
 let javaScript_fold=0
 
+" Java
+let java_ignore_javadoc=1
+
 " Latex
 let g:latex_indent_enabled = 1
 let g:latex_fold_envs = 0
