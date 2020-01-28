@@ -1,5 +1,11 @@
 #!/bin/bash
 
+dry=0
+if [[ $# -eq 1 && $1 == "-n" ]]; then
+	dry=1
+	shift
+fi
+
 was=""
 for hash in $(git log --first-parent --format=oneline Cargo.toml | awk '{print $1}'); do
 	v=$(git show "$hash:Cargo.toml" | grep -P '^version\s*=' | head -n1 | sed -e 's/[^"]*"//' -e 's/".*//')
@@ -14,6 +20,8 @@ for hash in $(git log --first-parent --format=oneline Cargo.toml | awk '{print $
 		echo "$hash v$v (already tagged)"
 		continue
 	fi
-	git tag -as -m {"Release ",}"v$v" "$hash"
+	if [[ $dry -eq 0 ]]; then
+		git tag -as -m "Release v$v" "v$v" "$hash"
+	fi
 	echo "$hash v$v"
 done
