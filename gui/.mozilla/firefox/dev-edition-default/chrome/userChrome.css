@@ -9,9 +9,9 @@
 	*/
 	#mainPopupSet ~ box { -moz-box-ordinal-group: 10; }
 	#titlebar { -moz-box-ordinal-group: 10; }
-	.urlbarView {
+	#urlbar {
 		top: unset !important;
-		bottom: 69px !important;
+		bottom: calc((var(--urlbar-toolbar-height) - var(--urlbar-height)) / 2) !important;
 		box-shadow: none !important;
 	}
 	.search-one-offs { display: none !important; }
