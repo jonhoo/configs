@@ -13,6 +13,15 @@
 		top: unset !important;
 		bottom: calc((var(--urlbar-toolbar-height) - var(--urlbar-height)) / 2) !important;
 		box-shadow: none !important;
+		display: flex !important;
+		flex-direction: column !important;
+	}
+	#urlbar-input-container {
+		order: 2;
+	}
+	#urlbar > .urlbarView {
+		order: 1;
+		border-bottom: 1px solid #666;
 	}
 	.search-one-offs { display: none !important; }
 	.tab-background { border-top: none !important; }
