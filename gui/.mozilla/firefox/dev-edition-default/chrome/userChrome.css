@@ -23,6 +23,10 @@
 		order: 1;
 		border-bottom: 1px solid #666;
 	}
+	#urlbar-results {
+		display: flex;
+		flex-direction: column-reverse;
+	}
 	.search-one-offs { display: none !important; }
 	.tab-background { border-top: none !important; }
 	#navigator-toolbox::after { border: none; }
