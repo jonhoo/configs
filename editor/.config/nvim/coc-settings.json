@@ -1,4 +1,4 @@
 {
-  "rust-analyzer.enableCargoWatchOnStartup": "disabled",
-  "rust-analyzer.raLspServerPath": "/home/jon/.cargo/bin/ra_lsp_server"
+  "rust-analyzer.cargo-watch.enable": false,
+  "rust-analyzer.serverPath": "/home/jon/.cargo-target/release/rust-analyzer"
 }
