@@ -43,14 +43,14 @@ margin-top = 0
 type = internal/xwindow
 label = %title:0:30:...%
 
-[module/ewmh]
-type = internal/xworkspaces
+[module/bspwm]
+type = internal/bspwm
 pin-workspaces = false
 enable-click = false
 enable-scroll = false
 
-label-active = " %name% "
-label-active-underline = #fba922
+label-focused = " %name% "
+label-focused-underline = #fba922
 
 label-occupied = " %name% "
 label-occupied-foreground = #ffaa00

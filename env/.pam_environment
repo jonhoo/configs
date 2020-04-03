@@ -25,6 +25,7 @@ TZ=America/New_York
 
 # Configs
 R_LIBS_USER DEFAULT=/home/@{PAM_USER}/.Rpackages
+SXHKD_SHELL DEFAULT=/usr/bin/bash
 
 # Environment-local
 CARGO_TARGET_DIR DEFAULT=/home/@{PAM_USER}/.cargo-target

@@ -1,0 +1,30 @@
+#!/bin/sh
+
+sxhkd &
+ulauncher --hide-window --no-window-shadow &
+nitrogen --restore &
+[ -x ~/.config/polybar/launch.sh ] && ~/.config/polybar/launch.sh &
+[ -x ~/.cargo-target/release/buzz ] && ~/.cargo-target/release/buzz &
+if [ -x ~/.cargo-target/release/keybase-chat-notifier ]; then
+	keybase chat api-listen | ~/.cargo-target/release/keybase-chat-notifier &
+fi
+psensor &
+
+bspc monitor -d I II III IV V VI VII VIII IX X
+
+bspc config border_width         2
+bspc config window_gap           10
+bspc config focused_border_color \#3c3836
+bspc config normal_border_color  \#1d2021
+
+bspc config split_ratio          0.52
+bspc config borderless_monocle   false
+bspc config gapless_monocle      false
+
+bspc rule -a firefoxdeveloperedition desktop='^1'
+# https://github.com/baskerville/bspwm/issues/291
+# only works due to https://github.com/dasJ/spotifywm
+bspc rule -a Spotify desktop='^6' state=pseudo_tiled
+bspc rule -a ulauncher focus=on
+bspc rule -a sxiv state=floating center=true
+bspc rule -a polybar border=off manage=off

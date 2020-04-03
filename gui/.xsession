@@ -25,4 +25,4 @@ fi
 
 # Start WM
 xsetroot -cursor_name left_ptr
-xmonad 2> .logs/xmonad.err > .logs/xmonad.log
+bspwm 2> .logs/bspwm.err > .logs/bspwm.log
