@@ -1,4 +1,4 @@
-#include "/home/jon/dev/others/base16/builder/templates/xresources/xresources/base16-gruvbox-dark-hard-256.Xresources"
+#include "/home/jon/dev/others/base16/templates/xresources/xresources/base16-gruvbox-dark-hard-256.Xresources"
 *faceName: Public Sans
 xterm*faceSize: 14
 *multiClickTime: 300

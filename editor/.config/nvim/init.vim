@@ -8,7 +8,7 @@ let mapleader = "\<Space>"
 " Load vundle
 set nocompatible
 filetype off
-set rtp+=~/dev/others/base16/builder/templates/vim/
+set rtp+=~/dev/others/base16/templates/vim/
 call plug#begin()
 
 " Load plugins
@@ -56,12 +56,12 @@ if (match($TERM, "-256color") != -1) && (match($TERM, "screen-256color") == -1)
   " screen does not (yet) support truecolor
   set termguicolors
 endif
-" Colors
 set background=dark
+let base16colorspace=256
+let g:base16_shell_path="~/dev/others/base16/templates/shell/scripts/"
 colorscheme base16-gruvbox-dark-hard
-hi Normal ctermbg=NONE
-" Get syntax
 syntax on
+hi Normal ctermbg=NONE
 
 " Plugin settings
 let g:secure_modelines_allowed_items = [
@@ -76,10 +76,6 @@ let g:secure_modelines_allowed_items = [
                 \ "rightleft",   "rl",   "norightleft", "norl",
                 \ "colorcolumn"
                 \ ]
-
-" Base16
-let base16colorspace=256
-let g:base16_shell_path="~/dev/others/base16/builder/templates/shell/scripts/"
 
 " Lightline
 " let g:lightline = { 'colorscheme': 'wombat' }
