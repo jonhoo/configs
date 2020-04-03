@@ -42,10 +42,6 @@ else
 	abbr -a lll 'ls -la'
 end
 
-if [ -e /usr/share/fish/functions/fzf_key_bindings.fish ]; and status --is-interactive
-	source /usr/share/fish/functions/fzf_key_bindings.fish
-end
-
 if test -f /usr/share/autojump/autojump.fish;
 	source /usr/share/autojump/autojump.fish;
 end
