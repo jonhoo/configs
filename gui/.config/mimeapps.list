@@ -1,0 +1,8 @@
+
+[Default Applications]
+application/pdf=mupdf.desktop
+image/png=sxiv.desktop
+image/jpg=sxiv.desktop
+image/jpeg=sxiv.desktop
+x-scheme-handler/http=firefox-developer-edition.desktop
+x-scheme-handler/https=firefox-developer-edition.desktop
