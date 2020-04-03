@@ -62,6 +62,8 @@ let g:base16_shell_path="~/dev/others/base16/templates/shell/scripts/"
 colorscheme base16-gruvbox-dark-hard
 syntax on
 hi Normal ctermbg=NONE
+" Brighter comments
+call Base16hi("Comment", g:base16_gui09, "", g:base16_cterm09, "", "", "")
 
 " Plugin settings
 let g:secure_modelines_allowed_items = [
