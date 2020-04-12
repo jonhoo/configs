@@ -45,3 +45,5 @@
 [sendemail]
 	smtpserver = /usr/bin/msmtp
 	annotate = yes
+[diff "odf"]
+	textconv = odt2txt
