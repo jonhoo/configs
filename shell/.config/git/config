@@ -7,7 +7,6 @@
 [color]
 	ui = true
 [core]
-	excludesfile = ~/.gitignore_global
 	autocrlf = input
 	safecrlf = true
 [merge]
