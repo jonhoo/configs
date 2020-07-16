@@ -90,7 +90,7 @@ function qrsend
 		return
 	end
 
-	qrencode -t ASCII $argv[1]
+	qrencode -o - $argv[1] | feh -
 end
 
 function limit
