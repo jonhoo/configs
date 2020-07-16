@@ -18,7 +18,9 @@ EMAIL=jon@tsp.io
 PATH DEFAULT=${PATH}:/home/@{PAM_USER}/bin
 PATH DEFAULT=${PATH}:/home/@{PAM_USER}/.cargo/bin
 PATH DEFAULT=${PATH}:/home/@{PAM_USER}/.npm-global/bin
+PATH DEFAULT=${PATH}:/home/@{PAM_USER}/.local/bin
 PATH DEFAULT=${PATH}:/home/@{PAM_USER}/.gem/ruby/2.6.0/bin
+PATH DEFAULT=${PATH}:/home/@{PAM_USER}/.gem/ruby/2.7.0/bin
 
 # Globals
 TZ=America/New_York
