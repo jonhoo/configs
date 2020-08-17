@@ -8,14 +8,6 @@ if test -e /usr/bin/xmodmap; then
   fi
 fi
 
-# autoif=$(systemctl | grep netctl-auto | awk '{print $1}' | sed 's/.*@\(.*\)\.service/\1/')
-# if [[ -n $autoif ]]; then
-# 	has_carrier=$(cat /sys/class/net/autoif/carrier 2>/dev/null)
-# 	if [[ $has_carrier -ne "1" ]]; then
-# 		sudo systemctl restart netctl-auto@$autoif &
-# 	fi
-# fi
-
 # gnupg keyring agent
 # ensure it's started so SSH will work
 # https://www.gnupg.org/faq/whats-new-in-2.1.html#autostart
@@ -33,4 +25,4 @@ fi
 
 # Start WM
 xsetroot -cursor_name left_ptr
-xmonad 2> .logs/xmonad.err > .logs/xmonad.log
+bspwm 2> .logs/bspwm.err > .logs/bspwm.log

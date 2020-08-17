@@ -1,16 +1,14 @@
 @-moz-document url(chrome://browser/content/browser.xhtml) {
 	/* tabs on bottom of window */
-	/*
-	  we want to move #navigator-toolbox, but since FF72, it is wrapped in
-	  a `box` element that has no identifier. we would like to use:
-	    box:has(#navigator-toolbox) { -moz-box-ordinal-group: 10; }
-	  but :has isn't a "live selector", so we can't use it in stylesheet
-	  context. instead, we use this hack:
-	*/
+	/* requires that you set
+	 * toolkit.legacyUserProfileCustomizations.stylesheets = true
+	 * in about:config
+	 */
 	#mainPopupSet ~ box { -moz-box-ordinal-group: 10; }
 	#titlebar { -moz-box-ordinal-group: 10; }
-	/*
 	#urlbar {
+		top: unset !important;
+		bottom: calc((var(--urlbar-toolbar-height) - var(--urlbar-height)) / 2) !important;
 		box-shadow: none !important;
 		display: flex !important;
 		flex-direction: column !important;
@@ -18,19 +16,13 @@
 	#urlbar-input-container {
 		order: 2;
 	}
-	#urlbar .urlbarView {
+	#urlbar > .urlbarView {
 		order: 1;
 		border-bottom: 1px solid #666;
 	}
-	*/
-	#urlbar .urlbarView {
-		/* top: unset !important; */
-		margin-top: -50vh;
-		/* bottom: calc((var(--urlbar-toolbar-height) - var(--urlbar-height)) / 2) !important; */
-	}
 	#urlbar-results {
-		/* display: flex; */
-		/* flex-direction: column-reverse; */
+		display: flex;
+		flex-direction: column-reverse;
 	}
 	.search-one-offs { display: none !important; }
 	.tab-background { border-top: none !important; }

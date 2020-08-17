@@ -18,14 +18,16 @@ EMAIL=jon@tsp.io
 PATH DEFAULT=${PATH}:@{HOME}/bin
 PATH DEFAULT=${PATH}:@{HOME}/.cargo/bin
 PATH DEFAULT=${PATH}:@{HOME}/.npm-global/bin
-PATH DEFAULT=${PATH}:@{HOME}/.gem/ruby/2.6.0/bin
 PATH DEFAULT=${PATH}:@{HOME}/.local/bin
+PATH DEFAULT=${PATH}:@{HOME}/.gem/ruby/2.6.0/bin
+PATH DEFAULT=${PATH}:@{HOME}/.gem/ruby/2.7.0/bin
 
 # Globals
 TZ=America/New_York
 
 # Configs
 R_LIBS_USER DEFAULT=@{HOME}/.Rpackages
+SXHKD_SHELL DEFAULT=/usr/bin/bash
 
 # Environment-local
 CARGO_TARGET_DIR DEFAULT=@{HOME}/.cargo-target
@@ -51,6 +53,3 @@ WINEDEBUG=fixme-all
 # R = raw terminal characters (fixes git diff)
 #     see http://jugglingbits.wordpress.com/2010/03/24/a-better-less-playing-nice-with-git/
 LESS DEFAULT="-F -X -R"
-
-# Enable VA-API+OpenGL for VDPAU
-VDPAU_DRIVER=va_gl

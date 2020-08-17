@@ -8,7 +8,7 @@ secondary = #e60053
 alert = #bd2c40
 
 [bar/main]
-monitor = ${env:MONITOR:eDP-1}
+monitor = ${env:MONITOR:HDMI-A-0}
 width = 100%
 height = 2.5%
 radius = 6.0
@@ -28,13 +28,15 @@ font-1 = "Noto Sans Mono:size=10;1"
 font-2 = "Noto Sans Symbols:size=10;1"
 font-3 = "Noto Sans Symbols2:size=10;1"
 
-modules-left = date ewmh xwindow
+modules-left = date bspwm xwindow
 modules-center =
 modules-right = github eth1 eth2 wlan cpu battery
 
 tray-position = right
 tray-padding = 2
 tray-maxsize = 24
+
+wm-restack = bspwm
 
 [global/wm]
 margin-top = 0
@@ -43,14 +45,14 @@ margin-top = 0
 type = internal/xwindow
 label = %title:0:30:...%
 
-[module/ewmh]
-type = internal/xworkspaces
+[module/bspwm]
+type = internal/bspwm
 pin-workspaces = false
 enable-click = false
 enable-scroll = false
 
-label-active = " %name% "
-label-active-underline = #fba922
+label-focused = " %name% "
+label-focused-underline = #fba922
 
 label-occupied = " %name% "
 label-occupied-foreground = #ffaa00
@@ -134,34 +136,10 @@ format-underline = #0a6cf5
 
 label = %date% %time%
 
-[module/battery]
-type = internal/battery
-battery = BAT0
-adapter = AC
-full-at = 98
-
-format-charging = <label-charging>
-format-charging-underline = #ffb52a
-
-format-discharging = <ramp-capacity> <label-discharging>
-format-discharging-underline = ${self.format-charging-underline}
-
-format-full = <label-full>
-format-full-underline = ${self.format-charging-underline}
-
-ramp-capacity-0 = ⚋
-ramp-capacity-1 = ⚊
-ramp-capacity-2 = ⚍
-ramp-capacity-3 = ⚌
-ramp-capacity-foreground = ${colors.foreground-alt}
-
-label-charging = ⚡ %percentage%%
-label-discharging = %percentage%%
-label-full = " ☀ "
-
 [module/github]
 type = internal/github
 token = ${file:/home/jon/.config/github/notifications.token}
+user = jonhoo
 empty-notifications = false
 ;label = %{u#ff9900 +u} %notifications% %{u-}
 label = %{u#0099ff +u} 📫 %{u-}

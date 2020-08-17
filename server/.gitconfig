@@ -21,6 +21,8 @@
 	ss = "!f() { git stash show stash^{/$*} -p; }; f"
 	sa = "!f() { git stash apply stash^{/$*}; }; f"
 	sl = stash list
+[pull]
+	ff = only
 [push]
 	default = simple
 [help]

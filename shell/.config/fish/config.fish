@@ -19,6 +19,10 @@ abbr -a pr 'gh pr create -t (git show -s --format=%s HEAD) -b (git show -s --for
 complete --command aurman --wraps pacman
 
 if status --is-interactive
+	if test -d ~/dev/others/base16/templates/fish-shell
+		set fish_function_path $fish_function_path ~/dev/others/base16/templates/fish-shell/functions
+		builtin source ~/dev/others/base16/templates/fish-shell/conf.d/base16.fish
+	end
 	tmux ^ /dev/null; and exec true
 end
 
@@ -39,10 +43,6 @@ else
 	abbr -a l 'ls'
 	abbr -a ll 'ls -l'
 	abbr -a lll 'ls -la'
-end
-
-if [ -e /usr/share/fish/functions/fzf_key_bindings.fish ]; and status --is-interactive
-	source /usr/share/fish/functions/fzf_key_bindings.fish
 end
 
 if test -f /usr/share/autojump/autojump.fish;
@@ -93,7 +93,7 @@ function qrsend
 		return
 	end
 
-	qrencode -t ASCII $argv[1]
+	qrencode -o - $argv[1] | feh -
 end
 
 function limit

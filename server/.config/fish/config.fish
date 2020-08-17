@@ -5,6 +5,7 @@ abbr -a g git
 abbr -a gc 'git checkout'
 abbr -a vimdiff 'nvim -d'
 abbr -a ct 'cargo t'
+abbr -a vim 'nvim'
 complete --command aurman --wraps pacman
 
 if command -v aurman > /dev/null
