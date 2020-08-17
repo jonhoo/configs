@@ -65,6 +65,9 @@ window:
   # Window title
   #title: Alacritty
 
+  # Allow terminal applications to change Alacritty's window title.
+  #dynamic_title: true
+
   # Window class (Linux/BSD only):
   #class:
     # Application instance name
@@ -83,8 +86,7 @@ scrolling:
   # Specifying '0' will disable scrolling.
   history: 0
 
-  # Number of lines the viewport will move for every line scrolled when
-  # scrollback is enabled (history > 0).
+  # Scrolling distance multiplier.
   #multiplier: 3
 
 # Font configuration
@@ -146,7 +148,7 @@ font:
 
   # Glyph offset determines the locations of the glyphs within their cells with
   # the default being at the bottom. Increasing `x` moves the glyph to the right,
-  # increasing `y` moves the glyph upwards.
+  # increasing `y` moves the glyph upward.
   #glyph_offset:
   #  x: 0
   #  y: 0
@@ -154,17 +156,7 @@ font:
   # Thin stroke font rendering (macOS only)
   #
   # Thin strokes are suitable for retina displays, but for non-retina screens
-  # it is recommended to set `use_thin_strokes` to `false`
-  #
-  # macOS >= 10.14.x:
-  #
-  # If the font quality on non-retina display looks bad then set
-  # `use_thin_strokes` to `true` and enable font smoothing by running the
-  # following command:
-  #   `defaults write -g CGFontRenderingFontSmoothingDisabled -bool NO`
-  #
-  # This is a global setting and will require a log out or restart to take
-  # effect.
+  # it is recommended to set `use_thin_strokes` to `false`.
   #use_thin_strokes: true
 
 # If `true`, bold text is drawn using the bright color variants.
@@ -188,28 +180,47 @@ colors:
 
   # Cursor colors
   #
-  # Colors which should be used to draw the terminal cursor. If these are
-  # unset, the cursor color will be the inverse of the cell color.
+  # Colors which should be used to draw the terminal cursor.
+  #
+  # Allowed values are CellForeground and CellBackground, which reference the
+  # affected cell, or hexadecimal colors like #ff00ff.
   cursor:
     text: '#1d2021'
     cursor: '#d5c4a1'
 
   # Vi mode cursor colors
   #
-  # Colors for the cursor when the vi mode is active. If these are unset, the
-  # cursor color will be the inverse of the cell color.
+  # Colors for the cursor when the vi mode is active.
+  #
+  # Allowed values are CellForeground and CellBackground, which reference the
+  # affected cell, or hexadecimal colors like #ff00ff.
   #vi_mode_cursor:
-  #  text: '#000000'
-  #  cursor: '#ffffff'
+  #  text: CellBackground
+  #  cursor: CellForeground
 
   # Selection colors
   #
-  # Colors which should be used to draw the selection area. If selection
-  # background is unset, selection color will be the inverse of the cell colors.
-  # If only text is unset the cell text color will remain the same.
+  # Colors which should be used to draw the selection area.
+  #
+  # Allowed values are CellForeground and CellBackground, which reference the
+  # affected cell, or hexadecimal colors like #ff00ff.
   #selection:
-  #  text: '#eaeaea'
-  #  background: '#404040'
+  #  text: CellBackground
+  #  background: CellForeground
+
+  # Search colors
+  #
+  # Colors used for the search bar and match highlighting.
+  #search:
+    # Allowed values are CellForeground and CellBackground, which reference the
+    # affected cell, or hexadecimal colors like #ff00ff.
+    #matches:
+    #  foreground: '#000000'
+    #  background: '#ffffff'
+
+    #bar:
+    #  background: '#c5c8c6'
+    #  foreground: '#1d1f21'
 
   # Normal colors
   normal:
@@ -238,14 +249,14 @@ colors:
   # If the dim colors are not set, they will be calculated automatically based
   # on the `normal` colors.
   #dim:
-  #  black:   '#000000'
-  #  red:     '#8c3336'
-  #  green:   '#7a8530'
-  #  yellow:  '#97822e'
-  #  blue:    '#506d8f'
-  #  magenta: '#80638e'
-  #  cyan:    '#497e7a'
-  #  white:   '#9a9a9a'
+  #  black:   '#131415'
+  #  red:     '#864343'
+  #  green:   '#777c44'
+  #  yellow:  '#9e824c'
+  #  blue:    '#556a7d'
+  #  magenta: '#75617b'
+  #  cyan:    '#5b7d78'
+  #  white:   '#828482'
 
   # Indexed Colors
   #
@@ -263,31 +274,46 @@ colors:
     - { index: 20, color: '#bdae93' }
     - { index: 21, color: '#ebdbb2' }
 
-# Visual Bell
+# Bell
 #
-# Any time the BEL code is received, Alacritty "rings" the visual bell. Once
-# rung, the terminal background will be set to white and transition back to the
-# default background color. You can control the rate of this transition by
-# setting the `duration` property (represented in milliseconds). You can also
-# configure the transition function by setting the `animation` property.
-#
-# Values for `animation`:
-#   - Ease
-#   - EaseOut
-#   - EaseOutSine
-#   - EaseOutQuad
-#   - EaseOutCubic
-#   - EaseOutQuart
-#   - EaseOutQuint
-#   - EaseOutExpo
-#   - EaseOutCirc
-#   - Linear
-#
-# Specifying a `duration` of `0` will disable the visual bell.
-#visual_bell:
-#  animation: EaseOutExpo
-#  duration: 0
-#  color: '#ffffff'
+# The bell is rung every time the BEL control character is received.
+#bell:
+  # Visual Bell Animation
+  #
+  # Animation effect for flashing the screen when the visual bell is rung.
+  #
+  # Values for `animation`:
+  #   - Ease
+  #   - EaseOut
+  #   - EaseOutSine
+  #   - EaseOutQuad
+  #   - EaseOutCubic
+  #   - EaseOutQuart
+  #   - EaseOutQuint
+  #   - EaseOutExpo
+  #   - EaseOutCirc
+  #   - Linear
+  #animation: EaseOutExpo
+
+  # Duration of the visual bell flash. A `duration` of `0` will disable the
+  # visual bell animation.
+  #duration: 0
+
+  # Visual bell animation color.
+  #color: '#ffffff'
+
+  # Bell Command
+  #
+  # This program is executed whenever the bell is rung.
+  #
+  # When set to `command: None`, no command will be executed.
+  #
+  # Example:
+  #   command:
+  #     program: notify-send
+  #     args: ["Hello, World!"]
+  #
+  #command: None
 
 # Background opacity
 #
@@ -296,13 +322,11 @@ colors:
 #background_opacity: 1.0
 
 #selection:
+  # This string contains all characters that are used as separators for "semantic words" in Alacritty.
   #semantic_escape_chars: ",│`|:\"' ()[]{}<>\t"
 
   # When set to `true`, selected text will be copied to the primary clipboard.
   #save_to_clipboard: false
-
-# Allow terminal applications to change Alacritty's window title.
-#dynamic_title: true
 
 #cursor:
   # Cursor style
@@ -324,6 +348,10 @@ colors:
   # If this is `true`, the cursor will be rendered as a hollow box when the
   # window is not focused.
   #unfocused_hollow: true
+
+  # Thickness of the cursor relative to the cell width as floating point number
+  # from `0.0` to `1.0`.
+  #thickness: 0.15
 
 # Live config reload (changes require restart)
 #live_config_reload: true
@@ -352,7 +380,7 @@ colors:
 #
 # Alacritty defaults to using the newer ConPTY backend if it is available,
 # since it resolves a lot of bugs and is quite a bit faster. If it is not
-# available, the the WinPTY backend will be used instead.
+# available, the WinPTY backend will be used instead.
 #
 # Setting this option to `true` makes Alacritty use the legacy WinPTY backend,
 # even if the ConPTY backend is available.
@@ -379,7 +407,7 @@ colors:
     # This program is executed when clicking on a text which is recognized as a URL.
     # The URL is always added to the command as the last parameter.
     #
-    # When set to `None`, URL launching will be disabled completely.
+    # When set to `launcher: None`, URL launching will be disabled completely.
     #
     # Default:
     #   - (macOS) open
@@ -459,60 +487,106 @@ colors:
 # - `action`: Execute a predefined action
 #
 #   - ToggleViMode
+#   - SearchForward
+#       Start searching toward the right of the search origin.
+#   - SearchBackward
+#       Start searching toward the left of the search origin.
 #   - Copy
 #   - Paste
-#   - PasteSelection
 #   - IncreaseFontSize
 #   - DecreaseFontSize
 #   - ResetFontSize
 #   - ScrollPageUp
 #   - ScrollPageDown
+#   - ScrollHalfPageUp
+#   - ScrollHalfPageDown
 #   - ScrollLineUp
 #   - ScrollLineDown
 #   - ScrollToTop
 #   - ScrollToBottom
 #   - ClearHistory
+#       Remove the terminal's scrollback history.
 #   - Hide
+#       Hide the Alacritty window.
 #   - Minimize
+#       Minimize the Alacritty window.
 #   - Quit
+#       Quit Alacritty.
 #   - ToggleFullscreen
 #   - SpawnNewInstance
+#       Spawn a new instance of Alacritty.
 #   - ClearLogNotice
+#       Clear Alacritty's UI warning and error notice.
 #   - ClearSelection
+#       Remove the active selection.
 #   - ReceiveChar
 #   - None
 #
 #   (`mode: Vi` only):
 #   - Open
+#       Open URLs at the cursor location with the launcher configured in `url.launcher`.
 #   - Up
+#       Move the vi mode cursor up by one line.
 #   - Down
+#       Move the vi mode cursor down by one linee.
 #   - Left
+#       Move the vi mode cursor left by one character.
 #   - Right
+#       Move the vi mode cursor right by one character.
 #   - First
+#       Move the vi mode cursor to the start of the line, searching across newlines if it is already at the beginning.
 #   - Last
+#       Move the vi mode cursor to the end of the line, searching across newlines if it is already at the end.
 #   - FirstOccupied
+#       Move the vi mode cursor to the first non-empty cell in this line, searching across newlines if it is already at the first one.
 #   - High
+#       Move the vi mode cursor to the top of the screen.
 #   - Middle
+#       Move the vi mode cursor to the middle of the screen.
 #   - Low
+#       Move the vi mode cursor to the bottom of the screen.
 #   - SemanticLeft
+#       Move the vi mode cursor to the start of the previous semantically separated word.
 #   - SemanticRight
+#       Move the vi mode cursor to the start of the next semantically separated word.
 #   - SemanticLeftEnd
+#       Move the vi mode cursor to the end of the previous semantically separated word.
 #   - SemanticRightEnd
-#   - WordRight
+#       Move the vi mode cursor to the end of the next semantically separated word.
 #   - WordLeft
-#   - WordRightEnd
+#       Move the vi mode cursor to the start of the previous whitespace separated word.
+#   - WordRight
+#       Move the vi mode cursor to the start of the next whitespace separated word.
 #   - WordLeftEnd
+#       Move the vi mode cursor to the end of the previous whitespace separated word.
+#   - WordRightEnd
+#       Move the vi mode cursor to the end of the next whitespace separated word.
 #   - Bracket
+#       Move the vi mode cursor to the next character that matches the bracket at the cursor's
+#       current location.
 #   - ToggleNormalSelection
 #   - ToggleLineSelection
 #   - ToggleBlockSelection
 #   - ToggleSemanticSelection
+#       Toggle semantic selection based on `selection.semantic_escape_chars`.
+#   - SearchNext
+#       Jump to the beginning of the next match.
+#   - SearchPrevious
+#       Jump to the beginning of the previous match.
+#   - SearchStart
+#       Jump to the next start of a match to the left of the vi mode cursor.
+#   - SearchEnd
+#       Jump to the next end of a match to the left of the vi mode cursor.
 #
 #   (macOS only):
-#   - ToggleSimpleFullscreen: Enters fullscreen without occupying another space
+#   - ToggleSimpleFullscreen
+#       Enter fullscreen without occupying another space.
 #
 #   (Linux/BSD only):
-#   - CopySelection: Copies into selection buffer
+#   - CopySelection
+#       Copy from the selection buffer.
+#   - PasteSelection
+#       Paste from the selection buffer.
 #
 # - `command`: Fork and execute a specified command plus arguments
 #
@@ -553,7 +627,7 @@ colors:
 # a no-op if you do not wish to receive input characters for that binding.
 #
 # If the same trigger is assigned to multiple actions, all of them are executed
-# at once.
+# in the order they were defined in.
 key_bindings:
   #- { key: Paste,                                action: Paste          }
   #- { key: Copy,                                 action: Copy           }
@@ -607,12 +681,16 @@ key_bindings:
   #- { key: W,      mods: Shift,         mode: Vi, action: WordRight               }
   #- { key: E,      mods: Shift,         mode: Vi, action: WordRightEnd            }
   #- { key: Key5,   mods: Shift,         mode: Vi, action: Bracket                 }
+  #- { key: Slash,                       mode: Vi, action: SearchForward           }
+  #- { key: Slash,  mods: Shift,         mode: Vi, action: SearchBackward          }
+  #- { key: N,                           mode: Vi, action: SearchNext              }
+  #- { key: N,      mods: Shift,         mode: Vi, action: SearchPrevious          }
 
   # (Windows, Linux, and BSD only)
-  - { key: V,        mods: Alt, action: Paste                            }
-  - { key: C,        mods: Alt, action: Copy                             }
   - { key: V,        mods: Control|Shift,    action: ReceiveChar               }
   - { key: C,        mods: Control|Shift,    action: ReceiveChar                }
+  - { key: V,        mods: Alt, action: Paste                            }
+  - { key: C,        mods: Alt, action: Copy                             }
   #- { key: C,        mods: Control|Shift, mode: Vi, action: ClearSelection   }
   #- { key: Insert,   mods: Shift,         action: PasteSelection   }
   #- { key: Key0,     mods: Control,       action: ResetFontSize    }
@@ -640,6 +718,8 @@ key_bindings:
   #- { key: W,        mods: Command, action: Quit                         }
   #- { key: N,      mods: Command,            action: SpawnNewInstance }
   #- { key: F,      mods: Command|Control, action: ToggleFullscreen }
+  #- { key: F,      mods: Command,            action: SearchForward    }
+  #- { key: B,      mods: Command,            action: SearchBackward   }
 
 #debug:
   # Display the time it takes to redraw each frame.
