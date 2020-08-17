@@ -20,6 +20,10 @@ complete --command aurman --wraps pacman
 set -U fish_user_paths /usr/local/sbin /usr/local/bin /usr/bin /bin
 
 if status --is-interactive
+	if test -d ~/dev/others/base16/templates/fish-shell
+		set fish_function_path $fish_function_path ~/dev/others/base16/templates/fish-shell/functions
+		builtin source ~/dev/others/base16/templates/fish-shell/conf.d/base16.fish
+	end
 	tmux ^ /dev/null; and exec true
 end
 
