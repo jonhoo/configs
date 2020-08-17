@@ -6,3 +6,7 @@ image/jpg=sxiv.desktop
 image/jpeg=sxiv.desktop
 x-scheme-handler/http=firefox-developer-edition.desktop
 x-scheme-handler/https=firefox-developer-edition.desktop
+text/plain=nvim.desktop
+
+[Added Associations]
+application/x-bibtex=nvim.desktop;
