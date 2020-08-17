@@ -8,7 +8,7 @@ secondary = #e60053
 alert = #bd2c40
 
 [bar/main]
-monitor = ${env:MONITOR:eDP-1}
+monitor = ${env:MONITOR:HDMI-A-0}
 width = 100%
 height = 2.5%
 radius = 6.0
