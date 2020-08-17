@@ -28,13 +28,15 @@ font-1 = "Noto Sans Mono:size=10;1"
 font-2 = "Noto Sans Symbols:size=10;1"
 font-3 = "Noto Sans Symbols2:size=10;1"
 
-modules-left = date ewmh xwindow
+modules-left = date bspwm xwindow
 modules-center =
 modules-right = github eth1 eth2 wlan cpu battery
 
 tray-position = right
 tray-padding = 2
 tray-maxsize = 24
+
+wm-restack = bspwm
 
 [global/wm]
 margin-top = 0
