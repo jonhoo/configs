@@ -15,9 +15,8 @@ abbr -a gah 'git stash; and git pull --rebase; and git stash pop'
 abbr -a ks 'keybase chat send'
 abbr -a kr 'keybase chat read'
 abbr -a kl 'keybase chat list'
+abbr -a pr 'gh pr create -t (git show -s --format=%s HEAD) -b (git show -s --format=%B HEAD | tail -n+3)'
 complete --command aurman --wraps pacman
-
-set -U fish_user_paths /usr/local/sbin /usr/local/bin /usr/bin /bin
 
 if status --is-interactive
 	if test -d ~/dev/others/base16/templates/fish-shell
