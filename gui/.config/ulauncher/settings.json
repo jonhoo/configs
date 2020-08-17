@@ -1,0 +1,10 @@
+{
+    "blacklisted-desktop-dirs": "/usr/share/locale:/usr/share/app-install:/usr/share/kservices5:/usr/share/fk5:/usr/share/kservicetypes5:/usr/share/applications/screensavers:/usr/share/kde4:/usr/share/mimelnk",
+    "clear-previous-query": false,
+    "hotkey-show-app": "<Super>space",
+    "render-on-screen": "default-monitor",
+    "show-indicator-icon": false,
+    "show-recent-apps": false,
+    "terminal-command": "",
+    "theme-name": "dark"
+}
