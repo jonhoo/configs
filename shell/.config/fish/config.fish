@@ -18,8 +18,6 @@ abbr -a kl 'keybase chat list'
 abbr -a pr 'gh pr create -t (git show -s --format=%s HEAD) -b (git show -s --format=%B HEAD | tail -n+3)'
 complete --command aurman --wraps pacman
 
-set -U fish_user_paths /usr/local/sbin /usr/local/bin /usr/bin /bin
-
 if status --is-interactive
 	tmux ^ /dev/null; and exec true
 end
