@@ -1,4 +1,3 @@
-
 [Default Applications]
 application/pdf=mupdf.desktop
 application/xps=mupdf.desktop
@@ -9,3 +8,7 @@ image/jpeg=sxiv.desktop
 x-scheme-handler/http=firefox-developer-edition.desktop
 x-scheme-handler/https=firefox-developer-edition.desktop
 text/html=firefox-developer-edition.desktop
+text/plain=nvim.desktop
+
+[Added Associations]
+application/x-bibtex=nvim.desktop;
