@@ -10,7 +10,6 @@ abbr -a vimdiff 'nvim -d'
 abbr -a ct 'cargo t'
 abbr -a amz 'env AWS_SECRET_ACCESS_KEY=(pass www/aws-secret-key | head -n1)'
 abbr -a ais "aws ec2 describe-instances | jq '.Reservations[] | .Instances[] | {iid: .InstanceId, type: .InstanceType, key:.KeyName, state:.State.Name, host:.PublicDnsName}'"
-abbr -a print 'lp -h cups.csail.mit.edu -d xerox9 -oDuplex=DuplexNoTumble -oStapleLocation=SinglePortrait'
 abbr -a gah 'git stash; and git pull --rebase; and git stash pop'
 abbr -a ks 'keybase chat send'
 abbr -a kr 'keybase chat read'
