@@ -23,7 +23,7 @@ PATH DEFAULT=${PATH}:@{HOME}/.gem/ruby/2.6.0/bin
 PATH DEFAULT=${PATH}:@{HOME}/.gem/ruby/2.7.0/bin
 
 # Globals
-TZ=America/New_York
+TZ=America/Los_Angeles
 
 # Configs
 R_LIBS_USER DEFAULT=@{HOME}/.Rpackages
