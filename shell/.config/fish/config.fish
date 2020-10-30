@@ -114,17 +114,18 @@ function remarkable
 		return
 	end
 
-	ip addr show up to 10.11.99.0/29 | grep enp0s20f0u2c2 >/dev/null
+	ip addr show up to 10.11.99.0/29 | grep enp2s0f0u3 >/dev/null
 	if test $status -ne 0
 		# not yet connected
 		echo "Connecting to reMarkable internal network"
-		sudo dhcpcd enp0s20f0u2c2
+		sudo dhcpcd enp2s0f0u3
 	end
 	for f in $argv
 		echo "-> uploading $f"
 		curl --form "file=@\""$f"\"" http://10.11.99.1/upload
 		echo
 	end
+	sudo dhcpcd -k enp2s0f0u3
 end
 
 # Type - to move up to top parent dir which is a repository
