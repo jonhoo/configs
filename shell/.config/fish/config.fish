@@ -92,7 +92,7 @@ function qrsend
 		return
 	end
 
-	qrencode -o - $argv[1] | feh -
+	qrencode -o - $argv[1] | feh --geometry 500x500 --auto-zoom -
 end
 
 function limit
