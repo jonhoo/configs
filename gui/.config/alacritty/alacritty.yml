@@ -1,5 +1,13 @@
 # Configuration for Alacritty, the GPU enhanced terminal emulator.
 
+# Import additional configuration files
+#
+# These configuration files will be loaded in order, replacing values in files
+# loaded earlier with those loaded later in the chain. The file itself will
+# always be loaded last.
+#import:
+#  - /path/to/alacritty.yml
+
 # Any items in the `env` entry below will be added as
 # environment variables. Some entries may override variables
 # set by alacritty itself.
@@ -15,8 +23,9 @@
 window:
   # Window dimensions (changes require restart)
   #
-  # Specified in number of columns/lines, not pixels.
-  # If both are `0`, this setting is ignored.
+  # Number of lines/columns (not pixels) in the terminal. The number of columns
+  # must be at least `2`, while using a value of `0` for columns and lines will
+  # fall back to the window manager's recommended size.
   #dimensions:
   #  columns: 0
   #  lines: 0
@@ -528,7 +537,7 @@ colors:
 #   - Up
 #       Move the vi mode cursor up by one line.
 #   - Down
-#       Move the vi mode cursor down by one linee.
+#       Move the vi mode cursor down by one line.
 #   - Left
 #       Move the vi mode cursor left by one character.
 #   - Right
@@ -617,6 +626,7 @@ colors:
 #   - AppCursor
 #   - AppKeypad
 #    - Alt
+#    - Vi
 #
 #    A `~` operator can be used before a mode to apply the binding whenever
 #    the mode is *not* active, e.g. `~Alt`.
@@ -644,6 +654,7 @@ key_bindings:
   #- { key: Escape,                      mode: Vi, action: ClearSelection          }
   #- { key: I,                           mode: Vi, action: ScrollToBottom          }
   #- { key: I,                           mode: Vi, action: ToggleViMode            }
+  #- { key: C,      mods: Control,       mode: Vi, action: ToggleViMode            }
   #- { key: Y,      mods: Control,       mode: Vi, action: ScrollLineUp            }
   #- { key: E,      mods: Control,       mode: Vi, action: ScrollLineDown          }
   #- { key: G,                           mode: Vi, action: ScrollToTop             }
@@ -687,17 +698,20 @@ key_bindings:
   #- { key: N,      mods: Shift,         mode: Vi, action: SearchPrevious          }
 
   # (Windows, Linux, and BSD only)
-  - { key: V,        mods: Control|Shift,    action: ReceiveChar               }
-  - { key: C,        mods: Control|Shift,    action: ReceiveChar                }
   - { key: V,        mods: Alt, action: Paste                            }
   - { key: C,        mods: Alt, action: Copy                             }
+  #- { key: V,              mods: Control|Shift,           action: Paste            }
+  #- { key: C,              mods: Control|Shift,           action: Copy             }
+  #- { key: F,              mods: Control|Shift,           action: SearchForward    }
+  #- { key: B,              mods: Control|Shift,           action: SearchBackward   }
   #- { key: C,        mods: Control|Shift, mode: Vi, action: ClearSelection   }
   #- { key: Insert,   mods: Shift,         action: PasteSelection   }
   #- { key: Key0,     mods: Control,       action: ResetFontSize    }
   #- { key: Equals,   mods: Control,       action: IncreaseFontSize }
-  #- { key: Add,      mods: Control,       action: IncreaseFontSize }
-  #- { key: Subtract, mods: Control,       action: DecreaseFontSize }
+  #- { key: Plus,           mods: Control,                 action: IncreaseFontSize }
+  #- { key: NumpadAdd,      mods: Control,                 action: IncreaseFontSize }
   #- { key: Minus,    mods: Control,       action: DecreaseFontSize }
+  #- { key: NumpadSubtract, mods: Control,                 action: DecreaseFontSize }
 
   # (Windows only)
   #- { key: Return,   mods: Alt,           action: ToggleFullscreen }
@@ -706,8 +720,10 @@ key_bindings:
   #- { key: K,      mods: Command, mode: ~Vi, chars: "\x0c"            }
   #- { key: Key0,     mods: Command, action: ResetFontSize                }
   #- { key: Equals,   mods: Command, action: IncreaseFontSize             }
-  #- { key: Add,    mods: Command, action: IncreaseFontSize }
+  #- { key: Plus,           mods: Command,            action: IncreaseFontSize }
+  #- { key: NumpadAdd,      mods: Command,            action: IncreaseFontSize }
   #- { key: Minus,    mods: Command, action: DecreaseFontSize             }
+  #- { key: NumpadSubtract, mods: Command,            action: DecreaseFontSize }
   #- { key: K,        mods: Command, action: ClearHistory                 }
   #- { key: V,        mods: Command, action: Paste                        }
   #- { key: C,        mods: Command, action: Copy                         }
