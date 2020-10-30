@@ -28,3 +28,7 @@ bspc rule -a Spotify desktop='^6' state=pseudo_tiled
 bspc rule -a ulauncher focus=on
 bspc rule -a sxiv state=floating center=true
 bspc rule -a polybar border=off manage=off
+
+bspc config remove_unplugged_monitors true
+bspc config remove_disabled_monitors true
+bspc config merge_overlapping_monitors true
