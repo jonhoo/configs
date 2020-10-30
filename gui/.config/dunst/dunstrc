@@ -57,14 +57,14 @@
     padding = 14
 
     # Horizontal padding.
-    horizontal_padding = 14
+    horizontal_padding = 16
 
     # Defines width in pixels of frame around the notification window.
     # Set to 0 to disable.
-    frame_width = 2
+    frame_width = 0
 
     # Defines color of the frame around the notification window.
-    frame_color = "#444444"
+    frame_color = "#222"
 
     # Define a color for the separator.
     # possible values are:
@@ -72,7 +72,7 @@
     #  * foreground: use the same color as the foreground;
     #  * frame: use the same color as the frame;
     #  * anything else will be interpreted as a X color.
-    separator_color = frame
+    separator_color = "#333"
 
     # Sort messages by urgency.
     sort = yes
@@ -85,11 +85,11 @@
 
     ### Text ###
 
-    font = Noto Sans 10
+    font = Public Sans 12
 
     # The spacing between lines.  If the height is smaller than the
     # font height, it will get raised to the font height.
-    line_height = 0
+    line_height = 15
 
     # Possible values are:
     # full: Allow a small subset of html markup in notifications:
@@ -159,7 +159,7 @@
     ### Icons ###
 
     # Align icons left/right/off
-    icon_position = left
+    icon_position = right
 
     # Scale larger icons down to this size, set to 0 to disable
     max_icon_size = 48
@@ -252,7 +252,7 @@ separator_color = "#d5c4a1"
 
 [urgency_normal]
     msg_urgency = normal
-    background = "#504945"
+    background = "#222222"
     foreground = "#d5c4a1"
 
 [urgency_critical]
