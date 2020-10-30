@@ -33,6 +33,11 @@ SXHKD_SHELL DEFAULT=/usr/bin/bash
 CARGO_TARGET_DIR DEFAULT=@{HOME}/.cargo-target
 PATH DEFAULT=${PATH}:@{HOME}/.cargo-target/release/
 
+# Get Elgato Cam Link 4k to work
+# https://github.com/xkahn/camlink
+# avoid absolute path so it'll work in mix 32/64-bit envs
+LD_PRELOAD DEFAULT=${LD_PRELOAD}:camlink.so
+
 # Rust stuff
 CARGO_INCREMENTAL=1
 RUSTFLAGS DEFAULT="-C target-cpu=native"
