@@ -6,6 +6,14 @@
 super + a
 	alacritty
 
+# media keys
+
+XF86MonBrightnessUp
+	adjust-brightness +
+
+XF86MonBrightnessDown
+	adjust-brightness -
+
 # program launcher
 # super + @space
 #	dmenu_run
