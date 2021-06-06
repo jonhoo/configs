@@ -32,4 +32,5 @@
 	.tabbrowser-tab { font-size: 80%; }
 	.tab-content { padding: 0 5px; }
 	.tab-close-button .toolbarbutton-icon { width: 12px !important; height: 12px !important; }
+	toolbox[inFullscreen=true] { display: none; }
 }
