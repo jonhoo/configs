@@ -1,4 +1,3 @@
 {
-  "rust-analyzer.cargo-watch.enable": false,
-  "rust-analyzer.serverPath": "/home/jon/.cargo-target/release/rust-analyzer"
+  "rust-analyzer.cargo.allFeatures": true
 }
