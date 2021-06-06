@@ -64,6 +64,7 @@ syntax on
 hi Normal ctermbg=NONE
 " Brighter comments
 call Base16hi("Comment", g:base16_gui09, "", g:base16_cterm09, "", "", "")
+call Base16hi("CocHintSign", g:base16_gui03, "", g:base16_cterm03, "", "", "")
 
 " Plugin settings
 let g:secure_modelines_allowed_items = [
