@@ -9,6 +9,7 @@ set compose_format="-- Compose [~%lb, attachments: %a]%>~"
 set date_format="!%b %d, %Y at %I:%M%p %Z"
 set imap_idle
 set imap_check_subscribed
+set allow_ansi=yes
 unset imap_passive
 unset imap_peek
 set index_format="%3C %Z %{%b %d} %s %* (%L)"
