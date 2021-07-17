@@ -1,6 +1,5 @@
 image/*; sxiv %s; test=test -n "$DISPLAY";
 application/pdf; mupdf %s; test=test -n "$DISPLAY";
-file/pdf; mupdf %s; test=test -n "$DISPLAY";
 application/msword; lowriter %s; test=test -n "$DISPLAY";
 application/vnd.msword; lowriter %s; test=test -n "$DISPLAY";
 text/html; "$BROWSER" %s && exit 1; test=test -n "$DISPLAY"; needsterminal;
