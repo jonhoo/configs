@@ -1,0 +1,11 @@
+#!/bin/bash
+
+set -eux
+
+file=$1
+copy="${file%.mkv}.copy.mkv"
+reencoded="${file%.mkv}.reencoded.mkv"
+ln "$file" "$copy"
+ffmpeg -i "$file" -c:a copy "$reencoded"
+ffmpeg-normalize "$reencoded" -t -16 --dual-mono -c:a aac -b:a 256k --progress
+mv "normalized/$(basename "$reencoded")" "normalized/$(basename "$file")"
