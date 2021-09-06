@@ -22,7 +22,9 @@ if status --is-interactive
 		set fish_function_path $fish_function_path ~/dev/others/base16/templates/fish-shell/functions
 		builtin source ~/dev/others/base16/templates/fish-shell/conf.d/base16.fish
 	end
-	tmux 2> /dev/null; and exec true
+	if ! set -q TMUX
+		exec tmux
+	end
 end
 
 if command -v aurman > /dev/null
