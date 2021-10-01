@@ -8,13 +8,13 @@ echo "$issuers" | while read -r issuer; do
 	cn=$(echo "$issuer" | sed 's/.*\(CN\|OU\) *= *//')
 	echo "==> For issuer $cn"
 
-	for f in /etc/ca-certificates/trust-source/blacklist/*.pem; do
+	for f in /etc/ca-certificates/trust-source/blocklist/*.pem; do
 		[ -f "$f" ] || continue;
 		i=$(openssl x509 -noout -issuer < "$f" 2>/dev/null)
 		fcn=$(echo "$i" | sed 's/.*\(CN\|OU\) *= *//')
 		#echo "'$cn' vs '$fcn'"
 		if [[ "$cn" = "$fcn" ]]; then
-			echo "   -> Blacklist match on $(basename "${f%.pem}")"
+			echo "   -> Blocklist match on $(basename "${f%.pem}")"
 			echo "  $issuer"
 			echo "  $i"
 			break

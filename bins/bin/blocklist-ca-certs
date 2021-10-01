@@ -1,29 +1,27 @@
 #!/usr/bin/bash
-echo "==> Clear blacklist"
-sudo rm /etc/ca-certificates/trust-source/blacklist/*.pem
+echo "==> Clear blocklist"
+sudo rm /etc/ca-certificates/trust-source/blocklist/*.pem
 echo "==> Regenerate CA list"
 sudo update-ca-trust
-echo "==> Blacklisting all"
+echo "==> Blocklisting all"
 for f in /etc/ca-certificates/extracted/cadir/*.pem; do
-	sudo cp "$f" "/etc/ca-certificates/trust-source/blacklist/$(basename "$f")"
+	sudo cp "$f" "/etc/ca-certificates/trust-source/blocklist/$(basename "$f")"
 done
 
 except() {
 	echo "  -> Whitelist $(echo "$1" | tr _ " ") (for $2)"
-	sudo rm "/etc/ca-certificates/trust-source/blacklist/$1.pem"
+	sudo rm "/etc/ca-certificates/trust-source/blocklist/$1.pem"
 }
 
 echo "==> Whitelist trusted CAs"
-except "DST_Root_CA_X3" "letsencrypt.org"
+except "ISRG_Root_X1" "letsencrypt.org"
 except "DigiCert_High_Assurance_EV_Root_CA" "github.com"
-except "VeriSign_Class_3_Public_Primary_Certification_Authority_-_G5" "amazon.com"
 except "Entrust_Root_Certification_Authority" "washingtonpost.com"
 except "DigiCert_Global_Root_CA" "boardgamegeek.com"
 except "Baltimore_CyberTrust_Root" "s3.amazonaws.com"
 except "GlobalSign_ECC_Root_CA_-_R4" "wikipedia.org"
 except "QuoVadis_Root_CA_2" "stat.ethz.ch" # R language manual
 except "Starfield_Class_2_CA" "tools.ietf.org"
-except "AddTrust_External_Root" "tsp.io"
 except "Buypass_Class_3_Root_CA" "altinn.no"
 except "T-TeleSec_GlobalRoot_Class_2" "dblp.uni-trier.de"
 except "DigiCert_Global_Root_G2" "saucelabs.com"
@@ -32,7 +30,6 @@ except "Comodo_AAA_Services_root" "access.harvard.edu"
 except "GlobalSign_ECC_Root_CA_-_R5" "google.com"
 except "Go_Daddy_Class_2_CA" "piazza.com"
 except "GlobalSign_Root_CA_-_R2" "googleapis.com"
-except "GeoTrust_Global_CA" "webkit.org"
 except "GlobalSign_Root_CA" "www.kickstarter.com"
 except "Entrust_Root_Certification_Authority_-_G2" "syfy.com"
 except "GlobalSign_Root_CA_-_R3" "www.airbnb.com"
