@@ -2,7 +2,7 @@
 cur_brightness=$(cat /sys/class/backlight/intel_backlight/brightness)
 max_brightness=$(cat /sys/class/backlight/intel_backlight/max_brightness)
 
-step="0.03"
+step="0.01"
 step=$(printf "%.0f" "$(echo "$step * $max_brightness" | bc -l)")
 
 case "$1" in
