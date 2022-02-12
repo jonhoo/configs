@@ -1,7 +1,6 @@
 [user]
 	name = Jon Gjengset
 	email = jon@thesquareplanet.com
-	signingkey = BC86115038EA36D52CA1FFF1B4288F5A4A34220B
 [ui "color"]
 	ui = always
 [color]
@@ -40,8 +39,6 @@
 [diff]
 	algorithm = patience
 	compactionHeuristic = true
-[commit]
-	gpgsign = true
 [protocol]
 	version = 2
 [sendemail]

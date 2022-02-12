@@ -29,7 +29,7 @@ function tag() {
 		return
 	fi
 	if [[ $dry -eq 0 ]]; then
-		git tag -as -m "Release $tag" "$tag" "$hash"
+		git tag -a -m "Release $tag" "$tag" "$hash"
 	fi
 	echo "$hash $tag"
 }
