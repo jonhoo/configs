@@ -46,3 +46,5 @@
 	annotate = yes
 [diff "odf"]
 	textconv = odt2txt
+[init]
+	defaultBranch = main
