@@ -184,10 +184,6 @@ function pvm -d "Run nova/glance commands against the PDOS openstack service"
 	end
 end
 
-# Fish should not add things to clipboard when killing
-# See https://github.com/fish-shell/fish-shell/issues/772
-set FISH_CLIPBOARD_CMD "cat"
-
 function fish_user_key_bindings
 	bind \cz 'fg>/dev/null ^/dev/null'
 	if functions -q fzf_key_bindings
