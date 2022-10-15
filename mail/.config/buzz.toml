@@ -2,4 +2,4 @@
 server = "imap.fastmail.com"
 port = 993
 username = "jon@eml.cc"
-pwcmd = "pass sec/mutt_fastmail"
+pwcmd = "secret-tool lookup for buzz"

@@ -5,6 +5,6 @@ set from="jon@thesquareplanet.com"
 set record="!Sent Items"
 set postponed="!Drafts
 
-set my_pw_fm=`pass sec/mutt_fastmail`
+set my_pw_fm=`secret-tool lookup for mutt`
 set imap_pass=$my_pw_fm;
 unmailboxes *
