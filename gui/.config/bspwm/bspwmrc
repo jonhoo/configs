@@ -1,14 +1,7 @@
 #!/bin/sh
 
-sxhkd &
-ulauncher --hide-window --no-window-shadow &
 nitrogen --restore &
-[ -x ~/.config/polybar/launch.sh ] && ~/.config/polybar/launch.sh &
-[ -x ~/.cargo-target/release/buzz ] && ~/.cargo-target/release/buzz &
-if [ -x ~/.cargo-target/release/keybase-chat-notifier ]; then
-	keybase chat api-listen | ~/.cargo-target/release/keybase-chat-notifier &
-fi
-psensor &
+sxhkd &
 
 bspc monitor -d I II III IV V VI VII VIII IX X
 
@@ -32,3 +25,11 @@ bspc rule -a polybar border=off manage=off
 bspc config remove_unplugged_monitors true
 bspc config remove_disabled_monitors true
 bspc config merge_overlapping_monitors true
+
+# ulauncher --hide-window --no-window-shadow &
+systemctl --user start ulauncher.service &
+[ -x ~/.config/polybar/launch.sh ] && ~/.config/polybar/launch.sh &
+[ -x ~/.cargo/bin/buzz ] && ~/.cargo/bin/buzz &
+if [ -x ~/.cargo-target/release/keybase-chat-notifier ]; then
+	keybase chat api-listen | ~/.cargo-target/release/keybase-chat-notifier &
+fi
