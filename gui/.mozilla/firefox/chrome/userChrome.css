@@ -4,8 +4,8 @@
 	 * toolkit.legacyUserProfileCustomizations.stylesheets = true
 	 * in about:config
 	 */
-	#mainPopupSet ~ box { -moz-box-ordinal-group: 10; }
-	#titlebar { -moz-box-ordinal-group: 10; }
+	#main-window body { flex-direction: column-reverse !important; }
+	#navigator-toolbox { flex-direction: column-reverse !important; }
 	#urlbar {
 		top: unset !important;
 		bottom: calc((var(--urlbar-toolbar-height) - var(--urlbar-height)) / 2) !important;
