@@ -19,8 +19,7 @@ PATH DEFAULT=${PATH}:@{HOME}/bin
 PATH DEFAULT=${PATH}:@{HOME}/.cargo/bin
 PATH DEFAULT=${PATH}:@{HOME}/.npm-global/bin
 PATH DEFAULT=${PATH}:@{HOME}/.local/bin
-PATH DEFAULT=${PATH}:@{HOME}/.gem/ruby/2.6.0/bin
-PATH DEFAULT=${PATH}:@{HOME}/.gem/ruby/2.7.0/bin
+PATH DEFAULT=${PATH}:@{HOME}/.gem/ruby/3.0.0/bin
 
 # Globals
 TZ=America/Los_Angeles
