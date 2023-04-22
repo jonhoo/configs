@@ -13,37 +13,62 @@ else
 		bspc config bottom_padding 54
 		bspc config right_padding 1280
 		bspc config left_padding 640
-	else
-		bspc config top_padding 360
-		bspc config bottom_padding 360
+	elif [[ $1 == "-q" ]]; then
+		# q&a mode, so (1920/<golden ratio>)x1080
+		bspc config top_padding 540
+		bspc config bottom_padding 540
 		bspc config right_padding 1280
-		bspc config left_padding 0
+		bspc config left_padding 1374
+	else
+		bspc config -m primary top_padding 360
+		bspc config -m primary bottom_padding 360
+		bspc config -m primary right_padding 640
+		bspc config -m primary left_padding 640
 	fi
 	firefox-developer-edition --new-window "https://chat.restream.io/chat" &
 	# let it open
 	sleep 2
 fi
 for id in $(xdo id -N firefoxdeveloperedition); do
-	if xprop -id "$id" WM_NAME | grep "Restream Chat"; then
+	echo "try $id"
+	if xprop -id "$id" _NET_WM_NAME | grep "Restream Chat"; then
 		break
 	fi
 	id=""
 done
-echo "Chat window: $id"
 if [[ -n "$id" ]]; then
+	echo "Chat window: $id"
 	if [[ $1 == "-u" ]]; then
 		xdo close "$id"
 	fi
-	bspc node "$id" --state floating --flag sticky=on
-	xdo resize -w "1278" -h "2104" "$id"
-	xdo move -x "2561" -y "1" "$id"
+	bspc node "$id" -m 'HDMI-A-0' --state tiled
+	#bspc node "$id" --state floating --flag sticky=on
+	#xdo resize -w "1278" -h "2104" "$id"
+	#xdo move -x "2561" -y "1" "$id"
+fi
+if [[ $1 = "-q" ]]; then
+	firefox-developer-edition --new-window "https://www.live-ask.com/eventmod/0XZ9AA7Z9EYDPGJ9JEBEZJP8D0/0XZ9AA7WERC4Q4R6SJPQE3SZ47" &
+	sleep 2
+	for qid in $(xdo id -N firefoxdeveloperedition); do
+		echo "try $qid"
+		if xprop -id "$qid" _NET_WM_NAME | grep "Live-Ask"; then
+			break
+		fi
+		qid=""
+	done
+	if [[ -n "$qid" ]]; then
+		echo "Q&A window: $qid"
+		bspc node "$qid" --state floating --flag sticky=on
+		xdo resize -w "1374" -h "2104" "$qid"
+		xdo move -x "0" -y "0" "$qid"
+	fi
 fi
 
 # move back to current desktop if we moved away
 bspc desktop -f "$desktop"
 
 # also open a small terminal to mark webcam square
-if [[ $1 != "-u" ]]; then
+if [[ $1 != "-u" ]] && [[ $1 != "-q" ]]; then
 	alacritty -e cat &
 	pid=$!
 	# let it open
@@ -60,7 +85,7 @@ if [[ $1 != "-u" ]]; then
 			else
 				# webcam is 412x412, but scaled to 549x549
 				xdo resize -w "15" -h "35" "$id"
-				xdo move -x "2011" -y $((360+549-35)) "$id"
+				xdo move -x "2651" -y $((360+549-35)) "$id"
 			fi
 			break
 		else
