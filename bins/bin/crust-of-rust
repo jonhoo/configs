@@ -1,0 +1,24 @@
+#!/bin/bash
+
+set -eux
+
+file=$1
+copy="${file%.mkv}.copy.mkv"
+reencoded="${file%.mkv}.reencoded.mkv"
+ln "$file" "$copy"
+#ffmpeg -i "$file" \
+#     -itsoffset 0.200 -i "$file" \
+#                             -map 0:0 -map 1:1 \
+#                             -acodec copy \
+#                             -vcodec copy \
+#      "${file%.mkv}.corrected-audio.mkv"
+#ffmpeg -i "${file%.mkv}.corrected-audio.mkv" -c:a copy "$reencoded"
+ffmpeg-normalize "$file" -t -16 --dual-mono -c:a aac -b:a 256k --progress
+ffmpeg \
+	-i /mnt/diskofholding/photos/misc/crust-of-rust/Crust\ of\ Rust.all.sound.x.mkv \
+	-i "normalized/$(basename "$file")" \
+	-filter_complex '[0:v]scale=2560:1440:force_original_aspect_ratio=1[v0]; [v0][0:a:0] [1:v:0][1:a:0] concat=n=2:v=1:a=1 [v] [a]' \
+	-map '[v]' -map '[a]' \
+	-c:a aac -ab 256k \
+	"normalized/$(basename "$reencoded")"
+mv "normalized/$(basename "$reencoded")" "normalized/$(basename "$file")"
