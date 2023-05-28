@@ -410,11 +410,11 @@ nnoremap <C-f> :sus<cr>
 map H ^
 map L $
 
-" Neat X clipboard integration
-" ,p will paste clipboard into buffer
-" ,c will copy entire buffer into clipboard
+" System clipboard integration
+" <leader>p to paste clipboard into buffer
+" <leader>c to copy selection or line
 noremap <leader>p :read !xsel --clipboard --output<cr>
-noremap <leader>c :w !xsel -ib<cr><cr>
+noremap <leader>c "+yy
 
 " <leader>s for Rg search
 noremap <leader>s :Rg
