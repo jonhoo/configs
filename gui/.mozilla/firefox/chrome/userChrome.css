@@ -33,4 +33,25 @@
 	.tab-content { padding: 0 5px; }
 	.tab-close-button .toolbarbutton-icon { width: 12px !important; height: 12px !important; }
 	toolbox[inFullscreen=true] { display: none; }
+	/*
+	 * the following makes it so that the on-click panels in the nav-bar
+	 * extend upwards, not downwards. some of them are in the #mainPopupSet
+	 * (hamburger + unified extensions), and the rest are in
+	 * #navigator-toolbox. They all end up with an incorrectly-measured
+	 * max-height (based on the distance to the _bottom_ of the screen), so
+	 * we correct that. The ones in #navigator-toolbox then adjust their
+	 * positioning automatically, so we can just set max-height. The ones
+	 * in #mainPopupSet do _not_, and so we need to give them a
+	 * negative margin-top to offset them *and* a fixed height so their
+	 * bottoms align with the nav-bar. We also calc to ensure they don't
+	 * end up overlapping with the nav-bar itself. The last bit around
+	 * cui-widget-panelview is needed because "new"-style panels (those
+	 * using "unified" panels) don't get flex by default, which results in
+	 * them being the wrong height.
+	 */
+	#mainPopupSet panel.panel-no-padding { margin-top: calc(-50vh + 40px); }
+	#mainPopupSet .panel-viewstack { max-height: 50vh !important; height: 50vh; }
+	#navigator-toolbox .panel-viewstack { max-height: 75vh !important; }
+	panelview.cui-widget-panelview { flex: 1; }
+	panelview.cui-widget-panelview > vbox { flex: 1; min-height: 50vh; }
 }
