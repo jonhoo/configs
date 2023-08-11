@@ -1,96 +1,95 @@
 #!/bin/bash
-desktop=$(bspc query -D -d focused)
+# TODO rewrite in Rust
+if [[ -n "$(pgrep obs)" ]]; then
+	echo "OBS is already running"
+	#echo "Refusing to start due to https://github.com/hyprwm/Hyprland/issues/2689"
+	# exit 1
+fi
+desktop=$(hyprctl activeworkspace | grep -E '^workspace' | grep DP-1 | awk '{print $3}')
 if [[ $1 == "-u" ]]; then
-	bspc config top_padding 0
-	bspc config bottom_padding 54
-	bspc config right_padding 0
-	bspc config left_padding 0
+	hyprctl keyword monitor DP-1,addreserved,0,0,0,0
+	hyprctl keyword general:gaps_out 8
 else
 	pkill buzz
+	hyprctl keyword general:gaps_out 0
+	# all values are -42 since the bar always adds to the reserved space
 	if [[ $1 == "-p" ]]; then
 		# presentation mode, so exactly 1920x1080
-		bspc config top_padding 1026
-		bspc config bottom_padding 54
-		bspc config right_padding 1280
-		bspc config left_padding 640
+		hyprctl keyword monitor DP-1,addreserved,1026,$((54-42)),640,1280
 	elif [[ $1 == "-q" ]]; then
-		# q&a mode, so (1920/<golden ratio>)x1080
-		bspc config top_padding 540
-		bspc config bottom_padding 540
-		bspc config right_padding 1280
-		bspc config left_padding 1374
+		# q&a mode, so (2560/<golden ratio> = 1582)x1440
+		# center, with Qs left and chat right
+		hyprctl keyword monitor DP-1,addreserved,360,$((360-42)),1129,1129
 	else
-		bspc config -m primary top_padding 360
-		bspc config -m primary bottom_padding 360
-		bspc config -m primary right_padding 640
-		bspc config -m primary left_padding 640
+		# coding mode, so 2560x1440, left-aligned for chat on the right
+		# but keep same chat width as for q&a
+		hyprctl keyword monitor DP-1,addreserved,360,$((360-42)),$((1280-1129)),1129
 	fi
 	firefox-developer-edition --new-window "https://chat.restream.io/chat" &
 	# let it open
 	sleep 2
 fi
-for id in $(xdo id -N firefoxdeveloperedition); do
-	echo "try $id"
-	if xprop -id "$id" _NET_WM_NAME | grep "Restream Chat"; then
-		break
-	fi
-	id=""
-done
+id=$(hyprctl clients | grep -E '^Window' | grep 'Firefox' | grep 'Restream Chat' | awk '{print $2}')
 if [[ -n "$id" ]]; then
 	echo "Chat window: $id"
 	if [[ $1 == "-u" ]]; then
-		xdo close "$id"
+		hyprctl dispatch closewindow "address:0x$id"
+	else
+		hyprctl dispatch togglefloating "address:0x$id"
+		hyprctl dispatch movewindowpixel "exact $((3840-1125)) 0,address:0x$id"
+		hyprctl dispatch resizewindowpixel "exact 1125 $((2160-44)),address:0x$id"
+		hyprctl dispatch pin "address:0x$id"
 	fi
-	bspc node "$id" -m 'HDMI-A-0' --state tiled
-	#bspc node "$id" --state floating --flag sticky=on
-	#xdo resize -w "1278" -h "2104" "$id"
-	#xdo move -x "2561" -y "1" "$id"
 fi
 if [[ $1 = "-q" ]]; then
-	firefox-developer-edition --new-window "https://www.live-ask.com/eventmod/0XZ9AA7Z9EYDPGJ9JEBEZJP8D0/0XZ9AA7WERC4Q4R6SJPQE3SZ47" &
+	firefox-developer-edition --new-window "https://wewerewondering.com/event/01H4Y60CT5XCH2A1QHRBW1TE8J/LHqP8w2miPWQlkjbF2W0SwPCejhYD7" &
 	sleep 2
-	for qid in $(xdo id -N firefoxdeveloperedition); do
-		echo "try $qid"
-		if xprop -id "$qid" _NET_WM_NAME | grep "Live-Ask"; then
-			break
-		fi
-		qid=""
-	done
+	qid=$(hyprctl clients | grep -E '^Window' | grep 'Firefox' | grep 'Q&A' | awk '{print $2}')
 	if [[ -n "$qid" ]]; then
 		echo "Q&A window: $qid"
-		bspc node "$qid" --state floating --flag sticky=on
-		xdo resize -w "1374" -h "2104" "$qid"
-		xdo move -x "0" -y "0" "$qid"
+		hyprctl dispatch togglefloating "address:0x$qid"
+		hyprctl dispatch resizewindowpixel "exact 1125 $((2160-44)),address:0x$qid"
+		hyprctl dispatch movewindowpixel "exact 0 0,address:0x$qid"
+		hyprctl dispatch pin "address:0x$qid"
 	fi
 fi
-
-# move back to current desktop if we moved away
-bspc desktop -f "$desktop"
+if [[ $1 = "-u" ]]; then
+	qids=$(hyprctl clients | grep -E '^Window' | grep 'Firefox' | grep 'Q&A' | awk '{print $2}')
+	qid=$( echo "$qids" | head -n1)
+	if [[ -n "$qid" && "$qids" = "$qid" ]]; then
+		hyprctl dispatch closewindow "address:0x$qid"
+	fi
+fi
 
 # also open a small terminal to mark webcam square
 if [[ $1 != "-u" ]] && [[ $1 != "-q" ]]; then
-	alacritty -e cat &
+	alacritty -e cat &> /dev/null &
 	pid=$!
 	# let it open
 	sleep 1
-	for id in $(xdo id -N Alacritty); do
-		wpid=$(xprop -id "$id" _NET_WM_PID | awk '{print $NF}')
-		if [[ $pid == $wpid ]]; then
-			echo "Webcam underlay: $id"
-			bspc node "$id" --state floating --flag sticky=on
-			if [[ $1 == "-p" ]]; then
-				# webcam is 300x300
-				xdo resize -w "15" -h "35" "$id"
-				xdo move -x "2260" -y "1806" "$id"
-			else
-				# webcam is 412x412, but scaled to 549x549
-				xdo resize -w "15" -h "35" "$id"
-				xdo move -x "2651" -y $((360+549-35)) "$id"
-			fi
-			break
-		else
-			echo $pid $wpid
-		fi
-	id=""
-done
+	echo "Webcam underlay pid: $pid"
+	hyprctl dispatch togglefloating "pid:$pid"
+	hyprctl dispatch resizewindowpixel "exact 15 35,pid:$pid"
+	hyprctl dispatch pin "pid:$pid"
+	if [[ $1 == "-p" ]]; then
+		# webcam is 300x300
+		hyprctl dispatch movewindowpixel "exact 2260 1806,pid:$pid"
+	else
+		# webcam is 550x550
+		hyprctl dispatch movewindowpixel "exact $((3840-1129-549)) $((360+549-35)),pid:$pid"
+	fi
 fi
+
+if [[ $1 = "-u" ]]; then
+	for maybe_marker in $(pgrep cat); do
+		ppid=$(ps -p "$maybe_marker" --no-headers -o "%P" | sed 's/^ *//')
+		pname=$(ps -p "$ppid" --no-headers -o "%c" | sed 's/ *$//')
+		if [[ "$pname" = "alacritty" ]]; then
+			hyprctl dispatch closewindow "pid:$ppid"
+			break
+		fi
+	done
+fi
+
+# move back to current desktop if we moved away
+hyprctl dispatch workspace "$desktop"
