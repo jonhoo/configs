@@ -8,7 +8,7 @@ let mapleader = "\<Space>"
 " Load vundle
 set nocompatible
 filetype off
-set rtp+=~/dev/others/base16/templates/vim/
+set rtp+=~/dev/others/base16/templates/nvim/
 call plug#begin()
 
 " Load plugins
@@ -69,14 +69,21 @@ set background=dark
 let base16colorspace=256
 let g:base16_shell_path="~/dev/others/base16/templates/shell/scripts/"
 colorscheme base16-gruvbox-dark-hard
+"colorscheme quiet
 syntax on
 hi Normal ctermbg=NONE
 
 " Customize the highlight a bit.
 " Make comments more prominent -- they are important.
-call Base16hi("Comment", g:base16_gui09, "", g:base16_cterm09, "", "", "")
+lua << END
+local bools = vim.api.nvim_get_hl(0, { name = 'Boolean' })
+vim.api.nvim_set_hl(0, 'Comment', bools)
+END
 " Make it clearly visible which argument we're at.
-call Base16hi("LspSignatureActiveParameter", g:base16_gui05, g:base16_gui03, g:base16_cterm05, g:base16_cterm03, "bold", "")
+lua << END
+local marked = vim.api.nvim_get_hl(0, { name = 'PMenu' })
+vim.api.nvim_set_hl(0, 'LspSignatureActiveParameter', { fg = marked.fg, bg = marked.bg, ctermfg = marked.ctermfg, ctermbg = marked.ctermbg, bold = true })
+END
 " Would be nice to customize the highlighting of warnings and the like to make
 " them less glaring. But alas
 " https://github.com/nvim-lua/lsp_extensions.nvim/issues/21
