@@ -18,7 +18,7 @@ set message_cachedir="~/.mutt/cache/messages"
 set certificate_file="~/.mutt/certificates"
 set mail_check=60
 set timeout=5 # Update folder status often when inactive
-set editor='vim'
+set editor='nvim'
 set pgp_auto_decode=yes
 set realname="Jon Gjengset";
 # set send_charset="us-ascii:iso-8859-1:utf-8"
@@ -33,6 +33,13 @@ set text_flowed
 # faster imap
 set imap_condstore=yes
 set imap_qresync=yes
+# fast reply
+set fast_reply=yes
+set include=yes
+# speed up folder switch (according to Arch wiki)
+set sleep_time = 0
+# only utf-8
+set send_charset="us-ascii:utf-8"
 
 set sort="threads"
 set strict_threads="yes"
@@ -87,11 +94,9 @@ bind attach <return> view-mailcap
 alternates jon@*.tsp.io jon@*.thesquareplanet.com jon@*.gjengset.com jfrg@mit.edu jfrg@csail.mit.edu j.gjengset@cs.ucl.ac.uk jon@dethvitehuset.no
 
 # switch to default account on startup
-source ~/.mutt/account.local
+source ~/.mutt/account.fm
 
-macro index <f1> '<sync-mailbox><enter-command>source ~/.mutt/account.fm<enter><change-folder>!<enter>'
-macro index <f2> '<sync-mailbox><enter-command>source ~/.mutt/account.aptoma<enter><change-folder>!<enter>'
-macro index <f12> '<sync-mailbox><enter-command>source ~/.mutt/account.local<enter><change-folder>!<enter>'
+#macro index <f1> '<sync-mailbox><enter-command>source ~/.mutt/account.fm<enter><change-folder>!<enter>'
 
 # lists
 subscribe getmail@lists.pyropus.ca gnuplot-beta@lists.sourceforge.net \
