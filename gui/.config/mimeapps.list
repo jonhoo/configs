@@ -1,10 +1,10 @@
 [Default Applications]
-application/pdf=mupdf.desktop
-application/xps=mupdf.desktop
-application/vnd.ms-xpsdocument=mupdf.desktop
-image/png=sxiv.desktop
-image/jpg=sxiv.desktop
-image/jpeg=sxiv.desktop
+application/pdf=org.pwmt.zathura.desktop
+application/xps=org.pwmt.zathura.desktop
+application/vnd.ms-xpsdocument=org.pwmt.zathura.desktop
+image/png=imv.desktop
+image/jpg=imv.desktop
+image/jpeg=imv.desktop
 x-scheme-handler/http=firefox-developer-edition.desktop
 x-scheme-handler/https=firefox-developer-edition.desktop
 text/html=firefox-developer-edition.desktop
