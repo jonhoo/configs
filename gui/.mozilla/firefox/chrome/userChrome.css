@@ -48,9 +48,14 @@
 	 * cui-widget-panelview is needed because "new"-style panels (those
 	 * using "unified" panels) don't get flex by default, which results in
 	 * them being the wrong height.
+	 *
+	 * Oh, yeah, and the popup-notification-panel (like biometrics prompts)
+	 * of course follows different rules again, and needs its own special
+	 * rule.
 	 */
-	#mainPopupSet panel.panel-no-padding { margin-top: calc(-50vh + 40px); }
-	#mainPopupSet .panel-viewstack { max-height: 50vh !important; height: 50vh; }
+	#mainPopupSet panel.panel-no-padding { margin-top: calc(-50vh + 40px) !important; }
+	#mainPopupSet .panel-viewstack, #mainPopupSet popupnotification { max-height: 50vh !important; height: 50vh; }
+	#mainPopupSet panel.panel-no-padding.popup-notification-panel { margin-top: calc(-50vh - 35px) !important; }	
 	#navigator-toolbox .panel-viewstack { max-height: 75vh !important; }
 	panelview.cui-widget-panelview { flex: 1; }
 	panelview.cui-widget-panelview > vbox { flex: 1; min-height: 50vh; }
