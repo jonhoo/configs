@@ -173,15 +173,15 @@ font:
   #use_thin_strokes: true
 
 # If `true`, bold text is drawn using the bright color variants.
-#draw_bold_text_with_bright_colors: false
+draw_bold_text_with_bright_colors: false
 
 # Base16 Gruvbox dark, hard 256 - alacritty color config
 # Dawid Kurek (dawikur@gmail.com), morhetz (https://github.com/morhetz/gruvbox)
 colors:
   # Default colors
   primary:
-    background: '#1d2021'
-    foreground: '#d5c4a1'
+    background: '0x1d2021'
+    foreground: '0xd5c4a1'
 
     # Bright and dim foreground colors
     #
@@ -199,8 +199,8 @@ colors:
   # Allowed values are CellForeground/CellBackground, which reference the
   # affected cell, or hexadecimal colors like #ff00ff.
   cursor:
-    text: '#1d2021'
-    cursor: '#d5c4a1'
+    text: '0x1d2021'
+    cursor: '0xd5c4a1'
 
   # Vi mode cursor colors
   #
@@ -269,25 +269,25 @@ colors:
 
   # Normal colors
   normal:
-    black:   '#1d2021'
-    red:     '#fb4934'
-    green:   '#b8bb26'
-    yellow:  '#fabd2f'
-    blue:    '#83a598'
-    magenta: '#d3869b'
-    cyan:    '#8ec07c'
-    white:   '#d5c4a1'
+    black:   '0x1d2021'
+    red:     '0xfb4934'
+    green:   '0xb8bb26'
+    yellow:  '0xfabd2f'
+    blue:    '0x83a598'
+    magenta: '0xd3869b'
+    cyan:    '0x8ec07c'
+    white:   '0xd5c4a1'
 
   # Bright colors
   bright:
-    black:   '#665c54'
-    red:     '#fb4934'
-    green:   '#b8bb26'
-    yellow:  '#fabd2f'
-    blue:    '#83a598'
-    magenta: '#d3869b'
-    cyan:    '#8ec07c'
-    white:   '#fbf1c7'
+    black:   '0x665c54'
+    red:     '0xfe8019'
+    green:   '0x3c3836'
+    yellow:  '0x504945'
+    blue:    '0xbdae93'
+    magenta: '0xebdbb2'
+    cyan:    '0xd65d0e'
+    white:   '0xfbf1c7'
 
   # Dim colors
   #
