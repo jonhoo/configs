@@ -153,6 +153,10 @@ local on_attach = function(client, bufnr)
   buf_set_keymap('n', '<space>q', '<cmd>lua vim.diagnostic.set_loclist()<CR>', opts)
   buf_set_keymap("n", "<space>f", "<cmd>lua vim.lsp.buf.formatting()<CR>", opts)
 
+  -- None of this semantics tokens business.
+  -- https://www.reddit.com/r/neovim/comments/143efmd/is_it_possible_to_disable_treesitter_completely/
+  client.server_capabilities.semanticTokensProvider = nil
+
   -- Get signatures (and _only_ signatures) when in argument lists.
   require "lsp_signature".on_attach({
     doc_lines = 0,
