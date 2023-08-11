@@ -1,0 +1,91 @@
+#!/bin/bash
+
+set -euo pipefail
+
+for file in "$@"; do
+	echo "==> $file"
+	input=$file
+	filename="$(basename "$file")"
+	base="${filename%.mkv}"
+	date=$(echo "$base" | perl -npe 's/^([0-9-]{10})[ T]([0-9]{2})[-:]([0-9]{2})[-:]([0-9]{2}).*/\1T\2:\3:\4/')
+	year=$(date +%Y -d "$date")
+	case "$year" in
+		2018|2019)
+			tz="America/New_York"
+			;;
+		2020)
+			month=$(date +%m -d "$date")
+			case "$month" in
+				10|11|12)
+					tz="America/Los_Angeles"
+					;;
+				*)
+					tz="America/New_York"
+					;;
+			esac
+			;;
+		2021|2022)
+			tz="America/Los_Angeles"
+			;;
+		2023)
+			month=$(date +%m -d "$date")
+			case "$month" in
+				01|02|03|04|05)
+					tz="America/Los_Angeles"
+					;;
+				*)
+					tz="Europe/Oslo"
+					;;
+			esac
+			;;
+		*)
+			tz="Europe/Oslo"
+			;;
+	esac
+	date_in_tz=$(TZ="$tz" date --iso-8601=seconds -d "$date")
+	date=$(date --iso-8601=seconds -u -d "$date_in_tz")
+	date=$(echo "$date" | sed 's/+00:00$/Z/')
+
+	# copy="$base.original.mkv"
+	# echo " -> hardlinking to ./$copy"
+	# ln "$file" "$copy"
+
+	# corrected="$base.corrected.mkv"
+	# echo " -> correcting audio via $corrected"
+	# ffmpeg -i "$input" \
+	#      -itsoffset 0.200 -i "$input" \
+	#      -map 0:0 -map 1:1 \
+	#      -acodec copy \
+	#      -vcodec copy \
+	#       "$corrected"
+	# input=$corrected
+
+	# if true; then
+	# 	short="$date.short.mkv"
+	# 	ffmpeg -i "$file" -t 30 -c:a copy -c:v copy "file:$short"
+	# 	input=./$short
+	# fi
+
+	asize=$(numfmt --to=iec-i --suffix=B --format="%.1f" "$(stat -c '%s' "$file")")
+
+	reencoded="$date.final.mkv"
+	if [[ -e "$reencoded" ]]; then
+		echo " !! refusing to overwrite $reencoded"
+		echo " -> evaluating VMAF"
+		ab-av1 vmaf --reference "$file" --distorted "./$reencoded" --vmaf n_threads=24 --vmaf n_subsample=8
+		bsize=$(numfmt --to=iec-i --suffix=B --format="%.1f" "$(stat -c '%s' "$reencoded")")
+		echo " -> $asize to $bsize"
+		continue
+	fi
+	echo " -> reencoding to $reencoded ($asize)"
+	# one day: -e='.. -pix_fmt yuv420p10le'
+	time ffmpeg-normalize "$input" \
+		--keep-loudness-range-target -t -14 \
+		--dual-mono -c:a aac -b:a 256k \
+		-c:v libsvtav1 \
+		-e='-preset 6 -crf 23 -g 250 -pix_fmt yuv420p' \
+		-o "./$reencoded" \
+		--progress
+	bsize=$(numfmt --to=iec-i --suffix=B --format="%.1f" "$(stat -c '%s' "$reencoded")")
+	echo " == rencoding done ($bsize)"
+done
