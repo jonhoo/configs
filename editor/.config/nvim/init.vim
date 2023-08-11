@@ -413,8 +413,8 @@ map L $
 " Neat X clipboard integration
 " ,p will paste clipboard into buffer
 " ,c will copy entire buffer into clipboard
-noremap <leader>p :read !xsel --clipboard --output<cr>
-noremap <leader>c :w !xsel -ib<cr><cr>
+noremap <leader>p :read !wl-paste<cr>
+noremap <leader>c :w !wl-copy<cr><cr>
 
 " <leader>s for Rg search
 noremap <leader>s :Rg
