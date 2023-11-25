@@ -14,5 +14,5 @@ ln "$file" "$copy"
 #      "${file%.mkv}.corrected-audio.mkv"
 #ffmpeg -i "${file%.mkv}.corrected-audio.mkv" -c:a copy "$reencoded"
 ffmpeg -i "$file" -c:a copy "$reencoded"
-ffmpeg-normalize "$reencoded" -t -16 --dual-mono -c:a aac -b:a 256k --progress
+ffmpeg-normalize "$reencoded" --keep-loudness-range-target -t -14 --dual-mono -c:a aac -b:a 256k --progress
 mv "normalized/$(basename "$reencoded")" "normalized/$(basename "$file")"
