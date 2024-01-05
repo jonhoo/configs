@@ -1,4 +1,4 @@
-set imap_user="jon@eml.cc"
+set imap_user="jon@thesquareplanet.com"
 set spoolfile="imaps://imap.fastmail.com"
 set folder="imaps://imap.fastmail.com/INBOX"
 set from="jon@thesquareplanet.com"
