@@ -2,12 +2,22 @@
 
 set -euo pipefail
 
+cor=0
+if [[ $1 = "--crust-of-rust" ]]; then
+	cor=1
+	shift
+fi
+
 for file in "$@"; do
 	echo "==> $file"
-	input=$file
+	input="$file"
 	filename="$(basename "$file")"
+	if [[ "$(dirname "$input")" = "." ]]; then
+		# ffmpeg doesn't like : in filenames without leading ./
+		input="./$filename"
+	fi
 	base="${filename%.mkv}"
-	date=$(echo "$base" | perl -npe 's/^([0-9-]{10})[ T]([0-9]{2})[-:]([0-9]{2})[-:]([0-9]{2}).*/\1T\2:\3:\4/')
+	date=$(echo "$base" | perl -npe 's/^([0-9-]{10})[ T]([0-9]{2})[-:]([0-9]{2})[-:]([0-9]{2})(Z)?.*/\1T\2:\3:\4\5/')
 	year=$(date +%Y -d "$date")
 	case "$year" in
 		2018|2019)
@@ -66,26 +76,59 @@ for file in "$@"; do
 	# 	input=./$short
 	# fi
 
-	asize=$(numfmt --to=iec-i --suffix=B --format="%.1f" "$(stat -c '%s' "$file")")
-
-	reencoded="$date.final.mkv"
-	if [[ -e "$reencoded" ]]; then
-		echo " !! refusing to overwrite $reencoded"
+	final="$date.final.mkv"
+	if [[ -e "$final" ]]; then
+		echo " !! refusing to overwrite $final"
 		echo " -> evaluating VMAF"
-		ab-av1 vmaf --reference "$file" --distorted "./$reencoded" --vmaf n_threads=24 --vmaf n_subsample=8
-		bsize=$(numfmt --to=iec-i --suffix=B --format="%.1f" "$(stat -c '%s' "$reencoded")")
+		ab-av1 vmaf --reference "$file" --distorted "./$final" --vmaf n_threads=24 --vmaf n_subsample=8
+		bsize=$(numfmt --to=iec-i --suffix=B --format="%.1f" "$(stat -c '%s' "$final")")
 		echo " -> $asize to $bsize"
 		continue
 	fi
-	echo " -> reencoding to $reencoded ($asize)"
+
+	reencoded="$date.reencoded.mkv"
+	# first, re-encode the video (and add the intro if necessary)
+	# that we encode the audio to flac to avoid loss before normalization
+	asize=$(numfmt --to=iec-i --suffix=B --format="%.1f" "$(stat -c '%s' "$file")")
 	# one day: -e='.. -pix_fmt yuv420p10le'
-	time ffmpeg-normalize "$input" \
-		--keep-loudness-range-target -t -14 \
-		--dual-mono -c:a aac -b:a 256k \
-		-c:v libsvtav1 \
-		-e='-preset 6 -crf 23 -g 250 -pix_fmt yuv420p' \
-		-o "./$reencoded" \
-		--progress
+	enc=(-c:a flac -c:v libsvtav1 -preset 6 -crf 23 -g 250 -pix_fmt yuv420p)
+	if [[ $cor -eq 1 ]]; then
+		echo " -> reencoding $asize video with CoR intro to $reencoded"
+		inw=$(ffprobe -v error -select_streams v:0 -show_entries stream=width -of default=noprint_wrappers=1:nokey=1 "$input")
+		inh=$(ffprobe -v error -select_streams v:0 -show_entries stream=height -of default=noprint_wrappers=1:nokey=1 "$input")
+		inr=$(ffprobe -v error -select_streams v:0 -show_entries stream=r_frame_rate -of default=noprint_wrappers=1:nokey=1 "$input")
+		echo "$inw x $inh @ $inr"
+		time ffmpeg \
+			-v quiet -loglevel quiet -stats \
+			-i ~/media/crust-of-rust-intro.mp4 \
+			-i "$input" \
+			-filter_complex "[0:v]scale=$inw:$inh:force_original_aspect_ratio=1[v0]; [v0][0:a:0] [1:v:0][1:a:0] concat=n=2:v=1:a=1 [v] [a]" \
+			-map '[v]' -map '[a]' \
+			-r "$inr" \
+			"${enc[@]}" \
+			"./$reencoded"
+	else
+		echo " -> reencoding $asize video to $reencoded"
+		time ffmpeg \
+			-v quiet -loglevel quiet -stats \
+			-i "$input" \
+			"${enc[@]}" \
+			"./$reencoded"
+	fi
+
+	# then, we normalize the audio while copying the video
+	# we do this in a separate step since ffmpeg-normalize can't concat
 	bsize=$(numfmt --to=iec-i --suffix=B --format="%.1f" "$(stat -c '%s' "$reencoded")")
-	echo " == rencoding done ($bsize)"
+	echo " -> normalizing reencoded $bsize video to $final"
+	time ffmpeg-normalize "./$reencoded" \
+		--keep-loudness-range-target -t -14 \
+		--dual-mono \
+		-c:a libopus -b:a 192k \
+		-c:v copy \
+		-o "./$final" \
+		--progress
+	csize=$(numfmt --to=iec-i --suffix=B --format="%.1f" "$(stat -c '%s' "$final")")
+	echo " == reencoding done ($csize)"
+
+	rm "./$reencoded"
 done
