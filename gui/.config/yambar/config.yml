@@ -1,0 +1,185 @@
+bar:
+  height: 42
+  location: bottom
+  background: 222222ff
+  foreground: dfdfdfff
+  font: Noto Sans Mono:size=14
+  spacing: 8
+  margin: 16
+
+  left:
+    - clock:
+        date-format: "%a %d"
+        time-format: "%H:%M"
+        content:
+          - string: {text: "{date} {time}", deco: { stack: [underline: { size: 2, color: 0a6cf5ff }] }}
+    - script:
+        path: /home/jon/.cargo/bin/yambar-hyprland-wses
+        anchors:
+          ws_focused: &ws_focused fba922ff
+          ws_active: &ws_active ffaa00ff
+          ws_empty: &ws_empty 555555ff
+          ws_other: &ws_other bbbbbbff
+          ws_1: &ws_1 "I"
+          ws_2: &ws_2 "II"
+          ws_3: &ws_3 "III"
+          ws_4: &ws_4 "IV"
+          ws_5: &ws_5 "V"
+          ws_6: &ws_6 "VI"
+          ws_7: &ws_7 "VII"
+          ws_8: &ws_8 "VIII"
+          ws_9: &ws_9 "IX"
+        content:
+          list:
+            spacing: 6
+            items:
+              - map:
+                  default:
+                    string: { text: *ws_1, foreground: *ws_other }
+                  conditions:
+                    workspace_count < 2:
+                      empty: {}
+                    workspace_1_focused:
+                      string: { text: *ws_1, foreground: *ws_focused }
+                    workspace_1_active:
+                      string: { text: *ws_1, foreground: *ws_active }
+                    workspace_1_windows == 0:
+                      string: { text: *ws_1, foreground: *ws_empty }
+              - map:
+                  default:
+                    string: { text: *ws_2, foreground: *ws_other }
+                  conditions:
+                    workspace_count < 3:
+                      empty: {}
+                    workspace_2_focused:
+                      string: { text: *ws_2, foreground: *ws_focused }
+                    workspace_2_active:
+                      string: { text: *ws_2, foreground: *ws_active }
+                    workspace_2_windows == 0:
+                      string: { text: *ws_2, foreground: *ws_empty }
+              - map:
+                  default:
+                    string: { text: *ws_3, foreground: *ws_other }
+                  conditions:
+                    workspace_count < 4:
+                      empty: {}
+                    workspace_3_focused:
+                      string: { text: *ws_3, foreground: *ws_focused }
+                    workspace_3_active:
+                      string: { text: *ws_3, foreground: *ws_active }
+                    workspace_3_windows == 0:
+                      string: { text: *ws_3, foreground: *ws_empty }
+              - map:
+                  default:
+                    string: { text: *ws_4, foreground: *ws_other }
+                  conditions:
+                    workspace_count < 5:
+                      empty: {}
+                    workspace_4_focused:
+                      string: { text: *ws_4, foreground: *ws_focused }
+                    workspace_4_active:
+                      string: { text: *ws_4, foreground: *ws_active }
+                    workspace_4_windows == 0:
+                      string: { text: *ws_4, foreground: *ws_empty }
+              - map:
+                  default:
+                    string: { text: *ws_5, foreground: *ws_other }
+                  conditions:
+                    workspace_count < 6:
+                      empty: {}
+                    workspace_5_focused:
+                      string: { text: *ws_5, foreground: *ws_focused }
+                    workspace_5_active:
+                      string: { text: *ws_5, foreground: *ws_active }
+                    workspace_5_windows == 0:
+                      string: { text: *ws_5, foreground: *ws_empty }
+              - map:
+                  default:
+                    string: { text: *ws_6, foreground: *ws_other }
+                  conditions:
+                    workspace_count < 7:
+                      empty: {}
+                    workspace_6_focused:
+                      string: { text: *ws_6, foreground: *ws_focused }
+                    workspace_6_active:
+                      string: { text: *ws_6, foreground: *ws_active }
+                    workspace_6_windows == 0:
+                      string: { text: *ws_6, foreground: *ws_empty }
+              - map:
+                  default:
+                    string: { text: *ws_7, foreground: *ws_other }
+                  conditions:
+                    workspace_count < 8:
+                      empty: {}
+                    workspace_7_focused:
+                      string: { text: *ws_7, foreground: *ws_focused }
+                    workspace_7_active:
+                      string: { text: *ws_7, foreground: *ws_active }
+                    workspace_7_windows == 0:
+                      string: { text: *ws_7, foreground: *ws_empty }
+              - map:
+                  default:
+                    string: { text: *ws_8, foreground: *ws_other }
+                  conditions:
+                    workspace_count < 9:
+                      empty: {}
+                    workspace_8_focused:
+                      string: { text: *ws_8, foreground: *ws_focused }
+                    workspace_8_active:
+                      string: { text: *ws_8, foreground: *ws_active }
+                    workspace_8_windows == 0:
+                      string: { text: *ws_8, foreground: *ws_empty }
+              - map:
+                  default:
+                    string: { text: *ws_9, foreground: *ws_other }
+                  conditions:
+                    workspace_count < 10:
+                      empty: {}
+                    workspace_9_focused:
+                      string: { text: *ws_9, foreground: *ws_focused }
+                    workspace_9_active:
+                      string: { text: *ws_9, foreground: *ws_active }
+                    workspace_9_windows == 0:
+                      string: { text: *ws_9, foreground: *ws_empty }
+    - foreign-toplevel:
+        content:
+          map:
+            conditions:
+              ~activated: {empty: {}}
+              activated:
+                - string: {text: "{app-id}", foreground: fba922ff}
+                - string: {text: ": {title}"}
+
+  right:
+    - network:
+        name: wlan0
+        poll-interval: 5000
+        content:
+          map:
+            default: {string: {text: "<>", foreground: ffffff66}}
+            conditions:
+              state == down: {string: {text: "", foreground: ff0000ff}}
+              state == up:
+                map:
+                  deco: { stack: [underline: { size: 2, color: 9f78e1ff }] }
+                  conditions:
+                    signal >= -50:
+                      - string: {text: "🌣 {ssid}"}
+                    signal >= -55:
+                      - string: {text: "🌤 {ssid}"}
+                    signal >= -67:
+                      - string: {text: "🌥 {ssid}"}
+                    signal >= -70:
+                      - string: {text: "🌦 {ssid}"}
+                    signal >= -80:
+                      - string: {text: "🌧 {ssid}"}
+    - cpu:
+       poll-interval: 2000
+       content:
+         map:
+           conditions:
+             id < 0:
+              - string: {text: "💻 {cpu}%", deco: { stack: [underline: { size: 2, color: f90000ff }] }}
+
+# vim:set expandtab:ft=dosini:ts=2:sw=2:
+# vim:expandtab:ft=dosini:shiftwidth=2:tabstop=2:
