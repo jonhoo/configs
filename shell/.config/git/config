@@ -37,8 +37,8 @@
 [github]
 	user = jonhoo
 [diff]
-	algorithm = patience
-	compactionHeuristic = true
+	algorithm = histogram
+	indentHeuristic = true
 [protocol]
 	version = 2
 [sendemail]
