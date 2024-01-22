@@ -8,6 +8,8 @@ Xcursor.size:  16       !  32, 48 or 64 may also be good values
 
 ! Xft settings ---------------------------------------------------------------
 
+Xft.dpi: 144
+
 Xft.lcdfilter: lcddefault
 Xft.antialias:  true
 Xft.autohint:   false

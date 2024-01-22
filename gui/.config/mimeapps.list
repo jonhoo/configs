@@ -12,3 +12,4 @@ text/plain=nvim.desktop
 
 [Added Associations]
 application/x-bibtex=nvim.desktop;
+image/gif=sxiv.desktop;

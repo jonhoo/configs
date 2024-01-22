@@ -526,8 +526,12 @@ au BufReadPost * if expand('%:p') !~# '\m/\.git/' && line("'\"") > 1 && line("'\
 endif
 
 " Follow Rust code style rules
-au Filetype rust source ~/.config/nvim/scripts/spacetab.vim
 au Filetype rust set colorcolumn=100
+" Because sometimes, spaces are mandated
+au Filetype rust set shiftwidth=4
+au Filetype rust set softtabstop=4
+au Filetype rust set tabstop=4
+au Filetype rust set expandtab
 
 " Help filetype detection
 autocmd BufRead *.plot set filetype=gnuplot
@@ -537,15 +541,4 @@ autocmd BufRead *.tex set filetype=tex
 autocmd BufRead *.trm set filetype=c
 autocmd BufRead *.xlsx.axlsx set filetype=ruby
 
-" Script plugins
-autocmd Filetype html,xml,xsl,php source ~/.config/nvim/scripts/closetag.vim
-
-" =============================================================================
-" # Footer
-" =============================================================================
-
-" nvim
-if has('nvim')
-runtime! plugin/python_setup.vim
-endif
 --]]

@@ -32,9 +32,17 @@ bspc config remove_disabled_monitors true
 bspc config merge_overlapping_monitors true
 
 # ulauncher --hide-window --no-window-shadow &
+echo "start ulauncher"
 systemctl --user start ulauncher.service &
-[ -x ~/.config/polybar/launch.sh ] && ~/.config/polybar/launch.sh &
-[ -x ~/.cargo/bin/buzz ] && ~/.cargo/bin/buzz &
+if [ -x ~/.config/polybar/launch.sh ]; then
+	echo "start polybar"
+	~/.config/polybar/launch.sh
+fi
+if [ -x ~/.cargo/bin/buzz ]; then
+	echo "start buzz"
+	~/.cargo/bin/buzz &
+fi
 if [ -x ~/.cargo-target/release/keybase-chat-notifier ]; then
+	echo "start keybase chat notifier"
 	keybase chat api-listen | ~/.cargo-target/release/keybase-chat-notifier &
 fi

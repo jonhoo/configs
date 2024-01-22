@@ -12,33 +12,21 @@
 
 EDITOR=nvim
 BROWSER=firefox-developer-edition
-NAME DEFAULT="Jon Gjengset"
+NAME="Jon Gjengset"
 EMAIL=jon@tsp.io
-
-PATH DEFAULT=${PATH}:@{HOME}/bin
-PATH DEFAULT=${PATH}:@{HOME}/.cargo/bin
-PATH DEFAULT=${PATH}:@{HOME}/.npm-global/bin
-PATH DEFAULT=${PATH}:@{HOME}/.local/bin
-PATH DEFAULT=${PATH}:@{HOME}/.gem/ruby/3.0.0/bin
 
 # Globals
 TZ=Europe/Oslo
 
 # Configs
-R_LIBS_USER DEFAULT=@{HOME}/.Rpackages
-SXHKD_SHELL DEFAULT=/usr/bin/bash
-
-# Environment-local
-CARGO_TARGET_DIR DEFAULT=@{HOME}/.cargo-target
-PATH DEFAULT=${PATH}:@{HOME}/.cargo-target/release/
+R_LIBS_USER=@{HOME}/.Rpackages
+SXHKD_SHELL=/usr/bin/bash
 
 # Rust stuff
-CARGO_INCREMENTAL=1
-RUSTFLAGS DEFAULT="-C target-cpu=native"
 RUST_BACKTRACE=1
 
 # Java stuff
-_JAVA_OPTIONS DEFAULT="-Dawt.useSystemAAFontSettings=lcd -Dswing.defaultlaf=com.sun.java.swing.plaf.gtk.GTKLookAndFeel"
+_JAVA_OPTIONS="-Dawt.useSystemAAFontSettings=lcd -Dswing.defaultlaf=com.sun.java.swing.plaf.gtk.GTKLookAndFeel"
 JAVA_FONTS=/usr/share/fonts/TTF
 MATLAB_JAVA=/usr/lib/jvm/default-runtime
 J2D_D3D=false
@@ -51,4 +39,4 @@ WINEDEBUG=fixme-all
 # F = quit automatically if less than one screenfull
 # R = raw terminal characters (fixes git diff)
 #     see http://jugglingbits.wordpress.com/2010/03/24/a-better-less-playing-nice-with-git/
-LESS DEFAULT="-F -X -R"
+LESS="-F -X -R"

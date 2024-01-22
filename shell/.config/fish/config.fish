@@ -53,6 +53,10 @@ if test -f /usr/share/autojump/autojump.fish;
 	source /usr/share/autojump/autojump.fish;
 end
 
+function pwl
+	set -Ux OP_SESSION_my (pw signin my --raw)
+end
+
 function ssh
 	switch $argv[1]
 	case "*.amazonaws.com"
@@ -119,11 +123,11 @@ function remarkable
 		return
 	end
 
-	ip addr show up to 10.11.99.0/29 | grep enp2s0f0u3 >/dev/null
+	ip addr show up to 10.11.99.0/29 | grep enp0s20f0u2 >/dev/null
 	if test $status -ne 0
 		# not yet connected
 		echo "Connecting to reMarkable internal network"
-		sudo dhcpcd enp2s0f0u3
+		sudo dhcpcd enp0s20f0u2
 	end
 	for f in $argv
 		echo "-> uploading $f"
