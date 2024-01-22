@@ -2,33 +2,83 @@
 vim.keymap.set("n", "<Space>", "<Nop>", { silent = true })
 vim.g.mapleader = " "
 
+-------------------------------------------------------------------------------
+--
 -- preferences
+--
+-------------------------------------------------------------------------------
 -- never ever folding
-vim.o.foldenable = false
-vim.o.foldmethod = 'manual'
-vim.o.foldlevelstart = 99
+vim.opt.foldenable = false
+vim.opt.foldmethod = 'manual'
+vim.opt.foldlevelstart = 99
 -- very basic "continue indent" mode (autoindent) is always on in neovim
 -- could try smartindent/cindent, but meh.
--- vim.o.cindent = true
+-- vim.opt.cindent = true
 -- XXX
--- vim.o.cmdheight = 2
--- vim.o.completeopt = 'menuone,noinsert,noselect'
+-- vim.opt.cmdheight = 2
+-- vim.opt.completeopt = 'menuone,noinsert,noselect'
 -- not setting updatedtime because I use K to manually trigger hover effects
 -- and lowering it also changes how frequently files are written to swap.
--- vim.o.updatetime = 300
+-- vim.opt.updatetime = 300
 -- if key combos seem to be "lagging"
 -- http://stackoverflow.com/questions/2158516/delay-before-o-opens-a-new-line
--- vim.o.timeoutlen = 300
+-- vim.opt.timeoutlen = 300
 -- keep more context on screen while scrolling
-vim.o.scrolloff = 2
+vim.opt.scrolloff = 2
 -- never show me line breaks if they're not there
-vim.o.wrap = false
+vim.opt.wrap = false
 -- always draw sign column. prevents buffer moving when adding/deleting sign
-vim.o.signcolumn = 'yes'
+vim.opt.signcolumn = 'yes'
 -- sweet sweet relative line numbers
-vim.o.relativenumber = true
+vim.opt.relativenumber = true
+-- and show the absolute line number for the current line
+vim.opt.number = true
+-- keep current content top + left when splitting
+vim.opt.splitright = true
+vim.opt.splitbelow = true
+-- infinite undo!
+-- NOTE: ends up in ~/.local/state/nvim/undo/
+vim.opt.undofile = true
+--" Decent wildmenu
+-- in completion, when there is more than one match,
+-- list all matches, and only complete to longest common match
+vim.opt.wildmode = 'list:longest'
+-- when opening a file with a command (like :e),
+-- don't suggest files like there:
+vim.opt.wildignore = '.hg,.svn,*~,*.png,*.jpg,*.gif,*.min.js,*.swp,*.o,vendor,dist,_site'
+-- tabs: go big or go home
+vim.opt.shiftwidth = 8
+vim.opt.softtabstop = 8
+vim.opt.tabstop = 8
+vim.opt.expandtab = false
+-- case-insensitive search/replace
+vim.opt.ignorecase = true
+-- unless uppercase in search term
+vim.opt.smartcase = true
+-- never ever make my terminal beep
+vim.opt.vb = true
+-- more useful diffs (nvim -d)
+--- by ignoring whitespace
+vim.opt.diffopt:append('iwhite')
+--- and using a smarter algorithm
+--- https://vimways.org/2018/the-power-of-diff/
+--- https://stackoverflow.com/questions/32365271/whats-the-difference-between-git-diff-patience-and-git-diff-histogram
+--- https://luppeng.wordpress.com/2020/10/10/when-to-use-each-of-the-git-diff-algorithms/
+vim.opt.diffopt:append('algorithm:histogram')
+vim.opt.diffopt:append('indent-heuristic')
+-- show a column at 80 characters as a guide for long lines
+vim.opt.colorcolumn = '80'
+--- except in Rust where the rule is 100 characters
+vim.api.nvim_create_autocmd('Filetype', { pattern = 'rust', command = 'set colorcolumn=100' })
+-- show more hidden characters
+-- also, show tabs nicer
+vim.opt.listchars = 'tab:^ ,nbsp:¬,extends:»,precedes:«,trail:•'
 
+-------------------------------------------------------------------------------
+--
 -- hotkeys
+--
+-------------------------------------------------------------------------------
 -- quick-open
 vim.keymap.set('', '<C-p>', '<cmd>Files<cr>')
 -- search buffers
@@ -68,10 +118,86 @@ vim.keymap.set('', 'L', '$')
 -- Neat X clipboard integration
 -- <leader>p will paste clipboard into buffer
 -- <leader>c will copy entire buffer into clipboard
-vim.keymap.set('n', '<leader>p', '<cmd>read !wl-paste<cr>')
-vim.keymap.set('n', '<leader>c', '<cmd>w !wl-copy<cr><cr>')
+vim.keymap.set('n', '<leader>p', '<cmd>read !xsel --clipboard --output<cr>')
+vim.keymap.set('n', '<leader>c', '<cmd>w !xsel -ib<cr><cr>')
+-- <leader><leader> toggles between buffers
+vim.keymap.set('n', '<leader><leader>', '<c-^>')
+-- <leader>, shows/hides hidden characters
+vim.keymap.set('n', '<leader>,', ':set invlist<cr>')
+-- always center search results
+vim.keymap.set('n', 'n', 'nzz', { silent = true })
+vim.keymap.set('n', 'N', 'Nzz', { silent = true })
+vim.keymap.set('n', '*', '*zz', { silent = true })
+vim.keymap.set('n', '#', '#zz', { silent = true })
+vim.keymap.set('n', 'g*', 'g*zz', { silent = true })
+-- "very magic" (less escaping needed) regexes by default
+vim.keymap.set('n', '?', '?\\v')
+vim.keymap.set('n', '/', '/\\v')
+vim.keymap.set('c', '%s/', '%sm/')
+-- open new file adjacent to current file
+vim.keymap.set('n', '<leader>o', ':e <C-R>=expand("%:p:h") . "/" <cr>')
+-- no arrow keys --- force yourself to use the home row
+vim.keymap.set('n', '<up>', '<nop>')
+vim.keymap.set('n', '<down>', '<nop>')
+vim.keymap.set('i', '<up>', '<nop>')
+vim.keymap.set('i', '<down>', '<nop>')
+vim.keymap.set('i', '<left>', '<nop>')
+vim.keymap.set('i', '<right>', '<nop>')
+-- let the left and right arrows be useful: they can switch buffers
+vim.keymap.set('n', '<left>', ':bp<cr>')
+vim.keymap.set('n', '<right>', ':bn<cr>')
+-- make j and k move by visual line, not actual line, when text is soft-wrapped
+vim.keymap.set('n', 'j', 'gj')
+vim.keymap.set('n', 'k', 'gk')
+-- handy keymap for replacing up to next _ (like in variable names)
+vim.keymap.set('n', '<leader>m', 'ct_')
+-- F1 is pretty close to Esc, so you probably meant Esc
+vim.keymap.set('', '<F1>', '<Esc>')
+vim.keymap.set('i', '<F1>', '<Esc>')
 
--- plugin manager \o/
+-------------------------------------------------------------------------------
+--
+-- autocommands
+--
+-------------------------------------------------------------------------------
+-- highlight yanked text
+vim.api.nvim_create_autocmd(
+	'TextYankPost',
+	{
+		pattern = '*',
+		command = 'silent! lua vim.highlight.on_yank({ timeout = 500 })'
+	}
+)
+-- jump to last edit position on opening file
+vim.api.nvim_create_autocmd(
+	'BufReadPost',
+	{
+		pattern = '*',
+		callback = function(ev)
+			if vim.fn.line("'\"") > 1 and vim.fn.line("'\"") <= vim.fn.line("$") then
+				-- except for in git commit messages
+				-- https://stackoverflow.com/questions/31449496/vim-ignore-specifc-file-in-autocommand
+				if not vim.fn.expand('%:p'):find('.git', 1, true) then
+					vim.cmd('exe "normal! g\'\\""')
+				end
+			end
+		end
+	}
+)
+-- prevent accidental writes to buffers that shouldn't be edited
+vim.api.nvim_create_autocmd('BufRead', { pattern = '*.orig', command = 'set readonly' })
+vim.api.nvim_create_autocmd('BufRead', { pattern = '*.pacnew', command = 'set readonly' })
+-- leave paste mode when leaving insert mode (if it was on)
+vim.api.nvim_create_autocmd('InsertLeave', { pattern = '*', command = 'set nopaste' })
+-- help filetype detection (add as needed)
+--vim.api.nvim_create_autocmd('BufRead', { pattern = '*.ext', command = 'set filetype=someft' })
+
+-------------------------------------------------------------------------------
+--
+-- plugin configuration
+--
+-------------------------------------------------------------------------------
+-- first, grab the manager
 -- https://github.com/folke/lazy.nvim
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
@@ -85,7 +211,7 @@ if not vim.loop.fs_stat(lazypath) then
 	})
 end
 vim.opt.rtp:prepend(lazypath)
-
+-- then, setup!
 require("lazy").setup({
 	-- main color scheme
 	{
@@ -168,8 +294,34 @@ require("lazy").setup({
 	-- 'airblade/vim-rooter'
 	'notjedi/nvim-rooter.lua',
 	-- fzf support for ^p
-	{ 'junegunn/fzf', dir = '~/.fzf', build = './install --all' },
-	'junegunn/fzf.vim',
+	{
+		'junegunn/fzf.vim',
+		dependencies = {
+			{ 'junegunn/fzf', dir = '~/.fzf', build = './install --all' },
+		},
+		config = function()
+			-- stop putting a giant window over my editor
+			vim.g.fzf_layout = { down = '~20%' }
+			-- when using :Files, pass the file list through
+			--
+			--   https://github.com/jonhoo/proximity-sort
+			--
+			-- to prefer files closer to the current file.
+			function list_cmd()
+				local base = vim.fn.fnamemodify(vim.fn.expand('%'), ':h:.:S')
+				if base == '.' then
+					-- if there is no current file,
+					-- proximity-sort can't do its thing
+					return 'fd --type file --follow'
+				else
+					return vim.fn.printf('fd --type file --follow | proximity-sort %s', vim.fn.shellescape(vim.fn.expand('%')))
+				end
+			end
+			vim.api.nvim_create_user_command('Files', function(arg)
+				vim.fn['fzf#vim#files'](arg.qargs, { source = list_cmd(), options = '--tiebreak=index' }, arg.bang)
+			end, { bang = true, nargs = '?', complete = "dir" })
+		end
+	},
 	-- LSP
 	{
 		'neovim/nvim-lspconfig',
@@ -320,6 +472,11 @@ require("lazy").setup({
 		'hashivim/vim-terraform',
 		ft = { "terraform" },
 	},
+	-- svelte
+	{
+		'evanleck/vim-svelte',
+		ft = { "svelte" },
+	},
 	-- toml
 	'cespare/vim-toml',
 	-- yaml
@@ -338,7 +495,7 @@ require("lazy").setup({
 			vim.g.rustfmt_autosave = 1
 			vim.g.rustfmt_emit_files = 1
 			vim.g.rustfmt_fail_silently = 0
-			vim.g.rust_clip_command = 'wl-copy'
+			vim.g.rust_clip_command = 'xsel -ib'
 		end
 	},
 	-- fish
@@ -366,6 +523,8 @@ require("lazy").setup({
 
 --[[
 
+leftover things from init.vim that i may still end up wanting
+
 " Completion
 " Better completion
 " menuone: popup even when there's only one match
@@ -377,80 +536,12 @@ set completeopt=menuone,noinsert,noselect
 set exrc
 set secure
 
-" Sane splits
-set splitright
-set splitbelow
-
-" Permanent undo
-set undodir=~/.vimdid
-set undofile
-
-" Decent wildmenu
-set wildmenu
-set wildmode=list:longest
-set wildignore=.hg,.svn,*~,*.png,*.jpg,*.gif,*.settings,Thumbs.db,*.min.js,*.swp,publish/*,intermediate/*,*.o,*.hi,Zend,vendor
-
-" Use wide tabs
-set shiftwidth=8
-set softtabstop=8
-set tabstop=8
-set noexpandtab
-
 " Wrapping options
 set formatoptions=tc " wrap text and comments using textwidth
 set formatoptions+=r " continue comments when pressing ENTER in I mode
 set formatoptions+=q " enable formatting of comments with gq
 set formatoptions+=n " detect lists for formatting
 set formatoptions+=b " auto-wrap in insert mode, and do not wrap old long lines
-
-" Proper search
-set incsearch
-set ignorecase
-set smartcase
-set gdefault
-
-" Search results centered please
-nnoremap <silent> n nzz
-nnoremap <silent> N Nzz
-nnoremap <silent> * *zz
-nnoremap <silent> # #zz
-nnoremap <silent> g* g*zz
-
-" Very magic by default
-nnoremap ? ?\v
-nnoremap / /\v
-cnoremap %s/ %sm/
-
-" =============================================================================
-" # GUI settings
-" =============================================================================
-set guioptions-=T " Remove toolbar
-set vb t_vb= " No more beeps
-set backspace=2 " Backspace over newlines
-set nofoldenable
-set ttyfast
-" https://github.com/vim/vim/issues/1735#issuecomment-383353563
-set lazyredraw
-set synmaxcol=500
-set laststatus=2
-set number " Also show current absolute line
-set diffopt+=iwhite " No whitespace in vimdiff
-" Make diffing better: https://vimways.org/2018/the-power-of-diff/
-set diffopt+=algorithm:patience
-set diffopt+=indent-heuristic
-set colorcolumn=80 " and give me a colored column
-set showcmd " Show (partial) command in status line.
-set mouse=a " Enable mouse usage (all modes) in terminals
-set shortmess+=c " don't give |ins-completion-menu| messages.
-au TextYankPost * silent! lua vim.highlight.on_yank() " Highlight yank
-
-" Show those damn hidden characters
-" Verbose: set listchars=nbsp:¬,eol:¶,extends:»,precedes:«,trail:•
-set listchars=nbsp:¬,extends:»,precedes:«,trail:•
-
-" =============================================================================
-" # Keyboard shortcuts
-" =============================================================================
 
 " <leader>s for Rg search
 noremap <leader>s :Rg
@@ -462,83 +553,7 @@ command! -bang -nargs=* Rg
 \           : fzf#vim#with_preview('right:50%:hidden', '?'),
 \   <bang>0)
 
-function! s:list_cmd()
-let base = fnamemodify(expand('%'), ':h:.:S')
-return base == '.' ? 'fd --type file --follow' : printf('fd --type file --follow | proximity-sort %s', shellescape(expand('%')))
-endfunction
-
-command! -bang -nargs=? -complete=dir Files
-\ call fzf#vim#files(<q-args>, {'source': s:list_cmd(),
-\                               'options': '--tiebreak=index'}, <bang>0)
-
-
-" Open new file adjacent to current file
-nnoremap <leader>o :e <C-R>=expand("%:p:h") . "/" <CR>
-
-" No arrow keys --- force yourself to use the home row
-nnoremap <up> <nop>
-nnoremap <down> <nop>
-inoremap <up> <nop>
-inoremap <down> <nop>
-inoremap <left> <nop>
-inoremap <right> <nop>
-
-" Left and right can switch buffers
-nnoremap <left> :bp<CR>
-nnoremap <right> :bn<CR>
-
-" Move by line
-nnoremap j gj
-nnoremap k gk
-
-" <leader><leader> toggles between buffers
-nnoremap <leader><leader> <c-^>
-
-" <leader>, shows/hides hidden characters
-nnoremap <leader>, :set invlist<cr>
-
 " <leader>q shows stats
 nnoremap <leader>q g<c-g>
-
-" Keymap for replacing up to next _ or -
-noremap <leader>m ct_
-
-" I can type :help on my own, thanks.
-map <F1> <Esc>
-imap <F1> <Esc>
-
-
-" =============================================================================
-" # Autocommands
-" =============================================================================
-
-" Prevent accidental writes to buffers that shouldn't be edited
-autocmd BufRead *.orig set readonly
-autocmd BufRead *.pacnew set readonly
-
-" Leave paste mode when leaving insert mode
-autocmd InsertLeave * set nopaste
-
-" Jump to last edit position on opening file
-if has("autocmd")
-" https://stackoverflow.com/questions/31449496/vim-ignore-specifc-file-in-autocommand
-au BufReadPost * if expand('%:p') !~# '\m/\.git/' && line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
-endif
-
-" Follow Rust code style rules
-au Filetype rust set colorcolumn=100
-" Because sometimes, spaces are mandated
-au Filetype rust set shiftwidth=4
-au Filetype rust set softtabstop=4
-au Filetype rust set tabstop=4
-au Filetype rust set expandtab
-
-" Help filetype detection
-autocmd BufRead *.plot set filetype=gnuplot
-autocmd BufRead *.md set filetype=markdown
-autocmd BufRead *.lds set filetype=ld
-autocmd BufRead *.tex set filetype=tex
-autocmd BufRead *.trm set filetype=c
-autocmd BufRead *.xlsx.axlsx set filetype=ruby
 
 --]]
