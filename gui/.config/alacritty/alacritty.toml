@@ -1,0 +1,76 @@
+[colors]
+draw_bold_text_with_bright_colors = false
+
+[[colors.indexed_colors]]
+color = "#fe8019"
+index = 16
+
+[[colors.indexed_colors]]
+color = "#d65d0e"
+index = 17
+
+[[colors.indexed_colors]]
+color = "#3c3836"
+index = 18
+
+[[colors.indexed_colors]]
+color = "#504945"
+index = 19
+
+[[colors.indexed_colors]]
+color = "#bdae93"
+index = 20
+
+[[colors.indexed_colors]]
+color = "#ebdbb2"
+index = 21
+
+[colors.bright]
+black = "0x665c54"
+blue = "0xbdae93"
+cyan = "0xd65d0e"
+green = "0x3c3836"
+magenta = "0xebdbb2"
+red = "0xfe8019"
+white = "0xfbf1c7"
+yellow = "0x504945"
+
+[colors.cursor]
+cursor = "0xd5c4a1"
+text = "0x1d2021"
+
+[colors.normal]
+black = "0x1d2021"
+blue = "0x83a598"
+cyan = "0x8ec07c"
+green = "0xb8bb26"
+magenta = "0xd3869b"
+red = "0xfb4934"
+white = "0xd5c4a1"
+yellow = "0xfabd2f"
+
+[colors.primary]
+background = "0x1d2021"
+foreground = "0xd5c4a1"
+
+[font]
+size = 11.0
+
+[font.normal]
+family = "Noto Sans Mono"
+
+[[keyboard.bindings]]
+action = "Paste"
+key = "V"
+mods = "Alt"
+
+[[keyboard.bindings]]
+action = "Copy"
+key = "C"
+mods = "Alt"
+
+[scrolling]
+history = 0
+
+[window]
+decorations = "none"
