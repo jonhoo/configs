@@ -118,8 +118,8 @@ vim.keymap.set('', 'L', '$')
 -- Neat X clipboard integration
 -- <leader>p will paste clipboard into buffer
 -- <leader>c will copy entire buffer into clipboard
-vim.keymap.set('n', '<leader>p', '<cmd>read !xsel --clipboard --output<cr>')
-vim.keymap.set('n', '<leader>c', '<cmd>w !xsel -ib<cr><cr>')
+vim.keymap.set('n', '<leader>p', '<cmd>read !wl-paste<cr>')
+vim.keymap.set('n', '<leader>c', '<cmd>w !wl-copy<cr><cr>')
 -- <leader><leader> toggles between buffers
 vim.keymap.set('n', '<leader><leader>', '<c-^>')
 -- <leader>, shows/hides hidden characters
@@ -495,7 +495,7 @@ require("lazy").setup({
 			vim.g.rustfmt_autosave = 1
 			vim.g.rustfmt_emit_files = 1
 			vim.g.rustfmt_fail_silently = 0
-			vim.g.rust_clip_command = 'xsel -ib'
+			vim.g.rust_clip_command = 'wl-copy'
 		end
 	},
 	-- fish
