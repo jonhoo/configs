@@ -7,7 +7,7 @@ image/jpg=imv.desktop
 image/jpeg=imv.desktop
 x-scheme-handler/http=firefoxdeveloperedition.desktop
 x-scheme-handler/https=firefoxdeveloperedition.desktop
-text/html=firefox-developer-edition.desktop
+text/html=firefoxdeveloperedition.desktop
 text/plain=nvim.desktop
 
 [Added Associations]
