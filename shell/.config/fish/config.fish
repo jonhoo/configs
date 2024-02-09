@@ -29,7 +29,7 @@ end
 
 if command -v paru > /dev/null
 	abbr -a p 'paru'
-	abbr -a up 'paru -Syua'
+	abbr -a up 'paru -Syu'
 else if command -v aurman > /dev/null
 	abbr -a p 'aurman'
 	abbr -a up 'aurman -Syu'
