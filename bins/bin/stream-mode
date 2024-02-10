@@ -6,6 +6,7 @@ if [[ -n "$(pgrep obs)" ]]; then
 	# exit 1
 fi
 desktop=$(hyprctl activeworkspace | grep -E '^workspace' | grep DP-1 | awk '{print $3}')
+id=""
 if [[ $1 == "-u" ]]; then
 	hyprctl keyword monitor DP-1,addreserved,0,0,0,0
 	hyprctl keyword general:gaps_out 8
@@ -25,11 +26,16 @@ else
 		# but keep same chat width as for q&a
 		hyprctl keyword monitor DP-1,addreserved,360,$((360-42)),$((1280-1129)),1129
 	fi
-	firefox-developer-edition --new-window "https://chat.restream.io/chat" &
+	before=$(hyprctl clients | grep -E '^Window' | grep 'Firefox' | awk '{print $2}')
+	firefox-developer-edition --new-window "https://studio.youtube.com/live_chat?v=2tm2zH-ECVw" &
 	# let it open
 	sleep 2
+	after=$(hyprctl clients | grep -E '^Window' | grep 'Firefox' | awk '{print $2}')
+	echo "BEFORE\n$before"
+	echo "AFTER\n$after"
+	id=$(comm -13 <(echo "$before") <(echo "$after"))
+	echo "ID\n$id"
 fi
-id=$(hyprctl clients | grep -E '^Window' | grep 'Firefox' | grep 'Restream Chat' | awk '{print $2}')
 if [[ -n "$id" ]]; then
 	echo "Chat window: $id"
 	if [[ $1 == "-u" ]]; then
