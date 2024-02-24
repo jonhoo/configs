@@ -8,7 +8,10 @@ abbr -a ct 'cargo t'
 abbr -a vim 'nvim'
 complete --command aurman --wraps pacman
 
-if command -v aurman > /dev/null
+if command -v paru > /dev/null
+	abbr -a p 'paru'
+	abbr -a up 'paru -Syu'
+else if command -v aurman > /dev/null
 	abbr -a p 'aurman'
 	abbr -a up 'aurman -Syu'
 else
@@ -16,11 +19,11 @@ else
 	abbr -a up 'sudo pacman -Syu'
 end
 
-if command -v exa > /dev/null
-	abbr -a l 'exa'
-	abbr -a ls 'exa'
-	abbr -a ll 'exa -l'
-	abbr -a lll 'exa -la'
+if command -v eza > /dev/null
+	abbr -a l 'eza'
+	abbr -a ls 'eza'
+	abbr -a ll 'eza -l'
+	abbr -a lll 'eza -la'
 else
 	abbr -a l 'ls'
 	abbr -a ll 'ls -l'
@@ -49,7 +52,6 @@ setenv EDITOR nvim
 setenv BROWSER links
 setenv NAME "Jon Gjengset"
 setenv EMAIL jon@tsp.io
-setenv CARGO_INCREMENTAL 1
 setenv RUST_BACKTRACE 1
 setenv LESS "-F -X -R"
 if test -e ~/.cargo-target
