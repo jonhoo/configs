@@ -152,27 +152,30 @@ bar:
 
   right:
     - network:
-        name: wlan0
         poll-interval: 5000
         content:
           map:
-            default: {string: {text: "<>", foreground: ffffff66}}
+            default: {empty: {}}
             conditions:
-              state == down: {string: {text: "", foreground: ff0000ff}}
-              state == up:
+              name == wlan0:
                 map:
-                  deco: { stack: [underline: { size: 2, color: 9f78e1ff }] }
+                  default: {string: {text: "<>", foreground: ffffff66}}
                   conditions:
-                    signal >= -50:
-                      - string: {text: "🌣 {ssid}"}
-                    signal >= -55:
-                      - string: {text: "🌤 {ssid}"}
-                    signal >= -67:
-                      - string: {text: "🌥 {ssid}"}
-                    signal >= -70:
-                      - string: {text: "🌦 {ssid}"}
-                    signal >= -80:
-                      - string: {text: "🌧 {ssid}"}
+                    state == down: {string: {text: "", foreground: ff0000ff}}
+                    state == up:
+                      map:
+                        deco: { stack: [underline: { size: 2, color: 9f78e1ff }] }
+                        conditions:
+                          signal >= -50:
+                            - string: {text: "🌣 {ssid}"}
+                          signal >= -55:
+                            - string: {text: "🌤 {ssid}"}
+                          signal >= -67:
+                            - string: {text: "🌥 {ssid}"}
+                          signal >= -70:
+                            - string: {text: "🌦 {ssid}"}
+                          signal >= -80:
+                            - string: {text: "🌧 {ssid}"}
     - cpu:
        poll-interval: 2000
        content:
