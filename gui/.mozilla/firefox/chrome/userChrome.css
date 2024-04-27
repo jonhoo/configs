@@ -8,11 +8,14 @@
 	#navigator-toolbox { flex-direction: column-reverse !important; }
 	#urlbar {
 		top: unset !important;
-		bottom: calc((var(--urlbar-toolbar-height) - var(--urlbar-height)) / 2) !important;
+		bottom: calc(var(--urlbar-margin-inline)) !important;
 		box-shadow: none !important;
 		display: flex !important;
 		flex-direction: column !important;
 	}
+		#urlbar > * {
+			flex: none;
+		}
 	#urlbar-input-container {
 		order: 2;
 	}
