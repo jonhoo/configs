@@ -2,6 +2,7 @@ image/*; imv %s; test=test -n "$DISPLAY";
 application/pdf; zathura %s; test=test -n "$DISPLAY";
 application/pdf; pdftotext -layout %s -; copiousoutput
 application/msword; lowriter %s; test=test -n "$DISPLAY";
+application/vnd.openxmlformats-officedocument.wordprocessingml.document; lowriter %s; test=test -n "$DISPLAY";
 application/vnd.msword; lowriter %s; test=test -n "$DISPLAY";
 text/html; "$BROWSER" %s && exit 1; test=test -n "$DISPLAY"; needsterminal;
 text/html; links -html-numbered-links 1 -dump %s; nametemplate=%s.html; copiousoutput;
