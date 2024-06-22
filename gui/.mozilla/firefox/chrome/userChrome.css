@@ -16,7 +16,7 @@
 		#urlbar > * {
 			flex: none;
 		}
-	#urlbar-input-container {
+	#urlbar .urlbar-input-container {
 		order: 2;
 	}
 	#urlbar > .urlbarView {
