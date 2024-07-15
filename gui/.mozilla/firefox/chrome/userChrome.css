@@ -3,6 +3,7 @@
 	/* requires that you set
 	 * toolkit.legacyUserProfileCustomizations.stylesheets = true
 	 * in about:config
+	 * figure out current firefox's profile folder in about:support
 	 */
 	#main-window body { flex-direction: column-reverse !important; }
 	#navigator-toolbox { flex-direction: column-reverse !important; }
