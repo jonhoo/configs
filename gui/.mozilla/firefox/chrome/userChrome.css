@@ -9,7 +9,7 @@
 	#navigator-toolbox { flex-direction: column-reverse !important; }
 	#urlbar {
 		top: unset !important;
-		bottom: calc(var(--urlbar-height) + 3 * var(--urlbar-margin-inline)) !important;
+		bottom: calc(var(--urlbar-container-height) + 2 * var(--urlbar-padding-block)) !important;
 		box-shadow: none !important;
 		display: flex !important;
 		flex-direction: column !important;
