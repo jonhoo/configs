@@ -406,6 +406,26 @@ require("lazy").setup({
 				lspconfig.bash_lsp.setup {}
 			end
 
+			-- Ruff for Python
+			local configs = require 'lspconfig.configs'
+			if not configs.ruff_lsp and vim.fn.executable('ruff-lsp') == 1 then
+				configs.ruff_lsp = {
+					default_config = {
+						cmd = { 'ruff-lsp' },
+						filetypes = { 'python' },
+						root_dir = require('lspconfig').util.find_git_ancestor,
+						init_options = {
+							settings = {
+								args = {}
+							}
+						}
+					}
+				}
+			end
+			if configs.ruff_lsp then
+				lspconfig.ruff_lsp.setup {}
+			end
+
 			-- Global mappings.
 			-- See `:help vim.diagnostic.*` for documentation on any of the below functions
 			vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float)
