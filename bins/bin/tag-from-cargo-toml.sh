@@ -6,12 +6,13 @@ if [[ $# -gt 0 && $1 == "-n" ]]; then
 	shift
 fi
 prefix="v"
+crate=""
 if [[ $# -gt 0 ]]; then
 	if [[ $1 = -* || $# -gt 1 ]]; then
-		echo "Usage: $0 [-n] [prefix]"
+		echo "Usage: $0 [-n] [crate]"
 		exit 1
 	fi
-	prefix="$1"
+	crate="$1"
 	shift
 fi
 
@@ -34,8 +35,12 @@ function tag() {
 	echo "$hash $tag"
 }
 
-# in case we're in a subdir:
-cargo_toml=$(git ls-files --full-name Cargo.toml)
+if [[ -z "$crate" ]]; then
+	# in case we're in a subdir:
+	cargo_toml=$(git ls-files --full-name Cargo.toml)
+else
+	cargo_toml="$crate/Cargo.toml"
+fi
 
 was=""
 last_hash=""
