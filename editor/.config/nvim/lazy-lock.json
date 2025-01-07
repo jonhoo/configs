@@ -1,5 +1,5 @@
 {
-  "base16-nvim": { "branch": "main", "commit": "7dcb960acba2f0a662e8d1026464c4959645caab" },
+  "base16-nvim": { "branch": "main", "commit": "178bebdd6342c59151f6cfa2553d8e0f3f8b6a69" },
   "cmp-buffer": { "branch": "main", "commit": "3022dbc9166796b644a841a02de8dd1cc1d311fa" },
   "cmp-nvim-lsp": { "branch": "main", "commit": "99290b3ec1322070bcfb9e846450a46f6efa50f0" },
   "cmp-path": { "branch": "main", "commit": "91ff86cd9c29299a64f968ebb45846c485725f23" },
