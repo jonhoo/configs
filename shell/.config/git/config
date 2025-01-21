@@ -27,7 +27,8 @@
 [push]
 	default = simple
 [help]
-	autocorrect = 1
+	# https://blog.gitbutler.com/why-is-git-autocorrect-too-fast-for-formula-one-drivers/
+	autocorrect = prompt
 [url "git.launchpad.net"]
 	insteadOf = lp:
 [url "git@g.csail.mit.edu:"]
