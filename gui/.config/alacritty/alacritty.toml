@@ -66,6 +66,41 @@ action = "Copy"
 key = "C"
 mods = "Alt"
 
+# Strip Alt from Hyprland binds
+# https://github.com/alacritty/alacritty/pull/7857#issuecomment-2571278705
+[[keyboard.bindings]]
+chars = "—"
+key = "—"
+mods = "Alt"
+[[keyboard.bindings]]
+chars = "—"
+key = "—"
+mods = "Shift | Alt"
+[[keyboard.bindings]]
+chars = "æ"
+key = "æ"
+mods = "Alt"
+[[keyboard.bindings]]
+chars = "Æ"
+key = "æ"
+mods = "Shift | Alt"
+[[keyboard.bindings]]
+chars = "ø"
+key = "ø"
+mods = "Alt"
+[[keyboard.bindings]]
+chars = "Ø"
+key = "ø"
+mods = "Shift | Alt"
+[[keyboard.bindings]]
+chars = "å"
+key = "å"
+mods = "Alt"
+[[keyboard.bindings]]
+chars = "Å"
+key = "å"
+mods = "Shift | Alt"
+
 [scrolling]
 history = 0
 
