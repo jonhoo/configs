@@ -13,8 +13,7 @@ bar:
         time-format: "%H:%M"
         content:
           - string: {text: "{date} {time}", deco: { stack: [underline: { size: 2, color: 0a6cf5ff }] }}
-    - script:
-        path: /home/jon/.cargo/bin/yambar-hyprland-wses
+    - i3:
         anchors:
           ws_focused: &ws_focused fba922ff
           ws_active: &ws_active ffaa00ff
@@ -29,118 +28,85 @@ bar:
           ws_7: &ws_7 "VII"
           ws_8: &ws_8 "VIII"
           ws_9: &ws_9 "IX"
+        spacing: 6
+        sort: ascending
+        persistent:
+          - "1"
+          - "2"
+          - "3"
+          - "4"
+          - "5"
         content:
-          list:
-            spacing: 6
-            items:
-              - map:
-                  default:
-                    string: { text: *ws_1, foreground: *ws_other }
-                  conditions:
-                    workspace_count < 2:
-                      empty: {}
-                    workspace_1_focused:
-                      string: { text: *ws_1, foreground: *ws_focused }
-                    workspace_1_active:
-                      string: { text: *ws_1, foreground: *ws_active }
-                    workspace_1_windows == 0:
-                      string: { text: *ws_1, foreground: *ws_empty }
-              - map:
-                  default:
-                    string: { text: *ws_2, foreground: *ws_other }
-                  conditions:
-                    workspace_count < 3:
-                      empty: {}
-                    workspace_2_focused:
-                      string: { text: *ws_2, foreground: *ws_focused }
-                    workspace_2_active:
-                      string: { text: *ws_2, foreground: *ws_active }
-                    workspace_2_windows == 0:
-                      string: { text: *ws_2, foreground: *ws_empty }
-              - map:
-                  default:
-                    string: { text: *ws_3, foreground: *ws_other }
-                  conditions:
-                    workspace_count < 4:
-                      empty: {}
-                    workspace_3_focused:
-                      string: { text: *ws_3, foreground: *ws_focused }
-                    workspace_3_active:
-                      string: { text: *ws_3, foreground: *ws_active }
-                    workspace_3_windows == 0:
-                      string: { text: *ws_3, foreground: *ws_empty }
-              - map:
-                  default:
-                    string: { text: *ws_4, foreground: *ws_other }
-                  conditions:
-                    workspace_count < 5:
-                      empty: {}
-                    workspace_4_focused:
-                      string: { text: *ws_4, foreground: *ws_focused }
-                    workspace_4_active:
-                      string: { text: *ws_4, foreground: *ws_active }
-                    workspace_4_windows == 0:
-                      string: { text: *ws_4, foreground: *ws_empty }
-              - map:
-                  default:
-                    string: { text: *ws_5, foreground: *ws_other }
-                  conditions:
-                    workspace_count < 6:
-                      empty: {}
-                    workspace_5_focused:
-                      string: { text: *ws_5, foreground: *ws_focused }
-                    workspace_5_active:
-                      string: { text: *ws_5, foreground: *ws_active }
-                    workspace_5_windows == 0:
-                      string: { text: *ws_5, foreground: *ws_empty }
-              - map:
-                  default:
-                    string: { text: *ws_6, foreground: *ws_other }
-                  conditions:
-                    workspace_count < 7:
-                      empty: {}
-                    workspace_6_focused:
-                      string: { text: *ws_6, foreground: *ws_focused }
-                    workspace_6_active:
-                      string: { text: *ws_6, foreground: *ws_active }
-                    workspace_6_windows == 0:
-                      string: { text: *ws_6, foreground: *ws_empty }
-              - map:
-                  default:
-                    string: { text: *ws_7, foreground: *ws_other }
-                  conditions:
-                    workspace_count < 8:
-                      empty: {}
-                    workspace_7_focused:
-                      string: { text: *ws_7, foreground: *ws_focused }
-                    workspace_7_active:
-                      string: { text: *ws_7, foreground: *ws_active }
-                    workspace_7_windows == 0:
-                      string: { text: *ws_7, foreground: *ws_empty }
-              - map:
-                  default:
-                    string: { text: *ws_8, foreground: *ws_other }
-                  conditions:
-                    workspace_count < 9:
-                      empty: {}
-                    workspace_8_focused:
-                      string: { text: *ws_8, foreground: *ws_focused }
-                    workspace_8_active:
-                      string: { text: *ws_8, foreground: *ws_active }
-                    workspace_8_windows == 0:
-                      string: { text: *ws_8, foreground: *ws_empty }
-              - map:
-                  default:
-                    string: { text: *ws_9, foreground: *ws_other }
-                  conditions:
-                    workspace_count < 10:
-                      empty: {}
-                    workspace_9_focused:
-                      string: { text: *ws_9, foreground: *ws_focused }
-                    workspace_9_active:
-                      string: { text: *ws_9, foreground: *ws_active }
-                    workspace_9_windows == 0:
-                      string: { text: *ws_9, foreground: *ws_empty }
+          "":
+              map:
+                default: {string: {text: "{name}"}}
+                conditions:
+                  state == focused: {string: { text: "{name}", foreground: *ws_focused }}
+                  state == visible: {string: { text: "{name}", foreground: *ws_active }}
+                  empty: {string: { text: "{name}", foreground: *ws_empty }}
+          "1":
+            map:
+              default: {string: { text: *ws_1, foreground: *ws_other }}
+              conditions:
+                state == focused: {string: { text: *ws_1, foreground: *ws_focused }}
+                state == visible: {string: { text: *ws_1, foreground: *ws_active }}
+                empty: {string: { text: *ws_1, foreground: *ws_empty }}
+          "2":
+            map:
+              default: {string: { text: *ws_2, foreground: *ws_other }}
+              conditions:
+                state == focused: {string: { text: *ws_2, foreground: *ws_focused }}
+                state == visible: {string: { text: *ws_2, foreground: *ws_active }}
+                empty: {string: { text: *ws_2, foreground: *ws_empty }}
+          "3":
+            map:
+              default: {string: { text: *ws_3, foreground: *ws_other }}
+              conditions:
+                state == focused: {string: { text: *ws_3, foreground: *ws_focused }}
+                state == visible: {string: { text: *ws_3, foreground: *ws_active }}
+                empty: {string: { text: *ws_3, foreground: *ws_empty }}
+          "4":
+            map:
+              default: {string: { text: *ws_4, foreground: *ws_other }}
+              conditions:
+                state == focused: {string: { text: *ws_4, foreground: *ws_focused }}
+                state == visible: {string: { text: *ws_4, foreground: *ws_active }}
+                empty: {string: { text: *ws_4, foreground: *ws_empty }}
+          "5":
+            map:
+              default: {string: { text: *ws_5, foreground: *ws_other }}
+              conditions:
+                state == focused: {string: { text: *ws_5, foreground: *ws_focused }}
+                state == visible: {string: { text: *ws_5, foreground: *ws_active }}
+                empty: {string: { text: *ws_5, foreground: *ws_empty }}
+          "6":
+            map:
+              default: {string: { text: *ws_6, foreground: *ws_other }}
+              conditions:
+                state == focused: {string: { text: *ws_6, foreground: *ws_focused }}
+                state == visible: {string: { text: *ws_6, foreground: *ws_active }}
+                empty: {string: { text: *ws_6, foreground: *ws_empty }}
+          "7":
+            map:
+              default: {string: { text: *ws_7, foreground: *ws_other }}
+              conditions:
+                state == focused: {string: { text: *ws_7, foreground: *ws_focused }}
+                state == visible: {string: { text: *ws_7, foreground: *ws_active }}
+                empty: {string: { text: *ws_7, foreground: *ws_empty }}
+          "8":
+            map:
+              default: {string: { text: *ws_8, foreground: *ws_other }}
+              conditions:
+                state == focused: {string: { text: *ws_8, foreground: *ws_focused }}
+                state == visible: {string: { text: *ws_8, foreground: *ws_active }}
+                empty: {string: { text: *ws_8, foreground: *ws_empty }}
+          "9":
+            map:
+              default: {string: { text: *ws_9, foreground: *ws_other }}
+              conditions:
+                state == focused: {string: { text: *ws_9, foreground: *ws_focused }}
+                state == visible: {string: { text: *ws_9, foreground: *ws_active }}
+                empty: {string: { text: *ws_9, foreground: *ws_empty }}
     - foreign-toplevel:
         content:
           map:

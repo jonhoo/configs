@@ -5,97 +5,127 @@ if [[ -n "$(pgrep obs)" ]]; then
 	#echo "Refusing to start due to https://github.com/hyprwm/Hyprland/issues/2689"
 	# exit 1
 fi
-desktop=$(hyprctl activeworkspace | grep -E '^workspace' | grep DP-1 | awk '{print $3}')
+desktop=$(swaymsg -t get_outputs | jq -r '.[] | select(.focused)' | jq -r '.current_workspace')
 id=""
 if [[ $1 == "-u" ]]; then
-	hyprctl keyword monitor DP-1,addreserved,0,0,0,0
-	hyprctl keyword general:gaps_out 8
+	swaymsg gaps outer 8
+	swaymsg gaps outer all set 8
 else
 	pkill buzz
-	hyprctl keyword general:gaps_out 0
 	# all values are -42 since the bar always adds to the reserved space
 	if [[ $1 == "-p" ]]; then
 		# presentation mode, so exactly 1920x1080
-		hyprctl keyword monitor DP-1,addreserved,1026,$((54-42)),640,1280
+		# hyprctl keyword monitor DP-1,addreserved,1026,$((54-42)),640,1280
+		swaymsg gaps top all set 1026
+		swaymsg gaps top 1026
+		swaymsg gaps bottom all set $((54-42))
+		swaymsg gaps bottom $((54-42))
+		swaymsg gaps left all set 640
+		swaymsg gaps left 640
+		swaymsg gaps right all set 1280
+		swaymsg gaps right 1280
 	elif [[ $1 == "-q" ]]; then
 		# q&a mode, so (2560/<golden ratio> = 1582)x1440
 		# center, with Qs left and chat right
-		hyprctl keyword monitor DP-1,addreserved,360,$((360-42)),1129,1129
+		# hyprctl keyword monitor DP-1,addreserved,360,$((360-42)),1129,1129
+		swaymsg gaps top all set 360
+		swaymsg gaps top 360
+		swaymsg gaps bottom all set $((360-42))
+		swaymsg gaps bottom $((360-42))
+		swaymsg gaps left all set 1129
+		swaymsg gaps left 1129
+		swaymsg gaps right all set 1129
+		swaymsg gaps right 1129
 	else
 		# coding mode, so 2560x1440, left-aligned for chat on the right
 		# but keep same chat width as for q&a
-		hyprctl keyword monitor DP-1,addreserved,360,$((360-42)),$((1280-1129)),1129
+		# hyprctl keyword monitor DP-1,addreserved,360,$((360-42)),$((1280-1129)),1129
+	        swaymsg gaps top all set 360
+	        swaymsg gaps top 360
+		swaymsg gaps bottom all set $((360-42))
+		swaymsg gaps bottom $((360-42))
+		swaymsg gaps left all set $((1280-1129))
+		swaymsg gaps left $((1280-1129))
+		swaymsg gaps right all set 1129
+		swaymsg gaps right 1129
 	fi
-	before=$(hyprctl clients | grep -E '^Window' | grep 'Firefox' | awk '{print $2}')
-	firefox-developer-edition --new-window "https://studio.youtube.com/live_chat?v=2tm2zH-ECVw" &
+	before=$(swaymsg -t get_tree | jq -r '.nodes[] | .nodes[] | .nodes[] | select(.name | contains("Firefox")) | .id' | sort)
+	firefox-developer-edition --new-window "https://studio.youtube.com/live_chat?v=MAwYsKYYXs0" &
 	# let it open
 	sleep 2
-	after=$(hyprctl clients | grep -E '^Window' | grep 'Firefox' | awk '{print $2}')
-	echo "BEFORE\n$before"
-	echo "AFTER\n$after"
+	after=$(swaymsg -t get_tree | jq -r '.nodes[] | .nodes[] | .nodes[] | select(.name | contains("Firefox")) | .id' | sort)
 	id=$(comm -13 <(echo "$before") <(echo "$after"))
-	echo "ID\n$id"
 fi
 if [[ -n "$id" ]]; then
 	echo "Chat window: $id"
-	if [[ $1 == "-u" ]]; then
-		hyprctl dispatch closewindow "address:0x$id"
-	else
-		hyprctl dispatch togglefloating "address:0x$id"
-		hyprctl dispatch movewindowpixel "exact $((3840-1125)) 0,address:0x$id"
-		hyprctl dispatch resizewindowpixel "exact 1125 $((2160-44)),address:0x$id"
-		hyprctl dispatch pin "address:0x$id"
-	fi
+	swaymsg "\
+		[con_id=$id] floating enable;\
+		[con_id=$id] resize set 1125 $((2160-44));\
+		[con_id=$id] move absolute position $((3840-1125-2)) 0;\
+		[con_id=$id] border pixel 1;\
+		[con_id=$id] sticky enable"
 fi
 if [[ $1 = "-q" ]]; then
-	firefox-developer-edition --new-window "https://wewerewondering.com/event/01H4Y60CT5XCH2A1QHRBW1TE8J/LHqP8w2miPWQlkjbF2W0SwPCejhYD7" &
+	firefox-developer-edition --new-window "https://wewerewondering.com/event/01JG4AMT9XR0TSP6AYXRBTM1EW/AQ8nTOQUBHka8l1iXevDCNz0ayGcGF" &
 	sleep 2
-	qid=$(hyprctl clients | grep -E '^Window' | grep 'Firefox' | grep 'Q&A' | awk '{print $2}')
+	qid=$(swaymsg -t get_tree | jq -r '.nodes[] | .nodes[] | .nodes[] | select(.name | contains("Firefox")) | select(.name | contains("Q&A")) | .id')
 	if [[ -n "$qid" ]]; then
 		echo "Q&A window: $qid"
-		hyprctl dispatch togglefloating "address:0x$qid"
-		hyprctl dispatch resizewindowpixel "exact 1125 $((2160-44)),address:0x$qid"
-		hyprctl dispatch movewindowpixel "exact 0 0,address:0x$qid"
-		hyprctl dispatch pin "address:0x$qid"
+		swaymsg "\
+			[con_id=$qid] floating enable;\
+			[con_id=$qid] resize set 1125 $((2160-44));\
+			[con_id=$qid] move absolute position 0 0;\
+			[con_id=$qid] border pixel 1;\
+			[con_id=$qid] sticky enable"
 	fi
 fi
 if [[ $1 = "-u" ]]; then
-	qids=$(hyprctl clients | grep -E '^Window' | grep 'Firefox' | grep 'Q&A' | awk '{print $2}')
-	qid=$( echo "$qids" | head -n1)
-	if [[ -n "$qid" && "$qids" = "$qid" ]]; then
-		hyprctl dispatch closewindow "address:0x$qid"
-	fi
+	qids=$(swaymsg -t get_tree | jq -r '.nodes[] | .nodes[] | .floating_nodes[] | select(.name | contains("Firefox")) | .id')
+	for qid in $qids; do
+		swaymsg "[con_id=$qid] kill"
+	done
 fi
 
 # also open a small terminal to mark webcam square
 if [[ $1 != "-u" ]] && [[ $1 != "-q" ]]; then
-	alacritty -e cat &> /dev/null &
+	red &> /dev/null &
 	pid=$!
 	# let it open
 	sleep 1
 	echo "Webcam underlay pid: $pid"
-	hyprctl dispatch togglefloating "pid:$pid"
-	hyprctl dispatch resizewindowpixel "exact 15 35,pid:$pid"
-	hyprctl dispatch pin "pid:$pid"
+	con_id=$(swaymsg -t get_tree | jq -r ".nodes[] | .nodes[] | .nodes[] | select(.pid == $pid) | .id")
+	echo "Webcam underlay con_id: $con_id"
 	if [[ $1 == "-p" ]]; then
 		# webcam is 300x300
-		hyprctl dispatch movewindowpixel "exact 2260 1806,pid:$pid"
+		w=300
+		h=300
+		x=2260
+		y=1806
+		swaymsg "[con_id=$con_id] move absolute position 2260 1806"
 	else
 		# webcam is 550x550
-		hyprctl dispatch movewindowpixel "exact $((3840-1129-549)) $((360+549-35)),pid:$pid"
+		w=550
+		h=550
+		x=$((3840-1129-w+1))
+		y=$((360+549-h))
 	fi
+	swaymsg "\
+		[con_id=$con_id] floating enable;\
+		[con_id=$con_id] resize set $w $h;\
+		[con_id=$con_id] move absolute position $x $y;\
+		[con_id=$con_id] opacity 0.1;\
+		[con_id=$con_id] border none;\
+		[con_id=$con_id] sticky enable"
+	sleep 2
 fi
 
 if [[ $1 = "-u" ]]; then
-	for maybe_marker in $(pgrep cat); do
-		ppid=$(ps -p "$maybe_marker" --no-headers -o "%P" | sed 's/^ *//')
-		pname=$(ps -p "$ppid" --no-headers -o "%c" | sed 's/ *$//')
-		if [[ "$pname" = "alacritty" ]]; then
-			hyprctl dispatch closewindow "pid:$ppid"
-			break
-		fi
-	done
+	qids=$(swaymsg -t get_tree | jq -r '.nodes[] | .nodes[] | .floating_nodes[] | select(.name == "red") | .id')
+	qid=$( echo "$qids" | head -n1)
+	if [[ -n "$qid" && "$qids" = "$qid" ]]; then
+		swaymsg "[con_id=$qid] kill"
+	fi
 fi
 
 # move back to current desktop if we moved away
-hyprctl dispatch workspace "$desktop"
+swaymsg workspace number "$desktop"
