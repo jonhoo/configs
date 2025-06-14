@@ -157,6 +157,14 @@ vim.keymap.set('i', '<F1>', '<Esc>')
 
 -------------------------------------------------------------------------------
 --
+-- configuring diagnostics
+--
+-------------------------------------------------------------------------------
+-- Allow virtual text
+vim.diagnostic.config({ virtual_text = true, virtual_lines = false })
+
+-------------------------------------------------------------------------------
+--
 -- autocommands
 --
 -------------------------------------------------------------------------------
@@ -362,15 +370,20 @@ require("lazy").setup({
 		'neovim/nvim-lspconfig',
 		config = function()
 			-- Setup language servers.
-			local lspconfig = require('lspconfig')
 
 			-- Rust
-			lspconfig.rust_analyzer.setup {
+			vim.lsp.config('rust_analyzer', {
 				-- Server-specific settings. See `:help lspconfig-setup`
 				settings = {
 					["rust-analyzer"] = {
 						cargo = {
-							allFeatures = true,
+							features = "all",
+						},
+						checkOnSave = {
+							enable = true,
+						},
+						check = {
+							command = "clippy",
 						},
 						imports = {
 							group = {
@@ -384,46 +397,17 @@ require("lazy").setup({
 						},
 					},
 				},
-			}
+			})
+			vim.lsp.enable('rust_analyzer')
 
 			-- Bash LSP
-			local configs = require 'lspconfig.configs'
-			if not configs.bash_lsp and vim.fn.executable('bash-language-server') == 1 then
-				configs.bash_lsp = {
-					default_config = {
-						cmd = { 'bash-language-server', 'start' },
-						filetypes = { 'sh' },
-						root_dir = require('lspconfig').util.find_git_ancestor,
-						init_options = {
-							settings = {
-								args = {}
-							}
-						}
-					}
-				}
-			end
-			if configs.bash_lsp then
-				lspconfig.bash_lsp.setup {}
+			if vim.fn.executable('bash-language-server') == 1 then
+				vim.lsp.enable('bashls')
 			end
 
 			-- Ruff for Python
-			local configs = require 'lspconfig.configs'
-			if not configs.ruff_lsp and vim.fn.executable('ruff-lsp') == 1 then
-				configs.ruff_lsp = {
-					default_config = {
-						cmd = { 'ruff-lsp' },
-						filetypes = { 'python' },
-						root_dir = require('lspconfig').util.find_git_ancestor,
-						init_options = {
-							settings = {
-								args = {}
-							}
-						}
-					}
-				}
-			end
-			if configs.ruff_lsp then
-				lspconfig.ruff_lsp.setup {}
+			if vim.fn.executable('ruff-lsp') == 1 then
+				vim.lsp.enable('ruff_lsp')
 			end
 
 			-- Global mappings.
@@ -464,11 +448,10 @@ require("lazy").setup({
 
 					local client = vim.lsp.get_client_by_id(ev.data.client_id)
 
-					-- When https://neovim.io/doc/user/lsp.html#lsp-inlay_hint stabilizes
-					-- *and* there's some way to make it only apply to the current line.
-					-- if client.server_capabilities.inlayHintProvider then
-					--     vim.lsp.inlay_hint(ev.buf, true)
-					-- end
+					-- TODO: find some way to make this only apply to the current line.
+					if client.server_capabilities.inlayHintProvider then
+					    vim.lsp.inlay_hint.enable(true, { bufnr = bufnr })
+					end
 
 					-- None of this semantics tokens business.
 					-- https://www.reddit.com/r/neovim/comments/143efmd/is_it_possible_to_disable_treesitter_completely/
@@ -496,7 +479,7 @@ require("lazy").setup({
 				snippet = {
 					-- REQUIRED by nvim-cmp. get rid of it once we can
 					expand = function(args)
-						vim.fn["vsnip#anonymous"](args.body)
+						vim.snippet.expand(args.body)
 					end,
 				},
 				mapping = cmp.mapping.preset.insert({
@@ -506,7 +489,7 @@ require("lazy").setup({
 					['<C-e>'] = cmp.mapping.abort(),
 					-- Accept currently selected item.
 					-- Set `select` to `false` to only confirm explicitly selected items.
-					['<CR>'] = cmp.mapping.confirm({ select = true }),
+					['<CR>'] = cmp.mapping.confirm({ select = true, behavior = cmp.ConfirmBehavior.Insert }),
 				}),
 				sources = cmp.config.sources({
 					{ name = 'nvim_lsp' },
