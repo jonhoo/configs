@@ -7,6 +7,7 @@
 	 */
 	#main-window body { flex-direction: column-reverse !important; }
 	#navigator-toolbox { flex-direction: column-reverse !important; }
+	#urlbar-searchmode-switcher { position: static !important; }
 	#urlbar {
 		top: unset !important;
 		bottom: calc(var(--urlbar-container-height) + 2 * var(--urlbar-padding-block)) !important;
