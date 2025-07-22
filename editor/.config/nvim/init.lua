@@ -361,7 +361,7 @@ require("lazy").setup({
 				end
 			end
 			vim.api.nvim_create_user_command('Files', function(arg)
-				vim.fn['fzf#vim#files'](arg.qargs, { source = list_cmd(), options = '--scheme=path --tiebreak=index' }, arg.bang)
+				vim.fn['fzf#vim#files'](arg.args, { source = list_cmd(), options = '--scheme=path --tiebreak=index' }, arg.bang)
 			end, { bang = true, nargs = '?', complete = "dir" })
 		end
 	},
