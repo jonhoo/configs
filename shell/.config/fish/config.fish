@@ -19,10 +19,6 @@ complete --command aurman --wraps pacman
 complete --command paru --wraps pacman
 
 if status --is-interactive
-	if test -d ~/dev/others/base16/templates/fish-shell
-		set fish_function_path $fish_function_path ~/dev/others/base16/templates/fish-shell/functions
-		builtin source ~/dev/others/base16/templates/fish-shell/conf.d/base16.fish
-	end
 	switch $TERM
 		case 'linux'
 			:
