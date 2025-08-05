@@ -330,6 +330,22 @@ require("lazy").setup({
 			vim.g.matchup_matchparen_offscreen = { method = "popup" }
 		end
 	},
+	-- option to center the editor
+	{
+		"shortcuts/no-neck-pain.nvim",
+		version = "*",
+		opts = {
+			mappings = {
+				enabled = true,
+				toggle = '<leader>t',
+				toggleLeftSide = false,
+				toggleRightSide = false,
+				widthUp = false,
+				widthDown = false,
+				scratchPad = false,
+			}
+		}
+	},
 	-- auto-cd to root of git project
 	-- 'airblade/vim-rooter'
 	{
@@ -405,6 +421,11 @@ require("lazy").setup({
 			-- Bash LSP
 			if vim.fn.executable('bash-language-server') == 1 then
 				vim.lsp.enable('bashls')
+			end
+
+			-- texlab for LaTeX
+			if vim.fn.executable('texlab') == 1 then
+				vim.lsp.enable('texlab')
 			end
 
 			-- Ruff for Python
@@ -556,6 +577,15 @@ require("lazy").setup({
 			vim.g.rustfmt_emit_files = 1
 			vim.g.rustfmt_fail_silently = 0
 			vim.g.rust_clip_command = 'wl-copy'
+		end
+	},
+	{
+		"lervag/vimtex",
+		ft = { "tex" },
+		lazy = false,     -- we don't want to lazy load VimTeX
+		init = function()
+			vim.g.vimtex_view_method = "zathura"
+			vim.g.vimtex_mappings_enabled = false
 		end
 	},
 	-- fish
