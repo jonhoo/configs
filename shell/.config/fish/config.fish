@@ -24,7 +24,8 @@ if status --is-interactive
 			:
 		case '*'
 			if ! set -q TMUX
-				exec tmux
+				# ensure that the new tmux _also_ starts fish
+				exec tmux set-option -g default-shell (which fish) ';' new-session
 			end
 	end
 end
