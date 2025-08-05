@@ -7,6 +7,12 @@ if [[ $1 = "--crust-of-rust" ]]; then
 	cor=1
 	shift
 fi
+wad=
+if [[ $1 = "--with-ad" ]]; then
+	wad="$2"
+	shift
+	shift
+fi
 
 for file in "$@"; do
 	echo "==> $file"
@@ -105,6 +111,24 @@ for file in "$@"; do
 			-filter_complex "[0:v]scale=$inw:$inh:force_original_aspect_ratio=1[v0]; [v0][0:a:0] [1:v:0][1:a:0] concat=n=2:v=1:a=1 [v] [a]" \
 			-map '[v]' -map '[a]' \
 			-r "$inr" \
+			"${enc[@]}" \
+			"./$reencoded"
+	elif [[ -n "$wad" ]]; then
+		echo " -> reencoding $asize video with post-roll to $reencoded"
+		ind=$(ffprobe -v error -select_streams v:0 -show_entries format=duration -of default=noprint_wrappers=1:nokey=1 "$input")
+		trim=$(echo "$ind - 0.5" | bc -l)
+		offset=$(echo "$trim - 1" | bc -l)
+		time ffmpeg \
+			-to "$trim" \
+			-i "$input" \
+			-i "$wad" \
+			-filter_complex "[0:v]settb=AVTB,format=yuv420p[v0]; \
+		                         [1:v]settb=AVTB,format=yuv420p[v1]; \
+		                         [v0][v1]xfade=transition=pixelize:duration=0.3:offset=$offset,format=yuv420p[v]; \
+		                         [0:a]atrim=0:$offset,asetpts=PTS-STARTPTS[a0]; \
+		                         [1:a]atrim=start=0,asetpts=PTS-STARTPTS[a1]; \
+		                         [a0][a1]concat=n=2:v=0:a=1[a]" \
+			-map "[v]" -map "[a]" \
 			"${enc[@]}" \
 			"./$reencoded"
 	else
