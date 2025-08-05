@@ -259,7 +259,9 @@ require("lazy").setup({
 		config = function()
 			vim.cmd([[colorscheme gruvbox-dark-hard]])
 			vim.o.background = 'dark'
-			-- XXX: hi Normal ctermbg=NONE
+			vim.cmd([[hi Normal ctermbg=NONE]])
+			-- Less visible window separator
+			vim.api.nvim_set_hl(0, "WinSeparator", { fg = 1250067 })
 			-- Make comments more prominent -- they are important.
 			local bools = vim.api.nvim_get_hl(0, { name = 'Boolean' })
 			vim.api.nvim_set_hl(0, 'Comment', bools)
