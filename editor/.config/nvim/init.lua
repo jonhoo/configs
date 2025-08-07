@@ -79,10 +79,6 @@ vim.opt.listchars = 'tab:^ ,nbsp:¬,extends:»,precedes:«,trail:•'
 -- hotkeys
 --
 -------------------------------------------------------------------------------
--- quick-open
-vim.keymap.set('', '<C-p>', '<cmd>Files<cr>')
--- search buffers
-vim.keymap.set('n', '<leader>;', '<cmd>Buffers<cr>')
 -- quick-save
 vim.keymap.set('n', '<leader>w', '<cmd>w<cr>')
 -- make missing : less annoying
@@ -359,20 +355,31 @@ require("lazy").setup({
 		'ibhagwan/fzf-lua',
 		config = function()
 			-- stop putting a giant window over my editor
-			require("fzf-lua").setup{
+			require'fzf-lua'.setup{
 				winopts = {
 					split = "belowright 10new",
 					preview = {
 						hidden = true,
 					}
 				},
+				files = {
+					file_icons = false,
+					git_icons = true,
+				},
+				buffers = {
+					file_icons = false,
+				},
+				fzf_opts = {
+					-- no reverse view
+					["--layout"] = "default",
+				},
 			}
-			-- when using :Files, pass the file list through
+			-- when using C-p for quick file open, pass the file list through
 			--
 			--   https://github.com/jonhoo/proximity-sort
 			--
 			-- to prefer files closer to the current file.
-			function files_proximity(opts)
+			vim.keymap.set('', '<C-p>', function()
 				opts = opts or {}
 				opts.cmd = 'fd --color=never --hidden --type f --type l --exclude .git'
 				local base = vim.fn.fnamemodify(vim.fn.expand('%'), ':h:.:S')
@@ -381,16 +388,18 @@ require("lazy").setup({
 					-- proximity-sort can't do its thing
 					opts.cmd = opts.cmd .. (" | proximity-sort %s"):format(vim.fn.shellescape(vim.fn.expand('%')))
 				end
-				opts.prompt = "> "
 				opts.fzf_opts = {
 				  ['--scheme']    = 'path',
 				  ['--tiebreak']  = 'index',
+				  ["--layout"]    = "default",
 				}
 				require'fzf-lua'.files(opts)
-			end
-			vim.api.nvim_create_user_command('Files', function(arg)
-				files_proximity(arg.qargs)
-			end, { bang = true, nargs = '?', complete = "dir" })
+			end)
+			-- use fzf to search buffers as well
+			vim.keymap.set('n', '<leader>;', function()
+				-- https://github.com/ibhagwan/fzf-lua/issues/2230
+				require'fzf-lua'.buffers()
+			end)
 		end
 	},
 	-- LSP
