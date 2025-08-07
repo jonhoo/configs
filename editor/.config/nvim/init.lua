@@ -367,11 +367,13 @@ require("lazy").setup({
 					file_icons = false,
 					-- git icons are nice
 					git_icons = true,
+					-- but don't mess up my anchored search
+					_fzf_nth_devicons = true,
 				},
 				buffers = {
 					file_icons = false,
-					-- seems to currently be broken?
 					git_icons = true,
+					_fzf_nth_devicons = true,
 				},
 				fzf_opts = {
 					-- no reverse view
@@ -407,6 +409,7 @@ require("lazy").setup({
 					fzf_opts = {
 					  ["--with-nth"]      = "{-2}",
 					  ["--delimiter"]     = "[ :]",
+					  ["--header-lines"]  = "false",
 					},
 					header = false,
 				})
