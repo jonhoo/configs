@@ -363,14 +363,15 @@ require("lazy").setup({
 					}
 				},
 				files = {
-					-- icons mess with sorting
-					-- https://github.com/ibhagwan/fzf-lua/issues/2230#issuecomment-3164522992
+					-- file icons are distracting
 					file_icons = false,
-					git_icons = false,
+					-- git icons are nice
+					git_icons = true,
 				},
 				buffers = {
 					file_icons = false,
-					git_icons = false,
+					-- seems to currently be broken?
+					git_icons = true,
 				},
 				fzf_opts = {
 					-- no reverse view
@@ -383,7 +384,7 @@ require("lazy").setup({
 			--
 			-- to prefer files closer to the current file.
 			vim.keymap.set('', '<C-p>', function()
-				opts = opts or {}
+				opts = {}
 				opts.cmd = 'fd --color=never --hidden --type f --type l --exclude .git'
 				local base = vim.fn.fnamemodify(vim.fn.expand('%'), ':h:.:S')
 				if base ~= '.' then
