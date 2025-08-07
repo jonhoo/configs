@@ -496,9 +496,9 @@ require("lazy").setup({
 					local client = vim.lsp.get_client_by_id(ev.data.client_id)
 
 					-- TODO: find some way to make this only apply to the current line.
-					if client.server_capabilities.inlayHintProvider then
-					    vim.lsp.inlay_hint.enable(true, { bufnr = bufnr })
-					end
+					-- if client.server_capabilities.inlayHintProvider then
+					--     vim.lsp.inlay_hint.enable(true, { bufnr = bufnr })
+					-- end
 
 					-- None of this semantics tokens business.
 					-- https://www.reddit.com/r/neovim/comments/143efmd/is_it_possible_to_disable_treesitter_completely/
