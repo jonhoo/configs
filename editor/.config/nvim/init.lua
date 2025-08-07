@@ -363,11 +363,14 @@ require("lazy").setup({
 					}
 				},
 				files = {
+					-- icons mess with sorting
+					-- https://github.com/ibhagwan/fzf-lua/issues/2230#issuecomment-3164522992
 					file_icons = false,
-					git_icons = true,
+					git_icons = false,
 				},
 				buffers = {
 					file_icons = false,
+					git_icons = false,
 				},
 				fzf_opts = {
 					-- no reverse view
@@ -398,11 +401,13 @@ require("lazy").setup({
 			-- use fzf to search buffers as well
 			vim.keymap.set('n', '<leader>;', function()
 				require'fzf-lua'.buffers({
+					-- just include the paths in the fzf bits, and nothing else
 					-- https://github.com/ibhagwan/fzf-lua/issues/2230#issuecomment-3164258823
 					fzf_opts = {
-					  ["--with-nth"]      = "-1",
-					  ["--header-lines"]  = "false",
-					}
+					  ["--with-nth"]      = "{-2}",
+					  ["--delimiter"]     = "[ :]",
+					},
+					header = false,
 				})
 			end)
 		end
