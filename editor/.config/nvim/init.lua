@@ -397,8 +397,13 @@ require("lazy").setup({
 			end)
 			-- use fzf to search buffers as well
 			vim.keymap.set('n', '<leader>;', function()
-				-- https://github.com/ibhagwan/fzf-lua/issues/2230
-				require'fzf-lua'.buffers()
+				require'fzf-lua'.buffers({
+					-- https://github.com/ibhagwan/fzf-lua/issues/2230#issuecomment-3164258823
+					fzf_opts = {
+					  ["--with-nth"]      = "-1",
+					  ["--header-lines"]  = "false",
+					}
+				})
 			end)
 		end
 	},
