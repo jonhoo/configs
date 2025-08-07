@@ -356,30 +356,40 @@ require("lazy").setup({
 	},
 	-- fzf support for ^p
 	{
-		'junegunn/fzf.vim',
-		dependencies = {
-			{ 'junegunn/fzf', dir = '~/.fzf', build = './install --all' },
-		},
+		'ibhagwan/fzf-lua',
 		config = function()
 			-- stop putting a giant window over my editor
-			vim.g.fzf_layout = { down = '~20%' }
+			require("fzf-lua").setup{
+				winopts = {
+					split = "belowright 10new",
+					preview = {
+						hidden = true,
+					}
+				},
+			}
 			-- when using :Files, pass the file list through
 			--
 			--   https://github.com/jonhoo/proximity-sort
 			--
 			-- to prefer files closer to the current file.
-			function list_cmd()
+			function files_proximity(opts)
+				opts = opts or {}
+				opts.cmd = 'fd --color=never --hidden --type f --type l --exclude .git'
 				local base = vim.fn.fnamemodify(vim.fn.expand('%'), ':h:.:S')
-				if base == '.' then
+				if base ~= '.' then
 					-- if there is no current file,
 					-- proximity-sort can't do its thing
-					return 'fd --hidden --type file --follow'
-				else
-					return vim.fn.printf('fd --hidden --type file --follow | proximity-sort %s', vim.fn.shellescape(vim.fn.expand('%')))
+					opts.cmd = opts.cmd .. (" | proximity-sort %s"):format(vim.fn.shellescape(vim.fn.expand('%')))
 				end
+				opts.prompt = "> "
+				opts.fzf_opts = {
+				  ['--scheme']    = 'path',
+				  ['--tiebreak']  = 'index',
+				}
+				require'fzf-lua'.files(opts)
 			end
 			vim.api.nvim_create_user_command('Files', function(arg)
-				vim.fn['fzf#vim#files'](arg.args, { source = list_cmd(), options = '--scheme=path --tiebreak=index' }, arg.bang)
+				files_proximity(arg.qargs)
 			end, { bang = true, nargs = '?', complete = "dir" })
 		end
 	},
