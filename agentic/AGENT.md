@@ -2,6 +2,14 @@
 
 - Run shell scripts through shellcheck.
 
+### SESSION.md
+
+While working, if you come across any bugs, missing features, or other
+oddities about the implementation, structure, or workflow, add a concise
+description of them to SESSION.md so we can look at them later. You do
+not need to fix them all straight away unless they block your progress;
+writing them down is often sufficient.
+
 ## Rust testing
 
 ### Useful Rust frameworks for testing
