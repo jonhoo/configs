@@ -373,7 +373,9 @@ require("lazy").setup({
 				buffers = {
 					file_icons = false,
 					git_icons = true,
-					_fzf_nth_devicons = true,
+					-- no nth_devicons as we'll do that
+					-- manually since we also use
+					-- with-nth
 				},
 				fzf_opts = {
 					-- no reverse view
@@ -407,8 +409,9 @@ require("lazy").setup({
 					-- just include the paths in the fzf bits, and nothing else
 					-- https://github.com/ibhagwan/fzf-lua/issues/2230#issuecomment-3164258823
 					fzf_opts = {
-					  ["--with-nth"]      = "{-2}",
-					  ["--delimiter"]     = "[ :]",
+					  ["--with-nth"]      = "{-3..-2}",
+					  ["--nth"]           = "-1",
+					  ["--delimiter"]     = "[:\u{2002}]",
 					  ["--header-lines"]  = "false",
 					},
 					header = false,
