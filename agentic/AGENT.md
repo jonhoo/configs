@@ -5,12 +5,23 @@
 ### SESSION.md
 
 While working, if you come across any bugs, missing features, or other
-oddities about the implementation, structure, or workflow, add a concise
-description of them to SESSION.md so we can look at them later. You do
-not need to fix them all straight away unless they block your progress;
-writing them down is often sufficient.
+oddities about the implementation, structure, or workflow, **add a
+concise description of them to SESSION.md** to defer solving such
+incidental tasks until later. You do not need to fix them all straight
+away unless they block your progress; writing them down is often
+sufficient. **Do not write your accomplishments into this file.**
 
-## Rust testing
+## Rust guidelines
+
+- When adding dependencies to Rust projects, use `cargo add`.
+- In code that uses `eyre` or `anyhow` `Result`s, consistently use
+  `.context()` prior to every error-propagation with `?`. Context
+  messages in `.context` should be simple present tense, such as to
+  complete the sentence "while attempting to ...".
+- Prefer `expect()` over `unwrap()`. The `expect` message should be very
+  concise, and should explain why that expect call cannot fail.
+- When designing `pub` or crate-wide Rust APIs, consult the checklist in
+  <https://rust-lang.github.io/api-guidelines/checklist.html>.
 
 ### Useful Rust frameworks for testing
 - **`quickcheck`**: Property-based testing for when you have an
@@ -64,7 +75,7 @@ temporary file afterwards.
 ## Code style preferences
 
 Document when you have intentionally omitted code that the reader might
-otherwise expect to be preesnt.
+otherwise expect to be present.
 
 Add TODO comments for features or nuances that were deemed not important
 to add, support, or implement right away.
