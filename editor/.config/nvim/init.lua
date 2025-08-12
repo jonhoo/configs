@@ -477,8 +477,8 @@ require("lazy").setup({
 			end
 
 			-- Ruff for Python
-			if vim.fn.executable('ruff-lsp') == 1 then
-				vim.lsp.enable('ruff_lsp')
+			if vim.fn.executable('ruff') == 1 then
+				vim.lsp.enable('ruff')
 			end
 
 			-- Global mappings.
