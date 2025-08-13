@@ -527,6 +527,17 @@ require("lazy").setup({
 					-- None of this semantics tokens business.
 					-- https://www.reddit.com/r/neovim/comments/143efmd/is_it_possible_to_disable_treesitter_completely/
 					client.server_capabilities.semanticTokensProvider = nil
+
+					-- format on save for Rust
+					if client.server_capabilities.documentFormattingProvider then
+						vim.api.nvim_create_autocmd("BufWritePre", {
+							group = vim.api.nvim_create_augroup("RustFormat", { clear = true }),
+							buffer = bufnr,
+							callback = function()
+								vim.lsp.buf.format({ bufnr = bufnr })
+							end,
+						})
+					end
 				end,
 			})
 		end
@@ -616,17 +627,7 @@ require("lazy").setup({
 			"nvim-treesitter/nvim-treesitter",
 		},
 	},
-	-- rust
-	{
-		'rust-lang/rust.vim',
-		ft = { "rust" },
-		config = function()
-			vim.g.rustfmt_autosave = 1
-			vim.g.rustfmt_emit_files = 1
-			vim.g.rustfmt_fail_silently = 0
-			vim.g.rust_clip_command = 'wl-copy'
-		end
-	},
+	-- latex
 	{
 		"lervag/vimtex",
 		ft = { "tex" },
