@@ -174,6 +174,14 @@
         extraLuaConfig = builtins.readFile ../editor/.config/nvim/init.lua;
         defaultEditor = true;
       };
+      programs.rofi = {
+        enable = true;
+	package = pkgs.rofi-wayland;
+	plugins = with pkgs; [
+	  # https://discourse.nixos.org/t/rofi-calc-not-working-with-rofi-wayland/51301
+	  (rofi-calc.override { rofi-unwrapped = rofi-wayland-unwrapped; })
+	];
+      };
       programs.waybar = {
         enable = true;
         settings = {
@@ -192,25 +200,21 @@
               "battery"
             ];
             "clock" = {
-	      format = "{:%a %d %H:%M}";
-	      on-click = "date -I seconds | wl-copy -n";
-	      tooltip-format = "{:%A, %B %e %Y, week %V, at %T}";
-	    };
+              format = "{:%a %d %H:%M}";
+              on-click = "date -I seconds | wl-copy -n";
+              tooltip-format = "{:%A, %B %e %Y, week %V, at %T}";
+            };
             "network" = {
               format-wifi = "{essid} ({signalStrength}%)";
               format-ethernet = "{ipaddr}";
             };
           };
         };
-        style = ''
-          * { font-family: "Noto Sans Mono"; font-weight: bold; }
-          window box box widget { padding: 0; }
-          window box box widget button { padding: 0 .5em; }
-        '';
+        style = builtins.readFile ../gui/.config/waybar/style.css;
       };
       wayland.windowManager.sway = {
         enable = true;
-        xwayland = false;
+        xwayland = true; # for 1password
         config = rec {
           terminal = "alacritty";
           modifier = "Mod4";
@@ -283,6 +287,7 @@
       };
 
       home.packages = with pkgs; [
+        _1password-gui
         ast-grep
         bat
         cargo-expand
@@ -301,8 +306,6 @@
         nil
         proximity-sort
         renpy
-        rofi-calc
-        rofi-wayland
         rust-analyzer
         semgrep
         shellcheck
@@ -322,6 +325,7 @@
 
   # List packages installed in system profile.
   environment.systemPackages = with pkgs; [
+    bc
     fd
     gdb
     git

@@ -1,0 +1,119 @@
+* {
+	padding: 0px;
+	margin: 0px;
+	border: none;
+}
+
+window box box widget { padding: 0; }
+window box box widget button { padding: 0 .5em; }
+
+* {
+	border: none;
+	border-radius: 0;
+	font-family: "Noto Sans Mono";
+	font-size: 12px;
+	min-height: 0;
+}
+
+window#waybar {
+	background: rgba(43, 48, 59, 0.5);
+	font-weight: bold;
+	color: white;
+}
+
+tooltip {
+	background: rgba(68, 68, 68, 0.9);
+	border: 1px solid #444;
+}
+tooltip label {
+	color: white;
+}
+
+#clock, #mode, #window, #cpu, #network, #battery {
+	padding: .3em 1em;
+	border-bottom: 3px solid transparent;
+}
+
+/* modules-left */
+
+#clock {
+	border-bottom: 3px solid #444;
+}
+
+#mode {
+	background: #64727D;
+}
+
+#workspaces button {
+	padding: .3em .3em;
+	background: transparent;
+	color: #bbbbbb;
+	border-bottom: 3px solid #0C6FA9;
+}
+
+#workspaces button:hover {
+	/* https://github.com/Alexays/Waybar/wiki/FAQ#the-workspace-buttons-have-a-strange-hover-effect */
+	background: rgba(255, 255, 255, 0.1);
+	border: none;
+	box-shadow: inherit;
+	text-shadow: inherit;
+	padding: .3em .5em;
+	border-bottom: 3px solid #fba922;
+}
+
+#workspaces button.focused {
+	color: #fba922;
+}
+
+/* modules-center */
+
+window#waybar #window {
+	font-weight: normal;
+}
+
+/* modules-right */
+
+#cpu {
+	background: #932439;
+}
+
+#network {
+	background: #0C6FA9;
+}
+
+#network.disabled {
+	background: #888;
+}
+
+#cpu, #network {
+	margin-right: .5em;
+}
+
+#battery {
+	background: #319b5b;
+	color: white;
+	border-bottom: 3px solid transparent;
+}
+
+#battery.charging {
+	border-bottom: 3px solid #016b2b;
+}
+
+@keyframes blink {
+	to {
+		background-color: #ffffff;
+		color: black;
+	}
+}
+
+#battery.warning {
+	background: #f18e1b;
+}
+
+#battery.warning:not(.charging) {
+	animation-name: blink;
+	animation-duration: 0.5s;
+	animation-timing-function: steps(12);
+	animation-iteration-count: infinite;
+	animation-direction: alternate;
+}
