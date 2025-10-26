@@ -372,6 +372,7 @@
   environment.systemPackages = with pkgs; [
     bc
     fd
+    ffmpeg-full
     gdb
     git
     jq
