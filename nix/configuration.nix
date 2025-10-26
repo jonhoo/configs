@@ -110,8 +110,8 @@
   };
 
   environment.variables = {
-    GDK_SCALE = "2";
-    GDK_DPI_SCALE = "0.5";
+    GDK_SCALE = "1.5";
+    GDK_DPI_SCALE = "0.75";
   };
 
   home-manager.useGlobalPkgs = true;
