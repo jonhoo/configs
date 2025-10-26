@@ -296,8 +296,8 @@
         nil
         proximity-sort
         renpy
-        rofi-wayland
         rofi-calc
+        rofi-wayland
         rust-analyzer
         semgrep
         shellcheck
@@ -306,9 +306,9 @@
         treefmt
         typst
         valgrind
+        wev
         wl-clipboard
         wlr-randr
-        wev
         zathura
       ];
 
@@ -323,7 +323,9 @@
     jq
     jujutsu
     nixfmt-rfc-style
+    openssh
     ripgrep
+    rsync
     socat
     sudo-rs
     uutils-coreutils-noprefix
