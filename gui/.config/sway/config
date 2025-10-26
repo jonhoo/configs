@@ -42,8 +42,8 @@ input type:keyboard {
 }
 
 ### Style configuration
-gaps inner 2
-gaps outer 6
+gaps inner 1
+gaps outer 3
 default_border pixel 1
 #
 # Colors
