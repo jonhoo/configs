@@ -220,11 +220,11 @@
       };
       programs.rofi = {
         enable = true;
-	package = pkgs.rofi-wayland;
-	plugins = with pkgs; [
-	  # https://discourse.nixos.org/t/rofi-calc-not-working-with-rofi-wayland/51301
-	  (rofi-calc.override { rofi-unwrapped = rofi-wayland-unwrapped; })
-	];
+        package = pkgs.rofi-wayland;
+        plugins = with pkgs; [
+          # https://discourse.nixos.org/t/rofi-calc-not-working-with-rofi-wayland/51301
+          (rofi-calc.override { rofi-unwrapped = rofi-wayland-unwrapped; })
+        ];
       };
       programs.waybar = {
         enable = true;
