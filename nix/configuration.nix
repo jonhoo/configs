@@ -110,6 +110,16 @@
   # Enable touchpad support (enabled default in most desktopManager).
   services.libinput.enable = true;
 
+  # NAS
+  fileSystems."/mnt/nas/jon" = {
+    device = "//192.168.50.50/jon";
+    fsType = "cifs";
+    options = let
+      # this line prevents hanging on network split
+      automount_opts = "x-systemd.automount,noauto,x-systemd.idle-timeout=60,x-systemd.device-timeout=5s,x-systemd.mount-timeout=5s";
+    in ["${automount_opts},credentials=/etc/nixos/smb-secrets,uid=jon,gid=users"];
+  };
+
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.jon = {
     isNormalUser = true;
@@ -371,6 +381,7 @@
   # List packages installed in system profile.
   environment.systemPackages = with pkgs; [
     bc
+    cifs-utils
     fd
     ffmpeg-full
     gdb
