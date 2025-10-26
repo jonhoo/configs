@@ -46,6 +46,12 @@
   };
   # /boot and swapon are mounted in hardware-configuration.nix
 
+  # Auto-login is fine with FDE.
+  services.getty = {
+    autologinUser = "jon";
+    autologinOnce = true;
+  };
+
   # The Internet!
   networking.hostName = "xos";
   networking.networkmanager.enable = true;
@@ -57,6 +63,17 @@
     intel-vaapi-driver
     vaapiVdpau
   ];
+
+  # Bluetooth
+  hardware.bluetooth = {
+    enable = true;
+    powerOnBoot = true;
+    settings = {
+      Policy = {
+        AutoEnable = true;
+      };
+    };
+  };
 
   # Set your time zone.
   time.timeZone = "Europe/Oslo";
@@ -71,6 +88,22 @@
   services.pipewire = {
     enable = true;
     pulse.enable = true;
+  };
+
+  # Enable screen sharing.
+  xdg.portal = {
+    enable = true;
+    config = {
+      common = {
+        default = "wlr";
+      };
+    };
+    wlr.enable = true;
+    wlr.settings.screencast = {
+      output_name = "eDP-1";
+      chooser_type = "simple";
+      chooser_cmd = "${pkgs.slurp}/bin/slurp -f %o -or";
+    };
   };
 
   # Enable touchpad support (enabled default in most desktopManager).
@@ -92,26 +125,17 @@
 
   # Basic programs
   programs.fish.enable = true;
-  programs.neovim.enable = true;
+  programs.neovim = {
+    enable = true;
+    viAlias = true;
+    vimAlias = true;
+  };
   programs.tmux = {
     enable = true;
-    extraConfig = ''
-      set -g default-terminal "tmux-256color"
-      set -ga terminal-overrides ",alacritty:Tc"
-      unbind C-b
-      set -g prefix C-a
-      bind C-a send-prefix
-      bind -T copy-mode-vi v send -X begin-selection
-      bind -T copy-mode-vi y send-keys -X copy-pipe 'wl-copy &> /dev/null'
-      bind -T copy-mode-vi Enter send-keys -X cancel
-      set -sg escape-time 10
-      set -g mode-keys vi
-    '';
+    extraConfig = builtins.readFile ../shell/.tmux.conf;
   };
 
   environment.variables = {
-    GDK_SCALE = "1.5";
-    GDK_DPI_SCALE = "0.75";
   };
 
   home-manager.useGlobalPkgs = true;
@@ -119,70 +143,132 @@
     { pkgs, ... }:
     {
       home.sessionVariables = {
-        EDITOR = "nvim";
         BROWSER = "firefox";
       };
 
       programs.alacritty = {
         enable = true;
-        theme = "gruvbox_material_hard_dark";
-        settings = {
-          scrolling.history = 0;
-          font.normal.family = "Noto Sans Mono";
-          keyboard.bindings = [
-            {
-              key = "V";
-              mods = "Alt";
-              action = "Paste";
-            }
-            {
-              key = "C";
-              mods = "Alt";
-              action = "Copy";
-            }
-          ];
-
-        };
+        settings =
+          let
+            toml = builtins.readFile ../gui/.config/alacritty/alacritty.toml;
+          in
+          builtins.fromTOML toml;
       };
       programs.bash.enable = true;
+      programs.fish = {
+        enable = true;
+        loginShellInit = ''
+          if test (tty) = "/dev/tty1"; and test -z "$WAYLAND_DISPLAY"; and test -n "$XDG_VTNR"; and test "$XDG_VTNR" -eq 1
+            exec sway
+          end
+        '';
+        shellInitLast = builtins.readFile ../shell/.config/fish/config.fish;
+      };
       programs.firefox.enable = true;
       programs.git = {
         enable = true;
-        userName = "Jon Gjengset";
-        userEmail = "jon@thesquareplanet.com";
+        extraConfig = builtins.readFile ../shell/.config/git/config;
+      };
+      programs.neovim = {
+        enable = true;
+        extraLuaConfig = builtins.readFile ../editor/.config/nvim/init.lua;
+        defaultEditor = true;
+      };
+      programs.waybar = {
+        enable = true;
+        settings = {
+          mainBar = {
+            position = "bottom";
+            modules-left = [
+              "clock"
+              "sway/workspaces"
+              "sway/mode"
+            ];
+            modules-center = [ "sway/window" ];
+            modules-right = [
+              # "tray"
+              "cpu"
+              "network"
+              "battery"
+            ];
+            "network" = {
+              format-wifi = "{essid} ({signalStrength})";
+              format-ethernet = "{ipaddr}";
+            };
+          };
+        };
+        style = ''
+          * { font-family: "Noto Sans Mono"; font-weight: bold; }
+          window box box widget { padding: 0; }
+          window box box widget button { padding: 0 .5em; }
+        '';
       };
       wayland.windowManager.sway = {
         enable = true;
+        xwayland = false;
         config = rec {
           terminal = "alacritty";
           modifier = "Mod4";
+          left = "h";
+          down = "j";
+          up = "k";
+          right = "l";
+          menu = "rofi -show drun";
+          bars = [
+            { command = "waybar"; }
+          ];
           startup = [
             { command = "firefox"; }
           ];
           input = {
             "type:keyboard" = {
-              xkb_options = "ctrl:nocaps";
+              xkb_options = "ctrl:nocaps,compose:rctrl";
             };
           };
           output = {
-            eDPI = {
+            "eDP-1" = {
               scale = "0";
-              # bg = "x fill";
+              bg =
+                let
+                  img = builtins.fetchurl {
+                    url = "https://images.pexels.com/photos/21706244/pexels-photo-21706244.jpeg?cs=srgb&dl=pexels-dane-amacher-1175058986-21706244.jpg&fm=jpg";
+                    name = "pexels-photo-21706244.jpeg";
+                    sha256 = "0d8s51k0975flcmi82r7606s4w7n4hmbj5w46iy4frwgazmpn76r";
+                  };
+                in
+                "${img} fill";
             };
           };
-          keybindings =
-            let
-              inherit (config.home-manager.users.jon.wayland.windowManager.sway.config) modifier menu;
-            in
-            lib.mkOptionDefault {
-              "Print" = "exec ${pkgs.grim} --notify save screen";
-              # "Shift+Print" = "exec ${pkgs.grim} --notify save area $(${xdg-user-dir} PICTURES)/$(TZ=utc date +'screenshot_%Y-%m-%d-%H%M%S.%3N.png')";
-              "${modifier}+l" = "exec ${pkgs.swaylock}/bin/swaylock";
-              "${modifier}+a" = "exec ${pkgs.alacritty}/bin/alacritty";
-              "${modifier}+space" = "exec ${pkgs.rofi-wayland}/bin/rofi -show drun";
-              "${modifier}+equal" = "exec ${pkgs.rofi-calc}/bin/rofi -show calc";
-            };
+          # things managed by the extraConfig file:
+          keybindings = { };
+          modes = { };
         };
+        extraConfigEarly =
+          let
+            inherit (config.home-manager.users.jon.wayland.windowManager.sway.config)
+              modifier
+              left
+              down
+              up
+              right
+              menu
+              terminal
+              ;
+          in
+          ''
+            set $mod ${modifier}
+            set $term ${terminal}
+            set $left ${left}
+            set $down ${down}
+            set $up ${up}
+            set $right ${right}
+            set $menu ${menu}
+          '';
+        extraConfig = builtins.readFile ../gui/.config/sway/config;
+        extraSessionCommands = ''
+          export GDK_SCALE=1.5;
+          export GDK_DPI_SCALE=0.75;
+        '';
       };
 
       services.gpg-agent = {
@@ -207,6 +293,9 @@
         grim
         imv
         mpv
+        nil
+        proximity-sort
+        renpy
         rofi-wayland
         rofi-calc
         rust-analyzer
@@ -220,6 +309,7 @@
         wl-clipboard
         wlr-randr
         wev
+        zathura
       ];
 
       home.stateVersion = "25.05";
@@ -235,6 +325,8 @@
     nixfmt-rfc-style
     ripgrep
     socat
+    sudo-rs
+    uutils-coreutils-noprefix
     wget
   ];
 
