@@ -191,8 +191,13 @@
               "network"
               "battery"
             ];
+            "clock" = {
+	      format = "{:%a %d %H:%M}";
+	      on-click = "date -I seconds | wl-copy -n";
+	      tooltip-format = "{:%A, %B %e %Y, week %V, at %T}";
+	    };
             "network" = {
-              format-wifi = "{essid} ({signalStrength})";
+              format-wifi = "{essid} ({signalStrength}%)";
               format-ethernet = "{ipaddr}";
             };
           };
