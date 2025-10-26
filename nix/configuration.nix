@@ -170,6 +170,49 @@
         enable = true;
         extraConfig = builtins.readFile ../shell/.config/git/config;
       };
+      accounts.email = {
+        maildirBasePath = "${config.home.homeDirectory}/.mail";
+        accounts = {
+          tsp = {
+            primary = true;
+            flavor = "fastmail.com";
+            address = "jon@thesquareplanet.com";
+            userName = "jon@thesquareplanet.com";
+            aliases = [ "jon@tsp.io" ];
+            realName = "Jon Gjengset";
+            passwordCommand = "secret-tool lookup email jon@thesquareplanet.com";
+            folders = {
+              sent = "Sent Items";
+            };
+            neomutt = {
+              enable = true;
+              mailboxType = "imap";
+            };
+            msmtp = {
+              enable = true;
+            };
+          };
+          rustfm = {
+            address = "hello@rustacean-station.org";
+            userName = "jon@rustacean-station.org";
+            realName = "Jon Gjengset";
+            passwordCommand = "secret-tool lookup email jon@rustacean-station.org";
+            smtp = {
+              host = "smtp.improvmx.com";
+            };
+            msmtp = {
+              enable = true;
+            };
+          };
+        };
+      };
+      programs.msmtp = {
+        enable = true;
+      };
+      programs.neomutt = {
+        enable = true;
+        extraConfig = builtins.readFile ../mail/.muttrc;
+      };
       programs.neovim = {
         enable = true;
         extraLuaConfig = builtins.readFile ../editor/.config/nvim/init.lua;
@@ -303,6 +346,7 @@
         fzf
         grim
         imv
+        libsecret
         mpv
         nil
         proximity-sort

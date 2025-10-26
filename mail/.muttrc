@@ -1,7 +1,6 @@
 # Display the fields in this order
 hdr_order date subkect from to cc
 
-set hostname=thesquareplanet.com
 set attribution="%n wrote:"
 set beep=no
 set beep_new=yes
@@ -13,17 +12,10 @@ set allow_ansi=yes
 unset imap_passive
 unset imap_peek
 set index_format="%3C %Z %{%b %d} %s %* (%L)"
-set header_cache="~/.mutt/cache/headers"
-set message_cachedir="~/.mutt/cache/messages"
-set certificate_file="~/.mutt/certificates"
 set mail_check=60
 set timeout=5 # Update folder status often when inactive
 set editor='nvim'
 set pgp_auto_decode=yes
-set realname="Jon Gjengset";
-# set send_charset="us-ascii:iso-8859-1:utf-8"
-set send_charset="us-ascii:utf-8"
-set ssl_force_tls=yes
 set wrap=80
 set wait_key=no
 set mime_forward=no
@@ -49,11 +41,6 @@ set sort_aux="reverse-last-date-received"
 bind index - collapse-thread
 bind index _ collapse-all
 
-set envelope_from=yes
-set sendmail="/usr/bin/msmtp"
-# set from=""
-# set header=no
-# set mail_check=5
 ignore *
 unignore from to date subject cc X-Bugzilla-Who
 
@@ -64,24 +51,22 @@ bind index b search-opposite
 bind pager j next-line
 bind pager k previous-line
 bind pager H display-toggle-weed
-macro compose m '<edit-from><kill-line>Jon Gjengset <jfrg@mit.edu><enter><edit-reply-to><kill-line>Jon Gjengset <jon@thesquareplanet.com><enter>'
-macro compose x '<edit-from><kill-line>Jon Gjengset <jfrg@csail.mit.edu><enter><edit-reply-to><kill-line>Jon Gjengset <jon@thesquareplanet.com><enter>'
 
 # Convenience
 # Jump to archive
-macro index A '<change-folder>!Archive<tab><enter>'
+macro index A '<change-folder>+Archive<tab><enter>'
 # Jump to sent
-macro index O '<change-folder>!Sent<tab><enter>'
+macro index O '<change-folder>+Sent<tab><enter>'
 # Jump to inbox
 macro index I '<change-folder>!<enter>'
 # Save (tagged or current) to archive
-macro index S ';<save-message>!Archive<tab><enter><enter>'
+macro index S ';<save-message>+Archive<tab><enter><enter>'
 # Mark as spam
-macro index ! ';<save-message>!Junk<tab><enter><enter>'
+macro index ! ';<save-message>+Junk<tab><enter><enter>'
 
 # Make deletion non-permanent
-macro index d 's!Trash<enter><enter>' "Move message to trash"
-macro pager d 's!Trash<enter><enter>' "Move message to trash"
+macro index d 's+Trash<enter><enter>' "Move message to trash"
+macro pager d 's+Trash<enter><enter>' "Move message to trash"
 # and expunge explicit
 macro index x '<delete-message>' "Delete message permanently"
 macro pager x '<delete-message>' "Delete message permanently"
@@ -90,46 +75,10 @@ auto_view text/html
 alternative_order text/plain text/enriched text/html
 bind attach <return> view-mailcap
 
-# Other me's
-alternates jon@*.tsp.io jon@*.thesquareplanet.com jon@*.gjengset.com jfrg@mit.edu jfrg@csail.mit.edu j.gjengset@cs.ucl.ac.uk jon@dethvitehuset.no
-
-# switch to default account on startup
-source ~/.mutt/account.fm
-
 #macro index <f1> '<sync-mailbox><enter-command>source ~/.mutt/account.fm<enter><change-folder>!<enter>'
 
-# lists
-subscribe getmail@lists.pyropus.ca gnuplot-beta@lists.sourceforge.net \
-	nets@cs.ucl.ac.uk snarg@cs.ucl.ac.uk zed-user@googlegroups.com \
-	zeromq-dev@lists.zeromq.org g9@lists.csail.mit.edu \
-	sp-4south-res@mit.edu social@csail.mit.edu assassins-guild@mit.edu \
-	newgrads1415@lists.csail.mit.edu prezfellow@mit.edu up@mit.edu \
-	seminars@csail.mit.edu csail-related@mit.edu iso-broadcast@mit.edu \
-	ult-team-new@mit.edu eecsnew14@MIT.EDU	csail-all@lists.csail.mit.edu \
-	csail-related@lists.csail.mit.edu calendar@csail.mit.edu \
-	vultures-request@lists.csail.mit.edu social@lists.csail.mit.edu \
-	csail-internal@lists.csail.mit.edu csail-related@csail.mit.edu \
-	all-grad@mit.edu pdos@csail.mit.edu g9@csail.mit.edu pdos@lists.csail.mit.edu \
-	sp-igroups-boards@mit.edu csail-all@csail.mit.edu sp-igroups-tv@mit.edu \
-	csail-announce@csail.mit.edu all-campus@mit.edu sp-igroups-foods@mit.edu \
-	sp-igroups-games@mit.edu sp-igroups-events@mit.edu sp-igroups-sports@mit.edu \
-	sp-all@mit.edu grad-students@eecs.mit.edu \
-	csail-student-committee@lists.csail.mit.edu \
-	csail-student-committee@csail.mit.edu \
-	golang-nuts@googlegroups.com tgit@mit.edu \
-	dsrg@csail.mit.edu\
-	6858-staff@lists.csail.mit.edu 6.858-staff@pdos.csail.mit.edu \
-	6824-staff@lists.csail.mit.edu 6.824-staff@pdos.csail.mit.edu \
-	locksport@mit.edu welcome_party@mit.edu \
-	api-soup@googlegroups.com \
-	6.828-staff@pdos.csail.mit.edu 6828-staff@lists.csail.mit.edu \
-	pdos-students@csail.mit.edu pdos-students@lists.csail.mit.edu \
-	linux-perf-users@vger.kernel.org \
-	hacker-tools@mit.edu botc@lists.csail.mit.edu \
-	missing-semester@mit.edu
-
 # aliases
-set alias_file=~/.mutt/aliases
+set alias_file=~/.mail/aliases
 source $alias_file
 
 # Colorize inline diffs, really helpful for LKML or other mailing lists where
