@@ -158,6 +158,25 @@
       home.sessionVariables = {
         BROWSER = "firefox";
       };
+      xdg.mimeApps = {
+        enable = true;
+        defaultApplications = {
+          "application/pdf" = [ "org.pwmt.zathura.desktop" ];
+          "application/xps" = [ "org.pwmt.zathura.desktop" ];
+          "application/vnd.ms-xpsdocument" = [ "org.pwmt.zathura.desktop" ];
+          "image/gif" = [ "imv.desktop" ];
+          "image/jpeg" = [ "imv.desktop" ];
+          "image/jpg" = [ "imv.desktop" ];
+          "image/png" = [ "imv.desktop" ];
+          "x-scheme-handler/http" = [ "firefox.desktop" ];
+          "x-scheme-handler/https" = [ "firefox.desktop" ];
+          "text/html" = [ "firefox.desktop" ];
+          "text/plain" = [ "nvim.desktop" ];
+        };
+      };
+      home.file.".mailcap" = {
+        source = ../mail/.mailcap;
+      };
 
       programs.alacritty = {
         enable = true;
@@ -361,11 +380,16 @@
         eza
         fzf
         grim
+        hunspell
+        hunspellDicts.en_GB-ize
+        hunspellDicts.nb_NO
         imv
+        libreoffice-still
         libsecret
         mpv
         nil
         pavucontrol
+        poppler-utils
         proximity-sort
         renpy
         rust-analyzer
@@ -396,6 +420,7 @@
     git
     jq
     jujutsu
+    links2
     nixfmt-rfc-style
     openssh
     ripgrep
