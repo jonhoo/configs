@@ -218,7 +218,7 @@ bindsym $mod+r mode "resize"
 # Programs:
 #
     bindsym $mod+e exec alacritty -t mutt -e tmux new-session -A -s mail bash -ic "neomutt"
-    bindsym $mod+l exec waylock
+    bindsym $mod+l exec swaylock
     bindsym $mod+equal exec rofi -show calc -modi calc -no-show-match -no-sort -calc-command "echo '{result}' | wl-copy"
 #
 # Handier typing
