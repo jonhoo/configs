@@ -81,6 +81,10 @@ bind attach <return> view-mailcap
 set alias_file=~/.mail/aliases
 source $alias_file
 
+# urlscan as url viewer
+macro index,pager \cb "<pipe-message> urlscan<Enter>" "call urlscan to extract URLs out of a message"
+macro attach,compose \cb "<pipe-entry> urlscan<Enter>" "call urlscan to extract URLs out of a message"
+
 # Colorize inline diffs, really helpful for LKML or other mailing lists where
 # mails frequently include patches.
 color   body        brightblue   default '^diff .*'

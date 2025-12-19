@@ -83,7 +83,18 @@
   services.xserver.enable = false;
 
   # Enable CUPS to print documents.
-  # services.printing.enable = true;
+  services.avahi = {
+    enable = true;
+    nssmdns4 = true;
+    openFirewall = true;
+  };
+  services.printing = {
+    enable = true;
+    drivers = with pkgs; [
+      cups-filters
+      cups-browsed
+    ];
+  };
 
   # Enable sound.
   services.pipewire = {
@@ -110,6 +121,20 @@
   # Enable touchpad support (enabled default in most desktopManager).
   services.libinput.enable = true;
 
+  # Don't suspend just because I closed the lid.
+  services.logind.lidSwitch = "ignore";
+  # But _do_ suspend if I'm about to run out.
+  services.upower = {
+    enable = true;
+    # suspend is a signal to me that I need to plug in.
+    # if it happens, I'll either plug in or resume and hibernate/power off
+    allowRiskyCriticalPowerAction = true;
+    criticalPowerAction = "Suspend";
+  };
+  # as a shortcut to suspend-then-hibernate
+  services.logind.powerKey = "suspend-then-hibernate";
+  services.logind.powerKeyLongPress = "poweroff";
+
   # NAS
   fileSystems."/mnt/nas/jon" = {
     device = "//192.168.50.50/jon";
@@ -117,9 +142,9 @@
     options =
       let
         # this line prevents hanging on network split
-        automount_opts = "x-systemd.automount,noauto,x-systemd.idle-timeout=60,x-systemd.device-timeout=5s,x-systemd.mount-timeout=5s";
+        mount_opts = "_netdev,noauto,x-systemd.idle-timeout=60,x-systemd.device-timeout=5s,x-systemd.mount-timeout=5s";
       in
-      [ "${automount_opts},credentials=/etc/nixos/smb-secrets,uid=jon,gid=users" ];
+      [ "${mount_opts},credentials=/etc/nixos/smb-secrets,uid=jon,gid=users" ];
   };
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
@@ -137,6 +162,14 @@
   };
 
   # Basic programs
+  programs._1password.enable = true;
+  programs._1password-gui = {
+    enable = true;
+    # Certain features, including CLI integration and system authentication support,
+    # require enabling PolKit integration on some desktop environments (e.g. Plasma).
+    polkitPolicyOwners = [ "jon" ];
+  };
+  programs.dconf.enable = true;
   programs.fish.enable = true;
   programs.neovim = {
     enable = true;
@@ -148,8 +181,13 @@
     extraConfig = builtins.readFile ../shell/.tmux.conf;
   };
 
+  # For later use.
   environment.variables = {
   };
+
+  # Keybase requires system services.
+  services.keybase.enable = true;
+  services.kbfs.enable = true;
 
   home-manager.useGlobalPkgs = true;
   home-manager.users.jon =
@@ -157,7 +195,15 @@
     {
       home.sessionVariables = {
         BROWSER = "firefox";
+        XCURSOR_SIZE = "48";
+        GDK_BACKEND = "wayland,x11";
+        QT_AUTO_SCREEN_SCALE_FACTOR = "1";
+        QT_WAYLAND_DISABLE_WINDOWDECORATION = "1";
+        XWAYLAND_DPI = "192";
       };
+      home.file.".Xresources".text = ''
+        Xft.dpi: 192
+      '';
       xdg.mimeApps = {
         enable = true;
         defaultApplications = {
@@ -191,7 +237,9 @@
         enable = true;
         loginShellInit = ''
           if test (tty) = "/dev/tty1"; and test -z "$WAYLAND_DISPLAY"; and test -n "$XDG_VTNR"; and test "$XDG_VTNR" -eq 1
-            exec sway
+            if sway
+              exit 0
+            end
           end
         '';
         shellInitLast = builtins.readFile ../shell/.config/fish/config.fish;
@@ -290,9 +338,25 @@
         };
         style = builtins.readFile ../gui/.config/waybar/style.css;
       };
+      home.pointerCursor = {
+        name = "Adwaita";
+        package = pkgs.adwaita-icon-theme;
+        size = 16;
+        gtk.enable = true;
+        sway.enable = true;
+      };
+      dconf = {
+        enable = true;
+        settings = {
+          "org/gnome/desktop/interface" = {
+            text-scaling-factor = 0.75;
+          };
+        };
+      };
       wayland.windowManager.sway = {
         enable = true;
         xwayland = true; # for 1password
+        wrapperFeatures.gtk = true;
         config = rec {
           terminal = "alacritty";
           modifier = "Mod4";
@@ -352,10 +416,6 @@
             set $menu ${menu}
           '';
         extraConfig = builtins.readFile ../gui/.config/sway/config;
-        extraSessionCommands = ''
-          export GDK_SCALE=1.5;
-          export GDK_DPI_SCALE=0.75;
-        '';
       };
 
       services.gpg-agent = {
@@ -363,12 +423,30 @@
         defaultCacheTtl = 1800;
         enableSshSupport = true;
       };
+      services.mako = {
+        enable = true;
+        settings = {
+          font = "Public Sans 13";
+          background-color = "#222222";
+          text-color = "#d5c4a1";
+          border-color = "#555555";
+          "urgency=low" = {
+            background-color = "#2c2826";
+            text-color = "#b6aca4";
+          };
+          "urgency=critical" = {
+            text-color = "#ebdbb2";
+            border-color = "#fb4934";
+          };
+        };
+      };
 
       home.packages = with pkgs; [
-        _1password-gui
+        aria2
         ast-grep
         backblaze-b2
         bat
+        brightnessctl
         cargo-expand
         cargo-hack
         cargo-insta
@@ -379,19 +457,26 @@
         claude-code
         eza
         fzf
+        google-chrome
         grim
         hunspell
         hunspellDicts.en_GB-ize
         hunspellDicts.nb_NO
         imv
+        kbfs
+        keybase
+        libnotify # for notify-send
         libreoffice-still
         libsecret
         mpv
         nil
+        nix-tree
         pavucontrol
+        playerctl
         poppler-utils
         proximity-sort
-        renpy
+        pulseaudio # for pactl
+        # renpy # disabled for CVE-2024-23342
         rust-analyzer
         semgrep
         shellcheck
@@ -399,10 +484,12 @@
         swaybg
         treefmt
         typst
+        urlscan
         valgrind
         wev
         wl-clipboard
         wlr-randr
+        wmctrl
         wtype
         zathura
       ];
