@@ -11,15 +11,17 @@
 
 {
   imports = [
-    # Include the results of the hardware scan.
-    /etc/nixos/hardware-configuration.nix
-
-    # Home Manager!
-    <home-manager/nixos>
+    ./hardware-configuration.nix
   ];
 
   # Yeah Yeah
   nixpkgs.config.allowUnfree = true;
+
+  # Enable flakes
+  nix.settings.experimental-features = [
+    "nix-command"
+    "flakes"
+  ];
 
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
@@ -178,7 +180,7 @@
   };
   programs.tmux = {
     enable = true;
-    extraConfig = builtins.readFile ../shell/.tmux.conf;
+    extraConfig = builtins.readFile ../../shell/.tmux.conf;
   };
 
   # For later use.
@@ -221,14 +223,14 @@
         };
       };
       home.file.".mailcap" = {
-        source = ../mail/.mailcap;
+        source = ../../mail/.mailcap;
       };
 
       programs.alacritty = {
         enable = true;
         settings =
           let
-            toml = builtins.readFile ../gui/.config/alacritty/alacritty.toml;
+            toml = builtins.readFile ../../gui/.config/alacritty/alacritty.toml;
           in
           builtins.fromTOML toml;
       };
@@ -242,12 +244,12 @@
             end
           end
         '';
-        shellInitLast = builtins.readFile ../shell/.config/fish/config.fish;
+        shellInitLast = builtins.readFile ../../shell/.config/fish/config.fish;
       };
       programs.firefox.enable = true;
       programs.git = {
         enable = true;
-        includes = [ { path = ../shell/.config/git/config; } ];
+        includes = [ { path = ../../shell/.config/git/config; } ];
       };
       accounts.email = {
         maildirBasePath = "${config.home.homeDirectory}/.mail";
@@ -290,11 +292,11 @@
       };
       programs.neomutt = {
         enable = true;
-        extraConfig = builtins.readFile ../mail/.muttrc;
+        extraConfig = builtins.readFile ../../mail/.muttrc;
       };
       programs.neovim = {
         enable = true;
-        extraLuaConfig = builtins.readFile ../editor/.config/nvim/init.lua;
+        extraLuaConfig = builtins.readFile ../../editor/.config/nvim/init.lua;
         defaultEditor = true;
       };
       programs.rofi = {
@@ -332,7 +334,7 @@
             };
           };
         };
-        style = builtins.readFile ../gui/.config/waybar/style.css;
+        style = builtins.readFile ../../gui/.config/waybar/style.css;
       };
       home.pointerCursor = {
         name = "Adwaita";
@@ -411,7 +413,7 @@
             set $right ${right}
             set $menu ${menu}
           '';
-        extraConfig = builtins.readFile ../gui/.config/sway/config;
+        extraConfig = builtins.readFile ../../gui/.config/sway/config;
       };
 
       services.gpg-agent = {
@@ -539,11 +541,6 @@
   # networking.firewall.allowedUDPPorts = [ ... ];
   # Or disable the firewall altogether.
   networking.firewall.enable = false;
-
-  # Copy the NixOS configuration file and link it from the resulting system
-  # (/run/current-system/configuration.nix). This is useful in case you
-  # accidentally delete configuration.nix.
-  system.copySystemConfiguration = true;
 
   # This option defines the first version of NixOS you have installed on this particular machine,
   # and is used to maintain compatibility with application data (e.g. databases) created on older NixOS versions.
