@@ -6,6 +6,7 @@
   config,
   lib,
   pkgs,
+  llm-agents,
   ...
 }:
 
@@ -452,7 +453,7 @@
         cargo-msrv
         cargo-nextest
         cargo-outdated
-        claude-code
+        llm-agents.claude-code
         eza
         fzf
         google-chrome
