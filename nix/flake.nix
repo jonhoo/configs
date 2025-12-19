@@ -35,8 +35,13 @@
             llm-agents = llm-agents.packages.${system};
           };
           modules = [
-            ./hosts/${name}.nix
+            ./hosts/${name}
             home-manager.nixosModules.home-manager
+            {
+              home-manager.extraSpecialArgs = {
+                llm-agents = llm-agents.packages.${system};
+              };
+            }
           ];
         }
       );
