@@ -62,7 +62,7 @@
   hardware.graphics.extraPackages = with pkgs; [
     intel-compute-runtime-legacy1
     intel-vaapi-driver
-    vaapiVdpau
+    libva-vdpau-driver
   ];
 
   # Bluetooth
@@ -122,7 +122,7 @@
   services.libinput.enable = true;
 
   # Don't suspend just because I closed the lid.
-  services.logind.lidSwitch = "ignore";
+  services.logind.settings.Login.HandleLidSwitch = "ignore";
   # But _do_ suspend if I'm about to run out.
   services.upower = {
     enable = true;
@@ -132,8 +132,8 @@
     criticalPowerAction = "Suspend";
   };
   # as a shortcut to suspend-then-hibernate
-  services.logind.powerKey = "suspend-then-hibernate";
-  services.logind.powerKeyLongPress = "poweroff";
+  services.logind.settings.Login.HandlePowerKey = "suspend-then-hibernate";
+  services.logind.settings.Login.HandlePowerKeyLongPress = "poweroff";
 
   # NAS
   fileSystems."/mnt/nas/jon" = {
@@ -247,7 +247,7 @@
       programs.firefox.enable = true;
       programs.git = {
         enable = true;
-        extraConfig = builtins.readFile ../shell/.config/git/config;
+        includes = [ { path = ../shell/.config/git/config; } ];
       };
       accounts.email = {
         maildirBasePath = "${config.home.homeDirectory}/.mail";
@@ -299,11 +299,7 @@
       };
       programs.rofi = {
         enable = true;
-        package = pkgs.rofi-wayland;
-        plugins = with pkgs; [
-          # https://discourse.nixos.org/t/rofi-calc-not-working-with-rofi-wayland/51301
-          (rofi-calc.override { rofi-unwrapped = rofi-wayland-unwrapped; })
-        ];
+        plugins = with pkgs; [ rofi-calc ];
       };
       programs.swaylock = {
         enable = true;
@@ -521,7 +517,7 @@
   # Fonts!
   fonts.packages = with pkgs; [
     noto-fonts
-    noto-fonts-emoji
+    noto-fonts-color-emoji
     public-sans
   ];
 
