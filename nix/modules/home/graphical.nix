@@ -193,6 +193,7 @@
         brightnessctl
         llm-agents.claude-code
         google-chrome
+        (rWrapper.override { packages = with rPackages; [ ggplot2 ]; })
         grim
         hunspell
         hunspellDicts.en_GB-ize
@@ -201,6 +202,7 @@
         libnotify
         libreoffice-still
         libsecret
+        marp-cli
         mpv
         pavucontrol
         playerctl

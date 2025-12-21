@@ -35,10 +35,14 @@
   environment.systemPackages = with pkgs; [
     bc
     fd
+    gcc
     gdb
     git
+    gnumake
+    htop
     jq
     jujutsu
+    llvm
     nixfmt-rfc-style
     openssh
     ripgrep

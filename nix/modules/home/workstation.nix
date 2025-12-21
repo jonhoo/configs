@@ -81,7 +81,8 @@
         nix-tree
         poppler-utils
         proximity-sort
-        rust-analyzer
+        ruby
+        rustup
         semgrep
         shellcheck
         treefmt
