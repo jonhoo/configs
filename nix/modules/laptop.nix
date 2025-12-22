@@ -19,4 +19,8 @@
   # Power button shortcuts
   services.logind.settings.Login.HandlePowerKey = "suspend-then-hibernate";
   services.logind.settings.Login.HandlePowerKeyLongPress = "poweroff";
+
+  environment.systemPackages = with pkgs; [
+    brightnessctl
+  ];
 }

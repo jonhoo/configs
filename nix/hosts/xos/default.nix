@@ -4,7 +4,7 @@
 {
   imports = [
     ./hardware-configuration.nix
-    ../../modules/graphical.nix
+    ../../modules/personal.nix
     ../../modules/laptop.nix
   ];
 
@@ -42,6 +42,4 @@
 
   # Firewall
   networking.firewall.enable = false;
-
-  system.stateVersion = "25.05";
 }

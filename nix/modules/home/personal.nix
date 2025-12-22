@@ -1,4 +1,4 @@
-# GUI user configuration (Sway, Waybar, etc.)
+# Personal user configuration (GUI + personal services)
 {
   config,
   pkgs,
@@ -7,9 +7,77 @@
 }:
 
 {
+  imports = [
+    ./dev.nix
+  ];
+
   home-manager.users.jon =
     { config, pkgs, ... }:
     {
+      # Email
+      accounts.email = {
+        maildirBasePath = "${config.home.homeDirectory}/.mail";
+        accounts = {
+          tsp = {
+            primary = true;
+            flavor = "fastmail.com";
+            address = "jon@thesquareplanet.com";
+            userName = "jon@thesquareplanet.com";
+            aliases = [ "jon@tsp.io" ];
+            realName = "Jon Gjengset";
+            passwordCommand = "secret-tool lookup email jon@thesquareplanet.com";
+            folders = {
+              sent = "Sent Items";
+            };
+            neomutt = {
+              enable = true;
+              mailboxType = "imap";
+            };
+            msmtp = {
+              enable = true;
+            };
+          };
+          rustfm = {
+            address = "hello@rustacean-station.org";
+            userName = "jon@rustacean-station.org";
+            realName = "Jon Gjengset";
+            passwordCommand = "secret-tool lookup email jon@rustacean-station.org";
+            smtp = {
+              host = "smtp.improvmx.com";
+            };
+            msmtp = {
+              enable = true;
+            };
+          };
+        };
+      };
+      programs.msmtp.enable = true;
+      programs.neomutt = {
+        enable = true;
+        extraConfig = builtins.readFile ../../../mail/.muttrc;
+      };
+      home.file.".mailcap" = {
+        source = ../../../mail/.mailcap;
+      };
+
+      programs.atuin = {
+        enable = true;
+        enableFishIntegration = true;
+        flags = [ "--disable-up-arrow" ];
+        settings = {
+          enter_accept = false;
+          style = "compact";
+          inline_height_shell_up_key_binding = 40;
+          theme = {
+            name = "autumn";
+          };
+          sync = {
+            records = true;
+          };
+        };
+      };
+
+      # GUI configuration
       home.sessionVariables = {
         BROWSER = "firefox";
         XCURSOR_SIZE = "48";
@@ -190,9 +258,14 @@
       };
 
       home.packages = with pkgs; [
+        # Personal tools
+        backblaze-b2
+        kbfs
+        keybase
+        urlscan
+
+        # GUI apps
         appimage-run
-        brightnessctl
-        llm-agents.claude-code
         google-chrome
         (rWrapper.override {
           packages = with rPackages; [
@@ -201,9 +274,6 @@
           ];
         })
         grim
-        hunspell
-        hunspellDicts.en_GB-ize
-        hunspellDicts.nb_NO
         imv
         libnotify
         libreoffice-still
@@ -216,7 +286,6 @@
         pulseaudio
         slurp
         swaybg
-        typst
         wev
         wl-clipboard
         wlr-randr

@@ -33,17 +33,13 @@
   };
 
   environment.systemPackages = with pkgs; [
+    bat
     bc
+    eza
     fd
-    gcc
-    gdb
     git
-    gnumake
     htop
     jq
-    jujutsu
-    llvm
-    nixfmt-rfc-style
     openssh
     ripgrep
     rsync
@@ -52,4 +48,6 @@
     uutils-coreutils-noprefix
     wget
   ];
+
+  system.stateVersion = "25.05";
 }
