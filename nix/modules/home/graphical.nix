@@ -190,10 +190,16 @@
       };
 
       home.packages = with pkgs; [
+        appimage-run
         brightnessctl
         llm-agents.claude-code
         google-chrome
-        (rWrapper.override { packages = with rPackages; [ ggplot2 ]; })
+        (rWrapper.override {
+          packages = with rPackages; [
+            tidyverse
+            svglite
+          ];
+        })
         grim
         hunspell
         hunspellDicts.en_GB-ize
@@ -204,6 +210,7 @@
         libsecret
         marp-cli
         mpv
+        obsidian
         pavucontrol
         playerctl
         pulseaudio

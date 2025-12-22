@@ -13,7 +13,7 @@
   # Boot configuration (host-specific: disk layout, encryption)
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
-  boot.loader.systemd-boot.configurationLimit = 7;
+  boot.loader.systemd-boot.configurationLimit = 16;
   boot.kernelPackages = pkgs.linuxPackages_latest;
 
   # Encrypted root partition

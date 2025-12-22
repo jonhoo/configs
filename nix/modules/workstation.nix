@@ -31,8 +31,10 @@
   # Additional dev packages
   environment.systemPackages = with pkgs; [
     cifs-utils
+    cpuset
     ffmpeg-full
     links2
+    pv
   ];
 
   # Home-manager setup
