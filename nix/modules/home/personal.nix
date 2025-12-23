@@ -262,10 +262,12 @@
         backblaze-b2
         kbfs
         keybase
+        signal-desktop
         urlscan
 
         # GUI apps
         appimage-run
+        gimp
         google-chrome
         (rWrapper.override {
           packages = with rPackages; [
