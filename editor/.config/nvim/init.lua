@@ -482,6 +482,11 @@ require("lazy").setup({
 				vim.lsp.enable('ruff')
 			end
 
+			-- nil for nix
+			if vim.fn.executable('nil') == 1 then
+				vim.lsp.enable('nil_ls')
+			end
+
 			-- Global mappings.
 			-- See `:help vim.diagnostic.*` for documentation on any of the below functions
 			vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float)

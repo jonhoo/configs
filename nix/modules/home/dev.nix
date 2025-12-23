@@ -22,11 +22,13 @@
 
       home.packages = with pkgs; [
         ast-grep
+        bash-language-server
         fzf
         llm-agents.claude-code
         nil
         nix-tree
         proximity-sort
+        ruff
         semgrep
         shellcheck
         treefmt

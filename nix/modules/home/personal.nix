@@ -263,6 +263,7 @@
         kbfs
         keybase
         signal-desktop
+        texlab
         urlscan
 
         # GUI apps
