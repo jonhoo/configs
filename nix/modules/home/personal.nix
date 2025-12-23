@@ -268,6 +268,7 @@
 
         # GUI apps
         appimage-run
+        fastmail-desktop
         gimp
         google-chrome
         (rWrapper.override {
