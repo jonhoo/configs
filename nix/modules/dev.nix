@@ -26,6 +26,7 @@
     links2
     llvm
     nixfmt-rfc-style
+    nodejs
     ruby
     rustup
     valgrind

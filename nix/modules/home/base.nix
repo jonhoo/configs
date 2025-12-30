@@ -19,6 +19,10 @@
         extraLuaConfig = builtins.readFile ../../../editor/.config/nvim/init.lua;
         defaultEditor = true;
       };
+      programs.zoxide = {
+        enable = true;
+        enableFishIntegration = true;
+      };
 
       home.packages = with pkgs; [
         bat
