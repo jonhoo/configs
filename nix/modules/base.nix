@@ -33,13 +33,9 @@
   };
 
   environment.systemPackages = with pkgs; [
-    bat
     bc
-    eza
-    fd
     git
     htop
-    jq
     openssh
     ripgrep
     rsync

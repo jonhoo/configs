@@ -20,6 +20,14 @@
         defaultEditor = true;
       };
 
+      home.packages = with pkgs; [
+        bat
+        eza
+        fd
+        jq
+        nix-tree
+      ];
+
       home.stateVersion = "25.05";
     };
 }
