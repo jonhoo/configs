@@ -242,7 +242,8 @@
       services.mako = {
         enable = true;
         settings = {
-          font = "Public Sans 13";
+          default-timeout = 5000;
+          font = "Public Sans 12";
           background-color = "#222222";
           text-color = "#d5c4a1";
           border-color = "#555555";
