@@ -35,6 +35,7 @@
   environment.systemPackages = with pkgs; [
     bc
     git
+    git-lfs
     htop
     openssh
     ripgrep
