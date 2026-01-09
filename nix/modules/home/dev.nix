@@ -29,6 +29,8 @@
         llm-agents.claude-code
         nil
         nix-tree
+        pdftk
+        poppler-utils
         proximity-sort
         ruff
         semgrep
