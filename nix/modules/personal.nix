@@ -93,9 +93,8 @@
       };
       wlr.enable = true;
       wlr.settings.screencast = {
-        output_name = config.my.screencast.output;
         chooser_type = "simple";
-        chooser_cmd = "${pkgs.slurp}/bin/slurp -f %o -or";
+        chooser_cmd = "${pkgs.slurp}/bin/slurp -f 'Monitor: %o' -or";
       };
     };
 
@@ -122,6 +121,7 @@
     services.gnome.gnome-keyring.enable = true;
     security.polkit.enable = true;
     security.pam.services.swaylock = { };
+    security.rtkit.enable = true;
 
     environment.systemPackages = with pkgs; [
       aria2
