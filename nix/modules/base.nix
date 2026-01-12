@@ -42,8 +42,10 @@
     rsync
     socat
     sudo-rs
+    unzip
     uutils-coreutils-noprefix
     wget
+    zip
   ];
 
   system.stateVersion = "25.05";
