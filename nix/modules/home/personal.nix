@@ -286,6 +286,7 @@
         marp-cli
         mpv
         obsidian
+        obs-studio
         pavucontrol
         playerctl
         pulseaudio
