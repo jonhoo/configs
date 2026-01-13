@@ -22,5 +22,8 @@
 
   environment.systemPackages = with pkgs; [
     brightnessctl
+    dhcpcd
+    iw
+    wl-mirror
   ];
 }
