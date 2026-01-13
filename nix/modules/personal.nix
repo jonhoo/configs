@@ -39,6 +39,7 @@
     # Keybase
     services.keybase.enable = true;
     services.kbfs.enable = true;
+    systemd.user.services.kbfs.wantedBy = lib.mkForce [ ];
 
     # Add audio/video groups
     users.users.jon.extraGroups = [
