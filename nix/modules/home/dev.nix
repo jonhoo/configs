@@ -20,23 +20,33 @@
         enableSshSupport = true;
       };
 
-      home.packages = with pkgs; [
-        asciinema_3
-        asciinema-agg
-        ast-grep
-        bash-language-server
-        fzf
-        llm-agents.claude-code
-        nil
-        nix-tree
-        pdftk
-        poppler-utils
-        proximity-sort
-        ruff
-        semgrep
-        shellcheck
-        treefmt
-        typst
-      ];
+      home.packages =
+        with pkgs;
+        let
+          llmP = llm.withPlugins {
+            llm-anthropic = true;
+            llm-cmd = true;
+          };
+        in
+        [
+          asciinema_3
+          asciinema-agg
+          ast-grep
+          bash-language-server
+          fzf
+          llmP
+          llm-agents.claude-code
+          nil
+          nix-tree
+          pdftk
+          poppler-utils
+          proximity-sort
+          rr
+          ruff
+          semgrep
+          shellcheck
+          treefmt
+          typst
+        ];
     };
 }

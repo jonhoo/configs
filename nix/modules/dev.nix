@@ -8,6 +8,7 @@
   ];
 
   environment.systemPackages = with pkgs; [
+    bpftrace
     cargo-expand
     cargo-hack
     cargo-insta
@@ -22,13 +23,19 @@
     hunspell
     hunspellDicts.en_GB-ize
     hunspellDicts.nb_NO
+    hyperfine
+    inferno
     jujutsu
+    kdePackages.kcachegrind
     links2
     llvm
     nixfmt-rfc-style
     nodejs
+    perf
+    python3
     ruby
     rustup
+    tcpdump
     valgrind
   ];
 

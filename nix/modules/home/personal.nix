@@ -292,6 +292,7 @@
         pulseaudio
         slurp
         swaybg
+        unrpa
         wev
         wl-clipboard
         wlr-randr
