@@ -17,6 +17,7 @@
     cargo-nextest
     cargo-outdated
     cpuset
+    chromedriver
     gcc
     gdb
     gnumake
@@ -37,6 +38,7 @@
     rustup
     tcpdump
     valgrind
+    xxd
   ];
 
   home-manager.useGlobalPkgs = true;

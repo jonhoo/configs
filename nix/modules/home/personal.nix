@@ -299,6 +299,7 @@
         wmctrl
         wtype
         zathura
+        zoom-us
       ];
     };
 }

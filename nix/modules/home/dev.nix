@@ -33,11 +33,13 @@
           asciinema-agg
           ast-grep
           bash-language-server
+          bcc
           fzf
           llmP
           llm-agents.claude-code
           nil
           nix-tree
+          pdfgrep
           pdftk
           poppler-utils
           proximity-sort

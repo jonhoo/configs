@@ -38,6 +38,7 @@
     git-lfs
     htop
     openssh
+    pstree
     ripgrep
     rsync
     socat
