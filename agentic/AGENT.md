@@ -1,6 +1,9 @@
 ## General best practices
 
 - Run shell scripts through shellcheck.
+- Use `tmp/` (project-local) for intermediate files and comparison
+  artifacts, not `/tmp`. This keeps outputs discoverable and
+  project-scoped, and avoids requesting permissions for `/tmp`.
 
 ### SESSION.md
 
@@ -22,6 +25,9 @@ sufficient. **Do not write your accomplishments into this file.**
   concise, and should explain why that expect call cannot fail.
 - When designing `pub` or crate-wide Rust APIs, consult the checklist in
   <https://rust-lang.github.io/api-guidelines/checklist.html>.
+- For ad-hoc debugging, create a temporary Rust example in `examples/`
+  and run it with `cargo run --example <name>`. Remove the example after
+  use.
 
 ### Useful Rust frameworks for testing
 - **`quickcheck`**: Property-based testing for when you have an
@@ -48,6 +54,10 @@ fails for the correct reason. Remove the temporary example after.
 
 ## Git workflow
 
+Use the `commit-writer` skill, if available, to draft commit messages.
+It reads the current diff and produces a message following the
+conventions below.
+
 Make sure you use git mv to move any files that are already checked into
 git.
 
@@ -61,10 +71,6 @@ conventions for the commit title.
 When you refer to types or very short code snippets, place them in
 backticks. When you have a full line of code or more than one line of
 code, put them in indented code blocks.
-
-Prefer to write git commit messages by using a temporary file rather
-than using command-line arguments to the `git` command. Remove the
-temporary file afterwards.
 
 ## Documentation preferences
 
@@ -128,6 +134,72 @@ Avoid over-documenting:
 - Simple utility functions where intent is clear from the signature
 - Trivial getters/setters or obvious wrapper code
 - Code that's primarily syntactic sugar over well-known patterns
+
+## Claude Code sandbox workarounds
+
+### Pipe workaround (trailing `;`)
+
+The sandbox has a [known issue][cc-16305] where data is silently
+dropped in shell pipes between commands. Appending a trailing `;` to
+the command fixes this:
+
+```sh
+# Broken (downstream receives no input):
+diff <(jq -S . a.json) <(jq -S . b.json)
+
+# Fixed — append `;`:
+diff <(jq -S . a.json) <(jq -S . b.json);
+echo "abc" | grep "abc";
+```
+
+This affects pipes (`|`), process substitution (`<(...)`), and any
+command that connects stdout of one process to stdin of another.
+
+[cc-16305]: https://github.com/anthropics/claude-code/issues/16305
+
+### `!` (negation) workaround
+
+The sandbox has a [separate bug][cc-24136] where the bash `!` keyword
+(pipeline negation operator) is treated as a literal command name. The
+command after `!` **never executes**. This affects `if !`, `while !`,
+and bare `!`. The trailing-`;` workaround does **not** fix this.
+
+```sh
+# Broken:
+if ! some_command; then handle_failure; fi
+
+# Workaround — capture $?:
+some_command; rc=$?
+if [ "$rc" -ne 0 ]; then handle_failure; fi
+
+# Broken:
+while ! some_command; do sleep 1; done
+
+# Workaround — use `until`:
+until some_command; do sleep 1; done
+```
+
+[cc-24136]: https://github.com/anthropics/claude-code/issues/24136
+
+### `gh` (GitHub CLI) workaround
+
+The `gh` CLI needs auth tokens under `~/.config/gh/` which the
+sandbox blocks. Use `dangerouslyDisableSandbox: true` for `gh`
+invocations.
+
+### Sandbox discipline
+
+Never use `dangerouslyDisableSandbox` preemptively. Always attempt
+commands in the default sandbox first. Only bypass the sandbox after
+observing an actual permission error, and document which error
+triggered the bypass. The one standing exception is `gh` (see above).
+
+### Prefer temp files over pipes for sub-agent CLI testing
+
+When testing a CLI with ad-hoc input, write the input to a temp file
+in `tmp/` using the Write tool (not `cat`/`echo` with heredoc + `>`),
+then pass it by path rather than piping. This avoids interactive
+permission prompts in sub-agents.
 
 # Common failure modes when helping
 
