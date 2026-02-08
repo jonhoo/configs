@@ -7,11 +7,37 @@ if [[ $1 = "--crust-of-rust" ]]; then
 	cor=1
 	shift
 fi
-wad=
-if [[ $1 = "--with-ad" ]]; then
-	wad="$2"
+wpr=
+if [[ $1 = "--with-postroll" ]]; then
+	wpr="$2"
 	shift
 	shift
+fi
+wmr=
+pre=
+if [[ $1 = "--with-midroll" ]]; then
+	# when --with-midroll is passed, the first positional argument is the video _before_ the midroll.
+	wmr="$2"
+	shift
+	shift
+	pre="$1"
+	if [[ "$(dirname "$pre")" = "." ]]; then
+		# ffmpeg doesn't like : in filenames without leading ./
+		input="./$pre"
+	fi
+	shift
+	case "$#" in
+		"0")
+			echo "Midroll requires <pre-ad> + <post-ad>"
+			exit 1
+			;;
+		"1")
+			;;
+		*)
+			echo "Midroll does not support many files"
+			exit 1
+			;;
+	esac
 fi
 
 for file in "$@"; do
@@ -113,7 +139,7 @@ for file in "$@"; do
 			-r "$inr" \
 			"${enc[@]}" \
 			"./$reencoded"
-	elif [[ -n "$wad" ]]; then
+	elif [[ -n "$wpr" ]]; then
 		echo " -> reencoding $asize video with post-roll to $reencoded"
 		ind=$(ffprobe -v error -select_streams v:0 -show_entries format=duration -of default=noprint_wrappers=1:nokey=1 "$input")
 		trim=$(echo "$ind - 0.5" | bc -l)
@@ -121,13 +147,44 @@ for file in "$@"; do
 		time ffmpeg \
 			-to "$trim" \
 			-i "$input" \
-			-i "$wad" \
+			-i "$wpr" \
 			-filter_complex "[0:v]settb=AVTB,format=yuv420p[v0]; \
 		                         [1:v]settb=AVTB,format=yuv420p[v1]; \
 		                         [v0][v1]xfade=transition=pixelize:duration=0.3:offset=$offset,format=yuv420p[v]; \
 		                         [0:a]atrim=0:$offset,asetpts=PTS-STARTPTS[a0]; \
 		                         [1:a]atrim=start=0,asetpts=PTS-STARTPTS[a1]; \
 		                         [a0][a1]concat=n=2:v=0:a=1[a]" \
+			-map "[v]" -map "[a]" \
+			"${enc[@]}" \
+			"./$reencoded"
+	elif [[ -n "$wmr" ]]; then
+		echo " -> reencoding $asize video with mid-roll to $reencoded"
+		pred=$(ffprobe -v error -select_streams v:0 -show_entries format=duration -of default=noprint_wrappers=1:nokey=1 "$pre")
+		add=$(ffprobe -v error -select_streams v:0 -show_entries format=duration -of default=noprint_wrappers=1:nokey=1 "$wmr")
+		fadedur=0.3
+		# First transition: pre -> midroll at (pred - 1)
+		incoming=$(echo "$pred - 1" | bc -l)
+		# Second transition: midroll -> post
+		# Must account for the 0.3s overlap from first xfade
+		# Combined stream [v01] has length: pred + add - fadedur
+		# We want transition 1s before end, so: pred + add - fadedur - 1
+		outgoing=$(echo "$pred + $add - $fadedur - 1" | bc -l)
+		# Audio cuts at the start of each video crossfade for better sync
+		audio_trim=$(echo "$incoming" | bc -l)
+		midroll_trim=$(echo "$add - $fadedur" | bc -l)
+		time ffmpeg \
+			-i "$pre" \
+			-i "$wmr" \
+			-i "$input" \
+			-filter_complex "[0:v]settb=AVTB,format=yuv420p[v0]; \
+		                         [1:v]settb=AVTB,format=yuv420p[v1]; \
+		                         [2:v]settb=AVTB,format=yuv420p[v2]; \
+		                         [v0][v1]xfade=transition=pixelize:duration=$fadedur:offset=$incoming,format=yuv420p[v01]; \
+		                         [v01][v2]xfade=transition=pixelize:duration=$fadedur:offset=$outgoing,format=yuv420p[v]; \
+		                         [0:a]atrim=0:$audio_trim,asetpts=PTS-STARTPTS[a0]; \
+		                         [1:a]atrim=0:$midroll_trim,asetpts=PTS-STARTPTS[a1]; \
+		                         [2:a]asetpts=PTS-STARTPTS[a2]; \
+		                         [a0][a1][a2]concat=n=3:v=0:a=1[a]" \
 			-map "[v]" -map "[a]" \
 			"${enc[@]}" \
 			"./$reencoded"
