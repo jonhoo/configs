@@ -432,6 +432,19 @@ require("lazy").setup({
 			end)
 		end
 	},
+	-- Mason: manages LSP servers, DAPs, linters, formatters
+	{
+		'williamboman/mason.nvim',
+		build = ':MasonUpdate',
+		opts = {},
+	},
+	{
+		'williamboman/mason-lspconfig.nvim',
+		dependencies = { 'williamboman/mason.nvim' },
+		opts = {
+			ensure_installed = { 'jdtls' },
+		},
+	},
 	-- LSP
 	{
 		'neovim/nvim-lspconfig',
@@ -642,6 +655,45 @@ require("lazy").setup({
 			vim.g.vimtex_view_method = "zathura"
 			vim.g.vimtex_mappings_enabled = false
 		end
+	},
+	-- java
+	{
+		'mfussenegger/nvim-jdtls',
+		ft = { "java" },
+		config = function()
+			local function setup_jdtls()
+				local project_name = vim.fn.fnamemodify(vim.fn.getcwd(), ':p:h:t')
+				local workspace_dir = vim.fn.stdpath('data') .. '/jdtls-workspace/' .. project_name
+				local mason_jdtls = vim.fn.stdpath('data') .. '/mason/bin/jdtls'
+				local cmd = vim.fn.executable(mason_jdtls) == 1 and mason_jdtls or 'jdtls'
+				require('jdtls').start_or_attach({
+					cmd = { cmd, '-data', workspace_dir },
+					root_dir = vim.fs.root(0, { '.git', 'mvnw', 'gradlew', 'pom.xml', 'build.gradle' }),
+					settings = {
+						java = {
+							format = { enabled = true },
+							saveActions = { organizeImports = true },
+						},
+					},
+					on_attach = function(_, bufnr)
+						vim.api.nvim_create_autocmd('BufWritePre', {
+							buffer = bufnr,
+							callback = function()
+								require('jdtls').organize_imports()
+								vim.lsp.buf.format({ bufnr = bufnr })
+							end,
+						})
+					end,
+				})
+			end
+			-- run for the buffer that triggered the load
+			setup_jdtls()
+			-- and for any subsequent java buffers
+			vim.api.nvim_create_autocmd('FileType', {
+				pattern = 'java',
+				callback = setup_jdtls,
+			})
+		end,
 	},
 	-- fish
 	'khaveesh/vim-fish-syntax',
