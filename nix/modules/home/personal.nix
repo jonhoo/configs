@@ -122,7 +122,11 @@
           end
         end
       '';
-      programs.firefox.enable = true;
+      programs.firefox = {
+        enable = true;
+        # TODO: remove with stateVersion bump
+        configPath = "${config.xdg.configHome}/mozilla/firefox";
+      };
       programs.rofi = {
         enable = true;
         plugins = with pkgs; [ rofi-calc ];

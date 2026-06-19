@@ -29,7 +29,7 @@
           };
         in
         [
-          asciinema_3
+          asciinema
           asciinema-agg
           ast-grep
           bash-language-server

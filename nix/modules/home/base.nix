@@ -16,8 +16,10 @@
       };
       programs.neovim = {
         enable = true;
-        extraLuaConfig = builtins.readFile ../../../editor/.config/nvim/init.lua;
+        initLua = builtins.readFile ../../../editor/.config/nvim/init.lua;
         defaultEditor = true;
+        withPython3 = true;
+        withRuby = false;
       };
       programs.zoxide = {
         enable = true;

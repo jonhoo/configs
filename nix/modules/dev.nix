@@ -30,7 +30,7 @@
     kdePackages.kcachegrind
     links2
     llvm
-    nixfmt-rfc-style
+    nixfmt
     nodejs
     perf
     python3
