@@ -194,6 +194,7 @@ Known unsandboxable commands are:
 
 - `gh`
 - `perf record` (but _not_ `perf script`)
+- `cargo add` (but _not_ `cargo remove`)
 
 ### Sandbox discipline
 

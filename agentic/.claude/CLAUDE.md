@@ -137,26 +137,6 @@ Avoid over-documenting:
 
 ## Claude Code sandbox insights
 
-### Pipe workaround (trailing `;`)
-
-The sandbox has a [known issue][cc-16305] where data is silently
-dropped in shell pipes between commands. Appending a trailing `;` to
-the command fixes this:
-
-```sh
-# Broken (downstream receives no input):
-diff <(jq -S . a.json) <(jq -S . b.json)
-
-# Fixed — append `;`:
-diff <(jq -S . a.json) <(jq -S . b.json);
-echo "abc" | grep "abc";
-```
-
-This affects pipes (`|`), process substitution (`<(...)`), and any
-command that connects stdout of one process to stdin of another.
-
-[cc-16305]: https://github.com/anthropics/claude-code/issues/16305
-
 ### `!` (negation) workaround
 
 The sandbox has a [separate bug][cc-24136] where the bash `!` keyword
@@ -194,6 +174,7 @@ Known unsandboxable commands are:
 
 - `gh`
 - `perf record` (but _not_ `perf script`)
+- `cargo add` (but _not_ `cargo remove`)
 
 ### Sandbox discipline
 
