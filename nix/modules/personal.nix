@@ -69,6 +69,24 @@
       enable = true;
       pulse.enable = true;
     };
+    services.pipewire.wireplumber.extraConfig."10-bluez" = {
+      "monitor.bluez.properties" = {
+        "bluez5.enable-hw-volume" = false;
+        "bluez5.roles" = [
+          # "hsp_hs"
+          # "hsp_ag"
+          # "hfp_hf"
+          # "hfp_ag"
+          "a2dp_sink"
+          "bap_sink"
+        ];
+      };
+    };
+    services.pipewire.wireplumber.extraConfig."11-bluetooth-policy" = {
+      "wireplumber.settings" = {
+        "bluetooth.autoswitch-to-headset-profile" = false;
+      };
+    };
 
     # Printing
     services.avahi = {

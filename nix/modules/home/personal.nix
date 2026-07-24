@@ -294,7 +294,7 @@
         mpv
         obsidian
         obs-studio
-        pavucontrol
+        pwvucontrol
         playerctl
         pulseaudio
         slurp
