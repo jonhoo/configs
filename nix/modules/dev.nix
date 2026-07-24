@@ -7,6 +7,8 @@
     ./home/dev.nix
   ];
 
+  virtualisation.docker.enable = true;
+
   environment.systemPackages = with pkgs; [
     bpftrace
     cargo-expand

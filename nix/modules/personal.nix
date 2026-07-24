@@ -45,6 +45,7 @@
     users.users.jon.extraGroups = [
       "audio"
       "video"
+      "docker"
     ];
 
     # Graphics (extraPackages are host-specific)
