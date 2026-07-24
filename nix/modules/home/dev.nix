@@ -36,6 +36,7 @@
           bcc
           cargo-dist
           fzf
+          gh
           llmP
           llm-agents.claude-code
           nil
