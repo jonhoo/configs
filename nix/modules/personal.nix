@@ -130,10 +130,14 @@
 
     programs.dconf.enable = true;
 
-    # Fonts
+    # Make uv able to execute Python (and more)
+    programs.nix-ld.enable = true;
+
     fonts.packages = with pkgs; [
       noto-fonts
       noto-fonts-color-emoji
+      liberation_ttf
+      tex-gyre.heros
       public-sans
     ];
 
@@ -148,6 +152,7 @@
       cifs-utils
       ffmpeg-full
       poppler-utils
+      fontforge-fonttools
       pv
     ];
   };

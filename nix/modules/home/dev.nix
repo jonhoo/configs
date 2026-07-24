@@ -50,6 +50,7 @@
           shellcheck
           treefmt
           typst
+          uv
         ];
     };
 }

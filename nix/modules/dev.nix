@@ -34,6 +34,7 @@
     llvm
     nixfmt
     nodejs
+    patchelf
     perf
     python3
     ruby
