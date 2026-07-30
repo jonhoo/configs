@@ -292,6 +292,7 @@
         magic-wormhole-rs
         marp-cli
         mpv
+        noson
         obsidian
         obs-studio
         pwvucontrol
