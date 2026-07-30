@@ -41,6 +41,9 @@
     services.kbfs.enable = true;
     systemd.user.services.kbfs.wantedBy = lib.mkForce [ ];
 
+    # firmware updates
+    services.fwupd.enable = true;
+
     # Add audio/video groups
     users.users.jon.extraGroups = [
       "audio"
