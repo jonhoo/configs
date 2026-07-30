@@ -44,6 +44,10 @@
     # firmware updates
     services.fwupd.enable = true;
 
+    # tap to click
+    services.libinput.touchpad.tapping = true;
+    services.libinput.touchpad.disableWhileTyping = true;
+
     # Add audio/video groups
     users.users.jon.extraGroups = [
       "audio"
