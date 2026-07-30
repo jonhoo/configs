@@ -208,9 +208,11 @@
               bg =
                 let
                   img = builtins.fetchurl {
-                    url = "https://images.pexels.com/photos/21706244/pexels-photo-21706244.jpeg?cs=srgb&dl=pexels-dane-amacher-1175058986-21706244.jpg&fm=jpg";
+                    # url = "https://images.pexels.com/photos/21706244/pexels-photo-21706244.jpeg?cs=srgb&dl=pexels-dane-amacher-1175058986-21706244.jpg&fm=jpg";
+                    url = "https://jon.thesquareplanet.com/share/pexels-dane-amacher-1175058986-21706244.jpg";
                     name = "pexels-photo-21706244.jpeg";
-                    sha256 = "0d8s51k0975flcmi82r7606s4w7n4hmbj5w46iy4frwgazmpn76r";
+                    # sha256 = "0d8s51k0975flcmi82r7606s4w7n4hmbj5w46iy4frwgazmpn76r";
+                    sha256 = "0bhr8facng6i2iszxvfd20a93f1p994mbi2l2zj43sqb6wnmcwpc";
                   };
                 in
                 "${img} fill";
@@ -274,7 +276,8 @@
         # GUI apps
         appimage-run
         audacity
-        fastmail-desktop
+	# NixOS/nixpkgs/#544808
+        # fastmail-desktop
         ffmpeg-normalize
         gimp
         google-chrome
