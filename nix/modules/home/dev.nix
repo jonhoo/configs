@@ -29,6 +29,7 @@
           };
         in
         [
+          android-tools
           asciinema
           asciinema-agg
           ast-grep
