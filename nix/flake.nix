@@ -13,6 +13,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     llm-agents.url = "github:numtide/llm-agents.nix";
+    nixos-hardware = {
+      url = "github:NixOS/nixos-hardware";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
@@ -21,6 +25,7 @@
       nixpkgs,
       home-manager,
       llm-agents,
+      nixos-hardware,
     }:
     let
       system = "x86_64-linux";
@@ -36,6 +41,7 @@
           inherit system;
           specialArgs = {
             llm-agents = llm-agents.packages.${system};
+            nixos-hardware = nixos-hardware;
           };
           modules = [
             ./hosts/${name}

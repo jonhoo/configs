@@ -1,9 +1,10 @@
 # Host configuration for xfw (FW laptop)
-{ pkgs, ... }:
+{ pkgs, nixos-hardware, ... }:
 
 {
   imports = [
     ./hardware-configuration.nix
+    nixos-hardware.nixosModules.framework-intel-core-ultra-series3
     ../../modules/personal.nix
     ../../modules/laptop.nix
   ];
