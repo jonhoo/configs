@@ -24,7 +24,10 @@
     }:
     let
       system = "x86_64-linux";
-      hosts = [ "xos" "xfw" ];
+      hosts = [
+        "xos"
+        "xfw"
+      ];
     in
     {
       nixosConfigurations = nixpkgs.lib.genAttrs hosts (

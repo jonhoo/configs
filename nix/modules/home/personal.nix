@@ -276,7 +276,7 @@
         # GUI apps
         appimage-run
         audacity
-	# NixOS/nixpkgs/#544808
+        # NixOS/nixpkgs/#544808
         # fastmail-desktop
         ffmpeg-normalize
         gimp
