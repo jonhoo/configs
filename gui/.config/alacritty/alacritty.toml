@@ -51,7 +51,7 @@ background = "0x1d2021"
 foreground = "0xd5c4a1"
 
 [font]
-size = 11.0
+size = 13.0
 
 [font.normal]
 family = "Noto Sans Mono"

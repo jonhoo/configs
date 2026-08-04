@@ -174,7 +174,7 @@
         enable = true;
         settings = {
           "org/gnome/desktop/interface" = {
-            text-scaling-factor = 0.75;
+            text-scaling-factor = 1;
           };
         };
       };
