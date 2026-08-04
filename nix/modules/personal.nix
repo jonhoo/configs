@@ -144,6 +144,21 @@
       public-sans
     ];
 
+    # Install and configure (but do not auto-start) sshd
+    services.openssh = {
+      enable = true;
+      openFirewall = true;
+      settings = {
+        PasswordAuthentication = false;
+        KbdInteractiveAuthentication = false;
+        PermitRootLogin = "no";
+        AllowUsers = [ "jon" ];
+        MaxAuthTries = 2;
+        PerSourcePenalties = "crash:3600s authfail:3600s max:86400s";
+      };
+    };
+    systemd.services.sshd.wantedBy = lib.mkForce [ ];
+
     # Security for GUI session
     services.gnome.gnome-keyring.enable = true;
     security.polkit.enable = true;
