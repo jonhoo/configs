@@ -30,7 +30,13 @@
   # Configure keymap in X11
   services.xserver.xkb = {
     layout = "us";
-    variant = "euro";
+    model = "pc101";
+    variant = "altgr-intl,euro";
+  };
+  home-manager.users.jon.wayland.windowManager.sway.config.input."type:keyboard" = {
+    xkb_layout = "us";
+    xkb_model = "pc101";
+    xkb_variant = "altgr-intl,euro";
   };
 
   # Firewall
