@@ -39,6 +39,12 @@
     xkb_variant = "altgr-intl,euro";
   };
 
+  # Fingerprint reader
+  services.fprintd = {
+    enable = true;
+    # tod = { };
+  };
+
   # Firewall
   networking.firewall.enable = false;
 
