@@ -115,13 +115,6 @@
           in
           builtins.fromTOML toml;
       };
-      programs.fish.loginShellInit = ''
-        if test (tty) = "/dev/tty1"; and test -z "$WAYLAND_DISPLAY"; and test -n "$XDG_VTNR"; and test "$XDG_VTNR" -eq 1
-          if sway
-            exit 0
-          end
-        end
-      '';
       programs.firefox = {
         enable = true;
         # TODO: remove with stateVersion bump

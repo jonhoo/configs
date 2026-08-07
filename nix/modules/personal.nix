@@ -159,6 +159,18 @@
     };
     systemd.services.sshd.wantedBy = lib.mkForce [ ];
 
+    # Auto-start sway
+    services.greetd = {
+      enable = true;
+      settings = rec {
+        initial_session = {
+          command = "${pkgs.sway}/bin/sway";
+          user = "jon";
+        };
+        default_session = initial_session;
+      };
+    };
+
     # Security for GUI session
     services.gnome.gnome-keyring.enable = true;
     security.polkit.enable = true;
