@@ -50,6 +50,7 @@
           ruff
           semgrep
           shellcheck
+          sqlx-cli
           treefmt
           typst
           uv
