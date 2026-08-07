@@ -174,7 +174,13 @@
     # Security for GUI session
     services.gnome.gnome-keyring.enable = true;
     security.polkit.enable = true;
-    security.pam.services.swaylock = { };
+    security.pam.services = {
+      greetd.enableGnomeKeyring = true;
+      swaylock.enableGnomeKeyring = true;
+
+      # If using a display manager such as GDM
+      #gdm.enableGnomeKeyring = true;
+    };
     security.rtkit.enable = true;
 
     environment.systemPackages = with pkgs; [
