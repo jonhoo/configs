@@ -260,6 +260,7 @@
       home.packages = with pkgs; [
         # Personal tools
         backblaze-b2
+        dust
         kbfs
         keybase
         signal-desktop
