@@ -54,7 +54,7 @@ fails for the correct reason. Remove the temporary example after.
 
 ## Git workflow
 
-Use the `commit-writer` skill, if available, to draft commit messages.
+Use the `author-useful-commit` skill, if available, to draft commit messages.
 It reads the current diff and produces a message following the
 conventions below.
 
