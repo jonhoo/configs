@@ -182,6 +182,63 @@
       #gdm.enableGnomeKeyring = true;
     };
 
+    # ==========================================================================
+    # Auto-unlocking the login keyring under greetd autologin
+    # ==========================================================================
+    #
+    # `enableGnomeKeyring` above wires `pam_gnome_keyring` into both the auth
+    # and session phases of the greetd PAM stack, which is all a *normal* login
+    # needs: the auth phase stashes the password you typed, and the session
+    # phase hands it to gnome-keyring-daemon, which creates the `login` keyring
+    # on first use and unlocks it thereafter.
+    #
+    # That falls apart under `services.greetd.settings.initial_session`
+    # (autologin, below): greetd skips PAM's auth phase entirely, because there
+    # is no password to check. So `pam_gnome_keyring` only ever sees the session
+    # phase, with no password stashed, and quietly starts a daemon that owns no
+    # keyring at all. The symptom is not an error — it is an empty
+    # ~/.local/share/keyrings and a Secret Service whose only collection is the
+    # in-memory `session` one, with no `default` alias. Anything that wants to
+    # *persist* a secret then fails: 1Password cannot save its two-factor token,
+    # and the `secret-tool lookup` password commands in home/personal.nix have
+    # nothing to look up.
+    #
+    # Note that sharing one password between LUKS, the user account, and the
+    # keyring is not by itself enough to fix this. Nothing ever types that
+    # password, so nothing ever reaches PAM.
+    #
+    # `pam_fde_boot_pw` closes the gap. systemd-cryptsetup in the initrd caches
+    # the FDE passphrase in root's kernel keyring under the name "cryptsetup";
+    # this module reads it back during the *session* phase and stashes it in the
+    # `gkr_system_authtok` PAM item, which is exactly where `pam_gnome_keyring`
+    # looks. gnome-keyring then creates the `login` keyring with that passphrase
+    # on the next boot and unlocks it on every subsequent one, with no prompt.
+    #
+    # This is not something an upstream NixOS option is about to make redundant.
+    # The obvious candidate, nixpkgs#286587, is GDM-specific and builds on
+    # `pam_systemd_loadkey`, which reads the key during the auth phase — the
+    # phase greetd does not run. Any eventual upstream fix for greetd has to be
+    # session-phase, i.e. it has to do what this module does. Revisit if
+    # `security.pam.services.<name>` ever grows a session-phase key injector.
+    security.pam.services.greetd.rules.session.fde_boot_pw = {
+      # Must precede `pam_gnome_keyring` (order 12600), which consumes the item
+      # this module sets.
+      order = 12500;
+      control = "optional";
+      modulePath = "${pkgs.pam_fde_boot_pw}/lib/security/pam_fde_boot_pw.so";
+      args = [ "inject_for=gkr" ];
+    };
+
+    # The kernel keyring `pam_fde_boot_pw` reads only gets populated by
+    # systemd-cryptsetup, so systemd-in-initrd is a hard prerequisite. It
+    # defaults to true, which makes it easy to lose by accident.
+    assertions = [
+      {
+        assertion = config.boot.initrd.systemd.enable;
+        message = "pam_fde_boot_pw needs systemd in the initrd to cache the LUKS passphrase in the kernel keyring";
+      }
+    ];
+
     systemd.user.services.polkit-gnome-authentication-agent-1 = {
       description = "polkit-gnome-authentication-agent-1";
       wantedBy = [ "graphical-session.target" ];
