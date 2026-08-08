@@ -1,5 +1,10 @@
 # Development environment (for remote dev hosts)
-{ config, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
 {
   imports = [
@@ -7,7 +12,9 @@
     ./home/dev.nix
   ];
 
+  # Configure Docker, but don't auto-start it.
   virtualisation.docker.enable = true;
+  systemd.services.docker.wantedBy = lib.mkForce [ ];
 
   environment.systemPackages = with pkgs; [
     bpftrace
