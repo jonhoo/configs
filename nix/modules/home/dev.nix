@@ -20,6 +20,11 @@
         enableSshSupport = true;
       };
 
+      programs.direnv = {
+        enable = true;
+        enableFishIntegration = true;
+      };
+
       home.packages =
         with pkgs;
         let
