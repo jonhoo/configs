@@ -147,6 +147,12 @@
 
     programs.dconf.enable = true;
 
+    # Allow directly executing .AppImage
+    programs.appimage = {
+      enable = true;
+      binfmt = true;
+    };
+
     # Make uv able to execute Python (and more)
     programs.nix-ld.enable = true;
 
