@@ -26,15 +26,29 @@
     };
 
     # NAS
-    fileSystems."/mnt/nas/jon" = {
-      device = "//192.168.50.50/jon";
-      fsType = "cifs";
-      options =
-        let
-          mount_opts = "_netdev,noauto,x-systemd.idle-timeout=60,x-systemd.device-timeout=5s,x-systemd.mount-timeout=5s";
-        in
-        [ "${mount_opts},credentials=/etc/nixos/smb-secrets,uid=jon,gid=users" ];
-    };
+    fileSystems =
+      lib.attrsets.genAttrs'
+        [
+          "downloads"
+          "jon"
+          "media"
+          "music"
+          "photo"
+          "recordings"
+          "video"
+        ]
+        (
+          share:
+          lib.attrsets.nameValuePair ("/mnt/nas/" + share) {
+            device = ("//192.168.50.50/" + share);
+            fsType = "cifs";
+            options =
+              let
+                mount_opts = "_netdev,noauto,x-systemd.idle-timeout=60,x-systemd.device-timeout=5s,x-systemd.mount-timeout=5s,vers=3";
+              in
+              [ "${mount_opts},credentials=/etc/nixos/smb-secrets,uid=jon,gid=users" ];
+          }
+        );
 
     # Keybase
     services.keybase.enable = true;
