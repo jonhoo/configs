@@ -42,7 +42,9 @@
           bash-language-server
           bcc
           cargo-dist
+          chromedriver
           fzf
+          geckodriver
           gh
           jaq
           llmP
