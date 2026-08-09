@@ -35,6 +35,7 @@
   environment.systemPackages = with pkgs; [
     bc
     dig
+    file
     git
     git-lfs
     htop

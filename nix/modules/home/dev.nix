@@ -30,6 +30,7 @@
         in
         [
           android-tools
+          ascii
           asciinema
           asciinema-agg
           ast-grep
@@ -38,6 +39,7 @@
           cargo-dist
           fzf
           gh
+          jaq
           llmP
           llm-agents.claude-code
           nil
