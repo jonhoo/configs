@@ -28,6 +28,11 @@ if status --is-interactive
 				exec tmux set-option -g default-shell (which fish) ';' new-session
 			end
 	end
+	if test -n "$SSH_CLIENT"; or test -n "$SSH_TTY"
+		:
+	else
+		atuin init --disable-up-arrow fish | source
+	end
 end
 
 if command -v paru > /dev/null
