@@ -10,7 +10,6 @@
 	.searchmode-switcher { position: static !important; }
 	#urlbar {
 		top: unset !important;
-		bottom: calc(var(--urlbar-container-height) + 2 * var(--urlbar-padding-block)) !important;
 		box-shadow: none !important;
 		display: flex !important;
 		flex-direction: column !important;
@@ -21,9 +20,26 @@
 	#urlbar .urlbar-input-container {
 		order: 2;
 	}
+	#urlbar .urlbar-background {
+		.urlbar[popover-open] > & {
+			border-radius: 0;
+			inset-block-start: calc(-1 * var(--urlbar-joint-background-overlap));
+			inset-block-end: 0;
+		}
+	}
+	#urlbar > .urlbarView-background {
+		border-radius: 0;
+	}
 	#urlbar > .urlbarView {
 		order: 1;
-		border-bottom: 1px solid #666;
+		&:popover-open {
+			border-bottom: 1px solid #666 !important;
+			margin-bottom: .1em !important;
+			overflow-x: hidden !important;
+			position-area: block-start center !important;
+			padding-block-end: var(--urlbarView-padding) !important;
+			padding-block-start: 0 !important;
+		}
 	}
 	#urlbar-results {
 		display: flex;
