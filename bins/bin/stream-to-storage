@@ -2,6 +2,10 @@
 
 set -euo pipefail
 
+#echo "experiment with mkclean"
+#echo "https://github.com/XMB5/mkclean-pragmatic"
+#exit 1
+
 cor=0
 if [[ $1 = "--crust-of-rust" ]]; then
 	cor=1
