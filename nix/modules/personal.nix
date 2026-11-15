@@ -29,18 +29,14 @@
     fileSystems =
       lib.attrsets.genAttrs'
         [
-          "downloads"
-          "jon"
+          "personal"
           "media"
-          "music"
-          "photo"
-          "recordings"
-          "video"
+          "talks"
         ]
         (
           share:
           lib.attrsets.nameValuePair ("/mnt/nas/" + share) {
-            device = ("//192.168.50.50/" + share);
+            device = ("//192.168.2.128/" + share);
             fsType = "cifs";
             options =
               let
