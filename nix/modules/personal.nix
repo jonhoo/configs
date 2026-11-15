@@ -105,6 +105,7 @@
         "bluetooth.autoswitch-to-headset-profile" = false;
       };
     };
+    xdg.sounds.enable = true;
 
     # Printing
     services.avahi = {
@@ -274,6 +275,10 @@
     };
     security.rtkit.enable = true;
 
+    programs.steam = {
+      enable = true;
+    };
+
     environment.systemPackages = with pkgs; [
       aria2
       cifs-utils
@@ -281,6 +286,7 @@
       poppler-utils
       fontforge-fonttools
       pv
+      sound-theme-freedesktop
     ];
   };
 }

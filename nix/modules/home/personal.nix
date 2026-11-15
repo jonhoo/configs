@@ -272,6 +272,8 @@
         audacity
         # NixOS/nixpkgs/#544808
         # fastmail-desktop
+        feishin
+        freerdp
         ffmpeg-normalize
         gimp
         google-chrome
@@ -283,12 +285,15 @@
         })
         grim
         imv
+        libcanberra-gtk3 # sound notifications
         libnotify
         libreoffice-still
         libsecret
+        lsof
         magic-wormhole-rs
         marp-cli
-        mpv
+        mediainfo
+        mkvtoolnix-cli
         noson
         obsidian
         obs-studio
@@ -296,8 +301,11 @@
         playerctl
         pulseaudio
         slurp
+        sox
+        steam-run
         swaybg
         unrpa
+        waypipe
         wev
         wl-clipboard
         wlr-randr
