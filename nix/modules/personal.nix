@@ -91,8 +91,13 @@
           # "hsp_ag"
           # "hfp_hf"
           # "hfp_ag"
-          "a2dp_sink"
-          "bap_sink"
+          # These are the roles _this machine_ plays, so to stream to
+          # headphones/speakers we need to be the source.
+          "a2dp_source"
+          "bap_source"
+          # Enable to let the laptop act as a speaker for e.g. a phone.
+          # "a2dp_sink"
+          # "bap_sink"
         ];
       };
     };
